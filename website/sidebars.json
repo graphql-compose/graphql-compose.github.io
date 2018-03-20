@@ -1,0 +1,24 @@
+{
+  "docs": {
+    "Introduction": ["prerequisites", "installation", "guide"],
+    "Guide": [
+      "generate-typecomposer",
+      "edit-typecomposer",
+      "relations",
+      "mutations",
+      "generating-schema",
+      "relay"
+    ],
+    "API Reference": [
+      "api-reference",
+      "api-typecomposer",
+      "api-inputtypecomposer",
+      "api-resolver",
+      "api-typemapper",
+      "api-gqc"
+    ],
+    "Plugins": ["plugins"],
+    "Advanced": ["advanced"],
+    "Demos": ["demos"]
+  }
+}
