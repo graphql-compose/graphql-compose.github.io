@@ -8,8 +8,7 @@
   },
   "scripts": {
     "start": "cd website && yarn start",
-    "build": "cd website && yarn build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cd website && yarn build"
   },
   "repository": {
     "type": "git",
