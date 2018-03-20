@@ -1,0 +1,110 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Generating Schema · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Generating Schema · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://github.com/graphql-compose/graphql-compose/graphql-compose/index.html"/><meta property="og:description" content="```js"/><link rel="shortcut icon" href="/graphql-compose/img/logo.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/graphql-compose/css/main.css"/></head><body class="sideNavVisible doc"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/graphql-compose/"><img class="logo" src="/graphql-compose/img/logo.png"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/graphql-compose/docs/guide.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/graphql-compose/docs/api-reference.html" target="_self">API</a></li><li class=""><a href="/graphql-compose/en/help.html" target="_self">Support</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guide</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/guide.html">Quick Start Guide</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/generate-typecomposer.html">Generate TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/edit-typecomposer.html">Edit TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/relations.html">Relations</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/mutations.html">Mutation</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/graphql-compose/docs/generating-schema.html">Generating Schema</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/relay.html">Relay</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-reference.html">API Reference</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-typecomposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-inputtypecomposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-typemapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-gqc.html">GQC</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugins</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/plugins.html">Plugins</a></li></ul></div><div class="navGroup navGroupActive"><h3>Advanced</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/advanced.html">Advanced</a></li></ul></div><div class="navGroup navGroupActive"><h3>Demos</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/demos.html">Live Demos</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Generating Schema</h1></header><article><div><span><pre><code class="hljs css js"><span class="hljs-comment">// schema.js</span>
+<span class="hljs-keyword">import</span> { GQC } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./rootQuery'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./rootMutation'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> GQC.buildSchema();
+</code></pre>
+<pre><code class="hljs css js"><span class="hljs-comment">// rootQuery.js</span>
+<span class="hljs-keyword">import</span> { GQC } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+<span class="hljs-keyword">import</span> { ViewerTC } <span class="hljs-keyword">from</span> <span class="hljs-string">'./viewer'</span>;
+<span class="hljs-keyword">import</span> { AdminTC } <span class="hljs-keyword">from</span> <span class="hljs-string">'./admin'</span>;
+
+GQC.rootQuery().addFields({
+  <span class="hljs-attr">viewer</span>: ViewerTC.get(<span class="hljs-string">'$load'</span>),
+  <span class="hljs-attr">admin</span>: AdminTC.get(<span class="hljs-string">'$onlyForAdmins'</span>),
+});
+
+<span class="hljs-comment">// expose `context` into schema</span>
+[ViewerTC, AdminTC].forEach(<span class="hljs-function"><span class="hljs-params">TC</span> =&gt;</span> {
+  TC.addFields({
+    <span class="hljs-attr">contextData</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'JSON'</span>,
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'Context data of current client'</span>,
+      <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source, args, context</span>) =&gt;</span> context,
+    },
+  });
+});
+</code></pre>
+<pre><code class="hljs css js"><span class="hljs-comment">// viewer.js</span>
+<span class="hljs-keyword">import</span> { GQC } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+<span class="hljs-keyword">import</span> { UserTC } <span class="hljs-keyword">from</span> <span class="hljs-string">'./user'</span>;
+<span class="hljs-keyword">import</span> { CompanyTC } <span class="hljs-keyword">from</span> <span class="hljs-string">'./company'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ViewerTC = GQC.get(<span class="hljs-string">'Viewer'</span>);
+
+ViewerTC.addResolver({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'load'</span>,
+  <span class="hljs-attr">type</span>: ViewerTC,
+  <span class="hljs-attr">resolve</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({}),
+});
+
+ViewerTC.addFields({
+  <span class="hljs-attr">user</span>: UserTC.get(<span class="hljs-string">'$findById'</span>),
+  <span class="hljs-attr">userConnection</span>: UserTC.get(<span class="hljs-string">'$connection'</span>),
+  <span class="hljs-attr">company</span>: CompanyTC.get(<span class="hljs-string">'$findById'</span>),
+  <span class="hljs-attr">companyConnection</span>: CompanyTC.get(<span class="hljs-string">'$connection'</span>),
+});
+</code></pre>
+<pre><code class="hljs css js"><span class="hljs-comment">// admin.js</span>
+<span class="hljs-keyword">import</span> { GQC } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+<span class="hljs-keyword">import</span> { TransactionTC } <span class="hljs-keyword">from</span> <span class="hljs-string">'./transaction'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> AdminTC = GQC.get(<span class="hljs-string">'ADM'</span>);
+
+AdminTC.addResolver({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'onlyForAdmins'</span>,
+  <span class="hljs-attr">outputType</span>: AdminTC,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">'Data under Admin'</span>,
+  <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">{ context }</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!context.admin) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'You should be admin, to have access to this area.'</span>);
+    }
+    <span class="hljs-keyword">return</span> {};
+  },
+});
+
+AdminTC.addFields({
+  <span class="hljs-attr">transaction</span>: TransactionTC.getResolver(<span class="hljs-string">'findById'</span>),
+  <span class="hljs-attr">transactionConnection</span>: TransactionTC.getResolver(<span class="hljs-string">'connection'</span>),
+});
+</code></pre>
+<pre><code class="hljs css js"><span class="hljs-comment">// rootMutation.js</span>
+<span class="hljs-keyword">import</span> { GQC } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+<span class="hljs-keyword">import</span> { CommentTC } <span class="hljs-keyword">from</span> <span class="hljs-string">'./comment'</span>;
+<span class="hljs-keyword">import</span> { UserTC } <span class="hljs-keyword">from</span> <span class="hljs-string">'./user'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> RootMutationTC = GQC.rootMutation();
+
+RootMutationTC.addFields({
+  <span class="hljs-attr">commentCreate</span>: CommentTC.get(<span class="hljs-string">'$createOne'</span>), <span class="hljs-comment">// may anybody</span>
+
+  ...adminAccess({
+    <span class="hljs-comment">// only for admins</span>
+    userCreate: UserTC.get(<span class="hljs-string">'$createOne'</span>),
+    <span class="hljs-attr">userUpdate</span>: UserTC.get(<span class="hljs-string">'$updateById'</span>),
+    <span class="hljs-attr">userRemove</span>: UserTC.get(<span class="hljs-string">'$removeById'</span>),
+  }),
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">adminAccess</span>(<span class="hljs-params">resolvers</span>) </span>{
+  <span class="hljs-built_in">Object</span>.keys(resolvers).forEach(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> {
+    resolvers[k] = resolvers[k].wrapResolve(<span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> rp =&gt; {
+      <span class="hljs-keyword">if</span> (!rp.context.isAdmin) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'You should be admin, to have access to this action.'</span>);
+      }
+      <span class="hljs-keyword">return</span> next(rp);
+    });
+  });
+  <span class="hljs-keyword">return</span> resolvers;
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="mutations.html">← Mutation</a><a class="docs-next button" href="relay.html">Relay →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/graphql-compose/" class="nav-home"><img src="/graphql-compose/img/logo.png" alt="graphql-compose" width="66" height="58"/></a><div><h5>Docs</h5><a href="/graphql-compose/docs/guide.html">Getting Started</a><a href="/graphql-compose/docs/api-reference.html">API Reference</a></div><div><h5>Community</h5><a href="https://twitter.com/nodkz" target="_blank">Twitter</a></div><div><h5>More</h5><a href="https://github.com/graphql-compose/graphql-compose">GitHub</a><a class="github-button" href="https://github.com/graphql-compose/graphql-compose" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/graphql-compose/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Facebook Inc.</section></footer></div></body></html>

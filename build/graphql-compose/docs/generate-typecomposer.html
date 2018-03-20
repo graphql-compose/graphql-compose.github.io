@@ -1,0 +1,66 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Generate TypeComposer · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Generate TypeComposer · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://github.com/graphql-compose/graphql-compose/graphql-compose/index.html"/><meta property="og:description" content="First we need to create our TypeComposer."/><link rel="shortcut icon" href="/graphql-compose/img/logo.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/graphql-compose/css/main.css"/></head><body class="sideNavVisible doc"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/graphql-compose/"><img class="logo" src="/graphql-compose/img/logo.png"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/graphql-compose/docs/guide.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/graphql-compose/docs/api-reference.html" target="_self">API</a></li><li class=""><a href="/graphql-compose/en/help.html" target="_self">Support</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guide</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/guide.html">Quick Start Guide</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/graphql-compose/docs/generate-typecomposer.html">Generate TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/edit-typecomposer.html">Edit TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/relations.html">Relations</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/mutations.html">Mutation</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/generating-schema.html">Generating Schema</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/relay.html">Relay</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-reference.html">API Reference</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-typecomposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-inputtypecomposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-typemapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/api-gqc.html">GQC</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugins</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/plugins.html">Plugins</a></li></ul></div><div class="navGroup navGroupActive"><h3>Advanced</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/advanced.html">Advanced</a></li></ul></div><div class="navGroup navGroupActive"><h3>Demos</h3><ul><li class="navListItem"><a class="navItem" href="/graphql-compose/docs/demos.html">Live Demos</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Generate TypeComposer</h1></header><article><div><span><p>First we need to create our TypeComposer.
+The TypeComposer is a builder for GraphQLObjectType object.
+Other than having all the standards of a GraphQLObjectType it has all the functions you need to manipulate when you need.</p>
+<h4><a class="anchor" aria-hidden="true" id="creating-typecomposer-from-scratch"></a><a href="#creating-typecomposer-from-scratch" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating TypeComposer from scratch</h4>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { TypeComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+<span class="hljs-comment">// creating type User with 4 fields</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> UserTC = TypeComposer.create(<span class="hljs-string">`
+  type User {
+    name: String
+    nickname: String
+    views: Int
+    # Field with any type of data
+    someJsonMess: Json
+  }
+`</span>);
+
+<span class="hljs-comment">// adding fifth field `tweets` with fetching from some remote API</span>
+UserTC.addField(<span class="hljs-string">'tweets'</span>, {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">'type TweetList { msg: String, createdAt: Date }'</span>,
+  <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source, args, context, info</span>) =&gt;</span>
+    fetch(<span class="hljs-string">`[api_endpoint]/<span class="hljs-subst">${source.nickname}</span>`</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json()),
+});
+
+<span class="hljs-comment">// Add resolveк - helper for fetching data</span>
+UserTC.addResolver({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'findById'</span>,
+  <span class="hljs-attr">args</span>: { <span class="hljs-attr">id</span>: <span class="hljs-string">'Int'</span> },
+  <span class="hljs-attr">type</span>: UserTC,
+  <span class="hljs-attr">resolve</span>: <span class="hljs-keyword">async</span> ({ source, args }) =&gt; {
+    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">`/endpoint/<span class="hljs-subst">${args.id}</span>`</span>); <span class="hljs-comment">// or some fetch from any database</span>
+    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> res.json();
+    <span class="hljs-comment">// here you may clean up `data` response from API or Database,</span>
+    <span class="hljs-comment">// it should has same shape like UserTC fields</span>
+    <span class="hljs-comment">// eg. { name: 'Peter', nickname: 'peet', views: 20, someJsonMess: { ... } }</span>
+    <span class="hljs-comment">// if some fields are undefined or missing, graphql return `null` on that fields</span>
+    <span class="hljs-keyword">return</span> data;
+  },
+});
+
+<span class="hljs-comment">// If you need you may get generated GraphQLObjectType via UserTC.getType();</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="converting-a-mongoose-model-to-typecomposer-wrapped-graphqlobjecttype-with-graphql-compose-mongoose"></a><a href="#converting-a-mongoose-model-to-typecomposer-wrapped-graphqlobjecttype-with-graphql-compose-mongoose" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Converting a Mongoose model to TypeComposer (wrapped GraphQLObjectType) with <code>graphql-compose-mongoose</code>.</h4>
+<p>You may create TypeComposer from mongoose model with bunch of useful resolvers <code>findById</code>, <code>findMany</code>, <code>updateOne</code>, <code>removeMany</code> and so on. Read more about <a href="https://github.com/nodkz/graphql-compose-mongoose">graphql-compose-mongoose</a></p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+<span class="hljs-keyword">import</span> composeWithMongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
+
+<span class="hljs-keyword">const</span> PersonSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
+  <span class="hljs-attr">firstName</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> },
+  <span class="hljs-attr">lastName</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> },
+  <span class="hljs-attr">email</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> },
+});
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Person = mongoose.model(<span class="hljs-string">'Person'</span>, PersonSchema);
+
+<span class="hljs-comment">// here composeWithMongoose will create type with fields from mongoose schema</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> PersonTC = composeWithMongoose(Person);
+
+<span class="hljs-comment">// If you need you may get generated GraphQLObjectType via PersonTC.getType();</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="guide.html">← Quick Start Guide</a><a class="docs-next button" href="edit-typecomposer.html">Edit TypeComposer →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/graphql-compose/" class="nav-home"><img src="/graphql-compose/img/logo.png" alt="graphql-compose" width="66" height="58"/></a><div><h5>Docs</h5><a href="/graphql-compose/docs/guide.html">Getting Started</a><a href="/graphql-compose/docs/api-reference.html">API Reference</a></div><div><h5>Community</h5><a href="https://twitter.com/nodkz" target="_blank">Twitter</a></div><div><h5>More</h5><a href="https://github.com/graphql-compose/graphql-compose">GitHub</a><a class="github-button" href="https://github.com/graphql-compose/graphql-compose" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/graphql-compose/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Facebook Inc.</section></footer></div></body></html>
