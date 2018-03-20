@@ -13,6 +13,12 @@ jobs:
             git config --global user.name "YozhikM"
             echo "machine github.com login yozhikm password $GITHUB_TOKEN" > ~/.netrc
             cd website && yarn install && GIT_USER=YozhikM yarn run publish-gh-pages
+  build:
+    machine: true
+    branches:
+      ignore: gh-pages
+    steps:
+      -run: echo "Skipping tests on gh-pages branch"
 
 workflows:
   version: 2
