@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Toolkit for construction complex GraphQL schemas",
+    "tagline": "Toolkit for generating complex GraphQL schemas",
     "prerequisites": "Prerequisites",
     "installation": "Installation",
     "guide": "Quick Start Guide",
@@ -27,11 +27,10 @@
     "API": "API",
     "Support": "Support",
     "Introduction": "Introduction",
-    "Guide": "Guide",
     "API Reference": "API Reference",
+    "Guide": "Guide",
     "Plugins": "Plugins",
-    "Advanced": "Advanced",
-    "Demos": "Demos"
+    "Advanced": "Advanced"
   },
   "pages-strings": {
     "Help Translate|recruit community translators for your project": "Help Translate",

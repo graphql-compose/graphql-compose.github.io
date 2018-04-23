@@ -120,8 +120,8 @@ const FeatureCallout = props => (
   <div className="productShowcaseSection paddingBottom" style={{ textAlign: 'center' }}>
     <h2>The imperative tool which worked on top of graphql-js</h2>
     <MarkdownBlock>
-      It provides some methods for creating types and GraphQL Models (so I call types with a list of
-      common resolvers) for further building of complex relations in your schema.
+      It provides some methods for creating `GraphQL Types` and `GraphQL Models` (type with a list of
+      resolvers) for further building of complex relations in your `Schema`.
     </MarkdownBlock>
   </div>
 );

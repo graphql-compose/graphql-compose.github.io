@@ -14,3 +14,21 @@
 
 @media only screen and (min-width: 1500px) {
 }
+
+a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #609;
+}
+
+.mainContainer h1, .mainContainer h2, .mainContainer h3, .mainContainer h4, .mainContainer h5 {
+  color: #000 !important;
+  font-weight: bolder !important;
+}
+
+.button {
+  text-transform: none;
+}

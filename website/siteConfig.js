@@ -17,7 +17,7 @@ const users = [
 
 const siteConfig = {
   title: 'graphql-compose' /* title for your website */,
-  tagline: 'Toolkit for construction complex GraphQL schemas',
+  tagline: 'Toolkit for generating complex GraphQL schemas',
   url: 'https://yozhikm.github.io' /* your website url */,
   baseUrl: '/graphql-compose-docs/' /* base url for your project */,
   projectName: 'graphql-compose-docs',
@@ -36,7 +36,7 @@ const siteConfig = {
   favicon: 'img/logo.png',
   /* colors for website */
   colors: {
-    primaryColor: '#6e13dc',
+    primaryColor: '#400d7d',
     secondaryColor: '#205C3B',
   },
   /* custom fonts for website */
@@ -62,7 +62,7 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your template.
   repoUrl: 'https://github.com/graphql-compose/graphql-compose',
   /* On page navigation for the current documentation page */
-  // onPageNav: 'separate',
+  onPageNav: 'separate',
 };
 
 module.exports = siteConfig;
