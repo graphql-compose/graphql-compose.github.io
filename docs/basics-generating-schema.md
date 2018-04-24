@@ -1,5 +1,5 @@
 ---
-id: generating-schema
+id: basics-generating-schema
 title: Generating Schema
 ---
 

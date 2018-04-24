@@ -1,6 +1,6 @@
 ---
-id: api-gqc
-title: GQC
+id: api-SchemaComposer
+title: SchemaComposer
 ---
 
 This is `GraphQLSchema` builder.
@@ -10,10 +10,10 @@ This is `GraphQLSchema` builder.
 * remove types without fields
 
 ```js
-import { GQC } from 'graphql-compose';
+import { schemaComposer } from 'graphql-compose';
 import { CityTC } from './city';
 
-GQC.rootQuery().addFields({
+schemaComposer.rootQuery().addFields({
   city: CityTC.get('$findOne'),
   cityConnection: CityTC.get('$connection'),
   currentTime: {
@@ -23,11 +23,11 @@ GQC.rootQuery().addFields({
   // ...
 });
 
-GQC.rootMutation().addFields({
+schemaComposer.rootMutation().addFields({
   createCity: CityTC.get('$createOne'),
   updateCity: CityTC.get('$updateById'),
   // ...
 });
 
-export default GQC.buildSchema(); // exports GraphQLSchema
+export default schemaComposer.buildSchema(); // exports GraphQLSchema
 ```

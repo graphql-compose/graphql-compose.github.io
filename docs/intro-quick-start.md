@@ -1,5 +1,5 @@
 ---
-id: guide
+id: intro-quick-start
 title: Quick Start Guide
 ---
 
@@ -7,7 +7,7 @@ This guide will help you to easily create GraphQL Schemas that covers all your n
 
 At the end we'll add a relay support to the graphql.
 
-We always try to make our documentation better, so if you have feedback on the Guide please let us know via [opening an Issue in our Github repository](https://github.com/nodkz/graphql-compose/issues/new)
+We always try to make our documentation better, so if you have feedback on the Guide please let us know via [opening an Issue in our Github repository](https://github.com/graphql-compose/graphql-compose-docs/issues/new)
 
 ## Getting started
 
@@ -19,32 +19,6 @@ We always try to make our documentation better, so if you have feedback on the G
 * [Relay support](relay.html)
 
 [GraphQL](http://graphql.org/) – is a query language for APIs. [graphql-js](https://github.com/graphql/graphql-js) is the reference implementation of GraphQL for nodejs which introduce GraphQL type system for describing schema _(definition over configuration)_ and executes queries on the server side. [express-graphql](https://github.com/graphql/express-graphql) is a HTTP server which gets request data, passes it to `graphql-js` and returned result passes to response.
-
-**`graphql-compose`** – the _imperative tool_ which worked on top of `graphql-js`. It provides some methods for creating types and GraphQL Models (so I call types with a list of common resolvers) for further building of complex relations in your schema.
-
-* provides methods for editing GraphQL output/input types (add/remove fields/args/interfaces)
-* introduces `Resolver`s – the named graphql fieldConfigs, which can be used for finding, updating, removing records
-* provides an easy way for creating relations between types via `Resolver`s
-* provides converter from `OutputType` to `InputType`
-* provides `projection` parser from AST
-* provides `GraphQL schema language` for defining simple types
-* adds additional types `Date`, `Json`
-
-**`graphql-compose-[plugin]`** – is a _declarative generators/plugins_ that build on top of `graphql-compose`, which take some ORMs, schema definitions and creates GraphQL Models from them or modify existed GraphQL Types.
-
-Type generator plugins:
-
-* [graphql-compose-json](https://github.com/graphql-compose/graphql-compose-json) - generates GraphQL type from JSON (a good helper for wrapping REST APIs)
-* [graphql-compose-mongoose](https://github.com/graphql-compose/graphql-compose-mongoose) - generates GraphQL types from mongoose (MongoDB models) with Resolvers.
-* [graphql-compose-elasticsearch](https://github.com/graphql-compose/graphql-compose-elasticsearch) - generates GraphQL types from elastic mappings; ElasticSearch REST API proxy via GraphQL.
-* [graphql-compose-aws](https://github.com/graphql-compose/graphql-compose-aws) - expose AWS Cloud API via GraphQL
-
-Utility plugins:
-
-* [graphql-compose-relay](https://github.com/graphql-compose/graphql-compose-relay) - reassemble GraphQL types with `Relay` specific things, like `Node` type and interface, `globalId`, `clientMutationId`.
-* [graphql-compose-connection](https://github.com/graphql-compose/graphql-compose-connection) - generates `connection` Resolver from `findMany` and `count` Resolvers.
-* [graphql-compose-dataloader](https://github.com/stoffern/graphql-compose-dataloader) - add DataLoader to graphql-composer resolvers.
-* [graphql-compose-recompose](https://github.com/digithun/graphql-compose-recompose) - utility that wrap GraphQL compose to high order functional pattern [work in process].
 
 ## Example
 

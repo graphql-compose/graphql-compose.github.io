@@ -1,5 +1,5 @@
 ---
-id: api-typemapper
+id: api-TypeMapper
 title: TypeMapper
 ---
 

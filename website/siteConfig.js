@@ -7,12 +7,12 @@
 
 /* List of projects/orgs using your project for the users page */
 const users = [
-  {
-    caption: 'User1',
-    image: '/test-site/img/docusaurus.svg',
-    infoLink: 'https://www.facebook.com',
-    pinned: true,
-  },
+  // {
+  //   caption: 'User1',
+  //   image: '/test-site/img/docusaurus.svg',
+  //   infoLink: 'https://www.facebook.com',
+  //   pinned: true,
+  // },
 ];
 
 const siteConfig = {
@@ -22,10 +22,11 @@ const siteConfig = {
   baseUrl: '/graphql-compose-docs/' /* base url for your project */,
   projectName: 'graphql-compose-docs',
   headerLinks: [
-    { doc: 'guide', label: 'Docs' },
-    { doc: 'api-reference', label: 'API' },
-    { page: 'help', label: 'Support' },
-    // TODO:  see Algolia to search by docs
+    { doc: 'intro-quick-start', label: 'Docs' },
+    { doc: 'api-TypeComposer', label: 'API' },
+    { foc: 'plugin--list', label: 'Plugins' },
+    // { page: 'help', label: 'Support' },
+    // see Algolia to search by docs
     // { search: true },
     // { blog: true, label: 'Blog' },
   ],

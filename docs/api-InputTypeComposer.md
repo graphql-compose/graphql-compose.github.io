@@ -1,5 +1,5 @@
 ---
-id: api-inputtypecomposer
+id: api-InputTypeComposer
 title: InputTypeComposer
 ---
 

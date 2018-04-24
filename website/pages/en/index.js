@@ -80,7 +80,9 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href={docUrl('guide.html', language)}>Get Started</Button>
+            <Button href={docUrl('intro-quick-start.html', language)}>Get Started</Button>
+            <Button href={docUrl('api-TypeComposer.html', language)}>API</Button>
+            <Button href={docUrl('plugin--list.html', language)}>Plugins</Button>
             {/* <Button href="#try">Try It Out</Button> */}
             {/* <Button href={docUrl('requirements.html', language)}>Example Link</Button> */}
             {/* <Button href={docUrl('doc2.html', language)}>Example Link 2</Button> */}
@@ -116,15 +118,96 @@ const Features = props => (
   </Block>
 );
 
-const FeatureCallout = props => (
-  <div className="productShowcaseSection paddingBottom" style={{ textAlign: 'center' }}>
-    <h2>The imperative tool which worked on top of graphql-js</h2>
-    <MarkdownBlock>
-      It provides some methods for creating `GraphQL Types` and `GraphQL Models` (type with a list of
-      resolvers) for further building of complex relations in your `Schema`.
-    </MarkdownBlock>
-  </div>
-);
+const FeatureCallout = props => {
+  const language = props.language || '';
+  return (
+    <div>
+      <div className="productShowcaseSection" style={{ textAlign: 'center' }}>
+        <h2>
+          graphql-compose
+          <br/>
+          <small>— the imperative tool which worked on top of graphql-js</small>
+        </h2>
+        <MarkdownBlock>
+          It provides useful methods for creating `GraphQL Types` and `GraphQL Models` (type with a list of
+          resolvers) for further building of complex relations in your `Schema`.
+          With graphql-compose you may fastly write own functions/generators for common tasks.
+        </MarkdownBlock>
+
+        <div className="leftCentredBlock">
+          <ul style={{ listStyleType: 'disc' }}>
+            <li>provides methods for editing GraphQL Types (add/remove/extend fields, args, interfaces)</li>
+            <li>introduces `Resolver`s – the named graphql fieldConfig, which can be extended, wrapped and used in several places of your schema</li>
+            <li>provides an easy way for creating relations between types via `Resolver`s</li>
+            <li>provides converter from `OutputType` to `InputType`</li>
+            <li>provides `projection` parser from AST for your Resolver methods</li>
+            <li>provides `GraphQL Schema Language` for defining simple types</li>
+            <li>allows to solve hoisting problems in more convenient way</li>
+            <li>adds additional types `Date`, `Json`</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="productShowcaseSection mTop20 paddingBottom" style={{ textAlign: 'center' }}>
+        <h2>
+          graphql-compose-[plugin]
+          <br/>
+          <small>— the declarative generator/utility that build on top of `graphql-compose`</small>
+        </h2>
+        <MarkdownBlock>
+          Plugin take some ORMs, schema definitions and creates GraphQL Models from them or modify existed GraphQL Types.
+        </MarkdownBlock>
+
+        <div className="leftCentredBlock mTop20">
+          <h3>Type generator plugins:</h3>
+          <ul style={{ listStyleType: 'disc' }}>
+            <li>
+              <a href={docUrl('plugin-json.html', language)}>graphql-compose-json</a>
+              {' '}
+              generates GraphQL type from JSON (a good helper for wrapping REST APIs)
+            </li>
+            <li>
+              <a href={docUrl('plugin-mongoose.html', language)}>graphql-compose-mongoose</a>
+              {' '}
+              generates GraphQL types from mongoose (MongoDB models) with Resolvers
+            </li>
+            <li>
+              <a href={docUrl('plugin-elasticsearch.html', language)}>graphql-compose-elasticsearch</a>
+              {' '}
+              generates GraphQL types from elastic mappings; ElasticSearch REST API proxy via GraphQL
+            </li>
+            <li>
+              <a href={docUrl('plugin-aws.html', language)}>graphql-compose-aws</a>
+              {' '}
+              expose AWS Cloud API via GraphQL
+            </li>
+          </ul>
+        </div>
+
+        <div className="leftCentredBlock mTop20">
+          <h3>Utility plugins:</h3>
+          <ul style={{ listStyleType: 'disc' }}>
+            <li>
+              <a href={docUrl('plugin-relay.html', language)}>graphql-compose-relay</a>
+              {' '}
+              modify your Types and Resolvers making them compatible with Relay
+            </li>
+            <li>
+              <a href={docUrl('plugin-connection.html', language)}>graphql-compose-connection</a>
+              {' '}
+              generates `connection` Resolver from `findMany` and `count` Resolvers.
+            </li>
+            <li>
+              <a href={docUrl('plugin-pagination.html', language)}>graphql-compose-pagination</a>
+              {' '}
+              generates `pagination` Resolver from `findMany` and `count` Resolvers.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const LearnHow = props => (
   <Block background="light">

@@ -24,11 +24,30 @@ a:focus {
   color: #609;
 }
 
+a.navItemActive {
+  color: #8c32f9 !important;
+}
+
 .mainContainer h1, .mainContainer h2, .mainContainer h3, .mainContainer h4, .mainContainer h5 {
   color: #000 !important;
   font-weight: bolder !important;
 }
 
+h2 small {
+  font-size: 80%;
+  color: #555;
+}
+
 .button {
   text-transform: none;
+}
+
+.leftCentredBlock {
+  text-align: left;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.mTop20 {
+  margin-top: 20px;
 }

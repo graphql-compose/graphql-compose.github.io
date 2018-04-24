@@ -1,6 +1,6 @@
 ---
-id: relations
-title: Relations
+id: basics-relations
+title: Relations between Types
 ---
 
 Before we start, lets setup 2 schemas..

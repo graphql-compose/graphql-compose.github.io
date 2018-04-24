@@ -1,6 +1,6 @@
 ---
-id: advanced
-title: Advanced
+id: basics-Resolver
+title: Resolvers
 ---
 
 ### How `Resolver.wrapResolve` work internally

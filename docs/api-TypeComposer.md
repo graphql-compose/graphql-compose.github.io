@@ -1,5 +1,5 @@
 ---
-id: api-typecomposer
+id: api-TypeComposer
 title: TypeComposer
 ---
 

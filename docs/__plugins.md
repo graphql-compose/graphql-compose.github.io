@@ -1,6 +1,6 @@
 ---
-id: plugins
-title: Plugins
+id: plugin--reference
+title: Plugin Reference
 ---
 
 There are a number of different plugins you can use to both compile and edit the Schema setup.

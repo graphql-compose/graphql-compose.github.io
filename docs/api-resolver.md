@@ -1,5 +1,5 @@
 ---
-id: api-resolver
+id: api-Resolver
 title: Resolver
 ---
 
