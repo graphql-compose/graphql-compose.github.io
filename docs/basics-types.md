@@ -3,9 +3,57 @@ id: basics-types
 title: Type creation
 ---
 
-First we need to create our TypeComposer.
-The TypeComposer is a builder for GraphQLObjectType object.
-Other than having all the standards of a GraphQLObjectType it has all the functions you need to manipulate when you need.
+## Scalar types
+Graphql-compose has following built-in scalar types: `String`, `Float`, `Int`, `Boolean`, `ID`, `Date`, `JSON`.
+
+## Object types via TypeComposer
+If you need to create some complex type, you will need to use `TypeComposer`. It's a builder for `GraphQLObjectType` object.
+`TypeComposer` helps to create and modify types before you build a schema. It has a bunch of very useful methods for writing your type generators. With `GraphQL.js` you may write Type configs once, with `graphql-compose` you may also may pass your Types via series of modification methods.
+
+### Object type creation
+`TypeComposer` has very convenient ways of type creation via `create` method.
+
+#### ... without fields
+Useful when you write your own type generators.
+```js
+const AuthorTC = TypeComposer.create('Author');
+```
+
+#### ... via config
+Most recommended way to define your Type.
+```js
+const AuthorTC = TypeComposer.create({
+  name: 'Author',
+  fields: {
+    id: 'Int!',
+    firstName: 'String',
+    lastName: 'String',
+    posts: {
+      type: () => PostTC, // wrapping with arrow function helps to solve hoisting problems
+      description: 'Posts written by Author',
+      resolve: (source, args, context, info) => { ... },
+    },
+  },
+});
+```
+
+#### ... via SDL
+```js
+const AuthorTC = TypeComposer.create(`
+  type Author {
+    id: Int!
+    firstName: String
+    lastName: String
+  }
+`);
+```
+
+#### ... via GraphQLObjectType
+This is very useful when you want modify existed `GraphQLObjectType`.
+```js
+const AuthorType = new GraphQLObjectType(...)
+const AuthorTC = TypeComposer.create(AuthorType);
+```
 
 #### Creating TypeComposer from scratch
 

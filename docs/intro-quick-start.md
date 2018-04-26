@@ -3,152 +3,201 @@ id: intro-quick-start
 title: Quick Start Guide
 ---
 
-This guide will help you to easily create GraphQL Schemas that covers all your needs. We'll start by giving you information on how to install Graphql Composer. After that we create Type Composer objects (GraphQLObjectTypes that are editable), edit the TypeComposers with custom fields, setup relations, and generate a schema that you can use.
+Graphql-compose provides convenient way to create GraphQL Schema. This schema is completely compatible with [GraphQL.js](https://github.com/graphql/graphql-js).
 
-At the end we'll add a relay support to the graphql.
+For comparison with [graphql-tools](https://github.com/apollographql/graphql-tools) let's take its brilliant example "Author <-> User".
 
-We always try to make our documentation better, so if you have feedback on the Guide please let us know via [opening an Issue in our Github repository](https://github.com/graphql-compose/graphql-compose-docs/issues/new)
+## Example data
 
-## Getting started
+Let take a look at example data. It consists from two arrays of `authors` and `posts`. Every `post` has reference `authorId`:
+```js
+const authors = [
+  { id: 1, firstName: 'Tom', lastName: 'Coleman' },
+  { id: 2, firstName: 'Sashko', lastName: 'Stubailo' },
+  { id: 3, firstName: 'Mikhail', lastName: 'Novikov' },
+];
 
-* [Generate TypeComposer](generate-typecomposer.html)
-* [Edit TypeComposer](edit-typecomposer.html)
-* [Relations](relations.html)
-* [Mutations](mutations.html)
-* [Generate Schema](generating-schema.html)
-* [Relay support](relay.html)
+const posts = [
+  { id: 1, authorId: 1, title: 'Introduction to GraphQL', votes: 2 },
+  { id: 2, authorId: 2, title: 'Welcome to Apollo', votes: 3 },
+  { id: 3, authorId: 2, title: 'Advanced GraphQL', votes: 1 },
+  { id: 4, authorId: 3, title: 'Launchpad is Cool', votes: 7 },
+];
+```
 
-[GraphQL](http://graphql.org/) – is a query language for APIs. [graphql-js](https://github.com/graphql/graphql-js) is the reference implementation of GraphQL for nodejs which introduce GraphQL type system for describing schema _(definition over configuration)_ and executes queries on the server side. [express-graphql](https://github.com/graphql/express-graphql) is a HTTP server which gets request data, passes it to `graphql-js` and returned result passes to response.
+For simplicity this example works with arrays, but in future it will not be a problem to change data-source on any your favorite DB or mix of them.
 
-## Example
+## Creating Types
 
-city.js
+Building a GraphQL Schema starts with complex Types declaration. In order to create a Type you have give it a unique name and specify it’s fields list. So let's create Types which will describe our data. For this purpose need to take `TypeComposer` helper from `graphql-compose` package.
 
 ```js
-import { TypeComposer} from 'graphql-compose';
-import { CountryTC } from './country';
+import { TypeComposer } from 'graphql-compose';
 
-export const CityTC = TypeComposer.create(`
-  type City {
-    code: String!
-    name: String!
-    population: Number
-    countryCode: String
-    tz: String
-  }
-`);
-
-// Define some additional fields
-CityTC.addFields({
-  ucName: { // standard GraphQL like field definition
-    type: GraphQLString,
-    resolve: (source) => source.name.toUpperCase(),
-  },
-  currentLocalTime: { // extended GraphQL Compose field definition
-    type: 'Date',
-    resolve: (source) => moment().tz(source.tz).format(),
-    projection: { tz: true }, // load `tz` from database, when requested only `localTime` field
-  },
-  counter: 'Int', // shortening for only type definition for field
-  complex: `type ComplexType {
-    subField1: String
-    subField2: Float
-    subField3: Boolean
-    subField4: ID
-    subField5: JSON
-    subField6: Date
-  }`,
-  list0: {
-    type: '[String]',
-    description: 'Array of strings',
-  },
-  list1: '[String]',
-  list2: ['String'],
-  list3: [new GraphQLOutputType(...)],
-  list4: [`type Complex2Type { f1: Float, f2: Int }`],
-});
-
-// Add resolver method
-CityTC.addResolver({
-  kind: 'query',
-  name: 'findMany',
-  args: {
-    filter: `input CityFilterInput {
-      code: String!
-    }`,
-    limit: {
-      type: 'Int',
-      defaultValue: 20,
-    },
-    skip: 'Int',
-    // ... other args if needed
-  },
-  type: [CityTC], // array of cities
-  resolve: async ({ args, context }) => {
-    return context.someCityDB
-      .findMany(args.filter)
-      .limit(args.limit)
-      .skip(args.skip);
+const AuthorTC = TypeComposer.create({
+  name: 'Author',
+  fields: {
+    id: 'Int!',
+    firstName: 'String',
+    lastName: 'String',
   },
 });
 
-// Add relation between City and Country by `countryCode` field.
-CityTC.addRelation( // GraphQL relation definition
-  'country',
-  () => ({
-    resolver: CountryTC.getResolver('findOne'),
+const PostTC = TypeComposer.create({
+  name: 'Post',
+  fields: {
+    id: 'Int!',
+    title: 'String',
+    votes: 'Int',
+    authorId: 'Int',
+  },
+});
+```
+
+## Create relations between Types
+
+Now as we can declare Types, request them, it’s time to link these Types with each other. This is the exact stage where GraphQL enormously simplifies work for clients that request data. Typical scenario of a query to RESTful API: client requests a piece of data, receives it and request other resources according to the first server response it got, while GraphQL implements the same logic on the server’s side and sends back nested data of any depth.
+
+To make such nesting possible you’ve got to link `Author` and `Post` Types with each other. For that you need to create `author` field in your `Post` Type, it will `resolve` author's data for every post. And for `Author` Type create `posts` field which will resolve for each author its posts.
+
+```js
+PostTC.addFields({
+  author: {
+    // you may provide type name as string 'Author',
+    // but for better developer experience use Type instance `AuthorTC`
+    // it allows to jump to type declaration via Ctrl+Click in your IDE
+    type: AuthorTC,
+    // resolve method as first argument will receive data for some Post
+    // from this data you should somehow fetch Author's data
+    // let's take lodash `find` method, for searching by `authorId`
+    // PS. `resolve` method may be async for fetching data from DB
+    // resolve: async (source, args, context, info) => { return DB.find(); }
+    resolve: post => find(authors, { id: post.authorId }),
+  },
+});
+
+AuthorTC.addFields({
+  posts: {
+    // Array of posts may be described as string in SDL in such way '[Post]'
+    // But graphql-compose allow to use Type instance wrapped in array
+    type: [PostTC],
+    // for obtaining list of post we get current author.id
+    // and scan and filter all Posts with desired authorId
+    resolve: author => filter(posts, { authorId: author.id }),
+  },
+  postCount: {
+    type: 'Int',
+    description: 'Number of Posts written by Author',
+    resolve: author => filter(posts, { authorId: author.id }).length,
+  },
+});
+```
+
+## Building Schema
+
+Now that you’ve got your Types created, linked and taught how to fetch data, it’s time to create your Schema. For this purpose you will nedd to use `schemaComposer`. It has three Root Types (entry points): `Query`, `Mutation` and `Subscription` and at least one of them must have defined fields.
+
+```js
+import { schemaComposer } from 'graphql-compose';
+
+// Requests which read data put into Query
+schemaComposer.Query.addFields({
+  posts: {
+    type: '[Post]',
+    resolve: () => posts,
+  },
+  author: {
+    type: 'Author',
+    args: { id: 'Int!' },
+    resolve: (_, { id }) => find(authors, { id }),
+  },
+});
+
+// Requests which modify data put into Mutation
+schemaComposer.Mutation.addFields({
+  upvotePost: {
+    type: 'Post',
     args: {
-      filter: source => ({ code: `${source.countryCode}` }),
+      postId: 'Int!',
     },
-    projection: { countryCode: true },
+    resolve: (_, { postId }) => {
+      const post = find(posts, { id: postId });
+      if (!post) {
+        throw new Error(`Couldn't find post with id ${postId}`);
+      }
+      post.votes += 1;
+      return post;
+    },
+  },
+});
+
+// After Root type definition, you are ready to build Schema
+// which should be passed to `express-graphql` or `apollo-server`
+export const schema = schemaComposer.buildSchema();
+```
+
+## Creating HTTP server
+
+When your Schema is constructed, it need to implement a server. It will serve client requests, execute them and send responses back. Let's construct simple `express` app which will accept `POST` requests on `http://localhost:4000/graphql` endpoint for serving graphql queries. And `GET` request with same address for providing `GraphiQL` an in-browser IDE for exploring GraphQL.
+
+```js
+import express from 'express';
+import graphqlHTTP from 'express-graphql';
+import { schema } from './schema';
+
+const PORT = 4000;
+const app = express();
+
+app.use(
+  '/graphql',
+  graphqlHTTP(async (request, response, graphQLParams) => {
+    return {
+      schema,
+      graphiql: true,
+      context: {
+        req: request,
+      },
+    };
   })
 );
 
-// Remove `tz` field from schema
-CityTC.removeField('tz');
-
-// Add description to field
-CityTC.extendField('name', {
-  description: 'City name',
+app.listen(PORT, () => {
+  console.log(`The server is running at http://localhost:${PORT}/graphql`);
 });
 ```
 
-schema.js
+## Source code
 
+That's all for this small demo. Source code of this example can be found in [graphql-compose-boilerplate](https://github.com/graphql-compose/graphql-compose-boilerplate).
+
+## Screenshots
+
+<img width="922" alt="screen shot 2018-04-26 at 18 03 57" src="https://user-images.githubusercontent.com/1946920/39304724-7310a9d2-497c-11e8-922e-a9caf7d25f3c.png">
+
+<img width="923" alt="screen shot 2018-04-26 at 18 05 11" src="https://user-images.githubusercontent.com/1946920/39304730-765b2f72-497c-11e8-8b2d-728342e4a555.png">
+
+
+## Bonus Track
+
+Graphql-compose has following built-in scalar types: `String`, `Float`, `Int`, `Boolean`, `ID`, `Date`, `JSON`. If you need to create some complex type, you will need to use `TypeComposer`.
+
+Let demonstrate another way of type creation in SDL format via `TypeComposer.create()` method:
 ```js
-import { GQC } from 'graphql-compose';
-import { CityTC } from './city';
-import { CountryTC } from './country';
+const AddressTC = TypeComposer.create(`
+  type Address {
+    city: String
+    country: String
+    street: String
+  }
+`);
 
-GQC.rootQuery().addFields({
-  cities: CityTC.getResolver('findMany'),
-  country: CountryTC.getResolver('findOne'),
-  currentTime: {
-    type: 'Date',
-    resolve: () => Date.now(),
+// and now we can extend existed Author Type with a new field with complex type
+AuthorTC.addFields({
+  address: {
+    type: AddressTC, // or 'Address'
+    description: "Author's address",
   },
-});
-
-GQC.rootMutation().addFields({
-  createCity: CityTC.getResolver('createOne'),
-  updateCity: CityTC.getResolver('updateById'),
-  ...adminAccess({
-    removeCity: CityTC.getResolver('removeById'),
-  }),
-});
-
-function adminAccess(resolvers) {
-  Object.keys(resolvers).forEach(k => {
-    resolvers[k] = resolvers[k].wrapResolve(next => rp => {
-      // rp = resolveParams = { source, args, context, info }
-      if (!rp.context.isAdmin) {
-        throw new Error('You should be admin, to have access to this action.');
-      }
-      return next(rp);
-    });
-  });
-  return resolvers;
-}
-
-export default GQC.buildSchema();
+})
 ```
+
+More useful information about type creation can be found [here](basics-types).
