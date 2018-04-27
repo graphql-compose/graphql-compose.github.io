@@ -1,31 +1,36 @@
-## Graphql-compose
+# Graphql-compose
 
 Welcome to the GraphQL Compose documentation.
 
-### Introduction
+## Introduction
+
 - [Prerequisites](intro-prerequisites)
 - [Installation](intro-installation)
 - [Quick Start Guide](intro-quick-start)
 - [Live Demos](intro-demos)
 
-### Basics
+## Basics
+
 - [Type creation](basics-types)
 - [Type modification](basics-type-modification)
 - [Resolvers](basics-Resolver)
 - [Relations between Types](basics-relations)
 - [Generating Schema](basics-generating-schema)
 
-### Guide
+## Guide
+
 - [Generate types from Mongoose Models](guide-mongoose)
 - [Wrapping REST API](guide-wrapping-rest-api)
 - [Use ElasticSearch with Mongoose](guide-elasticsearch-with-mongoose)
 - [Relay Schema](guide-relay)
 
-### Recipes
+## Recipes
+
 - [Authorization](recipe-authorization)
 - [Writing tests](recipe-writing-tests)
 
-### API Reference
+## API Reference
+
 - [TypeComposer](api-TypeComposer)
 - [InputTypeComposer](api-InputTypeComposer)
 - [EnumTypeComposer](api-EnumTypeComposer)
@@ -34,7 +39,8 @@ Welcome to the GraphQL Compose documentation.
 - [SchemaComposer](api-SchemaComposer)
 - [API misc](api-misc)
 
-### Plugins
+## Plugins
+
 - [Plugins list](plugin--list)
 - [Mongoose plugin](plugin-mongoose)
 - [ElasticSearch plugin](plugin-elasticsearch)

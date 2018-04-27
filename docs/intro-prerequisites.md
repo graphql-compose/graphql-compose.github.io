@@ -17,4 +17,4 @@ For serving requests to your generated Schema you should use one of the followin
 
 This is optional but quite recommended feature which covers your javascript code with static type-checking. It will help you with autosuggestion and method call validation in your IDE. This package contains built-in type definitions for [Flowtype](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/).
 
-Internally source code of this package written with Flowtype and have deep static type-checking with [graphq-js](https://github.com/graphql/graphql-js) which also written with Flow.
+Internally source code of this package is written with Flowtype and has deep static type-checking with [graphq-js](https://github.com/graphql/graphql-js) which is also written with Flow.
