@@ -3,13 +3,14 @@ id: intro-quick-start
 title: Quick Start Guide
 ---
 
-Graphql-compose provides convenient way to create GraphQL Schema. This schema is completely compatible with [GraphQL.js](https://github.com/graphql/graphql-js).
+Graphql-compose provides a convenient way to create GraphQL Schema. This schema is completely compatible with [GraphQL.js](https://github.com/graphql/graphql-js).
 
 For comparison with [graphql-tools](https://github.com/apollographql/graphql-tools) let's take its brilliant example "Author <-> User".
 
 ## Example data
 
-Let take a look at example data. It consists from two arrays of `authors` and `posts`. Every `post` has reference `authorId`:
+Let take a look at example data. It consists of two arrays of `authors` and `posts`. Each `post` has a reference `authorId`:
+
 ```js
 const authors = [
   { id: 1, firstName: 'Tom', lastName: 'Coleman' },
@@ -25,11 +26,11 @@ const posts = [
 ];
 ```
 
-For simplicity this example works with arrays, but in future it will not be a problem to change data-source on any your favorite DB or mix of them.
+For simplicity, this example works with arrays, but in future, it will not be a problem to change data-source to any your favorite DB or a mix of them.
 
 ## Creating Types
 
-Building a GraphQL Schema starts with complex Types declaration. In order to create a Type you have give it a unique name and specify it’s fields list. So let's create Types which will describe our data. For this purpose need to take `TypeComposer` helper from `graphql-compose` package.
+Building a GraphQL Schema starts with complex Types declaration. In order to create a Type, you have to give it a unique name and specify it’s fields list. So let's create Types which will describe our data. For this purpose need to take `TypeComposer` helper from `graphql-compose` package.
 
 ```js
 import { TypeComposer } from 'graphql-compose';
@@ -56,7 +57,7 @@ const PostTC = TypeComposer.create({
 
 ## Create relations between Types
 
-Now as we can declare Types, request them, it’s time to link these Types with each other. This is the exact stage where GraphQL enormously simplifies work for clients that request data. Typical scenario of a query to RESTful API: client requests a piece of data, receives it and request other resources according to the first server response it got, while GraphQL implements the same logic on the server’s side and sends back nested data of any depth.
+Now as we can declare Types, request them, it’s time to link these Types with each other. This is the exact stage where GraphQL enormously simplifies work for clients that request data. A typical scenario of a query to RESTful API: client requests a piece of data, receives it and request other resources according to the first server response it got, while GraphQL implements the same logic on the server’s side and sends back nested data of any depth.
 
 To make such nesting possible you’ve got to link `Author` and `Post` Types with each other. For that you need to create `author` field in your `Post` Type, it will `resolve` author's data for every post. And for `Author` Type create `posts` field which will resolve for each author its posts.
 
@@ -95,7 +96,7 @@ AuthorTC.addFields({
 
 ## Building Schema
 
-Now that you’ve got your Types created, linked and taught how to fetch data, it’s time to create your Schema. For this purpose you will nedd to use `schemaComposer`. It has three Root Types (entry points): `Query`, `Mutation` and `Subscription` and at least one of them must have defined fields.
+Now that you’ve got your Types created, linked and taught how to fetch data, it’s time to create your Schema. For this purpose, you will need to use `schemaComposer`. It has three Root Types (entry points): `Query`, `Mutation` and `Subscription` and at least one of them must have defined fields.
 
 ```js
 import { schemaComposer } from 'graphql-compose';
@@ -138,7 +139,7 @@ export const schema = schemaComposer.buildSchema();
 
 ## Creating HTTP server
 
-When your Schema is constructed, it need to implement a server. It will serve client requests, execute them and send responses back. Let's construct simple `express` app which will accept `POST` requests on `http://localhost:4000/graphql` endpoint for serving graphql queries. And `GET` request with same address for providing `GraphiQL` an in-browser IDE for exploring GraphQL.
+When your Schema is constructed, it needs to implement a server. It will serve client requests, execute them and send responses back. Let's construct a simple `express` app which will accept `POST` requests at `http://localhost:4000/graphql` endpoint for serving graphql queries. And `GET` requests with same address for providing `GraphiQL` an in-browser IDE for exploring GraphQL.
 
 ```js
 import express from 'express';
@@ -176,12 +177,12 @@ That's all for this small demo. Source code of this example can be found in [gra
 
 <img width="923" alt="screen shot 2018-04-26 at 18 05 11" src="https://user-images.githubusercontent.com/1946920/39304730-765b2f72-497c-11e8-8b2d-728342e4a555.png">
 
-
 ## Bonus Track
 
 Graphql-compose has following built-in scalar types: `String`, `Float`, `Int`, `Boolean`, `ID`, `Date`, `JSON`. If you need to create some complex type, you will need to use `TypeComposer`.
 
 Let demonstrate another way of type creation in SDL format via `TypeComposer.create()` method:
+
 ```js
 const AddressTC = TypeComposer.create(`
   type Address {

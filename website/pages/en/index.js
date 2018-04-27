@@ -126,12 +126,12 @@ const FeatureCallout = props => {
         <h2>
           graphql-compose
           <br/>
-          <small>— the imperative tool which worked on top of graphql-js</small>
+          <small>— imperative tool built on top of graphql-js</small>
         </h2>
         <MarkdownBlock>
           It provides useful methods for creating `GraphQL Types` and `GraphQL Models` (type with a list of
           resolvers) for further building of complex relations in your `Schema`.
-          With graphql-compose you may fastly write own functions/generators for common tasks.
+          With graphql-compose you may quickly write your own functions/generators for common tasks.
         </MarkdownBlock>
 
         <div className="leftCentredBlock">
@@ -142,7 +142,7 @@ const FeatureCallout = props => {
             <li>provides converter from `OutputType` to `InputType`</li>
             <li>provides `projection` parser from AST for your Resolver methods</li>
             <li>provides `GraphQL Schema Language` for defining simple types</li>
-            <li>allows to solve hoisting problems in more convenient way</li>
+            <li>allows to solve hoisting problems in a more convenient way</li>
             <li>adds additional types `Date`, `Json`</li>
           </ul>
         </div>
@@ -152,10 +152,10 @@ const FeatureCallout = props => {
         <h2>
           graphql-compose-[plugin]
           <br/>
-          <small>— the declarative generator/utility that build on top of `graphql-compose`</small>
+          <small>— the declarative generator/utility built on top of `graphql-compose`</small>
         </h2>
         <MarkdownBlock>
-          Plugin take some ORMs, schema definitions and creates GraphQL Models from them or modify existed GraphQL Types.
+          Plugin takes some ORMs, schema definitions and creates GraphQL Models from them or modifies existed GraphQL Types.
         </MarkdownBlock>
 
         <div className="leftCentredBlock mTop20">
@@ -164,7 +164,7 @@ const FeatureCallout = props => {
             <li>
               <a href={docUrl('plugin-json.html', language)}>graphql-compose-json</a>
               {' '}
-              generates GraphQL type from JSON (a good helper for wrapping REST APIs)
+              generates GraphQL types from JSON (a good helper for wrapping REST APIs)
             </li>
             <li>
               <a href={docUrl('plugin-mongoose.html', language)}>graphql-compose-mongoose</a>
@@ -190,7 +190,7 @@ const FeatureCallout = props => {
             <li>
               <a href={docUrl('plugin-relay.html', language)}>graphql-compose-relay</a>
               {' '}
-              modify your Types and Resolvers making them compatible with Relay
+              modifies your Types and Resolvers making them compatible with Relay
             </li>
             <li>
               <a href={docUrl('plugin-connection.html', language)}>graphql-compose-connection</a>
@@ -227,7 +227,7 @@ const TryOut = props => (
     {[
       {
         content:
-          'GraphQL – is a query language for APIs. graphql-js is the reference implementation of GraphQL for nodejs which introduce GraphQL type system for describing schema (definition over configuration) and executes queries on the server side. express-graphql is a HTTP server which gets request data, passes it to graphql-js and returned result passes to response.',
+          'GraphQL is a query language for APIs. graphql-js is the reference implementation of GraphQL for nodejs which introduces GraphQL type system for describing schemas (definition over configuration) and executes queries on the server side. express-graphql is a HTTP server which gets the request data, passes it to graphql-js and passes the returned result to response.',
         image: imgUrl('logo.png'),
         imageAlign: 'left',
       },
