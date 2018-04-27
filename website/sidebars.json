@@ -8,6 +8,7 @@
     ],
     "Basics": [
       "basics-types",
+      "basics-type-modification",
       "basics-Resolver",
       "basics-relations",
       "basics-generating-schema"

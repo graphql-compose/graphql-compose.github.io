@@ -22,76 +22,7 @@ We always try to make our documentation better, so if you have feedback on the G
 
 ## Example
 
-city.js
-
 ```js
-import { TypeComposer} from 'graphql-compose';
-import { CountryTC } from './country';
-
-export const CityTC = TypeComposer.create(`
-  type City {
-    code: String!
-    name: String!
-    population: Number
-    countryCode: String
-    tz: String
-  }
-`);
-
-// Define some additional fields
-CityTC.addFields({
-  ucName: { // standard GraphQL like field definition
-    type: GraphQLString,
-    resolve: (source) => source.name.toUpperCase(),
-  },
-  currentLocalTime: { // extended GraphQL Compose field definition
-    type: 'Date',
-    resolve: (source) => moment().tz(source.tz).format(),
-    projection: { tz: true }, // load `tz` from database, when requested only `localTime` field
-  },
-  counter: 'Int', // shortening for only type definition for field
-  complex: `type ComplexType {
-    subField1: String
-    subField2: Float
-    subField3: Boolean
-    subField4: ID
-    subField5: JSON
-    subField6: Date
-  }`,
-  list0: {
-    type: '[String]',
-    description: 'Array of strings',
-  },
-  list1: '[String]',
-  list2: ['String'],
-  list3: [new GraphQLOutputType(...)],
-  list4: [`type Complex2Type { f1: Float, f2: Int }`],
-});
-
-// Add resolver method
-CityTC.addResolver({
-  kind: 'query',
-  name: 'findMany',
-  args: {
-    filter: `input CityFilterInput {
-      code: String!
-    }`,
-    limit: {
-      type: 'Int',
-      defaultValue: 20,
-    },
-    skip: 'Int',
-    // ... other args if needed
-  },
-  type: [CityTC], // array of cities
-  resolve: async ({ args, context }) => {
-    return context.someCityDB
-      .findMany(args.filter)
-      .limit(args.limit)
-      .skip(args.skip);
-  },
-});
-
 // Add relation between City and Country by `countryCode` field.
 CityTC.addRelation( // GraphQL relation definition
   'country',
@@ -103,14 +34,6 @@ CityTC.addRelation( // GraphQL relation definition
     projection: { countryCode: true },
   })
 );
-
-// Remove `tz` field from schema
-CityTC.removeField('tz');
-
-// Add description to field
-CityTC.extendField('name', {
-  description: 'City name',
-});
 ```
 
 schema.js

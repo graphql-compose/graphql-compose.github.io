@@ -4,23 +4,22 @@ title: Type creation
 ---
 
 ## Scalar types
-Graphql-compose has following built-in scalar types: `String`, `Float`, `Int`, `Boolean`, `ID`, `Date`, `JSON`.
+Graphql-compose has following built-in scalar types:
+- `String`
+- `Float`
+- `Int`
+- `Boolean`
+- `ID`
+- `Date`
+- `JSON`
 
 ## Object types via TypeComposer
-If you need to create some complex type, you will need to use `TypeComposer`. It's a builder for `GraphQLObjectType` object.
-`TypeComposer` helps to create and modify types before you build a schema. It has a bunch of very useful methods for writing your type generators. With `GraphQL.js` you may write Type configs once, with `graphql-compose` you may also may pass your Types via series of modification methods.
+If you need to create some complex type with several properties, you will need to use `TypeComposer`. It's a builder for `GraphQLObjectType` object.
 
-### Object type creation
 `TypeComposer` has very convenient ways of type creation via `create` method.
 
-#### ... without fields
-Useful when you write your own type generators.
-```js
-const AuthorTC = TypeComposer.create('Author');
-```
-
-#### ... via config
-Most recommended way to define your Type.
+### via config
+Most recommended way to define your Output type. Such definition provides hoisting problems solution via wrapping types by arrow function. Better developer experience with jumping to the type declarations.
 ```js
 const AuthorTC = TypeComposer.create({
   name: 'Author',
@@ -29,15 +28,61 @@ const AuthorTC = TypeComposer.create({
     firstName: 'String',
     lastName: 'String',
     posts: {
-      type: () => PostTC, // wrapping with arrow function helps to solve hoisting problems
-      description: 'Posts written by Author',
-      resolve: (source, args, context, info) => { ... },
-    },
+      type: [PostTC],
+      args: {
+        limit: { type: 'Int', defaultValue: 20 },
+        skip: 'Int',
+        sort: `enum AuthorPostsSortEnum { ASC DESC }`,
+      },
+      resolve: () => { ... },
+    }
   },
 });
 ```
 
-#### ... via SDL
+Also this way of definition provides a lot of syntax sugar for field definition:
+```js
+const AuthorTC = TypeComposer.create({
+  posts: {
+    // wrapping Type with arrow function helps to solve a hoisting problem
+    // also using type instances provides better DX
+    // (ctrl+click allows to jump to PostTC type declaration in your IDE)
+    type: () => PostTC,
+    description: 'Posts written by Author',
+    resolve: (source, args, context, info) => { ... },
+  },
+  // using standard GraphQL Type
+  ucFirstName: {
+    type: GraphQLString,
+    resolve: (source) => source.firstName.toUpperCase(),
+    // also request `firstName` field which must be loaded from database
+    projection: { firstName: true },
+  },
+  // fast way if you need to define only type
+  counter: 'Int',
+  // using SDL for definition new ObjectType
+  complex: `type ComplexType {
+    subField1: String
+    subField2: Float
+    subField3: Boolean
+    subField4: ID
+    subField5: JSON
+    subField6: Date
+  }`,
+  // SDL for defining array of strings, which is NonNull
+  list0: {
+    type: '[String]!',
+    description: 'Array of strings',
+  },
+  list1: '[String]',
+  list2: ['String'],
+  list3: [GraphQLString],
+  list4: [`type Complex2Type { f1: Float, f2: Int }`],
+});
+```
+
+### via SDL
+May have hoisting problems. Be aware that all used complex types must be already defined.
 ```js
 const AuthorTC = TypeComposer.create(`
   type Author {
@@ -48,153 +93,236 @@ const AuthorTC = TypeComposer.create(`
 `);
 ```
 
-#### ... via GraphQLObjectType
+### via GraphQLObjectType
 This is very useful when you want modify existed `GraphQLObjectType`.
 ```js
 const AuthorType = new GraphQLObjectType(...)
 const AuthorTC = TypeComposer.create(AuthorType);
+AuthorTC.removeField('lastName');
+AuthorTC.getType(); // returns modified GraphQLObjectType
 ```
 
-#### Creating TypeComposer from scratch
+### without fields
+Useful when you write your own type generators.
+```js
+import { TypeComposer} from 'graphql-compose';
+
+const AuthorTC = TypeComposer.create('Author');
+AuthorTC.addFields({ ... });
+```
+
+## Input types via InputTypeComposer
+
+GraphQL allows to pass arguments for fields. You may freely use `Scalar`s, `Enum`s when describing input args. But what you should do in the case of mutations, where you might want to pass in a whole object to be created? For such cases for complex types instead of `GraphQLObjectType` you should use `GraphQLInputObjectType`. They they have small differences in its fields declaration:
+- input object type has `defaultValue`
+- input object type does not have `args`
+- input object type does not have `resolve` method
+
+If you need to create some complex type with several properties, you will need to use `InputTypeComposer`. It's a builder for `GraphQLInputObjectType` object.
+
+`InputTypeComposer` has very convenient ways of type creation via `create` method.
+
+### via config
+Most recommended way to define your Input type. Such definition provides hoisting problems solution via wrapping types by arrow function. Better developer experience with jumping to the type declarations.
+
+`InputTypeComposer` has the same type definition capabilities for describing fields as `TypeComposer` - as string, as arrow function, as SDL.
 
 ```js
-import { TypeComposer } from 'graphql-compose';
+const AuthorITC = InputTypeComposer.create({
+  name: 'AuthorInput',
+  fields: {
+    id: 'Int!',
+    firstName: 'String',
+    lastName: 'String',
+    status: {
+      type: 'String',
+      defaultValue: 'new',
+    }
+    address: () => AddressITC,
+    location: `input type LonLatInput { lon: Float, lat: Float }`,
+  },
+});
+```
 
-// creating type User with 4 fields
-export const UserTC = TypeComposer.create(`
-  type User {
-    name: String
-    nickname: String
-    views: Int
-    # Field with any type of data
-    someJsonMess: Json
+### via existed TypeComposer
+You may convert your existed output type to input type.
+```js
+const AuthorTC = TypeComposer.create({ ... });
+const AuthorITC = AuthorTC.getITC(); // returns InputTypeComposer
+```
+
+### via SDL
+May have hoisting problems. Be aware that all used complex types must be already defined.
+```js
+const AuthorITC = InputTypeComposer.create(`
+  input AuthorInput {
+    id: Int!
+    firstName: String
+    lastName: String
+    status: String @default(value: "new")
   }
 `);
+```
 
-// adding fifth field `tweets` with fetching from some remote API
-UserTC.addField('tweets', {
-  type: 'type TweetList { msg: String, createdAt: Date }',
-  resolve: (source, args, context, info) =>
-    fetch(`[api_endpoint]/${source.nickname}`).then(res => res.json()),
-});
+### via GraphQLInputObjectType
+This is very useful when you want modify existed `GraphQLInputObjectType`.
+```js
+const AuthorInput = new GraphQLInputObjectType(...)
+const AuthorITC = InputTypeComposer.create(AuthorInput);
+AuthorITC.removeField('status');
+AuthorITC.getType(); // returns modified GraphQLInputObjectType
+```
 
-// Add resolveк - helper for fetching data
-UserTC.addResolver({
-  name: 'findById',
-  args: { id: 'Int' },
-  type: UserTC,
-  resolve: async ({ source, args }) => {
-    const res = await fetch(`/endpoint/${args.id}`); // or some fetch from any database
-    const data = await res.json();
-    // here you may clean up `data` response from API or Database,
-    // it should has same shape like UserTC fields
-    // eg. { name: 'Peter', nickname: 'peet', views: 20, someJsonMess: { ... } }
-    // if some fields are undefined or missing, graphql return `null` on that fields
-    return data;
+### without fields
+Useful when you write your own type generators.
+```js
+import { InputTypeComposer} from 'graphql-compose';
+
+const AuthorITC = InputTypeComposer.create('AuthorInput');
+AuthorITC.addFields({ ... });
+```
+
+## Enum types via EnumTypeComposer
+If you need to create enum type, you will need to use `EnumTypeComposer`. It's a builder for `GraphQLEnumType` object.
+
+`EnumTypeComposer` has very convenient ways of type creation via `create` method.
+
+### via config
+Most recommended way to define your Enum type. Such definition provides to set own values for every key.
+
+```js
+const StatusETC = EnumTypeComposer.create({
+  name: 'StatusEnum',
+  values: {
+    NEW: { value: 0 },
+    APPROVED: { value: 1 },
+    DECLINED: { value: 2 },
   },
 });
-
-// If you need you may get generated GraphQLObjectType via UserTC.getType();
 ```
 
-#### Converting a Mongoose model to TypeComposer (wrapped GraphQLObjectType) with `graphql-compose-mongoose`.
-
-You may create TypeComposer from mongoose model with bunch of useful resolvers `findById`, `findMany`, `updateOne`, `removeMany` and so on. Read more about [graphql-compose-mongoose](https://github.com/nodkz/graphql-compose-mongoose)
-
+### via SDL
 ```js
-import mongoose from 'mongoose';
-import composeWithMongoose from 'graphql-compose-mongoose';
+const StatusETC = EnumTypeComposer.create(`
+  enum StatusEnum { NEW APPROVED DECLINED }
+`);
+```
 
-const PersonSchema = new mongoose.Schema({
-  firstName: { type: String },
-  lastName: { type: String },
-  email: { type: String },
+### via GraphQLEnumType
+This is very useful when you want modify existed `GraphQLEnumType`.
+```js
+const StatusEnum = new GraphQLEnumType(...)
+const StatusETC = InputTypeComposer.create(StatusEnum);
+StatusETC.removeField('NEW');
+StatusETC.getType(); // returns modified GraphQLEnumType
+```
+
+### without fields
+Useful when you write your own type generators.
+```js
+import { EnumTypeComposer} from 'graphql-compose';
+
+const StatusETC = EnumTypeComposer.create('StatusEnum');
+StatusETC.addFields({ ... });
+```
+
+## Lists
+If you want indicate that field or argument return an array of some type, you may do the following:
+```js
+import { GraphQLList } from 'graphql';
+
+SomeTypeComposer.addFields({
+  field1: [AuthorTC], // RECOMMENDED just wrap in the regular js array
+  field2: AuthorTC.getTypePlural(), // call specific TypeComposer method
+  field3: '[Author]', // use SDL format
+  field4: new GraphQLList(AuthorTC.getType()) // use standard GraphQLList
 });
-export const Person = mongoose.model('Person', PersonSchema);
-
-// here composeWithMongoose will create type with fields from mongoose schema
-export const PersonTC = composeWithMongoose(Person);
-
-// If you need you may get generated GraphQLObjectType via PersonTC.getType();
 ```
 
-----------
+## Non-Null
+If you want indicate that field is not empty or argument is required:
+```js
+import { GraphQLNonNull } from 'graphql';
 
-Sooner or later you need to edit the types. There are functions to get and set one or more fields, aswell as you can get data from the fields too
+SomeTypeComposer.addFields({
+  // field1: ???, // doesn't exists any regular object in js for expressing NonNull value
+  field2: AuthorTC.getTypeNonNull(), // call specific TypeComposer method
+  field3: 'Author!', // use SDL format
+  field4: new GraphQLNonNull(AuthorTC.getType()) // use standard GraphQLNonNull
+});
+```
 
-### Adding fields
+Non-Null List of Non-Null values may be expressed in following way:
+```js
+import { GraphQLNonNull, GraphQLList } from 'graphql';
+
+SomeTypeComposer.addFields({
+  field3: '[Author!]!', // use SDL format
+  field4: new GraphQLNonNull( // use standard GraphQLNonNull & GraphQLList
+    new GraphQLList(
+      new GraphQLNonNull(AuthorTC.getType())
+    )
+  )
+});
+```
+
+## Union types
+Graphql-compose does not provide any helper for `Union` types. You should use standard `GraphQLUnionType`.
 
 ```js
-UserTC.addFields({
-  fullName: {
-    type: 'String',
-    resolve: (source) => `${source.firstName} ${source.lastName}`,
-    projection: { firstName: true, lastName: true },
+import { GraphQLUnionType } from 'graphql';
+
+// Get GraphQLObjectType from TypeComposer instance
+const DogType = DogTC.getType();
+const CatType = CatTC.getType();
+
+const PetType = new GraphQLUnionType({
+  name: 'Pet',
+  types: [ DogType, CatType ],
+  resolveType(value) {
+    if (value instanceof Dog) {
+      return DogType;
+    }
+    if (value instanceof Cat) {
+      return CatType;
+    }
   }
 });
 
-UserTC.addFields({
-  age: {
-    type: 'Int',
-    // other field config properties
-  }
-  ageShort: 'Int', // just type
-  complex: {
-    type: `type Address {
-      city: String
-      street: String
-    }`,
-    // other field config properties
-  },
-  complexShort: `type AddressShort {
-    city: String
-    street: String
-  }`
+// You may use GraphQLUnionType for field definition in TypeComposer
+AuthorTC.addFields({
+  favoritePet: PetType,
 });
 ```
 
-### Adding relations with other TypeComposers
-
-Assume that `ArticleTC` is generated by [graphql-compose-mongoose](https://github.com/nodkz/graphql-compose-mongoose). So let take generated `findMany` resolver from `ArticleTC` and connect/relate it with user data:
-
+## Interfaces
+Graphql-compose does not provide any helper for `Interfaces`. You should use standard `GraphQLUnionType`.
 ```js
-UserTC.addRelation('last10Articles', {
-  resolver: () => ArticleTC.getResolver('findMany'),
-  prepareArgs: {
-    filter: source => ({ userId: `${source._id}` }), // calculate `filter` argument
-    limit: 10, // set value to `limit` argument
-    sort: { _id: -1 }, // set `sort` argument
-    skip: null, // remove `skip` argument
+import { GraphQLInterfaceType } from 'graphql';
+import { schemaComposer, GraphQLDate, GraphQLJSON } from 'graphql-compose';
+
+const TimestampInterface = new GraphQLInterfaceType({
+  name: 'Timestampable',
+  description: 'An object with createdAt and updatedAt fields',
+  resolveType: (value: any, info?: GraphQLResolveInfo) => {
+    const typeName = ... somehow obtained from `value` or `info`
+    // use schemaComposer for searching Type by its name
+    if (schemaComposer.has(typeName)) {
+      return schemaComposer.getTC(typeName).getType();
+    }
+    // as fallback return JSON type (type of any shape)
+    return GraphQLJSON;
   },
-  projection: { _id: true },
+  // wrapped by arrow function for solving hoisting problems
+  fields: () => ({
+    // be aware fieldConfigs must be in standard GraphQL format
+    // no shortened format available here
+    createdAt: {
+      type: GraphQLDate,
+    },
+    updatedAt: {
+      type: GraphQLDate,
+    },
+  }),
 });
-```
-
-Read more about relations [here](04-relations.md).
-
-### Remove fields
-
-```js
-UserTC.removeField('email');
-```
-
-**_REMEMBER: This will remove the field in all objects where this TC is used_**
-
-### Field functions
-
-```js
-getFieldNames(): string[]
-getField(fieldName: string): ?GraphQLFieldConfig
-getFields(): GraphQLFieldConfigMap
-setFields(fields: GraphQLFieldConfigMap): void
-setField(fieldName: string, fieldConfig: GraphQLFieldConfig)
-addFields(newFields: GraphQLFieldConfigMap): void
-hasField(fieldName: string): boolean
-removeField(fieldNameOrArray: string | Array<string>): void
-removeOtherFields(keepFields: Array<string>); // will remove all other fields
-getFieldType(fieldName: string): GraphQLOutputType | void
-getFieldArgs(fieldName: string): ?GraphQLFieldConfigArgumentMap
-getFieldArg(fieldName: string, argName: string): ?GraphQLArgumentConfig
-extendField(fieldName: string, parialFieldConfig: GraphQLFieldConfig): GraphQLFieldConfig)
-deprecateFields(fieldMap: { [fieldName:string]: deprecation reason string } );
 ```

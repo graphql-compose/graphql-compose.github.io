@@ -10,6 +10,7 @@ Welcome to the GraphQL Compose documentation.
 
 ### Basics
 - [Type creation](basics-types)
+- [Type modification](basics-type-modification)
 - [Resolvers](basics-Resolver)
 - [Relations between Types](basics-relations)
 - [Generating Schema](basics-generating-schema)
