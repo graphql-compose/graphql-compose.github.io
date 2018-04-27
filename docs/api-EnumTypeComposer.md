@@ -3,58 +3,162 @@ id: api-EnumTypeComposer
 title: EnumTypeComposer
 ---
 
-Class that gets `GraphQLEnumType` and provide ability to change them
+`EnumTypeComposer` is a class which helps to create and modify `GraphQLEnumType`.
 
-* get and check presence of fields
-* add, remove, extend fields
-* clone type with new name
-* create types with `GraphQL Schema Language`
+## Static methods
 
+### static create()
+Create `EnumTypeComposer` with adding it by name to the `SchemaComposer`. This type became avaliable in SDL by its name.
 ```js
-// creating EnumTypeComposer from GraphQLEnumType
-const RgbETC = new EnumTypeComposer(
-  new GraphQLEnumType({
-    name: 'RGB',
-    values: {
-      RED: { value: 0 },
-      GREEN: { value: 1 },
-      BLUE: { value: 2 },
-    },
-  })
-);
+static create(
+  opts: TypeAsString | GraphQLEnumTypeConfig | GraphQLEnumType
+): EnumTypeComposer
+```
 
-// creating EnumTypeComposer via series of methods
-const RgbETC = EnumTypeComposer.create('RGB'); // create RGB without fields
-RgbETC.addFields({
-  RED: { value: 0 },
-  GREEN: { value: 1 },
-  BLUE: { value: 2 },
-});
+### static createTemp()
+Create `EnumTypeComposer` without adding it to the `SchemaComposer`. This method may be usefull in plugins, when you need to create type temporary. 
+```js
+static createTemp(
+  opts: TypeAsString | GraphQLEnumTypeConfig | GraphQLEnumType
+): EnumTypeComposer
+```
 
-// creating TypeComposer from `GraphQL schema language`
-const RgbETC = TypeComposer.create(`enum RGB { RED GREEN BLUE }`);
+## Value methods
 
-RgbETC.getFieldNames(); // ['RED', 'GREEN', 'BLUE']
-RgbETC.getField('RED'); // return GraphQLEnumValueConfig
-RgbETC.getFields(); // return GraphQLEnumValueConfigMap
-RgbETC.setFields(GraphQLEnumValueConfigMap); // completely replace all fields
-RgbETC.setField('RED', GraphQLEnumValueConfig); // replace `RED` field with new config
-RgbETC.addFields(GraphQLEnumValueConfigMap); // add new fields, replace existed, rest fields keep untouched
-RgbETC.hasField('RED'); // true
-RgbETC.removeField('RED');
-RgbETC.removeField(['RED', 'GREEN']);
-RgbETC.removeOtherFields(['RED', 'GREEN']); // will remove all other fields
-RgbETC.reorderFields(['GREEN', 'RED']); // reorder fields, GREEN becomes first
-RgbETC.deprecateFields({ 'RED': 'deprecation reason' }); // mark field as deprecated
-RgbETC.extendField('GREEN', {
-  description: 'Green color',
-});
-RgbETC.getType(); // GraphQLEnumType({ name: 'RGB', ...})
-RgbETC.getTypePlural(); // new GraphQLList(GraphQLEnumType(...))
-RgbETC.getTypeNonNull()); // new GraphQLNonNull(GraphQLObjectType(...))
-RgbETC.getTypeName(); // RGB
-RgbETC.setTypeName('RGBRenamed');
-RgbETC.setDescription('Enum with colors');
-RgbETC.getDescription(); // 'Enum with colors'
-RgbETC.clone('newEnum'); // new EnumTypeComposer with cloned fields
+For similar naming with `TypeComposer` and `InputTypeComposer` for working with Enum values used methods with name `*field*` instead of `*value*`.
+
+### hasField()
+```js
+hasField(
+  name: string
+): boolean
+```
+
+### getFields()
+```js
+getFields(): GraphQLEnumValueConfigMap
+```
+
+### getField()
+```js
+getField(
+  name: string
+): GraphQLEnumValueConfig;
+```
+
+### getFieldNames()
+```js
+getFieldNames(): Array<string>;
+```
+
+### setFields()
+Completely replace all values in the type with a new set.
+```js
+setFields(
+  values: GraphQLEnumValueConfigMap
+): EnumTypeComposer;
+```
+
+### setField()
+```js
+setField(
+  name: string,
+  valueConfig: GraphQLEnumValueConfig
+): EnumTypeComposer;
+```
+
+### addFields()
+Add new fields or replace existed, rest fields keep untouched.
+```js
+addFields(
+  newValues: GraphQLEnumValueConfigMap
+): EnumTypeComposer;
+```
+
+### removeField()
+Remove one value by its name, or by array of field names.
+```js
+removeField(
+  nameOrArray: string | Array<string>
+): EnumTypeComposer;
+```
+
+### removeOtherFields()
+Keep only provided fields in type, other fields will be removed.
+```js
+removeOtherFields(
+  fieldNameOrArray: string | Array<string>
+): EnumTypeComposer;
+```
+
+### reorderFields()
+```js
+reorderFields(
+  names: Array<string>
+): EnumTypeComposer;
+```
+
+### extendField()
+```js
+extendField(
+  name: string,
+  partialValueConfig: $Shape<GraphQLEnumValueConfig>
+): EnumTypeComposer;
+```
+
+### deprecateFields()
+Mark value or map of values as deprecated
+```js
+deprecateFields(
+  fields: { [fieldName: string]: string } | Array<string> | string
+): EnumTypeComposer
+```
+
+## Type methods
+
+### getType()
+```js
+getType(): GraphQLEnumType;
+```
+
+### getTypePlural()
+```js
+getTypePlural(): GraphQLList<GraphQLEnumType>;
+```
+
+### getTypeNonNull()
+```js
+getTypeNonNull(): GraphQLNonNull<GraphQLEnumType>;
+```
+
+### getTypeName()
+```js
+getTypeName(): string;
+```
+
+### setTypeName()
+```js
+setTypeName(
+  name: string
+): EnumTypeComposer;
+```
+
+### getDescription()
+```js
+getDescription(): string;
+```
+
+### setDescription()
+```js
+setDescription(
+  description: string
+): EnumTypeComposer;
+```
+
+### clone()
+Create a new Enum type with provided name.
+```js
+clone(
+  newTypeName: string
+): EnumTypeComposer;
 ```
