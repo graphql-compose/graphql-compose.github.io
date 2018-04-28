@@ -15,6 +15,49 @@
 @media only screen and (min-width: 1500px) {
 }
 
+/* Independent scrolling of docs sidebar menu (requires pjax) */
+@media only screen and (min-width: 736px) {
+  /* makes desktop nav scroll independently of content */
+  #docsNav.container.docsNavContainer .toc {
+    position: fixed;
+    overflow-y: scroll;
+    bottom: 0;
+    top: 0;
+    padding: 80px 0 60px 0;
+    width: 220px;
+  }
+  #docsNav.container.docsNavContainer .toc::-webkit-scrollbar {
+    display: none;
+  }
+  /* safari fix */
+  #docsNav.container.docsNavContainer {
+    position: static;
+  }
+  #docsNav.container {
+    flex: 0 0 200px;
+  }
+
+  .onPageNav {
+    top: 70px;
+    max-height: calc(100vh - 70px);
+  }
+  .onPageNav .toc-headings {
+    margin-bottom: 15px;
+  }
+  .post {
+    padding-top: 10px !important;
+  }
+  .mainContainer {
+    margin-left: 40px;
+  }
+}
+@media only screen and (min-width: 736px) and (max-width: 900px) {
+  .mainContainer {
+    margin-left: 0px;
+    max-width: 65% !important;
+  }
+}
+
 a {
   color: #1a0dab;
   text-decoration: none;
