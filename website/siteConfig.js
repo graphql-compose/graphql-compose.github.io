@@ -18,8 +18,9 @@ const users = [
 const siteConfig = {
   title: 'graphql-compose' /* title for your website */,
   tagline: 'Toolkit for generating complex GraphQL schemas',
-  url: 'https://yozhikm.github.io' /* your website url */,
-  baseUrl: '/graphql-compose-docs/' /* base url for your project */,
+  url: 'https://graphql-compose.github.io' /* your website url */,
+  baseUrl: '/' /* base url for your project */,
+  organizationName: 'graphql-compose',
   projectName: 'graphql-compose-docs',
   headerLinks: [
     { doc: 'intro-quick-start', label: 'Docs' },
