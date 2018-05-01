@@ -21,7 +21,7 @@ const siteConfig = {
   url: 'https://graphql-compose.github.io' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   organizationName: 'graphql-compose',
-  projectName: 'graphql-compose-docs',
+  projectName: 'graphql-compose.github.io',
   headerLinks: [
     { doc: 'intro-quick-start', label: 'Docs' },
     { doc: 'api-TypeComposer', label: 'API' },
