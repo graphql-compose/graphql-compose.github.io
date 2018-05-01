@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>graphql-compose-connection · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="graphql-compose-connection · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="This is a plugin for [graphql-compose](https://github.com/graphql-compose/graphql-compose) family, which adds to the TypeComposer `connection` resolver."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/intro-quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/en/api-TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/en/plugin--list.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/ja">日本語</a></li><li><a href="/es-ES">Español</a></li><li><a href="/fr">Français</a></li><li><a href="/ko">한국어</a></li><li><a href="/pt-BR">Português (Brasil)</a></li><li><a href="/ru">Русский</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/th">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Plugins</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/intro-prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/en/intro-installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/en/intro-quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/en/intro-demos.html">Live Demos</a></li></ul></div><div class="navGroup navGroupActive"><h3>Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/basics-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/en/basics-type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/en/basics-Resolver.html">[WIP] Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/basics-relations.html">[WIP] Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/en/basics-generating-schema.html">[WIP] Generating Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/api-TypeComposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api-InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api-EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api-Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api-TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api-SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api-misc.html">[WIP] API misc</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugins</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/plugin--list.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugin-relay.html">Relay plugin</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/en/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/guide-mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem"><a class="navItem" href="/docs/en/guide-wrapping-rest-api.html">[WIP] Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/guide-elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/en/guide-relay.html">[WIP] Relay Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>Recipes</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/recipe-authorization.html">[WIP] Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/en/recipe-writing-tests.html">[WIP] Writing tests</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/plugin-connection.md" target="_blank" rel="noreferrer noopener">Edit</a><h1>graphql-compose-connection</h1></header><article><div><span><p>This is a plugin for <a href="https://github.com/graphql-compose/graphql-compose">graphql-compose</a> family, which adds to the TypeComposer <code>connection</code> resolver.</p>
+<p>Live demo: <a href="https://graphql-compose.herokuapp.com/">https://graphql-compose.herokuapp.com/</a></p>
+<p>This package completely follows to Relay Cursor Connections Specification (<a href="https://facebook.github.io/relay/graphql/connections.htm">https://facebook.github.io/relay/graphql/connections.htm</a>).</p>
+<p>Besides standard connection arguments <code>first</code>, <code>last</code>, <code>before</code> and <code>after</code>, also added significant arguments:</p>
+<ul>
+<li><code>filter</code> arg - for filtering records</li>
+<li><code>sort</code> arg - for sorting records. Build in mechanism allows sort by any unique indexes (not only by id). Also supported compound sorting (by several fields).</li>
+</ul>
+<p><a href="https://github.com/graphql-compose/graphql-compose-connection/blob/master/CHANGELOG.md">CHANGELOG</a></p>
+<h1><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h1>
+<pre><code class="hljs">npm <span class="hljs-keyword">install</span> graphql graphql-compose graphql-compose-<span class="hljs-keyword">connection</span> <span class="hljs-comment">--save</span>
+</code></pre>
+<p>Modules <code>graphql</code> and <code>graphql-compose</code> are in <code>peerDependencies</code>, so should be installed explicitly in your app. They should not installed as submodules, cause internally checks the classes instances.</p>
+<h1><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h1>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> composeWithConnection <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-connection'</span>;
+<span class="hljs-keyword">import</span> userTypeComposer <span class="hljs-keyword">from</span> <span class="hljs-string">'./user.js'</span>;
+
+composeWithConnection(userTypeComposer, {
+  <span class="hljs-attr">findResolverName</span>: <span class="hljs-string">'findMany'</span>,
+  <span class="hljs-attr">countResolverName</span>: <span class="hljs-string">'count'</span>,
+  <span class="hljs-attr">sort</span>: {
+    <span class="hljs-comment">// Sorting key, visible for users in GraphQL Schema</span>
+    _ID_ASC: {
+      <span class="hljs-comment">// Sorting value for ORM/Driver</span>
+      value: { <span class="hljs-attr">_id</span>: <span class="hljs-number">1</span> },
+
+      <span class="hljs-comment">// Field names in record, which data will be packed in `cursor`</span>
+      <span class="hljs-comment">//   edges {</span>
+      <span class="hljs-comment">//     cursor   &lt;- base64(cursorData), for this example `cursorData` = { _id: 334ae453 }</span>
+      <span class="hljs-comment">//     node     &lt;- record from DB</span>
+      <span class="hljs-comment">//   }</span>
+      <span class="hljs-comment">// By this fields MUST be created UNIQUE index in database!</span>
+      cursorFields: [<span class="hljs-string">'_id'</span>],
+
+      <span class="hljs-comment">// If for connection query provided `before` argument with above `cursor`.</span>
+      <span class="hljs-comment">// We should construct (`rawQuery`) which will be point to dataset before cursor.</span>
+      <span class="hljs-comment">// Unpacked data from `cursor` will be available in (`cursorData`) argument.</span>
+      <span class="hljs-comment">// PS. All other filter options provided via GraphQL query will be added automatically.</span>
+      <span class="hljs-comment">// ----- [record] -----   sorted dataset, according to above option with `value` name</span>
+      <span class="hljs-comment">// ^^^^^                 `rawQuery` should filter this set    </span>
+      beforeCursorQuery: <span class="hljs-function">(<span class="hljs-params">rawQuery, cursorData, resolveParams</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!rawQuery._id) rawQuery._id = {};
+        rawQuery._id.$lt = cursorData._id;
+      },
+
+      <span class="hljs-comment">// Constructing `rawQuery` for connection `after` argument.</span>
+      <span class="hljs-comment">// ----- [record] -----   sorted dataset</span>
+      <span class="hljs-comment">//                ^^^^^  `rawQuery` should filter this set    </span>
+      afterCursorQuery: <span class="hljs-function">(<span class="hljs-params">rawQuery, cursorData, resolveParams</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!rawQuery._id) rawQuery._id = {};
+        rawQuery._id.$gt = cursorData._id;
+      },
+    },
+
+    <span class="hljs-attr">_ID_DESC</span>: {
+      <span class="hljs-attr">value</span>: { <span class="hljs-attr">_id</span>: <span class="hljs-number">-1</span> },
+      <span class="hljs-attr">cursorFields</span>: [<span class="hljs-string">'_id'</span>],
+      <span class="hljs-attr">beforeCursorQuery</span>: <span class="hljs-function">(<span class="hljs-params">rawQuery, cursorData, resolveParams</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!rawQuery._id) rawQuery._id = {};
+        rawQuery._id.$gt = cursorData._id;
+      },
+      <span class="hljs-attr">afterCursorQuery</span>: <span class="hljs-function">(<span class="hljs-params">rawQuery, cursorData, resolveParams</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!rawQuery._id) rawQuery._id = {};
+        rawQuery._id.$lt = cursorData._id;
+      },
+    },
+
+    <span class="hljs-comment">// More complex sorting parameter with 2 fields</span>
+    AGE_ID_ASC: {
+      <span class="hljs-attr">value</span>: { <span class="hljs-attr">age</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">_id</span>: <span class="hljs-number">-1</span> },
+      <span class="hljs-comment">// By these fields MUST be created COMPOUND UNIQUE index in database!</span>
+      cursorFields: [<span class="hljs-string">'age'</span>, <span class="hljs-string">'_id'</span>],
+      <span class="hljs-attr">beforeCursorQuery</span>: <span class="hljs-function">(<span class="hljs-params">rawQuery, cursorData, resolveParams</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!rawQuery.age) rawQuery.age = {};
+        <span class="hljs-keyword">if</span> (!rawQuery._id) rawQuery._id = {};
+        rawQuery.age.$lt = cursorData.age;
+        rawQuery._id.$gt = cursorData._id;
+      },
+      <span class="hljs-attr">afterCursorQuery</span>: <span class="hljs-function">(<span class="hljs-params">rawQuery, cursorData, resolveParams</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!rawQuery.age) rawQuery.age = {};
+        <span class="hljs-keyword">if</span> (!rawQuery._id) rawQuery._id = {};
+        rawQuery.age.$gt = cursorData.age;
+        rawQuery._id.$lt = cursorData._id;
+      },
+    }
+  },
+});
+</code></pre>
+<p><img width="1249" alt="screen shot 2016-07-20 at 12 20 08" src="https://cloud.githubusercontent.com/assets/1946920/16976899/67a5e0f8-4e74-11e6-87e5-fc4574deaaab.png"></p>
+<h1><a class="anchor" aria-hidden="true" id="requirements"></a><a href="#requirements" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Requirements</h1>
+<p>Types should have following resolvers:</p>
+<ul>
+<li><code>count</code> - for counting records</li>
+<li><code>findMany</code> - for filtering records. Also required that this resolver supports search with operators (lt, gt), which used in <code>directionFilter</code> option. Resolver <code>findMany</code> should have <code>filter</code> argument, which will be copied to connection. Also should have <code>limit</code> and <code>skip</code> args.</li>
+</ul>
+<h1><a class="anchor" aria-hidden="true" id="used-in-plugins"></a><a href="#used-in-plugins" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Used in plugins</h1>
+<p><a href="https://github.com/graphql-compose/graphql-compose-mongoose">graphql-compose-mongoose</a> - converts mongoose models to graphql types</p>
+<h1><a class="anchor" aria-hidden="true" id="license"></a><a href="#license" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>License</h1>
+<p><a href="https://github.com/graphql-compose/graphql-compose-connection/blob/master/LICENSE.md">MIT</a></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="plugin-relay.html">← graphql-compose-relay</a><a class="docs-next button" href="plugin-pagination.html">graphql-compose-pagination →</a></div></div></div><nav class="onPageNav"></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+      // var languagesMenuItemCopy = document.getElementById("languages-menu");
+      // languagesMenuItemCopy.addEventListener("click", function(e){
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   e.stopImmediatePropagation();
+      // });</script></span></div></div></body></html>
