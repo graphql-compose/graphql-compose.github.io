@@ -20,17 +20,9 @@ jobs:
       - run:
           name: Install crowdin
           command: |
-            sudo wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz
-            sudo tar -xvf jdk-7u79-linux-x64.tar.gz
-            sudo mv ./jdk1.7.0_79 ./jdk1.7.0
-            sudo mv ./jdk1.7.0 /usr/lib/jvm/
-            sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0/bin/java" 1000
-            sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0/bin/javac" 1000
-            sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0/bin/javaws" 1000
-            sudo chmod a+x /usr/bin/java
-            sudo chmod a+x /usr/bin/javac
-            sudo chmod a+x /usr/bin/javaws
-            sudo chown -R root:root /usr/lib/jvm/jdk1.7.0
+            sudo add-apt-repository ppa:openjdk-r/ppa  
+            sudo apt-get update
+            sudo apt-get install openjdk-7-jdk
             wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
             sudo dpkg -i crowdin.deb
       - run:
