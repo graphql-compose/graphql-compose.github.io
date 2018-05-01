@@ -1,13 +1,31 @@
 version: 2
 jobs:
-  build:
+  deploy-website:
+    working_directory: ~/graphql-compose
     docker:
       - image: circleci/node:8.10
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - website-node-modules-{{ checksum "website/yarn.lock" }}
+            - website-node-modules-
       - run:
-          name: Deploying to GitHub Pages
+          name: Install node_modules
+          command: |
+            cd website
+            yarn --no-progress
+      - run:
+          name: Install apt packages
+          command: |
+            sudo apt install rsync
+      - save_cache:
+          key: website-node-modules-{{ checksum "website/yarn.lock" }}
+          paths:
+            - website/node_modules
+      - deploy:
+          name: Publish gh-pages
           command: |
             git config --global user.email "nodkz@users.noreply.github.com"
             git config --global user.name "Pavel Chertorogov"
@@ -16,7 +34,9 @@ jobs:
 
 workflows:
   version: 2
-  build_and_deploy:
+  build-and-deploy:
     jobs:
       - deploy-website:
-#         filters: *filter-only-master
+          filters:
+            branches:
+              only: master
