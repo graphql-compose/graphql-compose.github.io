@@ -29,6 +29,7 @@ const siteConfig = {
     { doc: 'api-TypeComposer', label: 'API' },
     { doc: 'plugin--list', label: 'Plugins' },
     { languages: true },
+    { href: "https://github.com/graphql-compose/graphql-compose", label: "GitHub" },
     // { page: 'help', label: 'Support' },
     // see Algolia to search by docs
     // { search: true },
