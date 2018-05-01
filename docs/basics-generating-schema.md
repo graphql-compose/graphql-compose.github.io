@@ -1,6 +1,6 @@
 ---
 id: basics-generating-schema
-title: Generating Schema
+title: [WIP] Generating Schema
 ---
 
 ```js

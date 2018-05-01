@@ -1,6 +1,6 @@
 ---
 id: basics-Resolver
-title: Resolvers
+title: [WIP] Resolvers
 ---
 
 ### How `Resolver.wrapResolve` work internally

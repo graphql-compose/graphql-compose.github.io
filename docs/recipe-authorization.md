@@ -1,6 +1,6 @@
 ---
 id: recipe-authorization
-title: Authorization
+title: [WIP] Authorization
 ---
 
 # TODO

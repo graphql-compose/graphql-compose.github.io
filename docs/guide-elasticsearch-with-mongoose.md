@@ -1,6 +1,6 @@
 ---
 id: guide-elasticsearch-with-mongoose
-title: Use ElasticSearch with Mongoose
+title: [WIP] Use ElasticSearch with Mongoose
 ---
 
 ## TODO

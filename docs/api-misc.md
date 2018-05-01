@@ -1,6 +1,6 @@
 ---
 id: api-misc
-title: API misc
+title: [WIP] API misc
 ---
 
 Graphql-compose consists from several classes and utilities. Its combination allows to create plugins or helper methods that generate or modify the graphql types.

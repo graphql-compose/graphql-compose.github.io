@@ -1,6 +1,6 @@
 ---
 id: guide-mongoose
-title: Generate types from Mongoose Models
+title: [WIP] Generate types from Mongoose Models
 ---
 
 Lets get into the CUD in the CRUD..

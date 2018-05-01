@@ -1,6 +1,6 @@
 ---
 id: guide-relay
-title: Relay Schema
+title: [WIP] Relay Schema
 ---
 
 Adding support for Relay is done via plugin [graphql-compose-relay](https://github.com/nodkz/graphql-compose-relay) For more detailed descriptions on how to use and reporting issues please use the link.

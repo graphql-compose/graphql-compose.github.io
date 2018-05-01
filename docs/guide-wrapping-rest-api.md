@@ -1,6 +1,6 @@
 ---
 id: guide-wrapping-rest-api
-title: Wrapping REST API
+title: [WIP] Wrapping REST API
 ---
 
 ## TODO

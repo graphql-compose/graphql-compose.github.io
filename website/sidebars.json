@@ -13,16 +13,6 @@
       "basics-relations",
       "basics-generating-schema"
     ],
-    "Guide": [
-      "guide-mongoose",
-      "guide-wrapping-rest-api",
-      "guide-elasticsearch-with-mongoose",
-      "guide-relay"
-    ],
-    "Recipes": [
-      "recipe-authorization",
-      "recipe-writing-tests"
-    ],
     "API Reference": [
       "api-TypeComposer",
       "api-InputTypeComposer",
@@ -42,6 +32,16 @@
       "plugin-pagination",
       "plugin-aws",
       "plugin-writing-custom-plugin"
+    ],
+    "Guide": [
+      "guide-mongoose",
+      "guide-wrapping-rest-api",
+      "guide-elasticsearch-with-mongoose",
+      "guide-relay"
+    ],
+    "Recipes": [
+      "recipe-authorization",
+      "recipe-writing-tests"
     ]
   }
 }

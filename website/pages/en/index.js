@@ -60,6 +60,7 @@ const ProjectTitle = props => (
   <h2 className="projectTitle">
     {siteConfig.title}
     <small>{siteConfig.tagline}</small>
+    <small style={{ color: 'red', fontSize: '30%' }}>Docs in progress. Unready articles marked as [WIP]. This page also should be prettified.</small>
   </h2>
 );
 
