@@ -20,13 +20,15 @@ const siteConfig = {
   tagline: 'Toolkit for generating complex GraphQL schemas',
   url: 'https://graphql-compose.github.io' /* your website url */,
   editUrl: "https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/",
+  translationRecruitingLink: "https://crowdin.com/project/graphql-compose",
   baseUrl: '/' /* base url for your project */,
   organizationName: 'graphql-compose',
   projectName: 'graphql-compose.github.io',
   headerLinks: [
     { doc: 'intro-quick-start', label: 'Docs' },
     { doc: 'api-TypeComposer', label: 'API' },
-    { foc: 'plugin--list', label: 'Plugins' },
+    { doc: 'plugin--list', label: 'Plugins' },
+    { languages: true },
     // { page: 'help', label: 'Support' },
     // see Algolia to search by docs
     // { search: true },

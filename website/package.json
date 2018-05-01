@@ -1,4 +1,5 @@
 {
+  "name": "graphql-compose-site",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
@@ -6,8 +7,11 @@
     "publish-gh-pages": "docusaurus-publish",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
-    "rename-version": "docusaurus-rename-version"
+    "rename-version": "docusaurus-rename-version",
+    "crowdin-upload": "export CROWDIN_DOCUSAURUS_PROJECT_ID=\"graphql-compose\"; export CROWDIN_DOCUSAURUS_API_KEY=$CROWDIN_DOCUSAURUS_API_KEY; crowdin --config ../crowdin.yaml upload sources --auto-update -b master",
+    "crowdin-download": "export CROWDIN_DOCUSAURUS_PROJECT_ID=\"graphql-compose\"; export CROWDIN_DOCUSAURUS_API_KEY=$CROWDIN_DOCUSAURUS_API_KEY; crowdin --config ../crowdin.yaml download -b master"
   },
+  "license": "MIT",
   "devDependencies": {
     "docusaurus": "^1.0.14"
   }
