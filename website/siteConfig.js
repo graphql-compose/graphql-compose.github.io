@@ -19,6 +19,7 @@ const siteConfig = {
   title: 'graphql-compose' /* title for your website */,
   tagline: 'Toolkit for generating complex GraphQL schemas',
   url: 'https://graphql-compose.github.io' /* your website url */,
+  editUrl: "https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/",
   baseUrl: '/' /* base url for your project */,
   organizationName: 'graphql-compose',
   projectName: 'graphql-compose.github.io',
