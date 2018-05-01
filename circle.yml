@@ -1,9 +1,5 @@
 version: 2
 
-dependencies:
-  pre:
-    - wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb && sudo dpkg -i crowdin.deb
-
 jobs:
   deploy-website:
     working_directory: ~/graphql-compose
@@ -22,6 +18,11 @@ jobs:
             cd website
             yarn --no-progress
       - run:
+          name: Install crowdin
+          command: |
+            wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
+            sudo dpkg -i crowdin.deb
+      - run:
           name: Install apt packages
           command: |
             sudo apt install rsync
@@ -35,13 +36,10 @@ jobs:
             git config --global user.email "nodkz@users.noreply.github.com"
             git config --global user.name "Pavel Chertorogov"
             echo "machine github.com login nodkz password $GITHUB_TOKEN" > ~/.netrc
-            # install Docusaurus and generate file of English strings
-            cd website && npm install && npm run write-translations && cd ..
-            # translations upload/download
-            crowdin --config crowdin.yaml upload sources --auto-update -b master
-            crowdin --config crowdin.yaml download -b master
-            # build and publish website
-            cd website && yarn install && GIT_USER=nodkz yarn publish-gh-pages
+            cd website
+            yarn install
+            yarn write-translations && yarn crowdin-upload && yarn crowdin-download
+            GIT_USER=nodkz yarn publish-gh-pages
 
 workflows:
   version: 2
