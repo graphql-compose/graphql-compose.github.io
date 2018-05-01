@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Type modification · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Type modification · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="This is the most important part of `graphql-compose` and the main difference in Schema creation with `GraphQL.js`. In `GraphQL.js` you have strict abilities in type definition and its further modification. But `graphql-compose` allows to you modify types after creation in very convenient ways."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/ru/intro-quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/ru/api-TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/ru/plugin--list.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/en">English</a></li><li><a href="/ja">日本語</a></li><li><a href="/es-ES">Español</a></li><li><a href="/fr">Français</a></li><li><a href="/ko">한국어</a></li><li><a href="/pt-BR">Português (Brasil)</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/th">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Basics</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/intro-prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/intro-installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/intro-quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/intro-demos.html">Live Demos</a></li></ul></div><div class="navGroup navGroupActive"><h3>Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/basics-types.html">Type creation</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/ru/basics-type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/basics-Resolver.html">[WIP] Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/basics-relations.html">[WIP] Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/basics-generating-schema.html">[WIP] Generating Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/api-TypeComposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/api-InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/api-EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/api-Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/api-TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/api-SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/api-misc.html">[WIP] API misc</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugins</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/plugin--list.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/guide-mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/guide-wrapping-rest-api.html">[WIP] Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/guide-elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/guide-relay.html">[WIP] Relay Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>Recipes</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/recipe-authorization.html">[WIP] Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/recipe-writing-tests.html">[WIP] Writing tests</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/graphql-compose/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1>Type modification</h1></header><article><div><span><p>This is the most important part of <code>graphql-compose</code> and the main difference in Schema creation with <code>GraphQL.js</code>. In <code>GraphQL.js</code> you have strict abilities in type definition and its further modification. But <code>graphql-compose</code> allows to you modify types after creation in very convenient ways.</p>
+<blockquote>
+<p><strong>Note:</strong> With <code>graphql-compose</code> you may modify types before <code>GraphQLSchema</code> object creation. When schema was created you cannot change types.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="fields-modification"></a><a href="#fields-modification" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fields modification</h2>
+<p>Available methods in <code>TypeComposer</code>, <code>InputTypeComposer</code> and <code>EnumTypeComposer</code> instances: - getFields() - setFields() - getFieldNames() - hasField(name) - setField(name, fieldConfig) - addFields(newFieldsConfig) - getField(name) - removeField(nameOrArray) - removeOtherFields(nameOrArray) - extendField(name, partialFieldConfig) - reorderFields(names) - deprecateFields(nameOrMap)</p>
+<p>Additional methods in <code>TypeComposer</code>, <code>InputTypeComposer</code> instances: - getFieldType(name) - getFieldTC(name) - getFieldConfig(name) - makeFieldNonNull(nameOrArray) - makeFieldNullable(nameOrArray) - addNestedFields(newFields)</p>
+<pre><code class="hljs css js"><span class="hljs-comment">// add description to `firstName`</span>
+AuthorTC.extendField(<span class="hljs-string">'firstName'</span>, {
+  <span class="hljs-attr">description</span>: <span class="hljs-string">"This field returns Author's first name"</span>,
+});
+
+<span class="hljs-comment">// Add new field `status` with Enum type</span>
+AuthorTC.addField(<span class="hljs-string">'status'</span>, <span class="hljs-string">`enum AuthorStatus { ACTIVE INACTIVE }`</span>);
+
+<span class="hljs-comment">// Change order of fields in type</span>
+<span class="hljs-comment">// unlisted fields will be added to the end of field list with old order</span>
+AuthorTC.reorderFields([<span class="hljs-string">'status'</span>, <span class="hljs-string">'firstName'</span>]);
+
+<span class="hljs-comment">// Mark fields as deprecated with some message</span>
+AuthorTC.deprecateFields({
+  <span class="hljs-attr">rating</span>: <span class="hljs-string">'This field will be removed in June 2018'</span>,
+  <span class="hljs-attr">dob</span>: <span class="hljs-string">'Use `age` field instead. This field will be removed in June 2018'</span>,
+});
+
+<span class="hljs-comment">// Add new field with `address` name and for type</span>
+<span class="hljs-comment">// create a new object type with `city` and `country` fields</span>
+AuthorTC.addNestedFields({
+  <span class="hljs-string">'address.city'</span>: <span class="hljs-string">'String'</span>,
+  <span class="hljs-string">'address.country'</span>: <span class="hljs-string">'String'</span>,
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="type-modification"></a><a href="#type-modification" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type modification</h2>
+<p>Available methods in <code>TypeComposer</code>, <code>InputTypeComposer</code> and <code>EnumTypeComposer</code> instances: - getType() - getTypePlural() - getTypeNonNull() - getTypeName() - setTypeName(newName) - getDescription() - setDescription() - clone(newTypeName)</p>
+<p>Additional methods in <code>TypeComposer</code> - getInterfaces() - setInterfaces(interfaces) - hasInterface(interfaceObj) - addInterface(interfaceObj) - removeInterface(interfaceObj) - getInputType() - getITC()</p>
+<h2><a class="anchor" aria-hidden="true" id="create-your-custom-modification-function"></a><a href="#create-your-custom-modification-function" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create your custom modification function</h2>
+<p>With this set of methods, you may write your own type modification functions. It may greatly reduce repetitive code across your schema definition.</p>
+<p>As an example, lets write a function which will add <code>rawData</code> field with full record data from database. Also check <code>isAdmin = true</code> in <code>context</code> and if so return data, otherwise return null.</p>
+<pre><code class="hljs css js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addRawData</span>(<span class="hljs-params">tc: TypeComposer</span>) </span>{
+  <span class="hljs-keyword">if</span> (!tc.hasField(<span class="hljs-string">'rawData'</span>)) {
+    tc.addField(<span class="hljs-string">'rawData'</span>, {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'JSON'</span>,
+      <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source, args, context</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (context.isAdmin) {
+          <span class="hljs-keyword">return</span> source;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+      },
+      <span class="hljs-comment">// add magic property `projection`</span>
+      <span class="hljs-comment">// which request all fields from database</span>
+      <span class="hljs-comment">// when requested this `rawData` field in the query</span>
+      projection: { <span class="hljs-string">'*'</span>: <span class="hljs-number">1</span> },
+    });
+  }
+}
+addRawData(AuthorTC);
+addRawData(PostTC);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="or-even-more"></a><a href="#or-even-more" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Or even more!</h2>
+<p>You may write your own plugins which will generate types from some models or non-graphql schemas. Take a look on <a href="/docs/ru/plugin--list.html">avaliable list of plugins</a> build on top of <code>graphql-compose</code>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="basics-types.html">← Type creation</a><a class="docs-next button" href="basics-Resolver.html">[WIP] Resolvers →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#fields-modification">Fields modification</a></li><li><a href="#type-modification">Type modification</a></li><li><a href="#create-your-custom-modification-function">Create your custom modification function</a></li><li><a href="#or-even-more">Or even more!</a></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+      // var languagesMenuItemCopy = document.getElementById("languages-menu");
+      // languagesMenuItemCopy.addEventListener("click", function(e){
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   e.stopImmediatePropagation();
+      // });</script></span></div></div></body></html>

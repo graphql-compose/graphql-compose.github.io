@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>TypeComposer · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="TypeComposer · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="Main class that gets `GraphQLObjectType` (complex **output** type with fields) and provide ability to change them"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ko"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/ko/intro-quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/ko/api-TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/ko/plugin--list.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>한국어</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/en">English</a></li><li><a href="/ja">日本語</a></li><li><a href="/es-ES">Español</a></li><li><a href="/fr">Français</a></li><li><a href="/pt-BR">Português (Brasil)</a></li><li><a href="/ru">Русский</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/th">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>API Reference</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/intro-prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/intro-installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/intro-quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/intro-demos.html">Live Demos</a></li></ul></div><div class="navGroup navGroupActive"><h3>Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/basics-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/basics-type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/basics-Resolver.html">[WIP] Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/basics-relations.html">[WIP] Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/basics-generating-schema.html">[WIP] Generating Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Reference</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/ko/api-TypeComposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-misc.html">[WIP] API misc</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugins</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/plugin--list.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/guide-mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/guide-wrapping-rest-api.html">[WIP] Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/guide-elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/guide-relay.html">[WIP] Relay Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>Recipes</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/recipe-authorization.html">[WIP] Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/recipe-writing-tests.html">[WIP] Writing tests</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/graphql-compose/ko" target="_blank" rel="noreferrer noopener">Translate</a><h1>TypeComposer</h1></header><article><div><span><p>Main class that gets <code>GraphQLObjectType</code> (complex <strong>output</strong> type with fields) and provide ability to change them</p>
+<ul>
+<li>get and check presence of fields and interfaces</li>
+<li>add, remove, extend fields</li>
+<li>add relations with other types</li>
+<li>clone type with new name</li>
+<li>manipulate type interfaces</li>
+<li>produce input object type</li>
+<li>keep list of <code>Resolver</code>s methods for quering/updating data</li>
+<li>create output types with <code>GraphQL schema language</code></li>
+</ul>
+<pre><code class="hljs css js"><span class="hljs-comment">// creating TypeComposer from GraphQLObjectType</span>
+<span class="hljs-keyword">const</span> LonLatTC = <span class="hljs-keyword">new</span> TypeComposer(
+  <span class="hljs-keyword">new</span> GraphQLObjectType({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'LonLat'</span>,
+    <span class="hljs-attr">fields</span>: {
+      <span class="hljs-attr">lon</span>: {
+        <span class="hljs-attr">type</span>: GraphQLFloat,
+      },
+      <span class="hljs-attr">lat</span>: {
+        <span class="hljs-attr">type</span>: GraphQLFloat,
+      },
+    },
+  })
+);
+
+<span class="hljs-comment">// creating TypeComposer via series of methods</span>
+<span class="hljs-keyword">const</span> LonLatTC = TypeComposer.create(<span class="hljs-string">'LonLat'</span>); <span class="hljs-comment">// create LonLat without fields</span>
+LonLatTC.addFields({
+  <span class="hljs-comment">// short field definition</span>
+  lon: <span class="hljs-string">'Float'</span>, <span class="hljs-comment">// or may set GraphQLFloat</span>
+  <span class="hljs-comment">// extended field definition</span>
+  lat: {
+    <span class="hljs-attr">type</span>: GraphQLFloat, <span class="hljs-comment">// or may set 'Float'</span>
+    resolve: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {},
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'Latitude'</span>,
+  }
+});
+
+<span class="hljs-comment">// creating TypeComposer from `GraphQL schema language`</span>
+<span class="hljs-keyword">const</span> LonLatTC = TypeComposer.create(<span class="hljs-string">`type LonLat { lon: Float, lat: Float }`</span>);
+
+LonLatTC.getFieldNames(); <span class="hljs-comment">// ['lon', 'lat']</span>
+LonLatTC.getField(<span class="hljs-string">'lon'</span>); <span class="hljs-comment">// return GraphQLFieldConfig</span>
+LonLatTC.getFields(); <span class="hljs-comment">// { lon: GraphQLFieldConfig, lat: GraphQLFieldConfig }</span>
+LonLatTC.setFields(GraphQLFieldMapConfig); <span class="hljs-comment">// completely replace all fields</span>
+LonLatTC.setField(<span class="hljs-string">'lon'</span>, GraphQLFieldConfig); <span class="hljs-comment">// replace `lon` field with new FieldConfig</span>
+LonLatTC.addFields(GraphQLFieldMapConfig); <span class="hljs-comment">// add new fields, replace existed, rest fields keep untouched</span>
+LonLatTC.hasField(<span class="hljs-string">'lon'</span>); <span class="hljs-comment">// true</span>
+LonLatTC.removeField(<span class="hljs-string">'lon'</span>);
+LonLatTC.removeField([<span class="hljs-string">'lon'</span>, <span class="hljs-string">'field2'</span>, <span class="hljs-string">'field3'</span>]);
+LonLatTC.removeOtherFields([<span class="hljs-string">'lon'</span>, <span class="hljs-string">'lat'</span>]); <span class="hljs-comment">// will remove all other fields</span>
+LonLatTC.reorderFields([<span class="hljs-string">'lat'</span>, <span class="hljs-string">'lon'</span>]); <span class="hljs-comment">// reorder fields, lat becomes first</span>
+LonLatTC.getField(<span class="hljs-string">'lon'</span>); <span class="hljs-comment">// undefined</span>
+LonLatTC.deprecateFields({ <span class="hljs-string">'lat'</span>: <span class="hljs-string">'deprecation reason'</span> }); <span class="hljs-comment">// mark field as deprecated</span>
+LonLatTC.extendField(<span class="hljs-string">'lat'</span>, {
+  <span class="hljs-attr">description</span>: <span class="hljs-string">'Latitude'</span>,
+  <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source</span>) =&gt;</span> (source.lat ? source.lat : <span class="hljs-number">61.1</span>),
+});
+LonLatTC.getFieldType(<span class="hljs-string">'lat'</span>); <span class="hljs-comment">// GraphQLFloat</span>
+LonLatTC.getFieldTC(<span class="hljs-string">'complexField'</span>); <span class="hljs-comment">// TypeComposer</span>
+LonLatTC.makeFieldNonNull([<span class="hljs-string">'lat'</span>, <span class="hljs-string">'lon'</span>]); <span class="hljs-comment">// wrap fields by GraphQLNonNull</span>
+LonLatTC.makeFieldNullable([<span class="hljs-string">'lat'</span>, <span class="hljs-string">'lon'</span>]); <span class="hljs-comment">// unwrap fields from GraphQLNonNull</span>
+LonLatTC.getType(); <span class="hljs-comment">// GraphQLObjectType({ name: 'LonLat', ...})</span>
+LonLatTC.getTypePlural(); <span class="hljs-comment">// new GraphQLList(GraphQLObjectType({ name: 'LonLat', ...}))</span>
+LonLatTC.getTypeNonNull()); <span class="hljs-comment">// new GraphQLNonNull(GraphQLObjectType({ name: 'LonLat', ...}))</span>
+LonLatTC.getTypeName(); <span class="hljs-comment">// LonLat</span>
+LonLatTC.setTypeName(<span class="hljs-string">'LonLatRenamed'</span>);
+LonLatTC.setDescription(<span class="hljs-string">'Object type with Longitude and Latitude'</span>);
+LonLatTC.getDescription(); <span class="hljs-comment">// 'Object type with Longitude and Latitude'</span>
+LonLatTC.clone(<span class="hljs-string">'newTypeName'</span>); <span class="hljs-comment">// new TypeComposer with cloned fields and resolvers</span>
+LonLatTC.get(<span class="hljs-string">'dotted.path'</span>); <span class="hljs-comment">// described below in `typeByPath` section</span>
+LonLatTC.getFieldArgs(<span class="hljs-string">'lat'</span>); <span class="hljs-comment">// returns map of args config or empty {} if no args</span>
+LonLatTC.hasFieldArg(<span class="hljs-string">'lat'</span>, <span class="hljs-string">'arg1'</span>); <span class="hljs-comment">// false</span>
+LonLatTC.getFieldArg(<span class="hljs-string">'lat'</span>, <span class="hljs-string">'arg1'</span>); <span class="hljs-comment">// returns arg config</span>
+LonLatTC.addRelation(<span class="hljs-string">'facilities'</span>, { <span class="hljs-comment">// add relation with some other TypeComposer</span>
+  resolver: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> FacilitiesTC.getResolver(<span class="hljs-string">'findMany'</span>),
+  <span class="hljs-attr">prepareArgs</span>: {
+    <span class="hljs-attr">filter</span>: <span class="hljs-function">(<span class="hljs-params">source</span>) =&gt;</span> ({ <span class="hljs-attr">lon</span>: source.lon, <span class="hljs-attr">lat</span>: source.lat }),
+    <span class="hljs-attr">limit</span>: <span class="hljs-number">100</span>,
+  },
+  <span class="hljs-attr">projection</span>: { <span class="hljs-attr">lon</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">lat</span>: <span class="hljs-literal">true</span> },
+})
+
+<span class="hljs-comment">// And bunch of other methods (which will be described in future):</span>
+<span class="hljs-comment">// getInterfaces</span>
+<span class="hljs-comment">// setInterfaces</span>
+<span class="hljs-comment">// hasInterface</span>
+<span class="hljs-comment">// addInterface</span>
+<span class="hljs-comment">// removeInterface</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// getInputType</span>
+<span class="hljs-comment">// getInputTypeComposer</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// getResolvers</span>
+<span class="hljs-comment">// hasResolver</span>
+<span class="hljs-comment">// getResolver</span>
+<span class="hljs-comment">// setResolver</span>
+<span class="hljs-comment">// addResolver</span>
+<span class="hljs-comment">// removeResolver</span>
+<span class="hljs-comment">// wrapResolver('updateById', resolver =&gt; { /* some manipulations w/ resolver */ });</span>
+<span class="hljs-comment">// wrapResolverAs('updateByIdExtended', 'updateById', resolver =&gt; { /* some manipulations w/ resolver */ });</span>
+<span class="hljs-comment">// wrapResolverResolve('updateById', next =&gt; rp =&gt; { /* custom logic for wrapping resolver */ return next(rp); });</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// setRecordIdFn</span>
+<span class="hljs-comment">// hasRecordIdFn</span>
+<span class="hljs-comment">// getRecordIdFn</span>
+<span class="hljs-comment">// getRecordId</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="basics-generating-schema.html">← [WIP] Generating Schema</a><a class="docs-next button" href="api-InputTypeComposer.html">InputTypeComposer →</a></div></div></div><nav class="onPageNav"></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+      // var languagesMenuItemCopy = document.getElementById("languages-menu");
+      // languagesMenuItemCopy.addEventListener("click", function(e){
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   e.stopImmediatePropagation();
+      // });</script></span></div></div></body></html>
