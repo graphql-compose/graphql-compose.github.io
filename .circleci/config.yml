@@ -40,3 +40,8 @@ workflows:
           filters:
             branches:
               only: source
+
+general:
+  branches:
+    ignore:
+      - master
