@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Plugin Reference · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Plugin Reference · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="There are a number of different plugins you can use to both compile and edit the Schema setup."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/intro-quick-start.html" target="_self">Docs</a></li><li class=""><a href="/docs/api-TypeComposer.html" target="_self">API</a></li><li class=""><a target="_self">Plugins</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Plugin Reference</h1></header><article><div><span><p>There are a number of different plugins you can use to both compile and edit the Schema setup.
+This could be used for compiling a schema from a database model (currently only supports mongoose) to Relay, connections and more.</p>
+<h4><a class="anchor" aria-hidden="true" id="graphql-compose-connection-https-githubcom-nodkz-graphql-compose-connection-resolver-constructor-typetc-typetc-1-resolver"></a><a href="#graphql-compose-connection-https-githubcom-nodkz-graphql-compose-connection-resolver-constructor-typetc-typetc-1-resolver" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/nodkz/graphql-compose-connection">graphql-compose-connection</a> - resolver constructor (TypeTC -&gt; TypeTC + 1 resolver)</h4>
+<ul>
+<li>It is <code>connection</code> resolver constructor, that use <code>findMany</code> and <code>count</code>resolvers which creates for you <a href="https://facebook.github.io/relay/graphql/connections.htm">RelayConnectionType</a>.</li>
+<li>adds <code>sort</code> and <code>filter</code> to args (no one library does not realize this complex logic. It store <code>sort</code> and <code>filter</code> values in <code>cursor</code>). How it works described <a href="https://github.com/RisingStack/graffiti-mongoose/issues/99#issuecomment-234524046">here</a></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="graphql-compose-mongoose-https-githubcom-nodkz-graphql-compose-mongoose-model-converter-mongoosemodel-typetc"></a><a href="#graphql-compose-mongoose-https-githubcom-nodkz-graphql-compose-mongoose-model-converter-mongoosemodel-typetc" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/nodkz/graphql-compose-mongoose">graphql-compose-mongoose</a> - model converter (MongooseModel -&gt; TypeTC)</h4>
+<ul>
+<li>It's mongoose model converter, that using <code>graphql-compose</code> for building one main type ObjectType (<code>graphql-compose</code> helps to convert ObjectType to InputObject)</li>
+<li>Create commonly used <code>Resolvers</code> with a bunch of so-called subtypes (filter, args, sorts, inputs). For providing build relations in your schema with <code>graphql-compose</code>.</li>
+<li>Internally used <code>graphql-compose-connection</code> for creating <code>connection</code> resolvers. Also it checks indexes on your mongoose fields and adds them to <code>sort</code> arg.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="graphql-compose-relay-https-githubcom-nodkz-graphql-compose-relay-type-converter-typetc-typetc-prepared-for-relay"></a><a href="#graphql-compose-relay-https-githubcom-nodkz-graphql-compose-relay-type-converter-typetc-typetc-prepared-for-relay" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/nodkz/graphql-compose-relay">graphql-compose-relay</a> - type converter (TypeTC -&gt; TypeTC prepared for Relay)</h4>
+<ul>
+<li>adds Node interface to wrapped Type</li>
+<li>adds <code>id</code> field or wrap existed in MainType, for providing global uniq id via base64(typeName:id)</li>
+<li>adds <code>node</code> field to <code>rootQuery</code> that resolves objects by it's global id</li>
+<li>traverse by <code>mutation resolvers</code> and change its outputTypes adds <code>clientMutationId</code>, wraps <code>resolver</code> to pass <code>clientMutationId</code> from args to the <code>OutputType</code></li>
+<li>traverse by <code>all resolvers</code> and move all args into one <code>input</code> arg, for Relay compatibility</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+      // var languagesMenuItemCopy = document.getElementById("languages-menu");
+      // languagesMenuItemCopy.addEventListener("click", function(e){
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   e.stopImmediatePropagation();
+      // });</script></span></div></div></body></html>
