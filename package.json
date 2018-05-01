@@ -1,5 +1,5 @@
 {
-  "name": "graphql-compose-docs",
+  "name": "graphql-compose.github.io",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YozhikM/graphql-compose-docs.git"
+    "url": "git+https://github.com/graphql-compose/graphql-compose.github.io.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/YozhikM/graphql-compose-docs/issues"
+    "url": "https://github.com/graphql-compose/graphql-compose.github.io/issues"
   },
-  "homepage": "https://github.com/YozhikM/graphql-compose-docs#readme"
+  "homepage": "https://github.com/graphql-compose/graphql-compose.github.io#readme"
 }
