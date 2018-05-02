@@ -296,7 +296,7 @@ AuthorTC.addFields({
 ```
 
 ## Interfaces
-Graphql-compose does not provide any helper for `Interfaces`. You should use standard `GraphQLUnionType`.
+Graphql-compose does not provide any helper for `Interfaces`. You should use standard `GraphQLInterfaceType`.
 ```js
 import { GraphQLInterfaceType } from 'graphql';
 import { schemaComposer, GraphQLDate, GraphQLJSON } from 'graphql-compose';
