@@ -69,6 +69,7 @@ const siteConfig = {
   repoUrl: 'https://github.com/graphql-compose/graphql-compose',
   /* On page navigation for the current documentation page */
   onPageNav: 'separate',
+  gaTrackingId: 'UA-83022112-3',
 };
 
 module.exports = siteConfig;
