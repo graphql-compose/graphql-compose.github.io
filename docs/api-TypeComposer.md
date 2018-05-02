@@ -3,113 +3,492 @@ id: api-TypeComposer
 title: TypeComposer
 ---
 
-Main class that gets `GraphQLObjectType` (complex **output** type with fields) and provide ability to change them
+Main class that gets `GraphQLObjectType` and provide ability to change them.
 
-* get and check presence of fields and interfaces
-* add, remove, extend fields
-* add relations with other types
-* clone type with new name
-* manipulate type interfaces
-* produce input object type
-* keep list of `Resolver`s methods for quering/updating data
-* create output types with `GraphQL schema language`
+## Static methods
+
+### static create()
+
+Create `TypeComposer` with adding it by name to the `SchemaComposer`.
 
 ```js
-// creating TypeComposer from GraphQLObjectType
-const LonLatTC = new TypeComposer(
-  new GraphQLObjectType({
-    name: 'LonLat',
-    fields: {
-      lon: {
-        type: GraphQLFloat,
-      },
-      lat: {
-        type: GraphQLFloat,
-      },
-    },
-  })
-);
+static create<TCtx>(
+  opts:
+    | TypeAsString
+    | ComposeObjectTypeConfig<any, TCtx>
+    |  GraphQLObjectType
+): TypeComposer<TCtx>;
+```
 
-// creating TypeComposer via series of methods
-const LonLatTC = TypeComposer.create('LonLat'); // create LonLat without fields
-LonLatTC.addFields({
-  // short field definition
-  lon: 'Float', // or may set GraphQLFloat
-  // extended field definition
-  lat: {
-    type: GraphQLFloat, // or may set 'Float'
-    resolve: () => {},
-    description: 'Latitude',
-  }
-});
+### static createTemp()
 
-// creating TypeComposer from `GraphQL schema language`
-const LonLatTC = TypeComposer.create(`type LonLat { lon: Float, lat: Float }`);
+Create `TypeComposer` without adding it to the `SchemaComposer`. This method may be usefull in plugins, when you need to create type temporary.
 
-LonLatTC.getFieldNames(); // ['lon', 'lat']
-LonLatTC.getField('lon'); // return GraphQLFieldConfig
-LonLatTC.getFields(); // { lon: GraphQLFieldConfig, lat: GraphQLFieldConfig }
-LonLatTC.setFields(GraphQLFieldMapConfig); // completely replace all fields
-LonLatTC.setField('lon', GraphQLFieldConfig); // replace `lon` field with new FieldConfig
-LonLatTC.addFields(GraphQLFieldMapConfig); // add new fields, replace existed, rest fields keep untouched
-LonLatTC.hasField('lon'); // true
-LonLatTC.removeField('lon');
-LonLatTC.removeField(['lon', 'field2', 'field3']);
-LonLatTC.removeOtherFields(['lon', 'lat']); // will remove all other fields
-LonLatTC.reorderFields(['lat', 'lon']); // reorder fields, lat becomes first
-LonLatTC.getField('lon'); // undefined
-LonLatTC.deprecateFields({ 'lat': 'deprecation reason' }); // mark field as deprecated
-LonLatTC.extendField('lat', {
-  description: 'Latitude',
-  resolve: (source) => (source.lat ? source.lat : 61.1),
-});
-LonLatTC.getFieldType('lat'); // GraphQLFloat
-LonLatTC.getFieldTC('complexField'); // TypeComposer
-LonLatTC.makeFieldNonNull(['lat', 'lon']); // wrap fields by GraphQLNonNull
-LonLatTC.makeFieldNullable(['lat', 'lon']); // unwrap fields from GraphQLNonNull
-LonLatTC.getType(); // GraphQLObjectType({ name: 'LonLat', ...})
-LonLatTC.getTypePlural(); // new GraphQLList(GraphQLObjectType({ name: 'LonLat', ...}))
-LonLatTC.getTypeNonNull()); // new GraphQLNonNull(GraphQLObjectType({ name: 'LonLat', ...}))
-LonLatTC.getTypeName(); // LonLat
-LonLatTC.setTypeName('LonLatRenamed');
-LonLatTC.setDescription('Object type with Longitude and Latitude');
-LonLatTC.getDescription(); // 'Object type with Longitude and Latitude'
-LonLatTC.clone('newTypeName'); // new TypeComposer with cloned fields and resolvers
-LonLatTC.get('dotted.path'); // described below in `typeByPath` section
-LonLatTC.getFieldArgs('lat'); // returns map of args config or empty {} if no args
-LonLatTC.hasFieldArg('lat', 'arg1'); // false
-LonLatTC.getFieldArg('lat', 'arg1'); // returns arg config
-LonLatTC.addRelation('facilities', { // add relation with some other TypeComposer
-  resolver: () => FacilitiesTC.getResolver('findMany'),
-  prepareArgs: {
-    filter: (source) => ({ lon: source.lon, lat: source.lat }),
-    limit: 100,
-  },
-  projection: { lon: true, lat: true },
-})
+```js
+static createTemp<TCtx>(
+  opts:
+    | TypeAsString
+    | ComposeObjectTypeConfig<any, TCtx>
+    | GraphQLObjectType
+): TypeComposer<TCtx>;
+```
 
-// And bunch of other methods (which will be described in future):
-// getInterfaces
-// setInterfaces
-// hasInterface
-// addInterface
-// removeInterface
-//
-// getInputType
-// getInputTypeComposer
-//
-// getResolvers
-// hasResolver
-// getResolver
-// setResolver
-// addResolver
-// removeResolver
-// wrapResolver('updateById', resolver => { /* some manipulations w/ resolver */ });
-// wrapResolverAs('updateByIdExtended', 'updateById', resolver => { /* some manipulations w/ resolver */ });
-// wrapResolverResolve('updateById', next => rp => { /* custom logic for wrapping resolver */ return next(rp); });
-//
-// setRecordIdFn
-// hasRecordIdFn
-// getRecordIdFn
-// getRecordId
+## Field methods
+
+### getFields()
+
+```js
+getFields(): GraphQLFieldConfigMap<any, TContext>;
+```
+
+### getFieldNames()
+
+```js
+getFieldNames(): Array<string>;
+```
+
+### setFields()
+
+```js
+setFields(
+  fields:
+    | ComposeFieldConfigMap<any, TContext>
+    | GraphQLFieldConfigMap<any, TContext>
+): TypeComposer;
+```
+
+### hasField()
+
+```js
+hasField(
+  fieldName: string
+): boolean;
+```
+
+### setField()
+
+```js
+setField<TSource, TContext>(
+  fieldName: string,
+  fieldConfig: ComposeFieldConfig<TSource, TContext>
+): TypeComposer;
+```
+
+### addFields()
+
+Add new fields or replace existed in a GraphQL type.
+
+```js
+addFields(
+  newFields: ComposeFieldConfigMap<any, TContext>
+): TypeComposer;
+```
+
+### addNestedFields()
+
+Add new fields or replace existed (where field name may have dots).
+
+```js
+addNestedFields(
+  newFields: ComposeFieldConfigMap<any, TContext>
+): TypeComposer;
+```
+
+### getField()
+
+Get fieldConfig by name.
+
+```js
+getField(
+  fieldName: string
+): ComposeFieldConfig<any, TContext>;
+```
+
+### removeField()
+
+```js
+removeField(
+  fieldNameOrArray: string | Array<string>
+): TypeComposer;
+```
+
+### removeOtherFields()
+
+```js
+removeOtherFields(
+  fieldNameOrArray: string | Array<string>
+): TypeComposer;
+```
+
+### extendField()
+
+```js
+extendField(
+  fieldName: string,
+  parialFieldConfig: ComposeFieldConfig<any, TContext>
+): TypeComposer;
+```
+
+### reorderFields()
+
+```js
+reorderFields(
+  names: Array<string>
+): TypeComposer;
+```
+
+### getFieldConfig()
+
+```js
+getFieldConfig(
+  fieldName: string
+): GraphQLFieldConfig<any, TContext>;
+```
+
+### getFieldType()
+
+```js
+getFieldType(
+  fieldName: string
+): GraphQLOutputType;
+```
+
+### getFieldTC()
+
+```js
+getFieldTC(
+  fieldName: string
+): TypeComposer<TContext>;
+```
+
+### isFieldNonNull()
+
+```js
+isFieldNonNull(
+  fieldName: string
+): boolean;
+```
+
+### makeFieldNonNull()
+
+```js
+makeFieldNonNull(
+  fieldNameOrArray: string | Array<string>
+): TypeComposer<TContext>;
+```
+
+### makeFieldNullable()
+
+```js
+makeFieldNullable(
+  fieldNameOrArray: string | Array<string>
+): TypeComposer<TContext>;
+```
+
+### deprecateFields()
+
+```js
+deprecateFields(
+  fields:
+    | { [fieldName: string]: string }
+    | Array<string>
+    | string
+): TypeComposer<TContext>;
+```
+
+### getFieldArgs()
+
+```js
+getFieldArgs(
+  fieldName: string
+): GraphQLFieldConfigArgumentMap;
+```
+
+### hasFieldArg()
+
+```js
+hasFieldArg(
+  fieldName: string,
+  argName: string
+): boolean;
+```
+
+### getFieldArg()
+
+```js
+getFieldArg(
+  fieldName: string,
+  argName: string
+): GraphQLArgumentConfig;
+```
+
+### getFieldArgType()
+
+```js
+getFieldArgType(
+  fieldName: string,
+  argName: string
+): GraphQLInputType;
+```
+
+## Type methods
+
+### getType()
+
+```js
+getType(): GraphQLObjectType;
+```
+
+### getTypePlural()
+
+```js
+getTypePlural(): GraphQLList<GraphQLObjectType>;
+```
+
+### getTypeNonNull()
+
+```js
+getTypeNonNull(): GraphQLNonNull<GraphQLObjectType>;
+```
+
+### getTypeName()
+
+```js
+getTypeName(): string;
+```
+
+### setTypeName()
+
+```js
+setTypeName(
+  name: string
+): TypeComposer<TContext>;
+```
+
+### getDescription()
+
+```js
+getDescription(): string;
+```
+
+### setDescription()
+
+```js
+setDescription(
+  description: string
+): TypeComposer<TContext>;
+```
+
+### clone()
+
+```js
+clone(
+  newTypeName: string
+): TypeComposer<TContext>;
+```
+
+## InputType methods
+
+### getInputType()
+
+```js
+getInputType(): GraphQLInputObjectType;
+```
+
+### hasInputTypeComposer()
+
+```js
+hasInputTypeComposer(): boolean;
+```
+
+### getInputTypeComposer()
+
+```js
+getInputTypeComposer(): InputTypeComposer;
+```
+
+### getITC()
+
+An alias for `getInputTypeComposer`.
+
+```js
+getITC(): InputTypeComposer;
+```
+
+## Resolver methods
+
+### getResolvers()
+
+```js
+getResolvers(): Map<string, Resolver<any, TContext>>;
+```
+
+### hasResolver()
+
+```js
+hasResolver(
+  name: string
+): boolean;
+```
+
+### getResolver()
+
+```js
+getResolver(
+  name: string
+): Resolver<any, TContext>;
+```
+
+### setResolver()
+
+```js
+setResolver(
+  name: string,
+  resolver: Resolver<any, TContext>
+): TypeComposer;
+```
+
+### addResolver()
+
+```js
+addResolver(
+  resolver:
+    | Resolver<any, TContext>
+    | ResolverOpts<any, TContext>
+): TypeComposer;
+```
+
+### removeResolver()
+
+```js
+removeResolver(
+  resolverName: string
+): TypeComposer;
+```
+
+### wrapResolver()
+
+```js
+wrapResolver(
+  resolverName: string,
+  cbResolver: ResolverWrapCb<any, TContext>
+): TypeComposer;
+```
+
+### wrapResolverAs()
+
+```js
+wrapResolverAs(
+  resolverName: string,
+  fromResolverName: string,
+  cbResolver: ResolverWrapCb<any, TContext>
+): TypeComposer;
+```
+
+### wrapResolverResolve()
+
+```js
+wrapResolverResolve(
+  resolverName: string,
+  cbNextRp: ResolverNextRpCb<any, TContext>
+): TypeComposer;
+```
+
+## Interface methods
+
+### getInterfaces()
+
+```js
+getInterfaces(): Array<GraphQLInterfaceType>;
+```
+
+### setInterfaces()
+
+```js
+setInterfaces(
+  interfaces: Array<GraphQLInterfaceType>
+): TypeComposer;
+```
+
+### hasInterface()
+
+```js
+hasInterface(
+  interfaceObj: GraphQLInterfaceType
+): boolean;
+```
+
+### addInterface()
+
+```js
+addInterface(
+  interfaceObj: GraphQLInterfaceType
+): TypeComposer;
+```
+
+### removeInterface()
+
+```js
+removeInterface(
+  interfaceObj: GraphQLInterfaceType
+): TypeComposer;
+```
+
+## Misc methods
+
+### addRelation()
+
+```js
+addRelation(
+  fieldName: string,
+  relationOpts: RelationOpts<any, TContext>
+): TypeComposer;
+```
+
+### getRelations()
+
+```js
+getRelations(): RelationThunkMap<any, TContext>;
+```
+
+### setRecordIdFn()
+
+```js
+setRecordIdFn(
+  fn: GetRecordIdFn<any, TContext>
+): TypeComposer;
+```
+
+### hasRecordIdFn()
+
+```js
+hasRecordIdFn(): boolean;
+```
+
+### getRecordIdFn()
+
+```js
+getRecordIdFn(): GetRecordIdFn<any, TContext>;
+```
+
+### getRecordId()
+
+Get function that returns record id, from provided object.
+
+```js
+getRecordId(
+  source: any,
+  args: any,
+  context: TContext
+): string | number;
+```
+
+### get()
+
+```js
+get(
+  path:
+    | string
+    | Array<string>
+): any;
 ```
