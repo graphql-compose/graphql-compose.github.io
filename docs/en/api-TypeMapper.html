@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>TypeMapper · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="TypeMapper · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="Type storage and type generator from `GraphQL schema language`. This is slightly rewritten [buildASTSchema](https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js) utility from `graphql-js` that allows to create type from string. Eg"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/intro-quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/en/api-TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/en/plugin--list.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/ja">日本語</a></li><li><a href="/es-ES">Español</a></li><li><a href="/fr">Français</a></li><li><a href="/ko">한국어</a></li><li><a href="/pt-BR">Português (Brasil)</a></li><li><a href="/ru">Русский</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/th">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>TypeMapper · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="TypeMapper · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="Type storage and type generator from `GraphQL schema language`. This is slightly rewritten [buildASTSchema](https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js) utility from `graphql-js` that allows to create type from string."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/intro-quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/en/api-TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/en/plugin--list.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/ja">日本語</a></li><li><a href="/es-ES">Español</a></li><li><a href="/fr">Français</a></li><li><a href="/ko">한국어</a></li><li><a href="/pt-BR">Português (Brasil)</a></li><li><a href="/ru">Русский</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/th">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(){
@@ -14,33 +14,91 @@
           toggler.onclick = function() {
             nav.classList.toggle('docsSliderActive');
           };
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/api-TypeMapper.md" target="_blank" rel="noreferrer noopener">Edit</a><h1>TypeMapper</h1></header><article><div><span><p>Type storage and type generator from <code>GraphQL schema language</code>. This is slightly rewritten <a href="https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js">buildASTSchema</a> utility from <code>graphql-js</code> that allows to create type from string. Eg</p>
-<pre><code class="hljs css js"><span class="hljs-keyword">const</span> LonLatGraphQLObjectType = TypeMapperInstance.createType(<span class="hljs-string">`
-  type LonLat { lon: Float, lat: Float }
-`</span>));
-
-<span class="hljs-keyword">const</span> LonLatPointsGraphQLObjectType = TypeMapperInstance.createType(<span class="hljs-string">`
-  type LonLatPoints { points: [LonLat] }
-`</span>));
-
-<span class="hljs-keyword">const</span> IntRangeGraphQLInputObjectType = TypeMapperInstance.createType(<span class="hljs-string">`
-  input IntRangeInput {
-    # Min required value
-    min: Int!,
-    # Max required value
-    max: Int!
-  }
-`</span>));
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/api-TypeMapper.md" target="_blank" rel="noreferrer noopener">Edit</a><h1>TypeMapper</h1></header><article><div><span><p>Type storage and type generator from <code>GraphQL schema language</code>. This is slightly rewritten <a href="https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js">buildASTSchema</a> utility from <code>graphql-js</code> that allows to create type from string.</p>
+<h2><a class="anchor" aria-hidden="true" id="methods"></a><a href="#methods" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="get"></a><a href="#get" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>get()</h3>
+<pre><code class="hljs css js">get(
+  name: string
+): GraphQLNamedType | <span class="hljs-literal">null</span>;
 </code></pre>
-<p>Or this method can be called directly from graphql-compose main classes:</p>
-<pre><code class="hljs css js"><span class="hljs-keyword">const</span> LonLatTC = TypeComposer.create(<span class="hljs-string">`type LonLat { lon: Float, lat: Float }`</span>);
-<span class="hljs-keyword">const</span> LonLatITC = TypeComposer.create(<span class="hljs-string">`input LonLatInput { lon: Float!, lat: Float! }`</span>);
-
-<span class="hljs-comment">// BTW you may create ITC from TC</span>
-<span class="hljs-keyword">const</span> LonLatITC2 = LonLatTC.getInputTypeComposer();
-LonLatITC2.makeRequired([<span class="hljs-string">'lon'</span>, <span class="hljs-string">'lat'</span>]);
+<h3><a class="anchor" aria-hidden="true" id="set"></a><a href="#set" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>set()</h3>
+<pre><code class="hljs css js">set(
+  name: string,
+  <span class="hljs-attr">type</span>: GraphQLNamedType
+): <span class="hljs-keyword">void</span>;
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="api-Resolver.html">← Resolver</a><a class="docs-next button" href="api-SchemaComposer.html">SchemaComposer →</a></div></div></div><nav class="onPageNav"></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+<h3><a class="anchor" aria-hidden="true" id="has"></a><a href="#has" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>has()</h3>
+<pre><code class="hljs css js">has(
+  name: string
+): boolean;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getwrapped"></a><a href="#getwrapped" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getWrapped()</h3>
+<pre><code class="hljs css js">getWrapped(
+  str:
+   | TypeWrappedString
+   | TypeNameString
+): GraphQLType | <span class="hljs-literal">null</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="createtype"></a><a href="#createtype" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>createType()</h3>
+<pre><code class="hljs css js">createType(
+  str: TypeDefinitionString
+): GraphQLNamedType | <span class="hljs-literal">null</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="parsetypesfromstring"></a><a href="#parsetypesfromstring" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseTypesFromString()</h3>
+<pre><code class="hljs css js">parseTypesFromString(
+  str: string
+): TypeStorage&lt;GraphQLNamedType&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="parsetypesfromast"></a><a href="#parsetypesfromast" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseTypesFromAst()</h3>
+<pre><code class="hljs css js">parseTypesFromAst(
+  astDocument: DocumentNode
+): TypeStorage&lt;GraphQLNamedType&gt;;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="config-methods"></a><a href="#config-methods" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Config methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="convertoutputfieldconfig"></a><a href="#convertoutputfieldconfig" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertOutputFieldConfig()</h3>
+<pre><code class="hljs css js">convertOutputFieldConfig&lt;TSource, TContext&gt;(
+  composeFC: ComposeFieldConfig&lt;TSource, TContext&gt;,
+  fieldName?: string,
+  typeName?: string
+): GraphQLFieldConfig&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertoutputfieldconfigmap"></a><a href="#convertoutputfieldconfigmap" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertOutputFieldConfigMap()</h3>
+<pre><code class="hljs css js">convertOutputFieldConfigMap&lt;TSource, TContext&gt;(
+  composeFields:
+    | ComposeFieldConfigMap&lt;TSource, TContext&gt;
+    | GraphQLFieldConfigMap&lt;TSource, TContext&gt;,
+  typeName?: string
+): GraphQLFieldConfigMap&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertargconfig"></a><a href="#convertargconfig" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertArgConfig()</h3>
+<pre><code class="hljs css js">convertArgConfig(
+  omposeAC: ComposeArgumentConfig,
+  argName?: string,
+  fieldName?: string,
+  typeName?: string
+): GraphQLArgumentConfig;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertargconfigmap"></a><a href="#convertargconfigmap" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertArgConfigMap()</h3>
+<pre><code class="hljs css js">convertArgConfigMap(
+  composeArgsConfigMap: ComposeFieldConfigArgumentMap,
+  fieldName?: string,
+  typeName?: string
+): GraphQLFieldConfigArgumentMap;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertinputfieldconfig"></a><a href="#convertinputfieldconfig" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertInputFieldConfig()</h3>
+<pre><code class="hljs css js">convertInputFieldConfig(
+  composeIFC: ComposeInputFieldConfig,
+  fieldName?: string,
+  typeName?: string
+): GraphQLInputFieldConfig;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertinputfieldconfigmap"></a><a href="#convertinputfieldconfigmap" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertInputFieldConfigMap()</h3>
+<pre><code class="hljs css js">convertInputFieldConfigMap(
+  composeFields: ComposeInputFieldConfigMap,
+  typeName?: string
+): GraphQLInputFieldConfigMap;
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="api-Resolver.html">← Resolver</a><a class="docs-next button" href="api-SchemaComposer.html">SchemaComposer →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#methods">Methods</a><ul class="toc-headings"><li><a href="#get">get()</a></li><li><a href="#set">set()</a></li><li><a href="#has">has()</a></li><li><a href="#getwrapped">getWrapped()</a></li><li><a href="#createtype">createType()</a></li><li><a href="#parsetypesfromstring">parseTypesFromString()</a></li><li><a href="#parsetypesfromast">parseTypesFromAst()</a></li></ul></li><li><a href="#config-methods">Config methods</a><ul class="toc-headings"><li><a href="#convertoutputfieldconfig">convertOutputFieldConfig()</a></li><li><a href="#convertoutputfieldconfigmap">convertOutputFieldConfigMap()</a></li><li><a href="#convertargconfig">convertArgConfig()</a></li><li><a href="#convertargconfigmap">convertArgConfigMap()</a></li><li><a href="#convertinputfieldconfig">convertInputFieldConfig()</a></li><li><a href="#convertinputfieldconfigmap">convertInputFieldConfigMap()</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
         areas: [
           // try to use the first query.
           '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',

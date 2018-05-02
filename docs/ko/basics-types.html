@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Type creation · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Type creation · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="## Scalar types"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ko"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/ko/intro-quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/ko/api-TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/ko/plugin--list.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>한국어</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/en">English</a></li><li><a href="/ja">日本語</a></li><li><a href="/es-ES">Español</a></li><li><a href="/fr">Français</a></li><li><a href="/pt-BR">Português (Brasil)</a></li><li><a href="/ru">Русский</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/th">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/graphql-compose/graphql-compose" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Basics</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/intro-prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/intro-installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/intro-quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/intro-demos.html">Live Demos</a></li></ul></div><div class="navGroup navGroupActive"><h3>Basics</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/ko/basics-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/basics-type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/basics-resolvers.html">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/basics-relations.html">[WIP] Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/basics-generating-schema.html">[WIP] Generating Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/api-TypeComposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/api-misc.html">[WIP] API misc</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugins</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/plugin--list.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/guide-mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/guide-wrapping-rest-api.html">[WIP] Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/guide-elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/guide-relay.html">[WIP] Relay Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>Recipes</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ko/recipe-authorization.html">[WIP] Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/ko/recipe-writing-tests.html">[WIP] Writing tests</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/graphql-compose/ko" target="_blank" rel="noreferrer noopener">Translate</a><h1>Type creation</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="scalar-types"></a><a href="#scalar-types" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scalar types</h2>
+<p>Graphql-compose has following built-in scalar types: - <code>String</code> - <code>Float</code> - <code>Int</code> - <code>Boolean</code> - <code>ID</code> - <code>Date</code> - <code>JSON</code></p>
+<h2><a class="anchor" aria-hidden="true" id="object-types-via-typecomposer"></a><a href="#object-types-via-typecomposer" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Object types via TypeComposer</h2>
+<p>If you need to create some complex type with several properties, you will need to use <code>TypeComposer</code>. It's a builder for <code>GraphQLObjectType</code> object.</p>
+<p><code>TypeComposer</code> has very convenient ways of type creation via <code>create</code> method.</p>
+<h3><a class="anchor" aria-hidden="true" id="via-config"></a><a href="#via-config" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via config</h3>
+<p>Most recommended way to define your Output type. Such definition provides hoisting problems solution via wrapping types by arrow function. Better developer experience with jumping to the type declarations.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> AuthorTC = TypeComposer.create({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Author'</span>,
+  <span class="hljs-attr">fields</span>: {
+    <span class="hljs-attr">id</span>: <span class="hljs-string">'Int!'</span>,
+    <span class="hljs-attr">firstName</span>: <span class="hljs-string">'String'</span>,
+    <span class="hljs-attr">lastName</span>: <span class="hljs-string">'String'</span>,
+    <span class="hljs-attr">posts</span>: {
+      <span class="hljs-attr">type</span>: [PostTC],
+      <span class="hljs-attr">args</span>: {
+        <span class="hljs-attr">limit</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">'Int'</span>, <span class="hljs-attr">defaultValue</span>: <span class="hljs-number">20</span> },
+        <span class="hljs-attr">skip</span>: <span class="hljs-string">'Int'</span>,
+        <span class="hljs-attr">sort</span>: <span class="hljs-string">`enum AuthorPostsSortEnum { ASC DESC }`</span>,
+      },
+      <span class="hljs-attr">resolve</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { ... },
+    }
+  },
+});
+</code></pre>
+<p>Also this way of definition provides a lot of syntax sugar for field definition:</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> AuthorTC = TypeComposer.create({
+  <span class="hljs-attr">posts</span>: {
+    <span class="hljs-comment">// wrapping Type with arrow function helps to solve a hoisting problem</span>
+    <span class="hljs-comment">// also using type instances provides better DX</span>
+    <span class="hljs-comment">// (ctrl+click allows to jump to PostTC type declaration in your IDE)</span>
+    type: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> PostTC,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'Posts written by Author'</span>,
+    <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source, args, context, info</span>) =&gt;</span> { ... },
+  },
+  <span class="hljs-comment">// using standard GraphQL Type</span>
+  ucFirstName: {
+    <span class="hljs-attr">type</span>: GraphQLString,
+    <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source</span>) =&gt;</span> source.firstName.toUpperCase(),
+    <span class="hljs-comment">// also request `firstName` field which must be loaded from database</span>
+    projection: { <span class="hljs-attr">firstName</span>: <span class="hljs-literal">true</span> },
+  },
+  <span class="hljs-comment">// fast way if you need to define only type</span>
+  counter: <span class="hljs-string">'Int'</span>,
+  <span class="hljs-comment">// using SDL for definition new ObjectType</span>
+  complex: <span class="hljs-string">`type ComplexType {
+    subField1: String
+    subField2: Float
+    subField3: Boolean
+    subField4: ID
+    subField5: JSON
+    subField6: Date
+  }`</span>,
+  <span class="hljs-comment">// SDL for defining array of strings, which is NonNull</span>
+  list0: {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">'[String]!'</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'Array of strings'</span>,
+  },
+  <span class="hljs-attr">list1</span>: <span class="hljs-string">'[String]'</span>,
+  <span class="hljs-attr">list2</span>: [<span class="hljs-string">'String'</span>],
+  <span class="hljs-attr">list3</span>: [GraphQLString],
+  <span class="hljs-attr">list4</span>: [<span class="hljs-string">`type Complex2Type { f1: Float, f2: Int }`</span>],
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-sdl"></a><a href="#via-sdl" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via SDL</h3>
+<p>May have hoisting problems. Be aware that all used complex types must be already defined.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> AuthorTC = TypeComposer.create(<span class="hljs-string">`
+  type Author {
+    id: Int!
+    firstName: String
+    lastName: String
+  }
+`</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-graphqlobjecttype"></a><a href="#via-graphqlobjecttype" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via GraphQLObjectType</h3>
+<p>This is very useful when you want modify existed <code>GraphQLObjectType</code>.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> AuthorType = <span class="hljs-keyword">new</span> GraphQLObjectType(...)
+<span class="hljs-keyword">const</span> AuthorTC = TypeComposer.create(AuthorType);
+AuthorTC.removeField(<span class="hljs-string">'lastName'</span>);
+AuthorTC.getType(); <span class="hljs-comment">// returns modified GraphQLObjectType</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="without-fields"></a><a href="#without-fields" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>without fields</h3>
+<p>Useful when you write your own type generators.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { TypeComposer} <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+<span class="hljs-keyword">const</span> AuthorTC = TypeComposer.create(<span class="hljs-string">'Author'</span>);
+AuthorTC.addFields({ ... });
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="input-types-via-inputtypecomposer"></a><a href="#input-types-via-inputtypecomposer" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Input types via InputTypeComposer</h2>
+<p>GraphQL allows to pass arguments for fields. You may freely use <code>Scalar</code>s, <code>Enum</code>s when describing input args. But what you should do in the case of mutations, where you might want to pass in a whole object to be created? For such cases for complex types instead of <code>GraphQLObjectType</code> you should use <code>GraphQLInputObjectType</code>. They they have small differences in its fields declaration: - input object type has <code>defaultValue</code> - input object type does not have <code>args</code> - input object type does not have <code>resolve</code> method</p>
+<p>If you need to create some complex type with several properties, you will need to use <code>InputTypeComposer</code>. It's a builder for <code>GraphQLInputObjectType</code> object.</p>
+<p><code>InputTypeComposer</code> has very convenient ways of type creation via <code>create</code> method.</p>
+<h3><a class="anchor" aria-hidden="true" id="via-config"></a><a href="#via-config" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via config</h3>
+<p>Most recommended way to define your Input type. Such definition provides hoisting problems solution via wrapping types by arrow function. Better developer experience with jumping to the type declarations.</p>
+<p><code>InputTypeComposer</code> has the same type definition capabilities for describing fields as <code>TypeComposer</code> - as string, as arrow function, as SDL.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> AuthorITC = InputTypeComposer.create({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'AuthorInput'</span>,
+  <span class="hljs-attr">fields</span>: {
+    <span class="hljs-attr">id</span>: <span class="hljs-string">'Int!'</span>,
+    <span class="hljs-attr">firstName</span>: <span class="hljs-string">'String'</span>,
+    <span class="hljs-attr">lastName</span>: <span class="hljs-string">'String'</span>,
+    <span class="hljs-attr">status</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'String'</span>,
+      <span class="hljs-attr">defaultValue</span>: <span class="hljs-string">'new'</span>,
+    }
+    address: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> AddressITC,
+    <span class="hljs-attr">location</span>: <span class="hljs-string">`input type LonLatInput { lon: Float, lat: Float }`</span>,
+  },
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-existed-typecomposer"></a><a href="#via-existed-typecomposer" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via existed TypeComposer</h3>
+<p>You may convert your existed output type to input type.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> AuthorTC = TypeComposer.create({ ... });
+<span class="hljs-keyword">const</span> AuthorITC = AuthorTC.getITC(); <span class="hljs-comment">// returns InputTypeComposer</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-sdl"></a><a href="#via-sdl" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via SDL</h3>
+<p>May have hoisting problems. Be aware that all used complex types must be already defined.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> AuthorITC = InputTypeComposer.create(<span class="hljs-string">`
+  input AuthorInput {
+    id: Int!
+    firstName: String
+    lastName: String
+    status: String @default(value: "new")
+  }
+`</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-graphqlinputobjecttype"></a><a href="#via-graphqlinputobjecttype" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via GraphQLInputObjectType</h3>
+<p>This is very useful when you want modify existed <code>GraphQLInputObjectType</code>.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> AuthorInput = <span class="hljs-keyword">new</span> GraphQLInputObjectType(...)
+<span class="hljs-keyword">const</span> AuthorITC = InputTypeComposer.create(AuthorInput);
+AuthorITC.removeField(<span class="hljs-string">'status'</span>);
+AuthorITC.getType(); <span class="hljs-comment">// returns modified GraphQLInputObjectType</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="without-fields"></a><a href="#without-fields" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>without fields</h3>
+<p>Useful when you write your own type generators.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { InputTypeComposer} <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+<span class="hljs-keyword">const</span> AuthorITC = InputTypeComposer.create(<span class="hljs-string">'AuthorInput'</span>);
+AuthorITC.addFields({ ... });
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="enum-types-via-enumtypecomposer"></a><a href="#enum-types-via-enumtypecomposer" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enum types via EnumTypeComposer</h2>
+<p>If you need to create enum type, you will need to use <code>EnumTypeComposer</code>. It's a builder for <code>GraphQLEnumType</code> object.</p>
+<p><code>EnumTypeComposer</code> has very convenient ways of type creation via <code>create</code> method.</p>
+<h3><a class="anchor" aria-hidden="true" id="via-config"></a><a href="#via-config" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via config</h3>
+<p>Most recommended way to define your Enum type. Such definition provides to set own values for every key.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> StatusETC = EnumTypeComposer.create({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'StatusEnum'</span>,
+  <span class="hljs-attr">values</span>: {
+    <span class="hljs-attr">NEW</span>: { <span class="hljs-attr">value</span>: <span class="hljs-number">0</span> },
+    <span class="hljs-attr">APPROVED</span>: { <span class="hljs-attr">value</span>: <span class="hljs-number">1</span> },
+    <span class="hljs-attr">DECLINED</span>: { <span class="hljs-attr">value</span>: <span class="hljs-number">2</span> },
+  },
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-sdl"></a><a href="#via-sdl" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via SDL</h3>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> StatusETC = EnumTypeComposer.create(<span class="hljs-string">`
+  enum StatusEnum { NEW APPROVED DECLINED }
+`</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-graphqlenumtype"></a><a href="#via-graphqlenumtype" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>via GraphQLEnumType</h3>
+<p>This is very useful when you want modify existed <code>GraphQLEnumType</code>.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> StatusEnum = <span class="hljs-keyword">new</span> GraphQLEnumType(...)
+<span class="hljs-keyword">const</span> StatusETC = InputTypeComposer.create(StatusEnum);
+StatusETC.removeField(<span class="hljs-string">'NEW'</span>);
+StatusETC.getType(); <span class="hljs-comment">// returns modified GraphQLEnumType</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="without-fields"></a><a href="#without-fields" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>without fields</h3>
+<p>Useful when you write your own type generators.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { EnumTypeComposer} <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+<span class="hljs-keyword">const</span> StatusETC = EnumTypeComposer.create(<span class="hljs-string">'StatusEnum'</span>);
+StatusETC.addFields({ ... });
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="lists"></a><a href="#lists" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Lists</h2>
+<p>If you want indicate that field or argument return an array of some type, you may do the following:</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { GraphQLList } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql'</span>;
+
+SomeTypeComposer.addFields({
+  <span class="hljs-attr">field1</span>: [AuthorTC], <span class="hljs-comment">// RECOMMENDED just wrap in the regular js array</span>
+  field2: AuthorTC.getTypePlural(), <span class="hljs-comment">// call specific TypeComposer method</span>
+  field3: <span class="hljs-string">'[Author]'</span>, <span class="hljs-comment">// use SDL format</span>
+  field4: <span class="hljs-keyword">new</span> GraphQLList(AuthorTC.getType()) <span class="hljs-comment">// use standard GraphQLList</span>
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="non-null"></a><a href="#non-null" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Non-Null</h2>
+<p>If you want indicate that field is not empty or argument is required:</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { GraphQLNonNull } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql'</span>;
+
+SomeTypeComposer.addFields({
+  <span class="hljs-comment">// field1: ???, // doesn't exists any regular object in js for expressing NonNull value</span>
+  field2: AuthorTC.getTypeNonNull(), <span class="hljs-comment">// call specific TypeComposer method</span>
+  field3: <span class="hljs-string">'Author!'</span>, <span class="hljs-comment">// use SDL format</span>
+  field4: <span class="hljs-keyword">new</span> GraphQLNonNull(AuthorTC.getType()) <span class="hljs-comment">// use standard GraphQLNonNull</span>
+});
+</code></pre>
+<p>Non-Null List of Non-Null values may be expressed in following way:</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { GraphQLNonNull, GraphQLList } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql'</span>;
+
+SomeTypeComposer.addFields({
+  <span class="hljs-attr">field3</span>: <span class="hljs-string">'[Author!]!'</span>, <span class="hljs-comment">// use SDL format</span>
+  field4: <span class="hljs-keyword">new</span> GraphQLNonNull( <span class="hljs-comment">// use standard GraphQLNonNull &amp; GraphQLList</span>
+    <span class="hljs-keyword">new</span> GraphQLList(
+      <span class="hljs-keyword">new</span> GraphQLNonNull(AuthorTC.getType())
+    )
+  )
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="union-types"></a><a href="#union-types" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Union types</h2>
+<p>Graphql-compose does not provide any helper for <code>Union</code> types. You should use standard <code>GraphQLUnionType</code>.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { GraphQLUnionType } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql'</span>;
+
+<span class="hljs-comment">// Get GraphQLObjectType from TypeComposer instance</span>
+<span class="hljs-keyword">const</span> DogType = DogTC.getType();
+<span class="hljs-keyword">const</span> CatType = CatTC.getType();
+
+<span class="hljs-keyword">const</span> PetType = <span class="hljs-keyword">new</span> GraphQLUnionType({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Pet'</span>,
+  <span class="hljs-attr">types</span>: [ DogType, CatType ],
+  resolveType(value) {
+    <span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> Dog) {
+      <span class="hljs-keyword">return</span> DogType;
+    }
+    <span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> Cat) {
+      <span class="hljs-keyword">return</span> CatType;
+    }
+  }
+});
+
+<span class="hljs-comment">// You may use GraphQLUnionType for field definition in TypeComposer</span>
+AuthorTC.addFields({
+  <span class="hljs-attr">favoritePet</span>: PetType,
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="interfaces"></a><a href="#interfaces" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interfaces</h2>
+<p>Graphql-compose does not provide any helper for <code>Interfaces</code>. You should use standard <code>GraphQLInterfaceType</code>.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { GraphQLInterfaceType } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql'</span>;
+<span class="hljs-keyword">import</span> { schemaComposer, GraphQLDate, GraphQLJSON } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+<span class="hljs-keyword">const</span> TimestampInterface = <span class="hljs-keyword">new</span> GraphQLInterfaceType({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Timestampable'</span>,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">'An object with createdAt and updatedAt fields'</span>,
+  <span class="hljs-attr">resolveType</span>: <span class="hljs-function">(<span class="hljs-params">value: any, info?: GraphQLResolveInfo</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> typeName = ... somehow obtained <span class="hljs-keyword">from</span> <span class="hljs-string">`value`</span> or <span class="hljs-string">`info`</span>
+    <span class="hljs-comment">// use schemaComposer for searching Type by its name</span>
+    <span class="hljs-keyword">if</span> (schemaComposer.has(typeName)) {
+      <span class="hljs-keyword">return</span> schemaComposer.getTC(typeName).getType();
+    }
+    <span class="hljs-comment">// as fallback return JSON type (type of any shape)</span>
+    <span class="hljs-keyword">return</span> GraphQLJSON;
+  },
+  <span class="hljs-comment">// wrapped by arrow function for solving hoisting problems</span>
+  fields: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-comment">// be aware fieldConfigs must be in standard GraphQL format</span>
+    <span class="hljs-comment">// no shortened format available here</span>
+    createdAt: {
+      <span class="hljs-attr">type</span>: GraphQLDate,
+    },
+    <span class="hljs-attr">updatedAt</span>: {
+      <span class="hljs-attr">type</span>: GraphQLDate,
+    },
+  }),
+});
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="intro-demos.html">← Live Demos</a><a class="docs-next button" href="basics-type-modification.html">Type modification →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#scalar-types">Scalar types</a></li><li><a href="#object-types-via-typecomposer">Object types via TypeComposer</a><ul class="toc-headings"><li><a href="#via-config">via config</a></li><li><a href="#via-sdl">via SDL</a></li><li><a href="#via-graphqlobjecttype">via GraphQLObjectType</a></li><li><a href="#without-fields">without fields</a></li></ul></li><li><a href="#input-types-via-inputtypecomposer">Input types via InputTypeComposer</a><ul class="toc-headings"><li><a href="#via-config">via config</a></li><li><a href="#via-existed-typecomposer">via existed TypeComposer</a></li><li><a href="#via-sdl">via SDL</a></li><li><a href="#via-graphqlinputobjecttype">via GraphQLInputObjectType</a></li><li><a href="#without-fields">without fields</a></li></ul></li><li><a href="#enum-types-via-enumtypecomposer">Enum types via EnumTypeComposer</a><ul class="toc-headings"><li><a href="#via-config">via config</a></li><li><a href="#via-sdl">via SDL</a></li><li><a href="#via-graphqlenumtype">via GraphQLEnumType</a></li><li><a href="#without-fields">without fields</a></li></ul></li><li><a href="#lists">Lists</a></li><li><a href="#non-null">Non-Null</a></li><li><a href="#union-types">Union types</a></li><li><a href="#interfaces">Interfaces</a></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+
+      if (document && document.addEventListener) {
+        document.addEventListener('pjax:ready', function (e) {
+          if (ga) ga('send', 'pageview', location.pathname);
+        });
+      }
+
+      var languagesMenuItemCopy = document.getElementById("languages-menu");
+      languagesMenuItemCopy.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+      });</script></span></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-83022112-3', 'auto');
+              ga('send', 'pageview');
+            </script><script>
+              var search = docsearch({
+                
+                apiKey: '34b5c77954100fe8e57575f8dfd60185',
+                indexName: 'graphql-compose',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
