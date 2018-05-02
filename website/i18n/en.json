@@ -16,7 +16,7 @@
     "api-TypeMapper": "TypeMapper",
     "basics-generating-schema": "[WIP] Generating Schema",
     "basics-relations": "[WIP] Relations between Types",
-    "basics-Resolver": "[WIP] Resolvers",
+    "basics-resolvers": "[WIP] Resolvers",
     "basics-type-modification": "Type modification",
     "basics-types": "Type creation",
     "guide-elasticsearch-with-mongoose": "[WIP] Use ElasticSearch with Mongoose",

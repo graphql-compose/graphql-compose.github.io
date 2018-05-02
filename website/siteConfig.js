@@ -29,10 +29,9 @@ const siteConfig = {
     { doc: 'api-TypeComposer', label: 'API' },
     { doc: 'plugin--list', label: 'Plugins' },
     { languages: true },
+    { search: true },
     { href: "https://github.com/graphql-compose/graphql-compose", label: "GitHub" },
     // { page: 'help', label: 'Support' },
-    // see Algolia to search by docs
-    // { search: true },
     // { blog: true, label: 'Blog' },
   ],
   users,
@@ -70,6 +69,10 @@ const siteConfig = {
   /* On page navigation for the current documentation page */
   onPageNav: 'separate',
   gaTrackingId: 'UA-83022112-3',
+  algolia: {
+    apiKey: '34b5c77954100fe8e57575f8dfd60185',
+    indexName: 'graphql-compose',
+  },
 };
 
 module.exports = siteConfig;
