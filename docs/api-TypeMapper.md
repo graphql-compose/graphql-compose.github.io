@@ -3,34 +3,128 @@ id: api-TypeMapper
 title: TypeMapper
 ---
 
-Type storage and type generator from `GraphQL schema language`. This is slightly rewritten [buildASTSchema](https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js) utility from `graphql-js` that allows to create type from string. Eg
+Type storage and type generator from `GraphQL schema language`. This is slightly rewritten [buildASTSchema](https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js) utility from `graphql-js` that allows to create type from string.
+
+## Methods
+
+### get()
 
 ```js
-const LonLatGraphQLObjectType = TypeMapperInstance.createType(`
-  type LonLat { lon: Float, lat: Float }
-`));
-
-const LonLatPointsGraphQLObjectType = TypeMapperInstance.createType(`
-  type LonLatPoints { points: [LonLat] }
-`));
-
-const IntRangeGraphQLInputObjectType = TypeMapperInstance.createType(`
-  input IntRangeInput {
-    # Min required value
-    min: Int!,
-    # Max required value
-    max: Int!
-  }
-`));
+get(
+  name: string
+): GraphQLNamedType | null;
 ```
 
-Or this method can be called directly from graphql-compose main classes:
+### set()
 
 ```js
-const LonLatTC = TypeComposer.create(`type LonLat { lon: Float, lat: Float }`);
-const LonLatITC = TypeComposer.create(`input LonLatInput { lon: Float!, lat: Float! }`);
+set(
+  name: string,
+  type: GraphQLNamedType
+): void;
+```
 
-// BTW you may create ITC from TC
-const LonLatITC2 = LonLatTC.getInputTypeComposer();
-LonLatITC2.makeRequired(['lon', 'lat']);
+### has()
+
+```js
+has(
+  name: string
+): boolean;
+```
+
+### getWrapped()
+
+```js
+getWrapped(
+  str:
+   | TypeWrappedString
+   | TypeNameString
+): GraphQLType | null;
+```
+
+### createType()
+
+```js
+createType(
+  str: TypeDefinitionString
+): GraphQLNamedType | null;
+```
+
+### parseTypesFromString()
+
+```js
+parseTypesFromString(
+  str: string
+): TypeStorage<GraphQLNamedType>;
+```
+
+### parseTypesFromAst()
+
+```js
+parseTypesFromAst(
+  astDocument: DocumentNode
+): TypeStorage<GraphQLNamedType>;
+```
+
+## Config methods
+
+### convertOutputFieldConfig()
+
+```js
+convertOutputFieldConfig<TSource, TContext>(
+  composeFC: ComposeFieldConfig<TSource, TContext>,
+  fieldName?: string,
+  typeName?: string
+): GraphQLFieldConfig<TSource, TContext>;
+```
+
+### convertOutputFieldConfigMap()
+
+```js
+convertOutputFieldConfigMap<TSource, TContext>(
+  composeFields:
+    | ComposeFieldConfigMap<TSource, TContext>
+    | GraphQLFieldConfigMap<TSource, TContext>,
+  typeName?: string
+): GraphQLFieldConfigMap<TSource, TContext>;
+```
+
+### convertArgConfig()
+
+```js
+convertArgConfig(
+  omposeAC: ComposeArgumentConfig,
+  argName?: string,
+  fieldName?: string,
+  typeName?: string
+): GraphQLArgumentConfig;
+```
+
+### convertArgConfigMap()
+
+```js
+convertArgConfigMap(
+  composeArgsConfigMap: ComposeFieldConfigArgumentMap,
+  fieldName?: string,
+  typeName?: string
+): GraphQLFieldConfigArgumentMap;
+```
+
+### convertInputFieldConfig()
+
+```js
+convertInputFieldConfig(
+  composeIFC: ComposeInputFieldConfig,
+  fieldName?: string,
+  typeName?: string
+): GraphQLInputFieldConfig;
+```
+
+### convertInputFieldConfigMap()
+
+```js
+convertInputFieldConfigMap(
+  composeFields: ComposeInputFieldConfigMap,
+  typeName?: string
+): GraphQLInputFieldConfigMap;
 ```
