@@ -59,7 +59,7 @@ When you will construct your Schema, you may need several times the same logic f
 
 ## Creating Resolver
 
-### via `TypeComposer.addResolver()`
+### via `TC.addResolver()`
 Mostly `Resolver`s are created according to the specific `Type`. So it's better to create them and store in some `TypeComposer` instance.
 
 Lets's take `AuthorTC` and describe how it can be found by `id`:
@@ -181,7 +181,7 @@ const findManyReduced = AuthorTC.getResolver('findMany').wrap(newResolver => {
 });
 ```
 
-### via `TypeComposer.wrapResolverAs()`
+### via `TC.wrapResolverAs()`
 Also you may want to modify already existed `Resolver` in some `TypeComposer`, like it did `Resolver.wrap()` method.
 
 For simplifying this process you may use `TypeComposer.wrapResolverAs()` method.
