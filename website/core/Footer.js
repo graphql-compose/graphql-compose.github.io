@@ -33,12 +33,12 @@ class Footer extends React.Component {
           script: false,
         }
       });
-      // var languagesMenuItemCopy = document.getElementById("languages-menu");
-      // languagesMenuItemCopy.addEventListener("click", function(e){
-      //   e.preventDefault();
-      //   e.stopPropagation();
-      //   e.stopImmediatePropagation();
-      // });`}}></script>
+      var languagesMenuItemCopy = document.getElementById("languages-menu");
+      languagesMenuItemCopy.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+      });`}}></script>
     </span>);
   }
 
