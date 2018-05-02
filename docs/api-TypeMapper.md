@@ -3,7 +3,7 @@ id: api-TypeMapper
 title: TypeMapper
 ---
 
-Type storage and type generator from `GraphQL schema language`. This is slightly rewritten [buildASTSchema](https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js) utility from `graphql-js` that allows to create type from string.
+Type storage and type generator from `Schema Definition Language` (`SDL`). This is slightly rewritten [buildASTSchema](https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js) utility from `graphql-js` that allows to create type from a string (SDL).
 
 ## Methods
 
@@ -65,8 +65,6 @@ parseTypesFromAst(
   astDocument: DocumentNode
 ): TypeStorage<GraphQLNamedType>;
 ```
-
-## Config methods
 
 ### convertOutputFieldConfig()
 
