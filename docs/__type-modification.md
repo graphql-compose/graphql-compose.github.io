@@ -1,23 +1,3 @@
-```js
-// Add resolveк - helper for fetching data
-UserTC.addResolver({
-  name: 'findById',
-  args: { id: 'Int' },
-  type: UserTC,
-  resolve: async ({ source, args }) => {
-    const res = await fetch(`/endpoint/${args.id}`); // or some fetch from any database
-    const data = await res.json();
-    // here you may clean up `data` response from API or Database,
-    // it should has same shape like UserTC fields
-    // eg. { name: 'Peter', nickname: 'peet', views: 20, someJsonMess: { ... } }
-    // if some fields are undefined or missing, graphql return `null` on that fields
-    return data;
-  },
-});
-
-// If you need you may get generated GraphQLObjectType via UserTC.getType();
-```
-
 #### Converting a Mongoose model to TypeComposer (wrapped GraphQLObjectType) with `graphql-compose-mongoose`.
 
 You may create TypeComposer from mongoose model with bunch of useful resolvers `findById`, `findMany`, `updateOne`, `removeMany` and so on. Read more about [graphql-compose-mongoose](https://github.com/nodkz/graphql-compose-mongoose)
