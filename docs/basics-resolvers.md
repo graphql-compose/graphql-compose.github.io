@@ -1,5 +1,5 @@
 ---
-id: basics-Resolver
+id: basics-resolvers
 title: [WIP] Resolvers
 ---
 

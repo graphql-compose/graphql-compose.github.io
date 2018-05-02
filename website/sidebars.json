@@ -9,7 +9,7 @@
     "Basics": [
       "basics-types",
       "basics-type-modification",
-      "basics-Resolver",
+      "basics-resolvers",
       "basics-relations",
       "basics-generating-schema"
     ],
