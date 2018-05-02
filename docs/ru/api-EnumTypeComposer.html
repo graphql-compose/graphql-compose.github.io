@@ -137,6 +137,13 @@
           script: false,
         }
       });
+
+      if (document && document.addEventListener) {
+        document.addEventListener('pjax:ready', function (e) {
+          if (ga) ga('send', 'pageview', location.pathname);
+        });
+      }
+
       var languagesMenuItemCopy = document.getElementById("languages-menu");
       languagesMenuItemCopy.addEventListener("click", function(e){
         e.preventDefault();
