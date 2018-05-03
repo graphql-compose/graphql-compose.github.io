@@ -72,6 +72,9 @@ const siteConfig = {
   algolia: {
     apiKey: '34b5c77954100fe8e57575f8dfd60185',
     indexName: 'graphql-compose',
+    algoliaOptions: {
+      hitsPerPage: 10,
+    },
   },
 };
 
