@@ -36,6 +36,13 @@
 <h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
 <p>Live demo: <a href="https://graphql-compose.herokuapp.com/">https://graphql-compose.herokuapp.com/</a></p>
 <p>Source code: <a href="https://github.com/graphql-compose/graphql-compose-mongoose-example">https://github.com/graphql-compose/graphql-compose-mongoose-example</a></p>
+<p>Small explanation for varaibles naming:</p>
+<ul>
+<li><code>UserSchema</code> - this is a mongoose schema</li>
+<li><code>User</code> - this is a mongoose model</li>
+<li><code>UserTC</code> - this is a <code>TypeComposer</code> instance for User. <code>TypeComposer</code> has <code>GraphQLObjectType</code> inside, avaliable via method <code>UserTC.getType()</code>.</li>
+<li>Here and in all other places of code variables suffix <code>...TC</code> means that this is <code>TypeComposer</code> instance, <code>...ITC</code> - <code>InputTypeComposer</code>, <code>...ETC</code> - <code>EnumTypeComposer</code>.</li>
+</ul>
 <pre><code class="hljs css js"><span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
 <span class="hljs-keyword">import</span> { composeWithMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
 <span class="hljs-keyword">import</span> { schemaComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
@@ -72,13 +79,13 @@
     <span class="hljs-attr">description</span>: <span class="hljs-string">'Can be any mixed type, that will be treated as JSON GraphQL Scalar Type'</span>,
   },
 });
-<span class="hljs-keyword">const</span> UserModel = mongoose.model(<span class="hljs-string">'UserModel'</span>, UserSchema);
+<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, UserSchema);
 
 
 
 <span class="hljs-comment">// STEP 2: CONVERT MONGOOSE MODEL TO GraphQL PIECES</span>
 <span class="hljs-keyword">const</span> customizationOptions = {}; <span class="hljs-comment">// left it empty for simplicity, described below</span>
-<span class="hljs-keyword">const</span> UserTC = composeWithMongoose(UserModel, customizationOptions);
+<span class="hljs-keyword">const</span> UserTC = composeWithMongoose(User, customizationOptions);
 
 <span class="hljs-comment">// STEP 3: CREATE CRAZY GraphQL SCHEMA WITH ALL CRUD USER OPERATIONS</span>
 <span class="hljs-comment">// via graphql-compose it will be much much easier, with less typing</span>
@@ -110,7 +117,7 @@ You think that is to much code?
 I don't think so, because by default internally was created about 55 graphql types (for input, sorting, filtering). So you will need much much more lines of code to implement all these CRUD operations by hands.</p>
 <h2><a class="anchor" aria-hidden="true" id="faq"></a><a href="#faq" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAQ</h2>
 <h3><a class="anchor" aria-hidden="true" id="can-i-get-generated-vanilla-graphql-types"></a><a href="#can-i-get-generated-vanilla-graphql-types" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Can I get generated vanilla GraphQL types?</h3>
-<pre><code class="hljs css js"><span class="hljs-keyword">const</span> UserTC = composeWithMongoose(UserModel);
+<pre><code class="hljs css js"><span class="hljs-keyword">const</span> UserTC = composeWithMongoose(User);
 UserTC.getType(); <span class="hljs-comment">// returns GraphQLObjectType</span>
 UserTC.getInputType(); <span class="hljs-comment">// returns GraphQLInputObjectType, eg. for args</span>
 UserTC.get(<span class="hljs-string">'languages'</span>).getType(); <span class="hljs-comment">// get GraphQLObjectType for nested field</span>
@@ -132,7 +139,7 @@ UserTC.get(<span class="hljs-string">'fieldWithNesting.subNesting'</span>).getTy
 })
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="how-to-build-nesting-relations"></a><a href="#how-to-build-nesting-relations" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to build nesting/relations?</h3>
-<p>Suppose you Model has <code>friendsIds</code> field with array of user ids. So let build some relations:</p>
+<p>Suppose you <code>User</code> model has <code>friendsIds</code> field with array of user ids. So let build some relations:</p>
 <pre><code class="hljs css js">UserTC.addRelation(
   <span class="hljs-string">'friends'</span>,
   () =&gt; ({
@@ -198,11 +205,11 @@ convertSchemaToGraphQL(ImageDataStructure, <span class="hljs-string">'EmbeddedIm
 <pre><code class="hljs css js"><span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
 <span class="hljs-keyword">import</span> { composeWithMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
 
-<span class="hljs-keyword">const</span> UserProfileModel = mongoose.model(<span class="hljs-string">'UserProfile'</span>, UserProfile);
-<span class="hljs-keyword">const</span> ArticleModel = mongoose.model(<span class="hljs-string">'Article'</span>, Article);
+<span class="hljs-keyword">const</span> UserProfile = mongoose.model(<span class="hljs-string">'UserProfile'</span>, UserProfile);
+<span class="hljs-keyword">const</span> Article = mongoose.model(<span class="hljs-string">'Article'</span>, Article);
 
-<span class="hljs-keyword">const</span> UserProfileTC = composeWithMongoose(UserProfileModel);
-<span class="hljs-keyword">const</span> ArticleTC = composeWithMongoose(ArticleModel);
+<span class="hljs-keyword">const</span> UserProfileTC = composeWithMongoose(UserProfile);
+<span class="hljs-keyword">const</span> ArticleTC = composeWithMongoose(Article);
 </code></pre>
 <p>Then, you can use queries like this:</p>
 <pre><code class="hljs css graphql"><span class="hljs-class">query </span>{
@@ -227,7 +234,7 @@ fragment fullImageData on <span class="hljs-class">EmbeddedImage </span>{
 }
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="customization-options"></a><a href="#customization-options" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customization options</h2>
-<p>When we convert model <code>const UserTC = composeWithMongoose(UserModel, customizationOptions);</code> you may tune every piece of future derived types and resolvers.</p>
+<p>When we convert model <code>const UserTC = composeWithMongoose(User, customizationOptions);</code> you may tune every piece of future derived types and resolvers.</p>
 <h3><a class="anchor" aria-hidden="true" id="here-is-flow-typed-definition-of-this-options"></a><a href="#here-is-flow-typed-definition-of-this-options" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Here is flow typed definition of this options:</h3>
 <p>The top level of customization options. Here you setup name and description for the main type, remove fields or leave only desired fields.</p>
 <pre><code class="hljs css js"><span class="hljs-keyword">export</span> type typeConverterOpts = {
