@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>[WIP] Relations between Types · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="[WIP] Relations between Types · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="Before we start, lets setup 2 schemas.."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fr"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/fr/intro-quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/fr/api-TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/fr/plugin--list.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>Français</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/en">English</a></li><li><a href="/ja">日本語</a></li><li><a href="/es-ES">Español</a></li><li><a href="/ko">한국어</a></li><li><a href="/pt-BR">Português (Brasil)</a></li><li><a href="/ru">Русский</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/th">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Relations between Types · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Relations between Types · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="The most important part of GraphQL is a relations between types."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fr"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitle">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/fr/intro-quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/fr/api-TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/fr/plugin--list.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>Français</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/en">English</a></li><li><a href="/ja">日本語</a></li><li><a href="/es-ES">Español</a></li><li><a href="/ko">한국어</a></li><li><a href="/pt-BR">Português (Brasil)</a></li><li><a href="/ru">Русский</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/th">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(){
@@ -8,98 +8,204 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/graphql-compose/graphql-compose" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Basics</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/intro-prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/intro-installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/intro-quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/intro-demos.html">Live Demos</a></li></ul></div><div class="navGroup navGroupActive"><h3>Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/basics-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/basics-type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/basics-resolvers.html">Resolvers</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/fr/basics-relations.html">[WIP] Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/basics-generating-schema.html">[WIP] Generating Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/api-TypeComposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-misc.html">[WIP] API misc</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugins</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/plugin--list.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/guide-mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/guide-wrapping-rest-api.html">[WIP] Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/guide-elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/guide-relay.html">[WIP] Relay Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>Recipes</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/recipe-authorization.html">[WIP] Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/recipe-writing-tests.html">[WIP] Writing tests</a></li></ul></div></div></section></div><script>
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/graphql-compose/graphql-compose" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Basics</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/intro-prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/intro-installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/intro-quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/intro-demos.html">Live Demos</a></li></ul></div><div class="navGroup navGroupActive"><h3>Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/basics-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/basics-type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/basics-resolvers.html">Resolvers</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/fr/basics-relations.html">Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/basics-generating-schema.html">[WIP] Generating Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/api-TypeComposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/api-misc.html">[WIP] API misc</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugins</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/plugin--list.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/guide-mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/guide-wrapping-rest-api.html">[WIP] Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/guide-elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/guide-relay.html">[WIP] Relay Schema</a></li></ul></div><div class="navGroup navGroupActive"><h3>Recipes</h3><ul><li class="navListItem"><a class="navItem" href="/docs/fr/recipe-authorization.html">[WIP] Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/fr/recipe-writing-tests.html">[WIP] Writing tests</a></li></ul></div></div></section></div><script>
           var toggler = document.getElementById('navToggler');
           var nav = document.getElementById('docsNav');
           toggler.onclick = function() {
             nav.classList.toggle('docsSliderActive');
           };
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/graphql-compose/fr" target="_blank" rel="noreferrer noopener">Translate</a><h1>[WIP] Relations between Types</h1></header><article><div><span><p>Before we start, lets setup 2 schemas..</p>
-<pre><code class="hljs css js"><span class="hljs-comment">// People.js</span>
-<span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
-<span class="hljs-keyword">import</span> composeWithMongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/graphql-compose/fr" target="_blank" rel="noreferrer noopener">Translate</a><h1>Relations between Types</h1></header><article><div><span><p>The most important part of GraphQL is a relations between types.</p>
+<h2><a class="anchor" aria-hidden="true" id="relation-via-fieldconfig"></a><a href="#relation-via-fieldconfig" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relation via FieldConfig</h2>
+<p>Assume you have <code>Author</code> and <code>Post</code> types.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { TypeComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
 
-<span class="hljs-keyword">var</span> PeopleSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
-  <span class="hljs-attr">firstName</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> },
-  <span class="hljs-attr">lastName</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> },
-  <span class="hljs-attr">email</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> },
-  <span class="hljs-attr">jobId</span>: {
-    <span class="hljs-attr">type</span>: mongoose.Schema.Types.ObjectId,
+<span class="hljs-keyword">const</span> AuthorTC = TypeComposer.create({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Author'</span>,
+  <span class="hljs-attr">fields</span>: {
+    <span class="hljs-attr">id</span>: <span class="hljs-string">'Int!'</span>,
+    <span class="hljs-attr">firstName</span>: <span class="hljs-string">'String'</span>,
+    <span class="hljs-attr">lastName</span>: <span class="hljs-string">'String'</span>,
   },
 });
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> People = mongoose.model(<span class="hljs-string">'People'</span>, PeopleSchema);
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> PeopleTC = composeWithMongoose(People);
+<span class="hljs-keyword">const</span> PostTC = TypeComposer.create({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Post'</span>,
+  <span class="hljs-attr">fields</span>: {
+    <span class="hljs-attr">id</span>: <span class="hljs-string">'Int!'</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'String'</span>,
+    <span class="hljs-attr">votes</span>: <span class="hljs-string">'Int'</span>,
+    <span class="hljs-attr">authorId</span>: <span class="hljs-string">'Int'</span>,
+  },
+});
 </code></pre>
-<pre><code class="hljs css js"><span class="hljs-comment">// Company.js</span>
-<span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
-<span class="hljs-keyword">import</span> composeWithMongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
-
-<span class="hljs-keyword">var</span> CompanySchema = <span class="hljs-keyword">new</span> mongoose.Schema({
-  <span class="hljs-attr">name</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> },
-  <span class="hljs-attr">description</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> },
-  <span class="hljs-attr">employeeIds</span>: [
-    {
-      <span class="hljs-attr">type</span>: mongoose.Schema.Types.ObjectId,
+<p>GraphQL allows to create additional fields in your types which may provide data from other type. For example, you may add field <code>posts</code> to the <code>Author</code> type and write <code>resolve</code> function in such way that this field will return array of posts only for current Author.</p>
+<p>It can be done in the following manner:</p>
+<pre><code class="hljs css js">AuthorTC.addFields({
+  <span class="hljs-attr">posts</span>: {
+    <span class="hljs-attr">type</span>: [PostTC], <span class="hljs-comment">// array of Posts</span>
+    resolve: <span class="hljs-function">(<span class="hljs-params">author, args, context, info</span>) =&gt;</span> {
+      <span class="hljs-keyword">return</span> DB.Posts.find({ <span class="hljs-attr">authorId</span>: author.id });
     },
-  ],
+  },
 });
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Company = mongoose.model(<span class="hljs-string">'Company'</span>, CompanySchema);
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CompanyTC = composeWithMongoose(Company);
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="adding-a-single-relation"></a><a href="#adding-a-single-relation" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding a single relation</h3>
-<p>Lets start of building a relation from the people to their jobs.</p>
-<pre><code class="hljs css js"><span class="hljs-comment">// People.js</span>
+<p>It's quite easy. But now lets improve our relation and add new arguments <code>limit</code> and <code>skip</code>:</p>
+<pre><code class="hljs css js">AuthorTC.addFields({
+  <span class="hljs-attr">posts</span>: {
+    <span class="hljs-attr">type</span>: [PostTC], <span class="hljs-comment">// array of Posts</span>
+    args: {
+      <span class="hljs-attr">limit</span>: {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">'Int'</span>,
+        <span class="hljs-attr">defaultValue</span>: <span class="hljs-number">10</span>,
+      },
+      <span class="hljs-attr">skip</span>: <span class="hljs-string">'Int'</span>,
+    },
+    <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">author, args, context, info</span>) =&gt;</span> {
+      <span class="hljs-keyword">return</span> DB.Posts
+        .find({ <span class="hljs-attr">authorId</span>: author.id })
+        .limit(args.limit)
+        .skip(args.skip || <span class="hljs-number">0</span>);
+    },
+  },
+});
+</code></pre>
+<p>And this is also very easy, but what if we want provide <code>filter</code> argument which adds ability to filter by creation date, and min number of votes:</p>
+<pre><code class="hljs css js">AuthorTC.addFields({
+  <span class="hljs-attr">posts</span>: {
+    <span class="hljs-attr">type</span>: [PostTC], <span class="hljs-comment">// array of Posts</span>
+    args: {
+      <span class="hljs-attr">limit</span>: {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">'Int'</span>,
+        <span class="hljs-attr">defaultValue</span>: <span class="hljs-number">10</span>,
+      },
+      <span class="hljs-attr">skip</span>: <span class="hljs-string">'Int'</span>,
+      <span class="hljs-attr">filter</span>: <span class="hljs-string">`
+        input PostsFilterInput {
+          createdAtMin: Date
+          votesMin: Int
+        }
+      `</span>,
+    },
+    <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source, args, context, info</span>) =&gt;</span> {
+      <span class="hljs-keyword">const</span> criteria = { <span class="hljs-attr">authorId</span>: source.id };
+      <span class="hljs-keyword">if</span> (args.filter) {
+        <span class="hljs-keyword">if</span> (args.filter.createdAtMin) criteria.createdAt = { <span class="hljs-attr">$gt</span>: args.filter.createdAtMin };
+        <span class="hljs-keyword">if</span> (args.filter.votesMin) criteria.votes = { <span class="hljs-attr">$gt</span>: args.filter.votesMin };
+      }
+      <span class="hljs-keyword">return</span> DB.Posts
+        .find(criteria)
+        .limit(args.limit)
+        .skip(args.skip || <span class="hljs-number">0</span>);
+    },
+  },
+});
+</code></pre>
+<p>Hm, it's became quite long. But what if you have other Types wich have relations with Posts (eg Reviewer, Reader)? I don't think that copy/paste of <code>resolve</code> method will be a good idea. Cause in the future you may want to add a new <code>filter</code> property and should scan all your code and put additional logic in all <code>FieldConfigs</code>. So if you meet with such problem the next section is for you.</p>
+<h2><a class="anchor" aria-hidden="true" id="relation-via-resolver"></a><a href="#relation-via-resolver" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relation via Resolver</h2>
+<p>If you need to use the same FieldConfigs in different Types for such cases graphql-compose provides <strong><a href="/docs/fr/basics-resolvers.html">Resolver</a></strong> class. You may create a Resolver which will define <code>type</code>, <code>args</code> and <code>resolve</code> and reuse in all places of your Schema where you need it.</p>
+<p>Anyway if you put <code>posts</code> resolver in separate file, you will meet with another problems - in <code>Author</code> type you will use <code>criteria = { authorId: source.id }</code> for resolve method; - in <code>Reviewer</code> - <code>criteria = { reviewers: { $has: source.id } }</code> and so on.</p>
+<p>For such case better to improve <code>args.filter</code> by allowing to set <code>authorId</code> and <code>reviewerId</code> via arguments:</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { Resolver } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
 
-<span class="hljs-comment">// ... after the `export const PeopleTC...`</span>
-PeopleTC.addRelation(<span class="hljs-string">'job'</span>, {
-  <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> CompanyTC.getResolver(<span class="hljs-string">'findById'</span>),
-  <span class="hljs-attr">prepareArgs</span>: {
-    <span class="hljs-attr">_id</span>: <span class="hljs-function"><span class="hljs-params">source</span> =&gt;</span> source.jobId,
+<span class="hljs-keyword">const</span> postsResolver = <span class="hljs-keyword">new</span> Resolver({
+  <span class="hljs-attr">type</span>: [PostTC], <span class="hljs-comment">// array of Posts</span>
+  args: {
+    <span class="hljs-attr">limit</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'Int'</span>,
+      <span class="hljs-attr">defaultValue</span>: <span class="hljs-number">10</span>,
+    },
+    <span class="hljs-attr">skip</span>: <span class="hljs-string">'Int'</span>,
+    <span class="hljs-attr">filter</span>: <span class="hljs-string">`
+      input PostsFilterInput {
+        createdAtMin: Date
+        votesMin: Int
+        authorId: ID
+        reviewerId: ID
+      }
+    `</span>,
   },
-  <span class="hljs-attr">projection</span>: { <span class="hljs-attr">jobId</span>: <span class="hljs-literal">true</span> },
+  <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source, args, context, info</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> { filter } = args;
+    <span class="hljs-keyword">const</span> criteria = {};
+    <span class="hljs-keyword">if</span> (filter) {
+      <span class="hljs-keyword">if</span> (filter.createdAtMin) criteria.createdAt = { <span class="hljs-attr">$gt</span>: filter.createdAtMin };
+      <span class="hljs-keyword">if</span> (filter.votesMin) criteria.votes = { <span class="hljs-attr">$gt</span>: filter.votesMin };
+      <span class="hljs-keyword">if</span> (filter.authorId) criteria.authorId = filter.authorId;
+      <span class="hljs-keyword">if</span> (filter.reviewerId) criteria.reviewerId = { <span class="hljs-attr">$has</span>: filter.reviewerId };
+    }
+    <span class="hljs-keyword">return</span> DB.Posts
+      .find(criteria)
+      .limit(args.limit)
+      .skip(args.skip || <span class="hljs-number">0</span>);
+  },
 });
 </code></pre>
-<p>Remember to add projection as we need to get the <code>jobId</code> in order to find the company in the database.</p>
-<h3><a class="anchor" aria-hidden="true" id="adding-a-multiple-relation"></a><a href="#adding-a-multiple-relation" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding a multiple relation</h3>
-<p>Now we should get those companies some employees.</p>
-<pre><code class="hljs css js"><span class="hljs-comment">// Company.js</span>
+<p>And now you may create relations via <code>TypeComposer.addRelation</code> method in such way:</p>
+<pre><code class="hljs css js">AuthorTC.addRelation(<span class="hljs-string">'posts'</span>, {
+  <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> postsResolver,
+  <span class="hljs-attr">prepareArgs</span>: {
+    <span class="hljs-attr">filter</span>: <span class="hljs-function"><span class="hljs-params">source</span> =&gt;</span> ({ <span class="hljs-attr">authorId</span>: source.id }),
+  },
+  <span class="hljs-attr">projection</span>: { <span class="hljs-attr">id</span>: <span class="hljs-literal">true</span> },
+});
 
-<span class="hljs-comment">// ... after the `export const CompanyTC...`</span>
-CompanyTC.addRelation(<span class="hljs-string">'employees'</span>, {
-  <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> PeopleTC.getResolver(<span class="hljs-string">'findByIds'</span>),
+ReviewerTC.addRelation(<span class="hljs-string">'posts'</span>, {
+  <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> postsResolver,
   <span class="hljs-attr">prepareArgs</span>: {
-    <span class="hljs-attr">_ids</span>: <span class="hljs-function"><span class="hljs-params">source</span> =&gt;</span> source.employeeIds || [],
+    <span class="hljs-attr">filter</span>: <span class="hljs-function"><span class="hljs-params">source</span> =&gt;</span> ({ <span class="hljs-attr">reviewerId</span>: source.id }),
   },
-  <span class="hljs-attr">projection</span>: { <span class="hljs-attr">employeeIds</span>: <span class="hljs-literal">true</span> },
+  <span class="hljs-attr">projection</span>: { <span class="hljs-attr">id</span>: <span class="hljs-literal">true</span> },
 });
 </code></pre>
-<p>Remember to add projection as we need to get the <code>employeeIds</code> in order to find the company in the database.</p>
-<h3><a class="anchor" aria-hidden="true" id="filters"></a><a href="#filters" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Filters</h3>
-<p>By default relations may have arguments, eg. <code>filter</code>, <code>limit</code>, <code>skip</code> and <code>sort</code>. if you want to disable arguments just set them to <code>null</code>. Or you may hide it from schema and set value by default to them (see <code>_id</code> and <code>limit</code>).</p>
-<pre><code class="hljs css js">PeopleTC.addRelation(<span class="hljs-string">'job'</span>, {
-  <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> CompanyTC.getResolver(<span class="hljs-string">'findById'</span>),
-  <span class="hljs-attr">prepareArgs</span>: {
-    <span class="hljs-attr">_id</span>: <span class="hljs-function"><span class="hljs-params">source</span> =&gt;</span> source.jobId, <span class="hljs-comment">// calculate _id value</span>
-    limit: <span class="hljs-number">10</span>, <span class="hljs-comment">// set default value</span>
-    sort: <span class="hljs-literal">null</span>, <span class="hljs-comment">// just remove arg from schema</span>
-  },
-  <span class="hljs-attr">projection</span>: { <span class="hljs-attr">jobId</span>: <span class="hljs-literal">true</span> },
-});
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="relation-function"></a><a href="#relation-function" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relation function</h3>
-<pre><code class="hljs css js">addRelation(
-    fieldName: string,
-    <span class="hljs-attr">opts</span>: {
-        <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Resolver,
-        prepareArgs?: RelationArgsMapper,
-        projection?: ProjectionType,
-        description?: string,
-        deprecationReason?: string,
-    })
+<h2><a class="anchor" aria-hidden="true" id="typecomposeraddrelation"></a><a href="#typecomposeraddrelation" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeComposer.addRelation()</h2>
+<p><code>addRelation</code> method has following arguments:</p>
+<pre><code class="hljs css js">TypeComposer.addRelation(
+  fieldName: string,
+  <span class="hljs-attr">opts</span>: {
+    <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Resolver,
+    prepareArgs?: RelationArgsMapper,
+    projection?: ProjectionType,
+    description?: string,
+    deprecationReason?: string,
+  })
 ): TypeComposer
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="basics-resolvers.html">← Resolvers</a><a class="docs-next button" href="basics-generating-schema.html">[WIP] Generating Schema →</a></div></div></div><nav class="onPageNav"></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+<h3><a class="anchor" aria-hidden="true" id="resolver"></a><a href="#resolver" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>resolver</h3>
+<p>Should be an arrow function which returns <code>Resolver</code>. Wrapping resolver in arrow function helps to solve <code>hoisting</code> problem (when two types imports each other).</p>
+<h3><a class="anchor" aria-hidden="true" id="prepareargs"></a><a href="#prepareargs" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>prepareArgs</h3>
+<p>At runtime we should have ability to prepare somehow args which will be passed to Resolver.</p>
+<p>For example our Resolver has following arguments <code>filter</code>, <code>limit</code>, <code>skip</code> and <code>sort</code>. <code>prepareArgs</code> provides instruction how to setup them: - <code>limit: 10</code> - hide <code>limit</code> arg from schema and set it equal to 10 - <code>filter: (source) =&gt; value</code> - hide <code>filter</code> arg form schema and at runtime evaluate its value - <code>sort: null</code> - disable argument (hide from schema and do not pass it to resolver) - all undescribed args (like <code>skip</code>) will be avaliable in the schema and will be avaliable in query</p>
+<h3><a class="anchor" aria-hidden="true" id="projection"></a><a href="#projection" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>projection</h3>
+<p>Is very useful option for extending requested fields in your query. It very good practice to request from database only that fields which were requested in the query. But sometimes we need to request additional fields for fullfilling <code>findById</code> resolver with <code>authorId</code> value in arguments. For this purpose you need to use <code>projection</code>.</p>
+<pre><code class="hljs css js">PostTC.addRelation(<span class="hljs-string">'author'</span>, {
+  <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> AuthorTC.getResolver(<span class="hljs-string">'findById'</span>),
+  <span class="hljs-attr">prepareArgs</span>: {
+    <span class="hljs-attr">id</span>: <span class="hljs-function">(<span class="hljs-params">source</span>) =&gt;</span> source.authorId,
+  },
+  <span class="hljs-attr">projection</span>: { <span class="hljs-attr">authorId</span>: <span class="hljs-literal">true</span> },
+});
+</code></pre>
+<p>So when you make such query</p>
+<pre><code class="hljs css js">{
+  post {
+    author {
+      firstName
+    }
+  }
+}
+</code></pre>
+<p>it will be transformed to</p>
+<pre><code class="hljs css js">{
+  post {
+    author {
+      firstName
+    }
+    authorId # &lt;--- added by `projection` option
+  }
+}
+</code></pre>
+<p>Without <code>projection</code> when we will request <code>author</code> field its resolver may get <code>args.authorId</code> equals to <code>undefined</code>. In this situation will not provide any data for <code>Author</code>. It happens if fetching only that fields which listed in the query from database. So when client requests <code>author</code> field in GraphQL Query he also must request <code>authorId</code> explicitly. But why client should care it? So required additional fields should be requested via <code>projection</code> option.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="basics-resolvers.html">← Resolvers</a><a class="docs-next button" href="basics-generating-schema.html">[WIP] Generating Schema →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#relation-via-fieldconfig">Relation via FieldConfig</a></li><li><a href="#relation-via-resolver">Relation via Resolver</a></li><li><a href="#typecomposeraddrelation">TypeComposer.addRelation()</a><ul class="toc-headings"><li><a href="#resolver">resolver</a></li><li><a href="#prepareargs">prepareArgs</a></li><li><a href="#projection">projection</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
         areas: [
           // try to use the first query.
           '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
