@@ -1,111 +1,240 @@
 ---
 id: basics-relations
-title: [WIP] Relations between Types
+title: Relations between Types
 ---
 
-Before we start, lets setup 2 schemas..
+The most important part of GraphQL is a relations between types.
+
+## Relation via FieldConfig
+
+Assume you have `Author` and `Post` types.
 
 ```js
-// People.js
-import mongoose from 'mongoose';
-import composeWithMongoose from 'graphql-compose-mongoose';
+import { TypeComposer } from 'graphql-compose';
 
-var PeopleSchema = new mongoose.Schema({
-  firstName: { type: String },
-  lastName: { type: String },
-  email: { type: String },
-  jobId: {
-    type: mongoose.Schema.Types.ObjectId,
+const AuthorTC = TypeComposer.create({
+  name: 'Author',
+  fields: {
+    id: 'Int!',
+    firstName: 'String',
+    lastName: 'String',
   },
 });
 
-export const People = mongoose.model('People', PeopleSchema);
-export const PeopleTC = composeWithMongoose(People);
+const PostTC = TypeComposer.create({
+  name: 'Post',
+  fields: {
+    id: 'Int!',
+    title: 'String',
+    votes: 'Int',
+    authorId: 'Int',
+  },
+});
 ```
 
-```js
-// Company.js
-import mongoose from 'mongoose';
-import composeWithMongoose from 'graphql-compose-mongoose';
+GraphQL allows to create additional fields in your types which may provide data from other type. For example, you may add field `posts` to the `Author` type and write `resolve` function in such way that this field will return array of posts only for current Author.
 
-var CompanySchema = new mongoose.Schema({
-  name: { type: String },
-  description: { type: String },
-  employeeIds: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
+It can be done in the following manner:
+```js
+AuthorTC.addFields({
+  posts: {
+    type: [PostTC], // array of Posts
+    resolve: (author, args, context, info) => {
+      return DB.Posts.find({ authorId: author.id });
     },
-  ],
-});
-export const Company = mongoose.model('Company', CompanySchema);
-export const CompanyTC = composeWithMongoose(Company);
-```
-
-### Adding a single relation
-
-Lets start of building a relation from the people to their jobs.
-
-```js
-// People.js
-
-// ... after the `export const PeopleTC...`
-PeopleTC.addRelation('job', {
-  resolver: () => CompanyTC.getResolver('findById'),
-  prepareArgs: {
-    _id: source => source.jobId,
   },
-  projection: { jobId: true },
 });
 ```
 
-Remember to add projection as we need to get the `jobId` in order to find the company in the database.
-
-### Adding a multiple relation
-
-Now we should get those companies some employees.
-
+It's quite easy. But now lets improve our relation and add new arguments `limit` and `skip`:
 ```js
-// Company.js
-
-// ... after the `export const CompanyTC...`
-CompanyTC.addRelation('employees', {
-  resolver: () => PeopleTC.getResolver('findByIds'),
-  prepareArgs: {
-    _ids: source => source.employeeIds || [],
+AuthorTC.addFields({
+  posts: {
+    type: [PostTC], // array of Posts
+    args: {
+      limit: {
+        type: 'Int',
+        defaultValue: 10,
+      },
+      skip: 'Int',
+    },
+    resolve: (author, args, context, info) => {
+      return DB.Posts
+        .find({ authorId: author.id })
+        .limit(args.limit)
+        .skip(args.skip || 0);
+    },
   },
-  projection: { employeeIds: true },
 });
 ```
 
-Remember to add projection as we need to get the `employeeIds` in order to find the company in the database.
-
-### Filters
-
-By default relations may have arguments, eg. `filter`, `limit`, `skip` and `sort`. if you want to disable arguments just set them to `null`. Or you may hide it from schema and set value by default to them (see `_id` and `limit`).
-
+And this is also very easy, but what if we want provide `filter` argument which adds ability to filter by creation date, and min number of votes:
 ```js
-PeopleTC.addRelation('job', {
-  resolver: () => CompanyTC.getResolver('findById'),
-  prepareArgs: {
-    _id: source => source.jobId, // calculate _id value
-    limit: 10, // set default value
-    sort: null, // just remove arg from schema
+AuthorTC.addFields({
+  posts: {
+    type: [PostTC], // array of Posts
+    args: {
+      limit: {
+        type: 'Int',
+        defaultValue: 10,
+      },
+      skip: 'Int',
+      filter: `
+        input PostsFilterInput {
+          createdAtMin: Date
+          votesMin: Int
+        }
+      `,
+    },
+    resolve: (source, args, context, info) => {
+      const criteria = { authorId: source.id };
+      if (args.filter) {
+        if (args.filter.createdAtMin) criteria.createdAt = { $gt: args.filter.createdAtMin };
+        if (args.filter.votesMin) criteria.votes = { $gt: args.filter.votesMin };
+      }
+      return DB.Posts
+        .find(criteria)
+        .limit(args.limit)
+        .skip(args.skip || 0);
+    },
   },
-  projection: { jobId: true },
 });
 ```
 
-### Relation function
+Hm, it's became quite long. But what if you have other Types wich have relations with Posts (eg Reviewer, Reader)? I don't think that copy/paste of `resolve` method will be a good idea. Cause in the future you may want to add a new `filter` property and should scan all your code and put additional logic in all `FieldConfigs`. So if you meet with such problem the next section is for you.
+
+## Relation via Resolver
+
+If you need to use the same FieldConfigs in different Types for such cases graphql-compose provides **[Resolver](basics-resolvers.md)** class. You may create a Resolver which will define `type`, `args` and `resolve` and reuse in all places of your Schema where you need it.
+
+Anyway if you put `posts` resolver in separate file, you will meet with another problems
+- in `Author` type you will use `criteria = { authorId: source.id }` for resolve method;
+- in `Reviewer` - `criteria = { reviewers: { $has: source.id } }` and so on.
+
+For such case better to improve `args.filter` by allowing to set `authorId` and `reviewerId` via arguments:
 
 ```js
-addRelation(
-    fieldName: string,
-    opts: {
-        resolver: () => Resolver,
-        prepareArgs?: RelationArgsMapper,
-        projection?: ProjectionType,
-        description?: string,
-        deprecationReason?: string,
-    })
+import { Resolver } from 'graphql-compose';
+
+const postsResolver = new Resolver({
+  type: [PostTC], // array of Posts
+  args: {
+    limit: {
+      type: 'Int',
+      defaultValue: 10,
+    },
+    skip: 'Int',
+    filter: `
+      input PostsFilterInput {
+        createdAtMin: Date
+        votesMin: Int
+        authorId: ID
+        reviewerId: ID
+      }
+    `,
+  },
+  resolve: (source, args, context, info) => {
+    const { filter } = args;
+    const criteria = {};
+    if (filter) {
+      if (filter.createdAtMin) criteria.createdAt = { $gt: filter.createdAtMin };
+      if (filter.votesMin) criteria.votes = { $gt: filter.votesMin };
+      if (filter.authorId) criteria.authorId = filter.authorId;
+      if (filter.reviewerId) criteria.reviewerId = { $has: filter.reviewerId };
+    }
+    return DB.Posts
+      .find(criteria)
+      .limit(args.limit)
+      .skip(args.skip || 0);
+  },
+});
+```
+
+And now you may create relations via `TypeComposer.addRelation` method in such way:
+
+```js
+AuthorTC.addRelation('posts', {
+  resolver: () => postsResolver,
+  prepareArgs: {
+    filter: source => ({ authorId: source.id }),
+  },
+  projection: { id: true },
+});
+
+ReviewerTC.addRelation('posts', {
+  resolver: () => postsResolver,
+  prepareArgs: {
+    filter: source => ({ reviewerId: source.id }),
+  },
+  projection: { id: true },
+});
+```
+
+## TypeComposer.addRelation()
+
+`addRelation` method has following arguments:
+```js
+TypeComposer.addRelation(
+  fieldName: string,
+  opts: {
+    resolver: () => Resolver,
+    prepareArgs?: RelationArgsMapper,
+    projection?: ProjectionType,
+    description?: string,
+    deprecationReason?: string,
+  })
 ): TypeComposer
 ```
+
+### resolver
+
+Should be an arrow function which returns `Resolver`. Wrapping resolver in arrow function helps to solve `hoisting` problem (when two types imports each other).
+
+### prepareArgs
+
+At runtime we should have ability to prepare somehow args which will be passed to Resolver.
+
+For example our Resolver has following arguments `filter`, `limit`, `skip` and `sort`.
+`prepareArgs` provides instruction how to setup them:
+- `limit: 10` - hide `limit` arg from schema and set it equal to 10
+- `filter: (source) => value` - hide `filter` arg form schema and at runtime evaluate its value
+- `sort: null` - disable argument (hide from schema and do not pass it to resolver)
+- all undescribed args (like `skip`) will be avaliable in the schema and will be avaliable in query
+
+### projection
+
+Is very useful option for extending requested fields in your query. It very good practice to request from database only that fields which were requested in the query. But sometimes we need to request additional fields for fullfilling `findById` resolver with `authorId` value in arguments. For this purpose you need to use `projection`.
+
+```js
+PostTC.addRelation('author', {
+  resolver: () => AuthorTC.getResolver('findById'),
+  prepareArgs: {
+    id: (source) => source.authorId,
+  },
+  projection: { authorId: true },
+});
+```
+
+So when you make such query
+```js
+{
+  post {
+    author {
+      firstName
+    }
+  }
+}
+```
+it will be transformed to
+```js
+{
+  post {
+    author {
+      firstName
+    }
+    authorId # <--- added by `projection` option
+  }
+}
+```
+
+Without `projection` when we will request `author` field its resolver may get `args.authorId` equals to `undefined`. In this situation will not provide any data for `Author`. It happens if fetching only that fields which listed in the query from database. So when client requests `author` field in GraphQL Query he also must request `authorId` explicitly. But why client should care it? So required additional fields should be requested via `projection` option.

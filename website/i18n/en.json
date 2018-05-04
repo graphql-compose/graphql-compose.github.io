@@ -15,7 +15,7 @@
     "api-TypeComposer": "TypeComposer",
     "api-TypeMapper": "TypeMapper",
     "basics-generating-schema": "[WIP] Generating Schema",
-    "basics-relations": "[WIP] Relations between Types",
+    "basics-relations": "Relations between Types",
     "basics-resolvers": "Resolvers",
     "basics-type-modification": "Type modification",
     "basics-types": "Type creation",
