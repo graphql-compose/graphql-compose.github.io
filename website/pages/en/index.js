@@ -60,7 +60,6 @@ const ProjectTitle = props => (
   <h2 className="projectTitle">
     {siteConfig.title}
     <small>{siteConfig.tagline}</small>
-    <small style={{ color: 'red', fontSize: '30%' }}>Docs in progress. Unready articles marked as [WIP]. This page also should be prettified.</small>
   </h2>
 );
 
@@ -86,7 +85,6 @@ class HomeSplash extends React.Component {
             <Button href={docUrl('plugin--list.html', language)}>Plugins</Button>
             {/* <Button href="#try">Try It Out</Button> */}
             {/* <Button href={docUrl('requirements.html', language)}>Example Link</Button> */}
-            {/* <Button href={docUrl('doc2.html', language)}>Example Link 2</Button> */}
           </PromoSection>
           <a
             className="github-button"
@@ -112,153 +110,110 @@ const Block = props => (
 );
 
 const Features = props => (
-  <Block layout="fourColumn">
-    {[
-      {
-        content: 'This is the content of my feature',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'top',
-        title: 'Feature One',
-      },
-      {
-        content: 'The content of my second feature',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'top',
-        title: 'Feature Two',
-      },
-    ]}
-  </Block>
+  <div>
+    <Block layout="threeColumn">
+      {[
+        {
+          title: 'Create Types',
+          content: 'You may use SDL, or Type instances.',
+          image: imgUrl('sdl.svg'),
+          imageAlign: 'top',
+        },
+        {
+          title: 'Modify Types',
+          content: 'Very important for Schema generation',
+          image: imgUrl('modification.svg'),
+          imageAlign: 'top',
+        },
+        {
+          title: 'Construct Models',
+          content: 'TypeComposer with Resolvers',
+          image: imgUrl('models.svg'),
+          imageAlign: 'top',
+        },
+      ]}
+    </Block>
+    <Block layout="threeColumn">
+      {[
+        {
+          title: 'Static Analysis',
+          content: 'Includes Flowtype & TypeScript definitions',
+          image: imgUrl('static_analysis.svg'),
+          imageAlign: 'top',
+        },
+        {
+          title: 'Additional Types',
+          content: 'Commonly used basic types `Date`, `JSON`',
+          image: imgUrl('additional-types.svg'),
+          imageAlign: 'top',
+        },
+        {
+          title: 'Amazing Plugins',
+          content: `Plugin may generate and modify your types
+          `,
+          image: imgUrl('plugins.svg'),
+          imageAlign: 'top',
+        },
+      ]}
+    </Block>
+  </div>
 );
 
-const FeatureCallout = props => {
+const Plugins = props => {
   const language = props.language || '';
   return (
-    <div>
-      <div className="productShowcaseSection" style={{ textAlign: 'center' }}>
-        <h2>
-          graphql-compose
-          <br/>
-          <small>— imperative tool built on top of graphql-js</small>
-        </h2>
-        <MarkdownBlock>
-          It provides useful methods for creating `GraphQL Types` and `GraphQL Models` (type with a list of
-          resolvers) for further building of complex relations in your `Schema`.
-          With graphql-compose you may quickly write your own functions/generators for common tasks.
-        </MarkdownBlock>
-
-        <div className="leftCentredBlock">
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>provides methods for editing GraphQL Types (add/remove/extend fields, args, interfaces)</li>
-            <li>introduces `Resolver`s – the named graphql fieldConfig, which can be extended, wrapped and used in several places of your schema</li>
-            <li>provides an easy way for creating relations between types via `Resolver`s</li>
-            <li>provides converter from `OutputType` to `InputType`</li>
-            <li>provides `projection` parser from AST for your Resolver methods</li>
-            <li>provides `GraphQL Schema Language` for defining simple types</li>
-            <li>allows to solve hoisting problems in a more convenient way</li>
-            <li>adds additional types `Date`, `Json`</li>
-          </ul>
-        </div>
+    <Container padding={['bottom', 'top']} background="light">
+      <div className="pluginsHeader">Amazing plugins</div>
+      <div className="pluginsSubHeader">
+        Thousands lines of code may be replaced just by several lines
       </div>
-
-      <div className="productShowcaseSection mTop20 paddingBottom" style={{ textAlign: 'center' }}>
-        <h2>
-          graphql-compose-[plugin]
-          <br/>
-          <small>— the declarative generator/utility built on top of `graphql-compose`</small>
-        </h2>
-        <MarkdownBlock>
-          Plugin takes some ORMs, schema definitions and creates GraphQL Models from them or modifies existed GraphQL Types.
-        </MarkdownBlock>
-
-        <div className="leftCentredBlock mTop20">
-          <h3>Type generator plugins:</h3>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>
-              <a href={docUrl('plugin-json.html', language)}>graphql-compose-json</a>
-              {' '}
-              generates GraphQL types from JSON (a good helper for wrapping REST APIs)
-            </li>
-            <li>
-              <a href={docUrl('plugin-mongoose.html', language)}>graphql-compose-mongoose</a>
-              {' '}
-              generates GraphQL types from mongoose (MongoDB models) with Resolvers
-            </li>
-            <li>
-              <a href={docUrl('plugin-elasticsearch.html', language)}>graphql-compose-elasticsearch</a>
-              {' '}
-              generates GraphQL types from elastic mappings; ElasticSearch REST API proxy via GraphQL
-            </li>
-            <li>
-              <a href={docUrl('plugin-aws.html', language)}>graphql-compose-aws</a>
-              {' '}
-              expose AWS Cloud API via GraphQL
-            </li>
-          </ul>
-        </div>
-
-        <div className="leftCentredBlock mTop20">
-          <h3>Utility plugins:</h3>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>
-              <a href={docUrl('plugin-relay.html', language)}>graphql-compose-relay</a>
-              {' '}
-              modifies your Types and Resolvers making them compatible with Relay
-            </li>
-            <li>
-              <a href={docUrl('plugin-connection.html', language)}>graphql-compose-connection</a>
-              {' '}
-              generates `connection` Resolver from `findMany` and `count` Resolvers.
-            </li>
-            <li>
-              <a href={docUrl('plugin-pagination.html', language)}>graphql-compose-pagination</a>
-              {' '}
-              generates `pagination` Resolver from `findMany` and `count` Resolvers.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+      <GridBlock
+        className="pluginsBlock"
+        contents={[
+          {
+            content: `Derives GraphQLType from your [mongoose](https://github.com/Automattic/mongoose) model.
+              Also derives bunch of internal GraphQL Types.
+              Provide convenient CRUD resolvers, including relay connection and pagination.
+            `,
+            imageAlign: 'left',
+            image: imgUrl('logos/mongoDB.png'),
+            title: `graphql-compose-mongoose`,
+          },
+        ]}
+        layout="twoColumn"
+      />
+      <GridBlock
+        className="pluginsBlock"
+        contents={[
+          {
+            content: `Derives GraphQLType from your [elastic mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html).
+            Generates tons of types, provides all available methods in QueryDSL, Aggregations, Sorting
+            with field autocompletion according to types in your mapping (like Dev Tools Console in Kibana).`,
+            imageAlign: 'left',
+            image: imgUrl('logos/elasticsearch.png'),
+            title: 'graphql-compose-elasticsearch',
+          },
+        ]}
+        layout="twoColumn"
+      />
+      <GridBlock
+        className="pluginsBlock"
+        contents={[
+          {
+            content: `Expose AWS Cloud API via GraphQL.
+            Internally it generates Types and FieldConfigs from AWS SDK configs.
+            You may put this generated types to any GraphQL Schema.
+          `,
+            imageAlign: 'left',
+            image: imgUrl('logos/aws.png'),
+            title: 'graphql-compose-aws',
+          },
+        ]}
+        layout="twoColumn"
+      />
+    </Container>
   );
-}
-
-const LearnHow = props => (
-  <Block background="light">
-    {[
-      {
-        content: 'Talk about learning how to use this',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'right',
-        title: 'Learn How',
-      },
-    ]}
-  </Block>
-);
-
-const TryOut = props => (
-  <Block id="try">
-    {[
-      {
-        content:
-          'GraphQL is a query language for APIs. graphql-js is the reference implementation of GraphQL for nodejs which introduces GraphQL type system for describing schemas (definition over configuration) and executes queries on the server side. express-graphql is a HTTP server which gets the request data, passes it to graphql-js and passes the returned result to response.',
-        image: imgUrl('logo.png'),
-        imageAlign: 'left',
-      },
-    ]}
-  </Block>
-);
-
-const Description = props => (
-  <Block background="dark">
-    {[
-      {
-        content: 'This is another description of how this project is useful',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'right',
-        title: 'Description',
-      },
-    ]}
-  </Block>
-);
+};
 
 const Showcase = props => {
   if ((siteConfig.users || []).length === 0) {
@@ -298,10 +253,8 @@ class Index extends React.Component {
       <div>
         <HomeSplash language={language} />
         <div className="mainContainer">
-          {/* <Features /> */}
-          <FeatureCallout />
-          {/* <LearnHow /> */}
-          {/* <TryOut /> */}
+          <Features />
+          <Plugins />
           {/* <Description /> */}
           {/* <Showcase language={language} /> */}
         </div>

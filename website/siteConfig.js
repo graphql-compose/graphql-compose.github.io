@@ -17,10 +17,10 @@ const users = [
 
 const siteConfig = {
   title: 'graphql-compose' /* title for your website */,
-  tagline: 'Toolkit for generating complex GraphQL schemas',
+  tagline: 'Toolkit for generating complex GraphQL schemas on Node.js',
   url: 'https://graphql-compose.github.io' /* your website url */,
-  editUrl: "https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/",
-  translationRecruitingLink: "https://crowdin.com/project/graphql-compose",
+  editUrl: 'https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/',
+  translationRecruitingLink: 'https://crowdin.com/project/graphql-compose',
   baseUrl: '/' /* base url for your project */,
   organizationName: 'graphql-compose',
   projectName: 'graphql-compose.github.io',
@@ -30,7 +30,7 @@ const siteConfig = {
     { doc: 'plugin--list', label: 'Plugins' },
     { languages: true },
     { search: true },
-    { href: "https://github.com/graphql-compose/graphql-compose", label: "GitHub" },
+    { href: 'https://github.com/graphql-compose/graphql-compose', label: 'GitHub' },
     // { page: 'help', label: 'Support' },
     // { blog: true, label: 'Blog' },
   ],
@@ -42,7 +42,7 @@ const siteConfig = {
   /* colors for website */
   colors: {
     primaryColor: '#400d7d',
-    secondaryColor: '#205C3B',
+    secondaryColor: '#4f2284',
   },
   /* custom fonts for website */
   /*fonts: {

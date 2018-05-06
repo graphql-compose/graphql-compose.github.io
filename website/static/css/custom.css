@@ -47,7 +47,7 @@
   .post {
     padding-top: 10px !important;
   }
-  .mainContainer {
+  .docMainWrapper .mainContainer {
     margin-left: 40px;
   }
 }
@@ -71,7 +71,11 @@ a.navItemActive {
   color: #8c32f9 !important;
 }
 
-.mainContainer h1, .mainContainer h2, .mainContainer h3, .mainContainer h4, .mainContainer h5 {
+.mainContainer h1,
+.mainContainer h2,
+.mainContainer h3,
+.mainContainer h4,
+.mainContainer h5 {
   color: #000 !important;
   font-weight: bolder !important;
 }
@@ -93,4 +97,31 @@ h2 small {
 
 .mTop20 {
   margin-top: 20px;
+}
+
+.blockImage {
+  text-align: center;
+}
+
+.pluginsHeader {
+  font-size: 250%;
+  padding: 0 0 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.pluginsSubHeader {
+  font-size: 130%;
+  line-height: 130%;
+  padding-bottom: 60px;
+  text-align: center;
+}
+
+.pluginsBlock img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.pluginsBlock .blockContent h2 {
+  margin-top: 0px;
 }
