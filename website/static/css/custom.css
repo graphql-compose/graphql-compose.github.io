@@ -82,6 +82,7 @@ a.navItemActive {
 
 h2 small {
   font-size: 80%;
+  line-height: 130%;
   color: #555;
 }
 
@@ -117,11 +118,15 @@ h2 small {
   text-align: center;
 }
 
-.pluginsBlock img {
+.pluginsBlock .blockImage img {
   max-width: 200px;
   max-height: 200px;
 }
 
 .pluginsBlock .blockContent h2 {
   margin-top: 0px;
+}
+
+.projectTitle {
+  font-weight: bold;
 }

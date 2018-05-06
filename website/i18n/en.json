@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Toolkit for generating complex GraphQL schemas",
+    "tagline": "Toolkit for generating complex GraphQL schemas on Node.js",
     "intro-quick-start": "Quick Start Guide",
     "plugin--reference": "Plugin Reference",
     "__type-modification": "__type-modification",
