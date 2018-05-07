@@ -30,7 +30,7 @@ class Button extends React.Component {
   render() {
     return (
       <div className="pluginWrapper buttonWrapper">
-        <a className="button" href={this.props.href} target={this.props.target}>
+        <a className="button buttonDark" href={this.props.href} target={this.props.target}>
           {this.props.children}
         </a>
       </div>
@@ -76,7 +76,7 @@ class HomeSplash extends React.Component {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('logo.png')} />
+        {/* <Logo img_src={imgUrl('logo.png')} /> */}
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
@@ -104,7 +104,7 @@ class HomeSplash extends React.Component {
 }
 
 const Block = props => (
-  <Container padding={['bottom', 'top']} id={props.id} background={props.background}>
+  <Container padding={['bottom']} id={props.id} background={props.background}>
     <GridBlock align="center" contents={props.children} layout={props.layout} />
   </Container>
 );

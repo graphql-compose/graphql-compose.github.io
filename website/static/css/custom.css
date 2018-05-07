@@ -52,7 +52,7 @@
   }
 }
 @media only screen and (min-width: 736px) and (max-width: 900px) {
-  .mainContainer {
+  .docMainWrapper .mainContainer {
     margin-left: 0px;
     max-width: 65% !important;
   }
@@ -106,27 +106,56 @@ h2 small {
 
 .pluginsHeader {
   font-size: 250%;
+  line-height: 100%;
   padding: 0 0 30px;
   text-align: center;
   font-weight: bold;
+}
+@media only screen and (max-width: 736px) {
+  .pluginsHeader {
+    padding-top: 30px;
+  }
 }
 
 .pluginsSubHeader {
   font-size: 130%;
   line-height: 130%;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   text-align: center;
 }
 
-.pluginsBlock .blockImage img {
-  max-width: 200px;
-  max-height: 200px;
+.pluginsBlock {
+  margin-top: 30px;
 }
 
-.pluginsBlock .blockContent h2 {
-  margin-top: 0px;
+.pluginsBlock .blockImage {
+  max-width: 300px;
+  flex: 0 1 300px;
+}
+.pluginsBlock .blockImage img {
+  padding-top: 20px;
+  max-width: 200px;
+  max-height: 150px;
+}
+
+.blockContent h2 {
+  margin-top: 0px !important;
 }
 
 .projectTitle {
   font-weight: bold;
+}
+
+.imageAlignTop .blockImage {
+  margin-bottom: 0px;
+  margin-top: 30px;
+}
+
+.buttonDark {
+  background: #400d7d;
+  color: #fff;
+}
+.buttonDark:hover {
+  background: #fff;
+  color: #400d7d;
 }
