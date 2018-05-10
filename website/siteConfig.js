@@ -17,7 +17,7 @@ const users = [
 
 const siteConfig = {
   title: 'graphql-compose' /* title for your website */,
-  tagline: 'Toolkit for generating complex GraphQL schemas on Node.js',
+  tagline: 'Toolkit for generating complex GraphQL schemas in Node.js',
   url: 'https://graphql-compose.github.io' /* your website url */,
   editUrl: 'https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/',
   translationRecruitingLink: 'https://crowdin.com/project/graphql-compose',

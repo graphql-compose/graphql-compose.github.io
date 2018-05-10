@@ -119,7 +119,7 @@ const Features = props => (
       {[
         {
           title: 'Create Types',
-          content: 'Fast and convenient with SDL or Type instances.',
+          content: 'Fast and convenient with SDL or Type instances',
           image: svgUrl('sdl.svg'),
           imageAlign: 'top',
         },
