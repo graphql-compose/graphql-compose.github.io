@@ -38,10 +38,6 @@
       "guide-wrapping-rest-api",
       "guide-elasticsearch-with-mongoose",
       "guide-relay"
-    ],
-    "Recipes": [
-      "recipe-authorization",
-      "recipe-writing-tests"
     ]
   }
 }
