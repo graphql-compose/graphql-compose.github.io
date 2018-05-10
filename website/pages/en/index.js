@@ -18,6 +18,10 @@ function imgUrl(img) {
   return siteConfig.baseUrl + 'img/' + img;
 }
 
+function svgUrl(img) {
+  return siteConfig.baseUrl + 'svg/' + img;
+}
+
 function docUrl(doc, language) {
   return siteConfig.baseUrl + 'docs/' + (language ? language + '/' : '') + doc;
 }
@@ -115,20 +119,20 @@ const Features = props => (
       {[
         {
           title: 'Create Types',
-          content: 'You may use SDL, or Type instances.',
-          image: imgUrl('sdl.svg'),
+          content: 'Fast and convenient with SDL or Type instances.',
+          image: svgUrl('sdl.svg'),
           imageAlign: 'top',
         },
         {
-          title: 'Modify Types',
-          content: 'Very important for Schema generation',
-          image: imgUrl('modification.svg'),
+          title: 'Edit Types',
+          content: 'Generate Types and modify them for better form',
+          image: svgUrl('modification.svg'),
           imageAlign: 'top',
         },
         {
           title: 'Construct Models',
-          content: 'TypeComposer with Resolvers',
-          image: imgUrl('models.svg'),
+          content: 'All logic in one place with TypeComposer & Resolvers',
+          image: svgUrl('models.svg'),
           imageAlign: 'top',
         },
       ]}
@@ -138,20 +142,20 @@ const Features = props => (
         {
           title: 'Static Analysis',
           content: 'Includes Flowtype & TypeScript definitions',
-          image: imgUrl('static_analysis.svg'),
-          imageAlign: 'top',
-        },
-        {
-          title: 'Additional Types',
-          content: 'Commonly used basic types `Date`, `JSON`',
-          image: imgUrl('additional-types.svg'),
+          image: svgUrl('static_analysis.svg'),
           imageAlign: 'top',
         },
         {
           title: 'Amazing Plugins',
           content: `Plugin may generate and modify your types
           `,
-          image: imgUrl('plugins.svg'),
+          image: svgUrl('plugins.svg'),
+          imageAlign: 'top',
+        },
+        {
+          title: 'Additional Types',
+          content: 'Commonly used basic types `Date`, `JSON`',
+          image: svgUrl('additional-types.svg'),
           imageAlign: 'top',
         },
       ]}
