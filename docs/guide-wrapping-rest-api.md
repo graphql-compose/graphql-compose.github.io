@@ -152,3 +152,7 @@ GQC.rootQuery().addFields({
 
 export const schema = GQC.buildSchema(); // returns `GraphQLSchema`
 ```
+
+Check out our article describing each step in detail and suggesting some interesting tricks:
+
+[Building GraphQL Schema from RESTful API](https://medium.com/@lyskos97/building-graphql-schema-from-rest-api-ee31ac12c57b)
