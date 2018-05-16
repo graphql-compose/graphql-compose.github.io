@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Toolkit for generating complex GraphQL schemas on Node.js",
+    "tagline": "Toolkit for generating complex GraphQL schemas in Node.js",
     "intro-quick-start": "Quick Start Guide",
     "plugin--reference": "Plugin Reference",
     "__type-modification": "__type-modification",
@@ -22,7 +22,7 @@
     "guide-elasticsearch-with-mongoose": "[WIP] Use ElasticSearch with Mongoose",
     "guide-mongoose": "[WIP] Generate types from Mongoose Models",
     "guide-relay": "[WIP] Relay Schema",
-    "guide-wrapping-rest-api": "[WIP] Wrapping REST API",
+    "guide-wrapping-rest-api": "Wrapping REST API",
     "intro-demos": "Live Demos",
     "intro-installation": "Installation",
     "intro-prerequisites": "Prerequisites",
@@ -52,8 +52,7 @@
     "Introduction": "Introduction",
     "Basics": "Basics",
     "API Reference": "API Reference",
-    "Guide": "Guide",
-    "Recipes": "Recipes"
+    "Guide": "Guide"
   },
   "pages-strings": {
     "Learn more using the [documentation on this site.](/test-site/docs/en/doc1.html)|no description given": "Learn more using the [documentation on this site.](/test-site/docs/en/doc1.html)",
