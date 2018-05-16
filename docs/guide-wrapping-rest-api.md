@@ -29,7 +29,7 @@ resulting **LIVE DEMO**:
 
 <https://graphql-compose-swapi.herokuapp.com>
 
-![image](https://user-images.githubusercontent.com/23356069/39674612-45929618-5170-11e8-8b6b-c37117f9dffb.png)
+![image](https://user-images.githubusercontent.com/23356069/40114701-baa5dc5a-592f-11e8-9dac-1bfba0f5dca4.png)
 
 ### Type Creation
 
