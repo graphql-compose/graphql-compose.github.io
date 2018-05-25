@@ -222,6 +222,63 @@ fragment fullImageData on <span class="hljs-class">EmbeddedImage </span>{
   }
 }
 </code></pre>
+<h3><a class="anchor" aria-hidden="true" id="access-and-modify-mongoose-doc-before-save"></a><a href="#access-and-modify-mongoose-doc-before-save" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Access and modify mongoose doc before save</h3>
+<p>This library provides some amount of ready resolvers for fetch and update data which was mentioned above. And you can <a href="https://github.com/graphql-compose/graphql-compose">create your own resolver</a> of course. However you can find that add some actions or light modifications of mongoose document directly before save at existing resolvers appears more simple than create new resolver. Some of resolvers accepts <em>before save hook</em> wich can be provided in <em>resolver params</em> as param named <code>beforeRecordMutate</code>. This hook allows to have access and modify mongoose document before save. The resolvers which supports this hook are:</p>
+<ul>
+<li>createOne</li>
+<li>removeById</li>
+<li>removeOne</li>
+<li>updateById</li>
+<li>updateOne</li>
+</ul>
+<p>The protype of before save hook:</p>
+<pre><code class="hljs css js">(record: mixed, <span class="hljs-attr">rp</span>: ExtendedResolveParams) =&gt; <span class="hljs-built_in">Promise</span>&lt;*&gt;,
+</code></pre>
+<p>The typical implementation may be like this:</p>
+<pre><code class="hljs css js"><span class="hljs-comment">// extend resolve params with hook</span>
+rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc, rp</span>) </span>{
+  doc.userTouchedAt = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+
+  <span class="hljs-keyword">const</span> canMakeUpdate  = <span class="hljs-keyword">await</span> performAsyncTask( ...provide data <span class="hljs-keyword">from</span> doc... )
+  <span class="hljs-keyword">if</span> (!canMakeUpdate) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Forbidden!'</span>);
+  }
+
+  <span class="hljs-keyword">return</span> doc;
+}
+</code></pre>
+<p>You can provide your implementation directly in type composer:</p>
+<pre><code class="hljs css js">UserTC.wrapResolverResolve(<span class="hljs-string">'updateById'</span>, next =&gt; <span class="hljs-keyword">async</span> rp =&gt; {
+
+  <span class="hljs-comment">// extend resolve params with hook</span>
+  rp.beforeRecordMutate = <span class="hljs-keyword">async</span> (doc, resolveParams) =&gt; { ... };
+
+  <span class="hljs-keyword">return</span> next(rp);
+});
+</code></pre>
+<p>or you can create wrappers for example to protect access:</p>
+<pre><code class="hljs css js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">adminAccess</span>(<span class="hljs-params">resolvers</span>) </span>{
+  <span class="hljs-built_in">Object</span>.keys(resolvers).forEach(<span class="hljs-function">(<span class="hljs-params">k</span>) =&gt;</span> {
+    resolvers[k] = resolvers[k].wrapResolve(<span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-keyword">async</span> rp =&gt; {
+
+      <span class="hljs-comment">// extend resolve params with hook</span>
+      rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc, rp</span>) </span>{ ... }
+
+      <span class="hljs-keyword">return</span> next(rp)
+    })
+  })
+  <span class="hljs-keyword">return</span> resolvers
+}
+
+<span class="hljs-comment">// and wrap the resolvers</span>
+schemaComposer.Mutation.addFields({
+  <span class="hljs-attr">createResource</span>: ResourceTC.getResolver(<span class="hljs-string">'createOne'</span>),
+  ...adminAccess({
+    <span class="hljs-attr">updateResource</span>: ResourceTC.getResolver(<span class="hljs-string">'updateById'</span>),
+    <span class="hljs-attr">removeResource</span>: ResourceTC.getResolver(<span class="hljs-string">'removeById'</span>),
+  }),
+});
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="customization-options"></a><a href="#customization-options" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customization options</h2>
 <p>When we convert model <code>const UserTC = composeWithMongoose(User, customizationOptions);</code> you may tune every piece of future derived types and resolvers.</p>
 <h3><a class="anchor" aria-hidden="true" id="here-is-flow-typed-definition-of-this-options"></a><a href="#here-is-flow-typed-definition-of-this-options" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Here is flow typed definition of this options:</h3>
@@ -344,7 +401,7 @@ fragment fullImageData on <span class="hljs-class">EmbeddedImage </span>{
 <p>This plugin adds <code>pagination</code> resolver.</p>
 <h2><a class="anchor" aria-hidden="true" id="license"></a><a href="#license" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>License</h2>
 <p><a href="https://github.com/graphql-compose/graphql-compose-mongoose/blob/master/LICENSE.md">MIT</a></p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="plugin--list.html">← Plugins list</a><a class="docs-next button" href="plugin-elasticsearch.html">graphql-compose-elasticsearch →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a><ul class="toc-headings"><li><a href="#different-builds">Different builds</a></li></ul></li><li><a href="#example">Example</a></li><li><a href="#faq">FAQ</a><ul class="toc-headings"><li><a href="#can-i-get-generated-vanilla-graphql-types">Can I get generated vanilla GraphQL types?</a></li><li><a href="#how-to-add-custom-fields">How to add custom fields?</a></li><li><a href="#how-to-build-nesting-relations">How to build nesting/relations?</a></li><li><a href="#reusing-the-same-mongoose-schema-in-embedded-object-fields">Reusing the same mongoose Schema in embedded object fields</a></li></ul></li><li><a href="#customization-options">Customization options</a><ul class="toc-headings"><li><a href="#here-is-flow-typed-definition-of-this-options">Here is flow typed definition of this options:</a></li></ul></li><li><a href="#used-plugins">Used plugins</a><ul class="toc-headings"><li><a href="#graphql-compose-connection-https-githubcom-graphql-compose-graphql-compose-connection">graphql-compose-connection</a></li><li><a href="#graphql-compose-pagination-https-githubcom-graphql-compose-graphql-compose-pagination">graphql-compose-pagination</a></li></ul></li><li><a href="#license">License</a></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="plugin--list.html">← Plugins list</a><a class="docs-next button" href="plugin-elasticsearch.html">graphql-compose-elasticsearch →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a><ul class="toc-headings"><li><a href="#different-builds">Different builds</a></li></ul></li><li><a href="#example">Example</a></li><li><a href="#faq">FAQ</a><ul class="toc-headings"><li><a href="#can-i-get-generated-vanilla-graphql-types">Can I get generated vanilla GraphQL types?</a></li><li><a href="#how-to-add-custom-fields">How to add custom fields?</a></li><li><a href="#how-to-build-nesting-relations">How to build nesting/relations?</a></li><li><a href="#reusing-the-same-mongoose-schema-in-embedded-object-fields">Reusing the same mongoose Schema in embedded object fields</a></li><li><a href="#access-and-modify-mongoose-doc-before-save">Access and modify mongoose doc before save</a></li></ul></li><li><a href="#customization-options">Customization options</a><ul class="toc-headings"><li><a href="#here-is-flow-typed-definition-of-this-options">Here is flow typed definition of this options:</a></li></ul></li><li><a href="#used-plugins">Used plugins</a><ul class="toc-headings"><li><a href="#graphql-compose-connection-https-githubcom-graphql-compose-graphql-compose-connection">graphql-compose-connection</a></li><li><a href="#graphql-compose-pagination-https-githubcom-graphql-compose-graphql-compose-pagination">graphql-compose-pagination</a></li></ul></li><li><a href="#license">License</a></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
         areas: [
           // try to use the first query.
           '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
