@@ -9,6 +9,7 @@
     "__type-modification": "__type-modification",
     "api-EnumTypeComposer": "EnumTypeComposer",
     "api-InputTypeComposer": "InputTypeComposer",
+    "api-InterfaceTypeComposer": "InterfaceTypeComposer",
     "api-misc": "API misc",
     "api-Resolver": "Resolver",
     "api-SchemaComposer": "SchemaComposer",
