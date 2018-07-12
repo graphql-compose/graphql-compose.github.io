@@ -96,7 +96,7 @@ setField(
 ): InterfaceTypeComposer<TContext>
 ```
 
-### ()
+### addFields()
 
 Add new fields or replace existed in a GraphQL type
 
