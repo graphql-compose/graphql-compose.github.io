@@ -7,6 +7,14 @@ Main class that gets `GraphQLObjectType` and provide ability to change them.
 
 ## Static methods
 
+### static schemaComposer
+
+Current `SchemaComposer` instance which is used for storing types created by `TypeComposer`.
+
+```js
+static schemaComposer: SchemaComposer;
+```
+
 ### static create()
 
 Create `TypeComposer` with adding it by name to the `SchemaComposer`.
@@ -399,14 +407,14 @@ wrapResolverResolve(
 ### getInterfaces()
 
 ```js
-getInterfaces(): Array<GraphQLInterfaceType>;
+getInterfaces(): Array<InterfaceTypeComposer | GraphQLInterfaceType>;
 ```
 
 ### setInterfaces()
 
 ```js
 setInterfaces(
-  interfaces: Array<GraphQLInterfaceType>
+  interfaces: Array<InterfaceTypeComposer | GraphQLInterfaceType>
 ): TypeComposer;
 ```
 
@@ -414,7 +422,7 @@ setInterfaces(
 
 ```js
 hasInterface(
-  interfaceObj: GraphQLInterfaceType
+  interfaceObj: InterfaceTypeComposer | GraphQLInterfaceType
 ): boolean;
 ```
 
@@ -422,7 +430,7 @@ hasInterface(
 
 ```js
 addInterface(
-  interfaceObj: GraphQLInterfaceType
+  interfaceObj: InterfaceTypeComposer | GraphQLInterfaceType
 ): TypeComposer;
 ```
 
@@ -430,7 +438,7 @@ addInterface(
 
 ```js
 removeInterface(
-  interfaceObj: GraphQLInterfaceType
+  interfaceObj: InterfaceTypeComposer | GraphQLInterfaceType
 ): TypeComposer;
 ```
 

@@ -207,6 +207,13 @@ only({ a: 1, b: 2, c: 3 }, ['a', 'd']); // { a: 1 }
 only({ a: 1, b: 2, c: 3 }, 'c'); // { c: 3 }
 ```
 
+### inspect
+Used to print any values as a string in error messages.
+
+```js
+inspect(value: mixed): string
+```
+
 ### toDottedObject()
 
 Convert object to dotted-key/value pair.

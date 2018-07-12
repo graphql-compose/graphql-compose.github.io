@@ -31,13 +31,54 @@ import { schemaComposer } from 'graphql-compose';
 schemaComposer.Subscription.addFields({ ... });
 ```
 
+### TypeComposer
+```js
+const MeTC = schemaComposer.TypeComposer.create(`type Me { name: String! }`);
+```
+
+### InputTypeComposer
+```js
+const MeITC = schemaComposer.InputTypeComposer.create(`input MeInput { name: String! }`);
+```
+
+### EnumTypeComposer
+```js
+const SortETC = schemaComposer.EnumTypeComposer.create(`enum Sort { ASC, DESC }`);
+```
+
+### InterfaceTypeComposer
+```js
+const HumanIFTC = schemaComposer.InterfaceTypeComposer.create(`interface Human { name: String! }`);
+```
+
+### Resolver
+```js
+const fetchResolver = new schemaComposer.Resolver({ ... });
+```
+
+### TypeMapper
+```js
+const GraphQLTypeMe = schemaComposer.TypeMapper.createType(`type Me { name: String! }`);
+```
 
 ## Methods
 
 ### buildSchema()
 Create `EnumTypeComposer` with adding it by name to the `SchemaComposer`. This type became avaliable in SDL by its name.
 ```js
-buildSchema(): GraphQLSchema
+type ExtraSchemaConfig = {
+  types?: GraphQLNamedType[] | null,
+  directives?: GraphQLDirective[] | null,
+  astNode?: SchemaDefinitionNode | null,
+};
+
+buildSchema(extraConfig?: ExtraSchemaConfig): GraphQLSchema
+```
+
+### addSchemaMustHaveType()
+When using Interfaces you may have such Types which are hidden under Interface.resolveType method. In such cases you should add these types explicitly. Cause `buildSchema()` will take only real used types and types which added via `addSchemaMustHaveType()` method.
+```js
+addSchemaMustHaveType(type: MustHaveTypes<TContext>): this;
 ```
 
 ### getOrCreateTC()
@@ -62,6 +103,14 @@ getOrCreateETC(
   typeName: string,
   onCreate?: (EnumTypeComposer) => any
 ): EnumTypeComposer
+```
+
+### getOrCreateIFTC()
+```js
+getOrCreateETC(
+  typeName: string,
+  onCreate?: (iftc: InterfaceTypeComposer<TContext>) => any
+): InterfaceTypeComposer<TContext>
 ```
 
 ## Storage methods
@@ -108,6 +157,13 @@ getITC(
 getETC(
   typeName: string
 ): EnumTypeComposer
+```
+
+### getIFTC()
+```js
+getIFTC(
+  typeName: string
+): InterfaceTypeComposer<TContext>
 ```
 
 ## Map methods

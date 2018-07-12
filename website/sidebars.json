@@ -15,11 +15,12 @@
     ],
     "API Reference": [
       "api-TypeComposer",
+      "api-Resolver",
       "api-InputTypeComposer",
       "api-EnumTypeComposer",
-      "api-Resolver",
-      "api-TypeMapper",
+      "api-InterfaceTypeComposer"
       "api-SchemaComposer",
+      "api-TypeMapper",
       "api-misc"
     ],
     "Plugins": [

@@ -7,6 +7,14 @@ title: EnumTypeComposer
 
 ## Static methods
 
+### static schemaComposer
+
+Current `SchemaComposer` instance which is used for storing types created by `EnumTypeComposer`.
+
+```js
+static schemaComposer: SchemaComposer;
+```
+
 ### static create()
 Create `EnumTypeComposer` with adding it by name to the `SchemaComposer`. This type became avaliable in SDL by its name.
 ```js
@@ -16,7 +24,7 @@ static create(
 ```
 
 ### static createTemp()
-Create `EnumTypeComposer` without adding it to the `SchemaComposer`. This method may be usefull in plugins, when you need to create type temporary. 
+Create `EnumTypeComposer` without adding it to the `SchemaComposer`. This method may be usefull in plugins, when you need to create type temporary.
 ```js
 static createTemp(
   opts: TypeAsString | GraphQLEnumTypeConfig | GraphQLEnumType

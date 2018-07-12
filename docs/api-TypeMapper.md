@@ -5,6 +5,16 @@ title: TypeMapper
 
 Type storage and type generator from `Schema Definition Language` (`SDL`). This is slightly rewritten [buildASTSchema](https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js) utility from `graphql-js` that allows to create type from a string (SDL).
 
+## Properties
+
+### schemaComposer
+
+Current `SchemaComposer` instance which is used for getting types by name for type creation via SDL.
+
+```js
+static schemaComposer: SchemaComposer;
+```
+
 ## Methods
 
 ### get()

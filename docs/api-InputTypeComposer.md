@@ -7,6 +7,14 @@ title: InputTypeComposer
 
 ## Static methods
 
+### static schemaComposer
+
+Current `SchemaComposer` instance which is used for storing types created by `InputTypeComposer`.
+
+```js
+static schemaComposer: SchemaComposer;
+```
+
 ### static create()
 
 Create `InputTypeComposer` with adding it by name to the `SchemaComposer`.
