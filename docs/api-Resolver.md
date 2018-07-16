@@ -5,14 +5,14 @@ title: Resolver
 
 The most interesting class in `graphql-compose`. The main goal of `Resolver` is to keep available resolve methods for Type and use them for building relation with other types.
 
-## Static methods
+## Properties
 
-### static schemaComposer
+### schemaComposer
 
 Current `SchemaComposer` instance which is used for storing types created by `Resolver`.
 
 ```js
-static schemaComposer: SchemaComposer;
+Resolver.schemaComposer: SchemaComposer;
 ```
 
 ## Output type methods

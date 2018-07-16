@@ -7,14 +7,6 @@ Class that helps to create `GraphQLInterfaceType`s and provide ability to modify
 
 ## Static methods
 
-### static schemaComposer
-
-Current `SchemaComposer` instance which is used for storing types created by `InterfaceTypeComposer`.
-
-```js
-static schemaComposer: SchemaComposer
-```
-
 ### static create()
 
 Create `InterfaceTypeComposer` with adding it by name to the `SchemaComposer`.
@@ -39,6 +31,16 @@ static createTemp<TCtx>(
     | ComposeInterfaceTypeConfig<any, TCtx>
     | GraphQLInterfaceType
 ): InterfaceTypeComposer<TCtx>
+```
+
+## Properties
+
+### schemaComposer
+
+Current `SchemaComposer` instance which is used for storing types created by `InterfaceTypeComposer`.
+
+```js
+SomeIFTC.schemaComposer: SchemaComposer
 ```
 
 ## Field methods

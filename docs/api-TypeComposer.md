@@ -7,14 +7,6 @@ Main class that gets `GraphQLObjectType` and provide ability to change them.
 
 ## Static methods
 
-### static schemaComposer
-
-Current `SchemaComposer` instance which is used for storing types created by `TypeComposer`.
-
-```js
-static schemaComposer: SchemaComposer;
-```
-
 ### static create()
 
 Create `TypeComposer` with adding it by name to the `SchemaComposer`.
@@ -39,6 +31,16 @@ static createTemp<TCtx>(
     | ComposeObjectTypeConfig<any, TCtx>
     | GraphQLObjectType
 ): TypeComposer<TCtx>;
+```
+
+## Properties
+
+### schemaComposer
+
+Current `SchemaComposer` instance which is used for storing types created by `TypeComposer`.
+
+```js
+SomeTC.schemaComposer: SchemaComposer;
 ```
 
 ## Field methods
