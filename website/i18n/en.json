@@ -21,6 +21,7 @@
     "basics-type-modification": "Type modification",
     "basics-types": "Type creation",
     "guide-elasticsearch-with-mongoose": "[WIP] Use ElasticSearch with Mongoose",
+    "guide-file-uploads": "File uploads",
     "guide-mongoose": "[WIP] Generate types from Mongoose Models",
     "guide-relay": "[WIP] Relay Schema",
     "guide-wrapping-rest-api": "Wrapping REST API",

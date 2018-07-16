@@ -35,8 +35,9 @@
       "plugin-writing-custom-plugin"
     ],
     "Guide": [
-      "guide-mongoose",
       "guide-wrapping-rest-api",
+      "guide-file-uploads",
+      "guide-mongoose",
       "guide-elasticsearch-with-mongoose",
       "guide-relay"
     ]
