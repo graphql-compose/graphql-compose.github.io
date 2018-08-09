@@ -289,6 +289,8 @@ get(
 
 ## Internal type definitions
 
+Flowtype definitions which are used in this class.
+
 ### ComposeInputFieldConfigMap
 
 ```js

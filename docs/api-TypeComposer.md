@@ -369,7 +369,7 @@ addResolver(
       kind: 'query' | 'mutation' | 'subscription',
       type: ComposeOutputType<TContext>,
       args: ComposeFieldConfigArgumentMap,
-      resolve: ResolverRpCb<TSource, TContext>,
+      resolve: (resolveParams: ResolveParams<TSource, TContext>) => Promise<any> | any,
       description?: string,
     }
 ): TypeComposer;
