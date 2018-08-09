@@ -247,7 +247,106 @@
   opts?: ResolveDebugOpts
 ): Resolver&lt;TSource, TContext&gt;;
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="api-TypeComposer.html">← TypeComposer</a><a class="docs-next button" href="api-InputTypeComposer.html">InputTypeComposer →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#output-type-methods">Output type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypecomposer">getTypeComposer()</a></li><li><a href="#settype">setType()</a></li></ul></li><li><a href="#args-methods">Args methods</a><ul class="toc-headings"><li><a href="#hasarg">hasArg()</a></li><li><a href="#getarg">getArg()</a></li><li><a href="#getargconfig">getArgConfig()</a></li><li><a href="#getargtype">getArgType()</a></li><li><a href="#getargtc">getArgTC()</a></li><li><a href="#getargs">getArgs()</a></li><li><a href="#getargnames">getArgNames()</a></li><li><a href="#setargs">setArgs()</a></li><li><a href="#setarg">setArg()</a></li><li><a href="#extendarg">extendArg()</a></li><li><a href="#addargs">addArgs()</a></li><li><a href="#removearg">removeArg()</a></li><li><a href="#removeotherargs">removeOtherArgs()</a></li><li><a href="#reorderargs">reorderArgs()</a></li><li><a href="#clonearg">cloneArg()</a></li><li><a href="#isrequired">isRequired()</a></li><li><a href="#makerequired">makeRequired()</a></li><li><a href="#makeoptional">makeOptional()</a></li><li><a href="#addfilterarg">addFilterArg()</a></li><li><a href="#addsortarg">addSortArg()</a></li></ul></li><li><a href="#resolve-methods">Resolve methods</a><ul class="toc-headings"><li><a href="#getresolve">getResolve()</a></li><li><a href="#setresolve">setResolve()</a></li></ul></li><li><a href="#wrap-methods">Wrap methods</a><ul class="toc-headings"><li><a href="#wrap">wrap()</a></li><li><a href="#wrapresolve">wrapResolve()</a></li><li><a href="#wrapargs">wrapArgs()</a></li><li><a href="#wrapclonearg">wrapCloneArg()</a></li><li><a href="#wraptype">wrapType()</a></li></ul></li><li><a href="#misc-methods">Misc methods</a><ul class="toc-headings"><li><a href="#getfieldconfig">getFieldConfig()</a></li><li><a href="#getkind">getKind()</a></li><li><a href="#setkind">setKind()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#get">get()</a></li><li><a href="#clone">clone()</a></li></ul></li><li><a href="#debug-methods">Debug methods</a><ul class="toc-headings"><li><a href="#getnestedname">getNestedName()</a></li><li><a href="#tostring">toString()</a></li><li><a href="#setdisplayname">setDisplayName()</a></li><li><a href="#todebugstructure">toDebugStructure()</a></li><li><a href="#debugexectime">debugExecTime()</a></li><li><a href="#debugparams">debugParams()</a></li><li><a href="#debugpayload">debugPayload()</a></li><li><a href="#debug">debug()</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+<h2><a class="anchor" aria-hidden="true" id="internal-type-definitions"></a><a href="#internal-type-definitions" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Internal type definitions</h2>
+<p>Flowtype definitions which are used in this class.</p>
+<h3><a class="anchor" aria-hidden="true" id="resolveparams-tsource-tcontext"></a><a href="#resolveparams-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolveParams&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolveParams&lt;TSource, TContext&gt; = {
+  <span class="hljs-attr">source</span>: TSource,
+  <span class="hljs-attr">args</span>: { [argName: string]: any },
+  <span class="hljs-attr">context</span>: TContext,
+  <span class="hljs-attr">info</span>: GraphQLResolveInfo,
+  <span class="hljs-attr">projection</span>: $Shape&lt;ProjectionType&gt;,
+  [opt: string]: any,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverkinds"></a><a href="#resolverkinds" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverKinds</h3>
+<pre><code class="hljs css js">type ResolverKinds = <span class="hljs-string">'query'</span> | <span class="hljs-string">'mutation'</span> | <span class="hljs-string">'subscription'</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverfilterargfn-tsource-tcontext"></a><a href="#resolverfilterargfn-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverFilterArgFn&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolverFilterArgFn&lt;TSource, TContext&gt; = (
+  query: any,
+  <span class="hljs-attr">value</span>: any,
+  <span class="hljs-attr">resolveParams</span>: ResolveParams&lt;TSource, TContext&gt;
+) =&gt; any;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverfilterargconfig-tsource-tcontext"></a><a href="#resolverfilterargconfig-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverFilterArgConfig&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolverFilterArgConfig&lt;TSource, TContext&gt; = {
+  +name: string,
+  +type: ComposeArgumentType,
+  +description?: ?string,
+  +query?: ResolverFilterArgFn&lt;TSource, TContext&gt;,
+  +filterTypeNameFallback?: string,
+  +defaultValue?: any,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolversortargfn-tsource-tcontext"></a><a href="#resolversortargfn-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverSortArgFn&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolverSortArgFn&lt;TSource, TContext&gt; = (
+  resolveParams: ResolveParams&lt;TSource, TContext&gt;
+) =&gt; mixed;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolversortargconfig-tsource-tcontext"></a><a href="#resolversortargconfig-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverSortArgConfig&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolverSortArgConfig&lt;TSource, TContext&gt; = {
+  <span class="hljs-attr">name</span>: string,
+  sortTypeNameFallback?: string,
+  <span class="hljs-comment">// value also can be an `Object`, but flow does not understande union with object and function</span>
+  <span class="hljs-comment">// see https://github.com/facebook/flow/issues/1948</span>
+  value:
+    | { [key: string]: any }
+    | ResolverSortArgFn&lt;TSource, TContext&gt;
+    | string
+    | number
+    | boolean
+    | <span class="hljs-built_in">Array</span>&lt;any&gt;,
+  deprecationReason?: ?string,
+  description?: ?string,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolveropts-tsource-tcontext"></a><a href="#resolveropts-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverOpts&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolverOpts&lt;TSource, TContext&gt; = {|
+  type?: ComposeOutputType&lt;TContext&gt;,
+  resolve?: ResolverRpCb&lt;TSource, TContext&gt;,
+  args?: ComposeFieldConfigArgumentMap,
+  name?: string,
+  displayName?: string,
+  kind?: ResolverKinds,
+  description?: string,
+  parent?: Resolver&lt;TSource, TContext&gt;,
+|};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverwrapcb-tsource-tcontext"></a><a href="#resolverwrapcb-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverWrapCb&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolverWrapCb&lt;TSource, TContext&gt; = (
+  newResolver: Resolver&lt;TSource, TContext&gt;,
+  <span class="hljs-attr">prevResolver</span>: Resolver&lt;TSource, TContext&gt;
+) =&gt; Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverrpcb-tsource-tcontext"></a><a href="#resolverrpcb-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverRpCb&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolverRpCb&lt;TSource, TContext&gt; = (
+  resolveParams: $Shape&lt;ResolveParams&lt;TSource, TContext&gt;&gt;
+) =&gt; <span class="hljs-built_in">Promise</span>&lt;any&gt; | any;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolvernextrpcb-tsource-tcontext"></a><a href="#resolvernextrpcb-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverNextRpCb&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ResolverNextRpCb&lt;TSource, TContext&gt; = (
+  next: ResolverRpCb&lt;TSource, TContext&gt;
+) =&gt; ResolverRpCb&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverwrapargscb"></a><a href="#resolverwrapargscb" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverWrapArgsCb</h3>
+<pre><code class="hljs css js">type ResolverWrapArgsCb = (
+  prevArgs: GraphQLFieldConfigArgumentMap
+) =&gt; ComposeFieldConfigArgumentMap;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverwraptypecb-tcontext"></a><a href="#resolverwraptypecb-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverWrapTypeCb<tcontext></h3>
+<pre><code class="hljs css js">type ResolverWrapTypeCb&lt;TContext&gt; = (
+  prevType: GraphQLOutputType
+) =&gt; ComposeOutputType&lt;TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolvedebugopts"></a><a href="#resolvedebugopts" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolveDebugOpts</h3>
+<pre><code class="hljs css js">type ResolveDebugOpts = {
+  showHidden?: boolean,
+  depth?: number,
+  colors?: boolean,
+};
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="api-TypeComposer.html">← TypeComposer</a><a class="docs-next button" href="api-InputTypeComposer.html">InputTypeComposer →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#output-type-methods">Output type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypecomposer">getTypeComposer()</a></li><li><a href="#settype">setType()</a></li></ul></li><li><a href="#args-methods">Args methods</a><ul class="toc-headings"><li><a href="#hasarg">hasArg()</a></li><li><a href="#getarg">getArg()</a></li><li><a href="#getargconfig">getArgConfig()</a></li><li><a href="#getargtype">getArgType()</a></li><li><a href="#getargtc">getArgTC()</a></li><li><a href="#getargs">getArgs()</a></li><li><a href="#getargnames">getArgNames()</a></li><li><a href="#setargs">setArgs()</a></li><li><a href="#setarg">setArg()</a></li><li><a href="#extendarg">extendArg()</a></li><li><a href="#addargs">addArgs()</a></li><li><a href="#removearg">removeArg()</a></li><li><a href="#removeotherargs">removeOtherArgs()</a></li><li><a href="#reorderargs">reorderArgs()</a></li><li><a href="#clonearg">cloneArg()</a></li><li><a href="#isrequired">isRequired()</a></li><li><a href="#makerequired">makeRequired()</a></li><li><a href="#makeoptional">makeOptional()</a></li><li><a href="#addfilterarg">addFilterArg()</a></li><li><a href="#addsortarg">addSortArg()</a></li></ul></li><li><a href="#resolve-methods">Resolve methods</a><ul class="toc-headings"><li><a href="#getresolve">getResolve()</a></li><li><a href="#setresolve">setResolve()</a></li></ul></li><li><a href="#wrap-methods">Wrap methods</a><ul class="toc-headings"><li><a href="#wrap">wrap()</a></li><li><a href="#wrapresolve">wrapResolve()</a></li><li><a href="#wrapargs">wrapArgs()</a></li><li><a href="#wrapclonearg">wrapCloneArg()</a></li><li><a href="#wraptype">wrapType()</a></li></ul></li><li><a href="#misc-methods">Misc methods</a><ul class="toc-headings"><li><a href="#getfieldconfig">getFieldConfig()</a></li><li><a href="#getkind">getKind()</a></li><li><a href="#setkind">setKind()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#get">get()</a></li><li><a href="#clone">clone()</a></li></ul></li><li><a href="#debug-methods">Debug methods</a><ul class="toc-headings"><li><a href="#getnestedname">getNestedName()</a></li><li><a href="#tostring">toString()</a></li><li><a href="#setdisplayname">setDisplayName()</a></li><li><a href="#todebugstructure">toDebugStructure()</a></li><li><a href="#debugexectime">debugExecTime()</a></li><li><a href="#debugparams">debugParams()</a></li><li><a href="#debugpayload">debugPayload()</a></li><li><a href="#debug">debug()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#resolveparams-tsource-tcontext">ResolveParams</a></li><li><a href="#resolverkinds">ResolverKinds</a></li><li><a href="#resolverfilterargfn-tsource-tcontext">ResolverFilterArgFn</a></li><li><a href="#resolverfilterargconfig-tsource-tcontext">ResolverFilterArgConfig</a></li><li><a href="#resolversortargfn-tsource-tcontext">ResolverSortArgFn</a></li><li><a href="#resolversortargconfig-tsource-tcontext">ResolverSortArgConfig</a></li><li><a href="#resolveropts-tsource-tcontext">ResolverOpts</a></li><li><a href="#resolverwrapcb-tsource-tcontext">ResolverWrapCb</a></li><li><a href="#resolverrpcb-tsource-tcontext">ResolverRpCb</a></li><li><a href="#resolvernextrpcb-tsource-tcontext">ResolverNextRpCb</a></li><li><a href="#resolverwrapargscb">ResolverWrapArgsCb</a></li><li><a href="#resolverwraptypecb-tcontext">ResolverWrapTypeCb</a></li><li><a href="#resolvedebugopts">ResolveDebugOpts</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
         areas: [
           // try to use the first query.
           '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',

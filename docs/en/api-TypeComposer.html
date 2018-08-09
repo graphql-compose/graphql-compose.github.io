@@ -22,7 +22,7 @@
   opts:
     | TypeAsString
     | ComposeObjectTypeConfig&lt;any, TCtx&gt;
-    |  GraphQLObjectType
+    | GraphQLObjectType
 ): TypeComposer&lt;TCtx&gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="static-createtemp"></a><a href="#static-createtemp" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static createTemp()</h3>
@@ -233,7 +233,14 @@
 <pre><code class="hljs css js">addResolver(
   resolver:
     | Resolver&lt;any, TContext&gt;
-    | ResolverOpts&lt;any, TContext&gt;
+    | {
+      <span class="hljs-attr">name</span>: string,
+      <span class="hljs-attr">kind</span>: <span class="hljs-string">'query'</span> | <span class="hljs-string">'mutation'</span> | <span class="hljs-string">'subscription'</span>,
+      <span class="hljs-attr">type</span>: ComposeOutputType&lt;TContext&gt;,
+      <span class="hljs-attr">args</span>: ComposeFieldConfigArgumentMap,
+      <span class="hljs-attr">resolve</span>: ResolverRpCb&lt;TSource, TContext&gt;,
+      description?: string,
+    }
 ): TypeComposer;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="removeresolver"></a><a href="#removeresolver" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeResolver()</h3>
@@ -320,7 +327,126 @@
     | <span class="hljs-built_in">Array</span>&lt;string&gt;
 ): any;
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="basics-generating-schema.html">← Generating Schema</a><a class="docs-next button" href="api-Resolver.html">Resolver →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#static-methods">Static methods</a><ul class="toc-headings"><li><a href="#static-create">static create()</a></li><li><a href="#static-createtemp">static createTemp()</a></li></ul></li><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#field-methods">Field methods</a><ul class="toc-headings"><li><a href="#getfields">getFields()</a></li><li><a href="#getfieldnames">getFieldNames()</a></li><li><a href="#setfields">setFields()</a></li><li><a href="#hasfield">hasField()</a></li><li><a href="#setfield">setField()</a></li><li><a href="#addfields">addFields()</a></li><li><a href="#addnestedfields">addNestedFields()</a></li><li><a href="#getfield">getField()</a></li><li><a href="#removefield">removeField()</a></li><li><a href="#removeotherfields">removeOtherFields()</a></li><li><a href="#extendfield">extendField()</a></li><li><a href="#reorderfields">reorderFields()</a></li><li><a href="#getfieldconfig">getFieldConfig()</a></li><li><a href="#getfieldtype">getFieldType()</a></li><li><a href="#getfieldtc">getFieldTC()</a></li><li><a href="#isfieldnonnull">isFieldNonNull()</a></li><li><a href="#makefieldnonnull">makeFieldNonNull()</a></li><li><a href="#makefieldnullable">makeFieldNullable()</a></li><li><a href="#deprecatefields">deprecateFields()</a></li><li><a href="#getfieldargs">getFieldArgs()</a></li><li><a href="#hasfieldarg">hasFieldArg()</a></li><li><a href="#getfieldarg">getFieldArg()</a></li><li><a href="#getfieldargtype">getFieldArgType()</a></li></ul></li><li><a href="#type-methods">Type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypeplural">getTypePlural()</a></li><li><a href="#gettypenonnull">getTypeNonNull()</a></li><li><a href="#gettypename">getTypeName()</a></li><li><a href="#settypename">setTypeName()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#clone">clone()</a></li></ul></li><li><a href="#inputtype-methods">InputType methods</a><ul class="toc-headings"><li><a href="#getinputtype">getInputType()</a></li><li><a href="#hasinputtypecomposer">hasInputTypeComposer()</a></li><li><a href="#getinputtypecomposer">getInputTypeComposer()</a></li><li><a href="#getitc">getITC()</a></li></ul></li><li><a href="#resolver-methods">Resolver methods</a><ul class="toc-headings"><li><a href="#getresolvers">getResolvers()</a></li><li><a href="#hasresolver">hasResolver()</a></li><li><a href="#getresolver">getResolver()</a></li><li><a href="#setresolver">setResolver()</a></li><li><a href="#addresolver">addResolver()</a></li><li><a href="#removeresolver">removeResolver()</a></li><li><a href="#wrapresolver">wrapResolver()</a></li><li><a href="#wrapresolveras">wrapResolverAs()</a></li><li><a href="#wrapresolverresolve">wrapResolverResolve()</a></li></ul></li><li><a href="#interface-methods">Interface methods</a><ul class="toc-headings"><li><a href="#getinterfaces">getInterfaces()</a></li><li><a href="#setinterfaces">setInterfaces()</a></li><li><a href="#hasinterface">hasInterface()</a></li><li><a href="#addinterface">addInterface()</a></li><li><a href="#removeinterface">removeInterface()</a></li></ul></li><li><a href="#misc-methods">Misc methods</a><ul class="toc-headings"><li><a href="#addrelation">addRelation()</a></li><li><a href="#getrelations">getRelations()</a></li><li><a href="#setrecordidfn">setRecordIdFn()</a></li><li><a href="#hasrecordidfn">hasRecordIdFn()</a></li><li><a href="#getrecordidfn">getRecordIdFn()</a></li><li><a href="#getrecordid">getRecordId()</a></li><li><a href="#get">get()</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+<h2><a class="anchor" aria-hidden="true" id="internal-type-definitions"></a><a href="#internal-type-definitions" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Internal type definitions</h2>
+<p>Flowtype definitions which are used in this class.</p>
+<h3><a class="anchor" aria-hidden="true" id="composeobjecttypeconfig-tsource-tcontext"></a><a href="#composeobjecttypeconfig-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeObjectTypeConfig&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ComposeObjectTypeConfig&lt;TSource, TContext&gt; = {
+    <span class="hljs-attr">name</span>: string,
+    interfaces?: Thunk&lt;GraphQLInterfaceType[] | <span class="hljs-literal">null</span>&gt;,
+    fields?: Thunk&lt;ComposeFieldConfigMap&lt;TSource, TContext&gt;&gt;,
+    isTypeOf?: GraphQLIsTypeOfFn&lt;TSource, TContext&gt; | <span class="hljs-literal">null</span>,
+    description?: string | <span class="hljs-literal">null</span>,
+    isIntrospection?: boolean,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composefieldconfigmap-tsource-tcontext"></a><a href="#composefieldconfigmap-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeFieldConfigMap&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ComposeFieldConfigMap&lt;TSource, TContext&gt; = ObjMap&lt;
+    ComposeFieldConfig&lt;TSource, TContext&gt;
+&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composefieldconfig-tsource-tcontext"></a><a href="#composefieldconfig-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeFieldConfig&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ComposeFieldConfig&lt;TSource, TContext&gt; =
+    | ComposeFieldConfigAsObject&lt;TSource, TContext&gt;
+    | ComposeOutputType&lt;TContext&gt;
+    | <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> ComposeFieldConfigAsObject&lt;TSource, TContext&gt; | ComposeOutputType&lt;TContext&gt;);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="graphqlfieldconfigextended-tsource-tcontext"></a><a href="#graphqlfieldconfigextended-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GraphqlFieldConfigExtended&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js"><span class="hljs-comment">// extended GraphQLFieldConfig</span>
+type GraphqlFieldConfigExtended&lt;TSource, TContext&gt; =
+    GraphQLFieldConfig&lt;TSource, TContext&gt; &amp; { projection?: any };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composefieldconfigasobject-tsource-tcontext"></a><a href="#composefieldconfigasobject-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeFieldConfigAsObject&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type ComposeFieldConfigAsObject&lt;TSource, TContext&gt; = {
+    <span class="hljs-attr">type</span>: Thunk&lt;ComposeOutputType&lt;TContext&gt;&gt; | GraphQLOutputType,
+    args?: ComposeFieldConfigArgumentMap,
+    resolve?: GraphQLFieldResolver&lt;TSource, TContext&gt;,
+    subscribe?: GraphQLFieldResolver&lt;TSource, TContext&gt;,
+    deprecationReason?: string | <span class="hljs-literal">null</span>,
+    description?: string | <span class="hljs-literal">null</span>,
+    astNode?: FieldDefinitionNode | <span class="hljs-literal">null</span>,
+    [key: string]: any,
+} &amp; { $call?: <span class="hljs-keyword">void</span> };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composeoutputtype-tcontext"></a><a href="#composeoutputtype-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeOutputType<TContext></h3>
+<pre><code class="hljs css js"><span class="hljs-comment">// extended GraphQLOutputType</span>
+type ComposeOutputType&lt;TContext&gt; =
+    | GraphQLOutputType
+    | TypeComposer&lt;TContext&gt;
+    | EnumTypeComposer
+    | TypeAsString
+    | Resolver&lt;any, TContext&gt;
+    | <span class="hljs-built_in">Array</span>&lt;GraphQLOutputType | TypeComposer&lt;TContext&gt; | EnumTypeComposer | TypeAsString | Resolver&lt;any, TContext&gt;&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composeargumenttype"></a><a href="#composeargumenttype" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeArgumentType</h3>
+<pre><code class="hljs css js">type ComposeArgumentType =
+    | GraphQLInputType
+    | TypeAsString
+    | InputTypeComposer
+    | EnumTypeComposer
+    | <span class="hljs-built_in">Array</span>&lt;GraphQLInputType | TypeAsString | InputTypeComposer | EnumTypeComposer&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composeargumentconfigasobject"></a><a href="#composeargumentconfigasobject" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeArgumentConfigAsObject</h3>
+<pre><code class="hljs css js">type ComposeArgumentConfigAsObject = {
+    <span class="hljs-attr">type</span>: Thunk&lt;ComposeArgumentType&gt; | GraphQLInputType,
+    defaultValue?: any,
+    description?: string | <span class="hljs-literal">null</span>,
+} &amp; { $call?: <span class="hljs-keyword">void</span> };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composeargumentconfig"></a><a href="#composeargumentconfig" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeArgumentConfig</h3>
+<pre><code class="hljs css js">type ComposeArgumentConfig =
+    | ComposeArgumentConfigAsObject
+    | ComposeArgumentType
+    | <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> ComposeArgumentConfigAsObject | ComposeArgumentType);
+type ComposeFieldConfigArgumentMap = {
+    [argName: string]: ComposeArgumentConfig,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="relationthunkmap-tsource-tcontext"></a><a href="#relationthunkmap-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RelationThunkMap&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type RelationThunkMap&lt;TSource, TContext&gt; = {
+    [fieldName: string]: Thunk&lt;RelationOpts&lt;TSource, TContext&gt;&gt;,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="relationopts-tsource-tcontext"></a><a href="#relationopts-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RelationOpts&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type RelationOpts&lt;TSource, TContext&gt; =
+    | RelationOptsWithResolver&lt;TSource, TContext&gt;
+    | RelationOptsWithFieldConfig&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="relationoptswithresolver-tsource-tcontext"></a><a href="#relationoptswithresolver-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RelationOptsWithResolver&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type RelationOptsWithResolver&lt;TSource, TContext&gt; = {
+    <span class="hljs-attr">resolver</span>: Thunk&lt;Resolver&lt;TSource, TContext&gt;&gt;,
+    prepareArgs?: RelationArgsMapper&lt;TSource, TContext&gt;,
+    projection?: ProjectionType,
+    description?: string | <span class="hljs-literal">null</span>,
+    deprecationReason?: string | <span class="hljs-literal">null</span>,
+    catchErrors?: boolean,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="relationoptswithfieldconfig-tsource-tcontext"></a><a href="#relationoptswithfieldconfig-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RelationOptsWithFieldConfig&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type RelationOptsWithFieldConfig&lt;TSource, TContext&gt; =
+    ComposeFieldConfigAsObject&lt;TSource, TContext&gt; &amp; { <span class="hljs-attr">resolve</span>: GraphQLFieldResolver&lt;TSource, TContext&gt; };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="argstype"></a><a href="#argstype" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ArgsType</h3>
+<pre><code class="hljs css js">type ArgsType = { [argName: string]: any };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="relationargsmapperfn-tsource-tcontext"></a><a href="#relationargsmapperfn-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RelationArgsMapperFn&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type RelationArgsMapperFn&lt;TSource, TContext&gt; = (
+    source: TSource,
+    <span class="hljs-attr">args</span>: ArgsType,
+    <span class="hljs-attr">context</span>: TContext,
+    <span class="hljs-attr">info</span>: GraphQLResolveInfo) =&gt; any;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="relationargsmapper-tsource-tcontext"></a><a href="#relationargsmapper-tsource-tcontext" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RelationArgsMapper&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css js">type RelationArgsMapper&lt;TSource, TContext&gt; = {
+    [argName: string]: | RelationArgsMapperFn&lt;TSource, TContext&gt;
+        | <span class="hljs-literal">null</span>
+        | <span class="hljs-keyword">void</span>
+        | string
+        | number
+        | any[]
+        | GenericMap&lt;any&gt;
+};
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="basics-generating-schema.html">← Generating Schema</a><a class="docs-next button" href="api-Resolver.html">Resolver →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#static-methods">Static methods</a><ul class="toc-headings"><li><a href="#static-create">static create()</a></li><li><a href="#static-createtemp">static createTemp()</a></li></ul></li><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#field-methods">Field methods</a><ul class="toc-headings"><li><a href="#getfields">getFields()</a></li><li><a href="#getfieldnames">getFieldNames()</a></li><li><a href="#setfields">setFields()</a></li><li><a href="#hasfield">hasField()</a></li><li><a href="#setfield">setField()</a></li><li><a href="#addfields">addFields()</a></li><li><a href="#addnestedfields">addNestedFields()</a></li><li><a href="#getfield">getField()</a></li><li><a href="#removefield">removeField()</a></li><li><a href="#removeotherfields">removeOtherFields()</a></li><li><a href="#extendfield">extendField()</a></li><li><a href="#reorderfields">reorderFields()</a></li><li><a href="#getfieldconfig">getFieldConfig()</a></li><li><a href="#getfieldtype">getFieldType()</a></li><li><a href="#getfieldtc">getFieldTC()</a></li><li><a href="#isfieldnonnull">isFieldNonNull()</a></li><li><a href="#makefieldnonnull">makeFieldNonNull()</a></li><li><a href="#makefieldnullable">makeFieldNullable()</a></li><li><a href="#deprecatefields">deprecateFields()</a></li><li><a href="#getfieldargs">getFieldArgs()</a></li><li><a href="#hasfieldarg">hasFieldArg()</a></li><li><a href="#getfieldarg">getFieldArg()</a></li><li><a href="#getfieldargtype">getFieldArgType()</a></li></ul></li><li><a href="#type-methods">Type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypeplural">getTypePlural()</a></li><li><a href="#gettypenonnull">getTypeNonNull()</a></li><li><a href="#gettypename">getTypeName()</a></li><li><a href="#settypename">setTypeName()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#clone">clone()</a></li></ul></li><li><a href="#inputtype-methods">InputType methods</a><ul class="toc-headings"><li><a href="#getinputtype">getInputType()</a></li><li><a href="#hasinputtypecomposer">hasInputTypeComposer()</a></li><li><a href="#getinputtypecomposer">getInputTypeComposer()</a></li><li><a href="#getitc">getITC()</a></li></ul></li><li><a href="#resolver-methods">Resolver methods</a><ul class="toc-headings"><li><a href="#getresolvers">getResolvers()</a></li><li><a href="#hasresolver">hasResolver()</a></li><li><a href="#getresolver">getResolver()</a></li><li><a href="#setresolver">setResolver()</a></li><li><a href="#addresolver">addResolver()</a></li><li><a href="#removeresolver">removeResolver()</a></li><li><a href="#wrapresolver">wrapResolver()</a></li><li><a href="#wrapresolveras">wrapResolverAs()</a></li><li><a href="#wrapresolverresolve">wrapResolverResolve()</a></li></ul></li><li><a href="#interface-methods">Interface methods</a><ul class="toc-headings"><li><a href="#getinterfaces">getInterfaces()</a></li><li><a href="#setinterfaces">setInterfaces()</a></li><li><a href="#hasinterface">hasInterface()</a></li><li><a href="#addinterface">addInterface()</a></li><li><a href="#removeinterface">removeInterface()</a></li></ul></li><li><a href="#misc-methods">Misc methods</a><ul class="toc-headings"><li><a href="#addrelation">addRelation()</a></li><li><a href="#getrelations">getRelations()</a></li><li><a href="#setrecordidfn">setRecordIdFn()</a></li><li><a href="#hasrecordidfn">hasRecordIdFn()</a></li><li><a href="#getrecordidfn">getRecordIdFn()</a></li><li><a href="#getrecordid">getRecordId()</a></li><li><a href="#get">get()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#composeobjecttypeconfig-tsource-tcontext">ComposeObjectTypeConfig</a></li><li><a href="#composefieldconfigmap-tsource-tcontext">ComposeFieldConfigMap</a></li><li><a href="#composefieldconfig-tsource-tcontext">ComposeFieldConfig</a></li><li><a href="#graphqlfieldconfigextended-tsource-tcontext">GraphqlFieldConfigExtended</a></li><li><a href="#composefieldconfigasobject-tsource-tcontext">ComposeFieldConfigAsObject</a></li><li><a href="#composeoutputtype-tcontext">ComposeOutputType</a></li><li><a href="#composeargumenttype">ComposeArgumentType</a></li><li><a href="#composeargumentconfigasobject">ComposeArgumentConfigAsObject</a></li><li><a href="#composeargumentconfig">ComposeArgumentConfig</a></li><li><a href="#relationthunkmap-tsource-tcontext">RelationThunkMap</a></li><li><a href="#relationopts-tsource-tcontext">RelationOpts</a></li><li><a href="#relationoptswithresolver-tsource-tcontext">RelationOptsWithResolver</a></li><li><a href="#relationoptswithfieldconfig-tsource-tcontext">RelationOptsWithFieldConfig</a></li><li><a href="#argstype">ArgsType</a></li><li><a href="#relationargsmapperfn-tsource-tcontext">RelationArgsMapperFn</a></li><li><a href="#relationargsmapper-tsource-tcontext">RelationArgsMapper</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
         areas: [
           // try to use the first query.
           '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
