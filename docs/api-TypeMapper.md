@@ -136,3 +136,31 @@ convertInputFieldConfigMap(
   typeName?: string
 ): GraphQLInputFieldConfigMap;
 ```
+
+## Internal type definitions
+
+Flowtype definitions which are used in this class.
+
+### TypeDefinitionString
+
+```js
+type TypeDefinitionString = string; // eg type Name { field: Int }
+```
+
+### TypeWrappedString
+
+```js
+type TypeWrappedString = string; // eg. Int, Int!, [Int]
+```
+
+### TypeNameString
+
+```js
+type TypeNameString = string; // eg. Int, Float
+```
+
+### TypeAsString
+
+```js
+type TypeAsString = TypeDefinitionString | TypeWrappedString | TypeNameString;
+```

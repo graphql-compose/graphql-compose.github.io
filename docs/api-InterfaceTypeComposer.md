@@ -367,3 +367,43 @@ get(
   path: string | string[]
 ): any
 ```
+
+## Internal type definitions
+
+Flowtype definitions which are used in this class.
+
+### InterfaceTypeResolversMap<TSource, TContext>
+
+```js
+type InterfaceTypeResolversMap<TSource, TContext> = Map<
+  TypeComposer<TContext> | GraphQLObjectType,
+  InterfaceTypeResolverCheckFn<TSource, TContext>
+>;
+```
+
+### MaybePromise<+T>
+
+```js
+type MaybePromise<+T> = Promise<T> | T;
+```
+
+### InterfaceTypeResolverCheckFn<TSource, TContext>
+
+```js
+type InterfaceTypeResolverCheckFn<TSource, TContext> = (
+  value: TSource,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => MaybePromise<?boolean>;
+```
+
+### ComposeInterfaceTypeConfig<TSource, TContext>
+
+```js
+type ComposeInterfaceTypeConfig<TSource, TContext> = {
+  +name: string,
+  +fields?: Thunk<ComposeFieldConfigMap<TSource, TContext>>,
+  +resolveType?: ?GraphQLTypeResolver<TSource, TContext>,
+  +description?: ?string,
+};
+```

@@ -286,3 +286,53 @@ get(
   path: string | Array<string>
 ): any;
 ```
+
+## Internal type definitions
+
+### ComposeInputFieldConfigMap
+
+```js
+type ComposeInputFieldConfigMap = ObjMap<ComposeInputFieldConfig>;
+```
+
+### ComposeInputFieldConfig
+
+```js
+type ComposeInputFieldConfig =
+  | ComposeInputFieldConfigAsObject
+  | ComposeInputType
+  | (() => ComposeInputFieldConfigAsObject | ComposeInputType);
+```
+
+### ComposeInputFieldConfigAsObject
+
+```js
+type ComposeInputFieldConfigAsObject = {
+  type: Thunk<ComposeInputType> | GraphQLInputType,
+  defaultValue?: mixed,
+  description?: ?string,
+  astNode?: ?InputValueDefinitionNode,
+  [key: string]: any,
+};
+```
+
+### ComposeInputType
+
+```js
+type ComposeInputType =
+  | InputTypeComposer
+  | EnumTypeComposer
+  | GraphQLInputType
+  | TypeAsString
+  | Array<ComposeInputType>;
+```
+
+### ComposeInputObjectTypeConfig
+
+```js
+type ComposeInputObjectTypeConfig = {
+  name: string,
+  fields: Thunk<ComposeInputFieldConfigMap>,
+  description?: ?string,
+};
+```

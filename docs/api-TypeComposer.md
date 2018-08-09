@@ -16,7 +16,7 @@ static create<TCtx>(
   opts:
     | TypeAsString
     | ComposeObjectTypeConfig<any, TCtx>
-    |  GraphQLObjectType
+    | GraphQLObjectType
 ): TypeComposer<TCtx>;
 ```
 
@@ -364,7 +364,14 @@ setResolver(
 addResolver(
   resolver:
     | Resolver<any, TContext>
-    | ResolverOpts<any, TContext>
+    | {
+      name: string,
+      kind: 'query' | 'mutation' | 'subscription',
+      type: ComposeOutputType<TContext>,
+      args: ComposeFieldConfigArgumentMap,
+      resolve: ResolverRpCb<TSource, TContext>,
+      description?: string,
+    }
 ): TypeComposer;
 ```
 
@@ -501,4 +508,173 @@ get(
     | string
     | Array<string>
 ): any;
+```
+
+## Internal type definitions
+
+Flowtype definitions which are used in this class.
+
+### ComposeObjectTypeConfig<TSource, TContext>
+
+```js
+type ComposeObjectTypeConfig<TSource, TContext> = {
+    name: string,
+    interfaces?: Thunk<GraphQLInterfaceType[] | null>,
+    fields?: Thunk<ComposeFieldConfigMap<TSource, TContext>>,
+    isTypeOf?: GraphQLIsTypeOfFn<TSource, TContext> | null,
+    description?: string | null,
+    isIntrospection?: boolean,
+};
+```
+
+### ComposeFieldConfigMap<TSource, TContext>
+
+```js
+type ComposeFieldConfigMap<TSource, TContext> = ObjMap<
+    ComposeFieldConfig<TSource, TContext>
+>;
+```
+
+### ComposeFieldConfig<TSource, TContext>
+
+```js
+type ComposeFieldConfig<TSource, TContext> =
+    | ComposeFieldConfigAsObject<TSource, TContext>
+    | ComposeOutputType<TContext>
+    | (() => ComposeFieldConfigAsObject<TSource, TContext> | ComposeOutputType<TContext>);
+```
+
+### GraphqlFieldConfigExtended<TSource, TContext>
+
+```js
+// extended GraphQLFieldConfig
+type GraphqlFieldConfigExtended<TSource, TContext> =
+    GraphQLFieldConfig<TSource, TContext> & { projection?: any };
+```
+
+### ComposeFieldConfigAsObject<TSource, TContext>
+
+```js
+type ComposeFieldConfigAsObject<TSource, TContext> = {
+    type: Thunk<ComposeOutputType<TContext>> | GraphQLOutputType,
+    args?: ComposeFieldConfigArgumentMap,
+    resolve?: GraphQLFieldResolver<TSource, TContext>,
+    subscribe?: GraphQLFieldResolver<TSource, TContext>,
+    deprecationReason?: string | null,
+    description?: string | null,
+    astNode?: FieldDefinitionNode | null,
+    [key: string]: any,
+} & { $call?: void };
+```
+
+### ComposeOutputType<TContext>
+
+```js
+// extended GraphQLOutputType
+type ComposeOutputType<TContext> =
+    | GraphQLOutputType
+    | TypeComposer<TContext>
+    | EnumTypeComposer
+    | TypeAsString
+    | Resolver<any, TContext>
+    | Array<GraphQLOutputType | TypeComposer<TContext> | EnumTypeComposer | TypeAsString | Resolver<any, TContext>>;
+```
+
+### ComposeArgumentType
+
+```js
+type ComposeArgumentType =
+    | GraphQLInputType
+    | TypeAsString
+    | InputTypeComposer
+    | EnumTypeComposer
+    | Array<GraphQLInputType | TypeAsString | InputTypeComposer | EnumTypeComposer>;
+```
+
+### ComposeArgumentConfigAsObject
+
+```js    
+type ComposeArgumentConfigAsObject = {
+    type: Thunk<ComposeArgumentType> | GraphQLInputType,
+    defaultValue?: any,
+    description?: string | null,
+} & { $call?: void };
+```
+
+### ComposeArgumentConfig
+
+```js
+type ComposeArgumentConfig =
+    | ComposeArgumentConfigAsObject
+    | ComposeArgumentType
+    | (() => ComposeArgumentConfigAsObject | ComposeArgumentType);
+type ComposeFieldConfigArgumentMap = {
+    [argName: string]: ComposeArgumentConfig,
+};
+```
+
+### RelationThunkMap<TSource, TContext>
+
+```js
+type RelationThunkMap<TSource, TContext> = {
+    [fieldName: string]: Thunk<RelationOpts<TSource, TContext>>,
+};
+```
+
+### RelationOpts<TSource, TContext>
+
+```js
+type RelationOpts<TSource, TContext> =
+    | RelationOptsWithResolver<TSource, TContext>
+    | RelationOptsWithFieldConfig<TSource, TContext>;
+```
+
+### RelationOptsWithResolver<TSource, TContext> 
+
+```js
+type RelationOptsWithResolver<TSource, TContext> = {
+    resolver: Thunk<Resolver<TSource, TContext>>,
+    prepareArgs?: RelationArgsMapper<TSource, TContext>,
+    projection?: ProjectionType,
+    description?: string | null,
+    deprecationReason?: string | null,
+    catchErrors?: boolean,
+};
+```
+
+### RelationOptsWithFieldConfig<TSource, TContext>
+
+```js
+type RelationOptsWithFieldConfig<TSource, TContext> =
+    ComposeFieldConfigAsObject<TSource, TContext> & { resolve: GraphQLFieldResolver<TSource, TContext> };
+```
+
+### ArgsType
+
+```js
+type ArgsType = { [argName: string]: any };
+```
+
+### RelationArgsMapperFn<TSource, TContext>
+
+```js
+type RelationArgsMapperFn<TSource, TContext> = (
+    source: TSource,
+    args: ArgsType,
+    context: TContext,
+    info: GraphQLResolveInfo) => any;
+```
+
+### RelationArgsMapper<TSource, TContext> 
+
+```js
+type RelationArgsMapper<TSource, TContext> = {
+    [argName: string]: | RelationArgsMapperFn<TSource, TContext>
+        | null
+        | void
+        | string
+        | number
+        | any[]
+        | GenericMap<any>
+};
 ```

@@ -382,3 +382,143 @@ debug(
   opts?: ResolveDebugOpts
 ): Resolver<TSource, TContext>;
 ```
+
+## Internal type definitions
+
+Flowtype definitions which are used in this class.
+
+### ResolveParams<TSource, TContext>
+
+```js
+type ResolveParams<TSource, TContext> = {
+  source: TSource,
+  args: { [argName: string]: any },
+  context: TContext,
+  info: GraphQLResolveInfo,
+  projection: $Shape<ProjectionType>,
+  [opt: string]: any,
+};
+```
+
+### ResolverKinds
+
+```js
+type ResolverKinds = 'query' | 'mutation' | 'subscription';
+```
+
+### ResolverFilterArgFn<TSource, TContext>
+
+```js
+type ResolverFilterArgFn<TSource, TContext> = (
+  query: any,
+  value: any,
+  resolveParams: ResolveParams<TSource, TContext>
+) => any;
+```
+
+### ResolverFilterArgConfig<TSource, TContext>
+
+```js
+type ResolverFilterArgConfig<TSource, TContext> = {
+  +name: string,
+  +type: ComposeArgumentType,
+  +description?: ?string,
+  +query?: ResolverFilterArgFn<TSource, TContext>,
+  +filterTypeNameFallback?: string,
+  +defaultValue?: any,
+};
+```
+
+### ResolverSortArgFn<TSource, TContext>
+
+```js
+type ResolverSortArgFn<TSource, TContext> = (
+  resolveParams: ResolveParams<TSource, TContext>
+) => mixed;
+```
+
+### ResolverSortArgConfig<TSource, TContext>
+
+```js
+type ResolverSortArgConfig<TSource, TContext> = {
+  name: string,
+  sortTypeNameFallback?: string,
+  // value also can be an `Object`, but flow does not understande union with object and function
+  // see https://github.com/facebook/flow/issues/1948
+  value:
+    | { [key: string]: any }
+    | ResolverSortArgFn<TSource, TContext>
+    | string
+    | number
+    | boolean
+    | Array<any>,
+  deprecationReason?: ?string,
+  description?: ?string,
+};
+```
+
+### ResolverOpts<TSource, TContext>
+
+```js
+type ResolverOpts<TSource, TContext> = {|
+  type?: ComposeOutputType<TContext>,
+  resolve?: ResolverRpCb<TSource, TContext>,
+  args?: ComposeFieldConfigArgumentMap,
+  name?: string,
+  displayName?: string,
+  kind?: ResolverKinds,
+  description?: string,
+  parent?: Resolver<TSource, TContext>,
+|};
+```
+
+### ResolverWrapCb<TSource, TContext>
+
+```js
+type ResolverWrapCb<TSource, TContext> = (
+  newResolver: Resolver<TSource, TContext>,
+  prevResolver: Resolver<TSource, TContext>
+) => Resolver<TSource, TContext>;
+```
+
+### ResolverRpCb<TSource, TContext>
+
+```js
+type ResolverRpCb<TSource, TContext> = (
+  resolveParams: $Shape<ResolveParams<TSource, TContext>>
+) => Promise<any> | any;
+```
+
+### ResolverNextRpCb<TSource, TContext>
+
+```js
+type ResolverNextRpCb<TSource, TContext> = (
+  next: ResolverRpCb<TSource, TContext>
+) => ResolverRpCb<TSource, TContext>;
+```
+
+### ResolverWrapArgsCb
+
+```js
+type ResolverWrapArgsCb = (
+  prevArgs: GraphQLFieldConfigArgumentMap
+) => ComposeFieldConfigArgumentMap;
+```
+
+### ResolverWrapTypeCb<TContext>
+
+```js
+type ResolverWrapTypeCb<TContext> = (
+  prevType: GraphQLOutputType
+) => ComposeOutputType<TContext>;
+```
+
+### ResolveDebugOpts
+
+```js
+type ResolveDebugOpts = {
+  showHidden?: boolean,
+  depth?: number,
+  colors?: boolean,
+};
+```

@@ -223,3 +223,28 @@ set(
 ```js
 values(): Iterator<ComposeType>
 ```
+
+## Internal type definitions
+
+Flowtype definitions which are used in this class.
+
+### ExtraSchemaConfig
+
+```js
+type ExtraSchemaConfig = {
+  types?: ?Array<GraphQLNamedType>,
+  directives?: ?Array<GraphQLDirective>,
+  astNode?: ?SchemaDefinitionNode,
+};
+```
+
+### MustHaveTypes<TContext>
+
+```js
+type MustHaveTypes<TContext> =
+  | _TypeComposer<TContext>
+  | _InputTypeComposer
+  | _EnumTypeComposer
+  | _InterfaceTypeComposer<TContext>
+  | GraphQLNamedType;
+```
