@@ -238,7 +238,7 @@
       <span class="hljs-attr">kind</span>: <span class="hljs-string">'query'</span> | <span class="hljs-string">'mutation'</span> | <span class="hljs-string">'subscription'</span>,
       <span class="hljs-attr">type</span>: ComposeOutputType&lt;TContext&gt;,
       <span class="hljs-attr">args</span>: ComposeFieldConfigArgumentMap,
-      <span class="hljs-attr">resolve</span>: ResolverRpCb&lt;TSource, TContext&gt;,
+      <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">resolveParams: ResolveParams&lt;TSource, TContext&gt;</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;any&gt; | any,
       description?: string,
     }
 ): TypeComposer;
