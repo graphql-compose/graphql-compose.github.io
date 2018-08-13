@@ -87,9 +87,9 @@
 <span class="hljs-keyword">const</span> customizationOptions = {}; <span class="hljs-comment">// left it empty for simplicity, described below</span>
 <span class="hljs-keyword">const</span> UserTC = composeWithMongoose(User, customizationOptions);
 
-<span class="hljs-comment">// STEP 3: CREATE CRAZY GraphQL SCHEMA WITH ALL CRUD USER OPERATIONS</span>
+<span class="hljs-comment">// STEP 3: Add needed CRUD User operations to the GraphQL Schema</span>
 <span class="hljs-comment">// via graphql-compose it will be much much easier, with less typing</span>
-schemaComposer.rootQuery().addFields({
+schemaComposer.Query.addFields({
   <span class="hljs-attr">userById</span>: UserTC.getResolver(<span class="hljs-string">'findById'</span>),
   <span class="hljs-attr">userByIds</span>: UserTC.getResolver(<span class="hljs-string">'findByIds'</span>),
   <span class="hljs-attr">userOne</span>: UserTC.getResolver(<span class="hljs-string">'findOne'</span>),
@@ -99,8 +99,9 @@ schemaComposer.rootQuery().addFields({
   <span class="hljs-attr">userPagination</span>: UserTC.getResolver(<span class="hljs-string">'pagination'</span>),
 });
 
-schemaComposer.rootMutation().addFields({
-  <span class="hljs-attr">userCreate</span>: UserTC.getResolver(<span class="hljs-string">'createOne'</span>),
+schemaComposer.Mutation.addFields({
+  <span class="hljs-attr">userCreateOne</span>: UserTC.getResolver(<span class="hljs-string">'createOne'</span>),
+  <span class="hljs-attr">userCreateMany</span>: UserTC.getResolver(<span class="hljs-string">'createMany'</span>),
   <span class="hljs-attr">userUpdateById</span>: UserTC.getResolver(<span class="hljs-string">'updateById'</span>),
   <span class="hljs-attr">userUpdateOne</span>: UserTC.getResolver(<span class="hljs-string">'updateOne'</span>),
   <span class="hljs-attr">userUpdateMany</span>: UserTC.getResolver(<span class="hljs-string">'updateMany'</span>),
@@ -115,6 +116,125 @@ schemaComposer.rootMutation().addFields({
 <p>That's all!
 You think that is to much code?
 I don't think so, because by default internally was created about 55 graphql types (for input, sorting, filtering). So you will need much much more lines of code to implement all these CRUD operations by hands.</p>
+<h3><a class="anchor" aria-hidden="true" id="working-with-mongoose-collection-level-discriminators"></a><a href="#working-with-mongoose-collection-level-discriminators" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Working with Mongoose Collection Level Discriminators</h3>
+<p>Variable Namings</p>
+<ul>
+<li><code>...DTC</code> - Suffix for a <code>DiscriminatorTypeComposer</code> instance, which is also an instance of <code>TypeComposer</code>. All fields and Relations manipulations on this instance affects all registered discriminators and the Discriminator Interface.</li>
+</ul>
+<pre><code class="hljs css js">  <span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+  <span class="hljs-keyword">import</span> { schemaComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+  <span class="hljs-keyword">import</span> { composeWithMongooseDiscriminators } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
+
+  <span class="hljs-comment">// pick a discriminatorKey</span>
+  <span class="hljs-keyword">const</span> DKey = <span class="hljs-string">'type'</span>;
+
+  <span class="hljs-keyword">const</span> enumCharacterType = {
+    <span class="hljs-attr">PERSON</span>: <span class="hljs-string">'Person'</span>,
+    <span class="hljs-attr">DROID</span>: <span class="hljs-string">'Droid'</span>,
+  };
+
+  <span class="hljs-comment">// DEFINE BASE SCHEMA</span>
+  <span class="hljs-keyword">const</span> CharacterSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
+    <span class="hljs-comment">// _id: field...</span>
+    type: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+      <span class="hljs-attr">require</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">enum</span>: (<span class="hljs-built_in">Object</span>.keys(enumCharacterType): <span class="hljs-built_in">Array</span>&lt;string&gt;),
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'Character type Droid or Person'</span>,
+    },
+
+    <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-attr">height</span>: <span class="hljs-built_in">Number</span>,
+    <span class="hljs-attr">mass</span>: <span class="hljs-built_in">Number</span>,
+    <span class="hljs-attr">films</span>: [<span class="hljs-built_in">String</span>],
+  });
+
+  <span class="hljs-comment">// DEFINE DISCRIMINATOR SCHEMAS</span>
+  <span class="hljs-keyword">const</span> DroidSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
+    <span class="hljs-attr">makeDate</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-attr">primaryFunction</span>: [<span class="hljs-built_in">String</span>],
+  });
+
+  <span class="hljs-keyword">const</span> PersonSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
+    <span class="hljs-attr">gender</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-attr">hairColor</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-attr">starships</span>: [<span class="hljs-built_in">String</span>],
+  });
+
+  <span class="hljs-comment">// set discriminator Key</span>
+  CharacterSchema.set(<span class="hljs-string">'discriminatorKey'</span>, DKey);
+
+  <span class="hljs-comment">// create base Model</span>
+  <span class="hljs-keyword">const</span> CharacterModel = mongoose.model(<span class="hljs-string">'Character'</span>, CharacterSchema);
+
+  <span class="hljs-comment">// create mongoose discriminator models</span>
+  <span class="hljs-keyword">const</span> DroidModel = CharacterModel.discriminator(enumCharacterType.DROID, DroidSchema);
+  <span class="hljs-keyword">const</span> PersonModel = CharacterModel.discriminator(enumCharacterType.PERSON, PersonSchema);
+
+  <span class="hljs-comment">// create DiscriminatorTypeComposer</span>
+  <span class="hljs-keyword">const</span> baseOptions = { <span class="hljs-comment">// regular TypeConverterOptions, passed to composeWithMongoose</span>
+    fields: {
+      <span class="hljs-attr">remove</span>: [<span class="hljs-string">'friends'</span>],
+    }
+  }
+  <span class="hljs-keyword">const</span> CharacterDTC = composeWithMongooseDiscriminators(CharacterModel, baseOptions);
+
+  <span class="hljs-comment">// create Discriminator Types</span>
+  <span class="hljs-keyword">const</span> droidTypeConverterOptions = {  <span class="hljs-comment">// this options will be merged with baseOptions -&gt; customisationsOptions</span>
+    fields: {
+      <span class="hljs-attr">remove</span>: [<span class="hljs-string">'makeDate'</span>],
+    }
+  };
+  <span class="hljs-keyword">const</span> DroidTC = CharacterDTC.discriminator(DroidModel, droidTypeConverterOptions);
+  <span class="hljs-keyword">const</span> PersonTC = CharacterDTC.discriminator(PersonModel);  <span class="hljs-comment">// baseOptions -&gt; customisationsOptions applied</span>
+
+  <span class="hljs-comment">// You may now use CharacterDTC to add fields to all Discriminators</span>
+  <span class="hljs-comment">// Use DroidTC, `PersonTC as any other TypeComposer.</span>
+  schemaComposer.Mutation.addFields({
+    <span class="hljs-attr">droidCreate</span>: DroidTC.getResolver(<span class="hljs-string">'createOne'</span>),
+    <span class="hljs-attr">personCreate</span>: PersonTC.getResolver(<span class="hljs-string">'createOne'</span>),
+  });
+
+  <span class="hljs-keyword">const</span> schema = schemaComposer.buildSchema();
+
+  describe(<span class="hljs-string">'createOne'</span>, () =&gt; {
+    it(<span class="hljs-string">'should create child document without specifying DKey'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+      <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> graphql.graphql(
+        schema,
+        <span class="hljs-string">`mutation CreateCharacters {
+          droidCreate(record: {name: "Queue XL", modelNumber: 360 }) {
+            record {
+              __typename
+              type
+              name
+              modelNumber
+            }
+          }
+
+          personCreate(record: {name: "mernxl", dob: 57275272}) {
+            record {
+              __typename
+              type
+              name
+              dob
+            }
+          }
+        }`</span>
+      );
+
+      expect(res).toEqual({
+        <span class="hljs-attr">data</span>: {
+          <span class="hljs-attr">droidCreate</span>: {
+            <span class="hljs-attr">record</span>: { <span class="hljs-attr">__typename</span>: <span class="hljs-string">'Droid'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'Droid'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'Queue XL'</span>, <span class="hljs-attr">modelNumber</span>: <span class="hljs-number">360</span> },
+          },
+          <span class="hljs-attr">personCreate</span>: {
+            <span class="hljs-attr">record</span>: { <span class="hljs-attr">__typename</span>: <span class="hljs-string">'Person'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'Person'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'mernxl'</span>, <span class="hljs-attr">dob</span>: <span class="hljs-number">57275272</span> },
+          },
+        },
+      });
+    });
+  });
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="faq"></a><a href="#faq" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAQ</h2>
 <h3><a class="anchor" aria-hidden="true" id="can-i-get-generated-vanilla-graphql-types"></a><a href="#can-i-get-generated-vanilla-graphql-types" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Can I get generated vanilla GraphQL types?</h3>
 <pre><code class="hljs css js"><span class="hljs-keyword">const</span> UserTC = composeWithMongoose(User);
@@ -234,22 +354,23 @@ fragment fullImageData on <span class="hljs-class">EmbeddedImage </span>{
 }
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="access-and-modify-mongoose-doc-before-save"></a><a href="#access-and-modify-mongoose-doc-before-save" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Access and modify mongoose doc before save</h3>
-<p>This library provides some amount of ready resolvers for fetch and update data which was mentioned above. And you can <a href="https://github.com/graphql-compose/graphql-compose">create your own resolver</a> of course. However you can find that add some actions or light modifications of mongoose document directly before save at existing resolvers appears more simple than create new resolver. Some of resolvers accepts <em>before save hook</em> wich can be provided in <em>resolver params</em> as param named <code>beforeRecordMutate</code>. This hook allows to have access and modify mongoose document before save. The resolvers which supports this hook are:</p>
+<p>This library provides some amount of ready resolvers for fetch and update data which was mentioned above. And you can <a href="https://github.com/graphql-compose/graphql-compose">create your own resolver</a> of course. However you can find that add some actions or light modifications of mongoose document directly before save at existing resolvers appears more simple than create new resolver. Some of resolvers accepts <em>before save hook</em> which can be provided in <em>resolver params</em> as param named <code>beforeRecordMutate</code>. This hook allows to have access and modify mongoose document before save. The resolvers which supports this hook are:</p>
 <ul>
 <li>createOne</li>
+<li>createMany</li>
 <li>removeById</li>
 <li>removeOne</li>
 <li>updateById</li>
 <li>updateOne</li>
 </ul>
-<p>The protype of before save hook:</p>
-<pre><code class="hljs css js">(record: mixed, <span class="hljs-attr">rp</span>: ExtendedResolveParams) =&gt; <span class="hljs-built_in">Promise</span>&lt;*&gt;,
+<p>The prototype of before save hook:</p>
+<pre><code class="hljs css js">(doc: mixed, <span class="hljs-attr">rp</span>: ExtendedResolveParams) =&gt; <span class="hljs-built_in">Promise</span>&lt;*&gt;,
 </code></pre>
 <p>The typical implementation may be like this:</p>
 <pre><code class="hljs css js"><span class="hljs-comment">// extend resolve params with hook</span>
 rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc, rp</span>) </span>{
   doc.userTouchedAt = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
-  
+
   <span class="hljs-keyword">const</span> canMakeUpdate  = <span class="hljs-keyword">await</span> performAsyncTask( ...provide data <span class="hljs-keyword">from</span> doc... )
   <span class="hljs-keyword">if</span> (!canMakeUpdate) {
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Forbidden!'</span>);
@@ -274,7 +395,7 @@ rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hlj
 
       <span class="hljs-comment">// extend resolve params with hook</span>
       rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc, rp</span>) </span>{ ... }
-      
+
       <span class="hljs-keyword">return</span> next(rp)
     })
   })
@@ -284,6 +405,7 @@ rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hlj
 <span class="hljs-comment">// and wrap the resolvers</span>
 schemaComposer.Mutation.addFields({
   <span class="hljs-attr">createResource</span>: ResourceTC.getResolver(<span class="hljs-string">'createOne'</span>),
+  <span class="hljs-attr">createResources</span>: ResourceTC.getResolver(<span class="hljs-string">'createMany'</span>),
   ...adminAccess({
     <span class="hljs-attr">updateResource</span>: ResourceTC.getResolver(<span class="hljs-string">'updateById'</span>),
     <span class="hljs-attr">removeResource</span>: ResourceTC.getResolver(<span class="hljs-string">'removeById'</span>),
@@ -363,6 +485,9 @@ Every resolver's arg has it own options. They described below.</p>
   createOne?: <span class="hljs-literal">false</span> | {
     record?: recordHelperArgsOpts | <span class="hljs-literal">false</span>,
   },
+  createMany?: <span class="hljs-literal">false</span> | {
+    records?: recordHelperArgsOpts | <span class="hljs-literal">false</span>,
+  },
   count?: <span class="hljs-literal">false</span> | {
     filter?: filterHelperArgsOpts | <span class="hljs-literal">false</span>,
   },
@@ -420,7 +545,7 @@ Here you may setup every argument and override some fields from the default inpu
 <p>This plugin adds <code>pagination</code> resolver.</p>
 <h2><a class="anchor" aria-hidden="true" id="license"></a><a href="#license" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>License</h2>
 <p><a href="https://github.com/graphql-compose/graphql-compose-mongoose/blob/master/LICENSE.md">MIT</a></p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="plugin--list.html">← Plugins list</a><a class="docs-next button" href="plugin-elasticsearch.html">graphql-compose-elasticsearch →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a><ul class="toc-headings"><li><a href="#different-builds">Different builds</a></li></ul></li><li><a href="#example">Example</a></li><li><a href="#faq">FAQ</a><ul class="toc-headings"><li><a href="#can-i-get-generated-vanilla-graphql-types">Can I get generated vanilla GraphQL types?</a></li><li><a href="#how-to-add-custom-fields">How to add custom fields?</a></li><li><a href="#how-to-build-nesting-relations">How to build nesting/relations?</a></li><li><a href="#reusing-the-same-mongoose-schema-in-embedded-object-fields">Reusing the same mongoose Schema in embedded object fields</a></li><li><a href="#access-and-modify-mongoose-doc-before-save">Access and modify mongoose doc before save</a></li></ul></li><li><a href="#customization-options">Customization options</a><ul class="toc-headings"><li><a href="#here-is-flow-typed-definition-of-this-options">Here is flow typed definition of this options:</a></li></ul></li><li><a href="#used-plugins">Used plugins</a><ul class="toc-headings"><li><a href="#graphql-compose-connection-https-githubcom-graphql-compose-graphql-compose-connection">graphql-compose-connection</a></li><li><a href="#graphql-compose-pagination-https-githubcom-graphql-compose-graphql-compose-pagination">graphql-compose-pagination</a></li></ul></li><li><a href="#license">License</a></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="plugin--list.html">← Plugins list</a><a class="docs-next button" href="plugin-elasticsearch.html">graphql-compose-elasticsearch →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a><ul class="toc-headings"><li><a href="#different-builds">Different builds</a></li></ul></li><li><a href="#example">Example</a><ul class="toc-headings"><li><a href="#working-with-mongoose-collection-level-discriminators">Working with Mongoose Collection Level Discriminators</a></li></ul></li><li><a href="#faq">FAQ</a><ul class="toc-headings"><li><a href="#can-i-get-generated-vanilla-graphql-types">Can I get generated vanilla GraphQL types?</a></li><li><a href="#how-to-add-custom-fields">How to add custom fields?</a></li><li><a href="#how-to-build-nesting-relations">How to build nesting/relations?</a></li><li><a href="#reusing-the-same-mongoose-schema-in-embedded-object-fields">Reusing the same mongoose Schema in embedded object fields</a></li><li><a href="#access-and-modify-mongoose-doc-before-save">Access and modify mongoose doc before save</a></li></ul></li><li><a href="#customization-options">Customization options</a><ul class="toc-headings"><li><a href="#here-is-flow-typed-definition-of-this-options">Here is flow typed definition of this options:</a></li></ul></li><li><a href="#used-plugins">Used plugins</a><ul class="toc-headings"><li><a href="#graphql-compose-connection-https-githubcom-graphql-compose-graphql-compose-connection">graphql-compose-connection</a></li><li><a href="#graphql-compose-pagination-https-githubcom-graphql-compose-graphql-compose-pagination">graphql-compose-pagination</a></li></ul></li><li><a href="#license">License</a></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
         areas: [
           // try to use the first query.
           '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
