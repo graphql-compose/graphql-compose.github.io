@@ -87,9 +87,9 @@ const User = mongoose.model('User', UserSchema);
 const customizationOptions = {}; // left it empty for simplicity, described below
 const UserTC = composeWithMongoose(User, customizationOptions);
 
-// STEP 3: CREATE CRAZY GraphQL SCHEMA WITH ALL CRUD USER OPERATIONS
+// STEP 3: Add needed CRUD User operations to the GraphQL Schema
 // via graphql-compose it will be much much easier, with less typing
-schemaComposer.rootQuery().addFields({
+schemaComposer.Query.addFields({
   userById: UserTC.getResolver('findById'),
   userByIds: UserTC.getResolver('findByIds'),
   userOne: UserTC.getResolver('findOne'),
@@ -99,8 +99,9 @@ schemaComposer.rootQuery().addFields({
   userPagination: UserTC.getResolver('pagination'),
 });
 
-schemaComposer.rootMutation().addFields({
-  userCreate: UserTC.getResolver('createOne'),
+schemaComposer.Mutation.addFields({
+  userCreateOne: UserTC.getResolver('createOne'),
+  userCreateMany: UserTC.getResolver('createMany'),
   userUpdateById: UserTC.getResolver('updateById'),
   userUpdateOne: UserTC.getResolver('updateOne'),
   userUpdateMany: UserTC.getResolver('updateMany'),
@@ -116,6 +117,126 @@ That's all!
 You think that is to much code?
 I don't think so, because by default internally was created about 55 graphql types (for input, sorting, filtering). So you will need much much more lines of code to implement all these CRUD operations by hands.
 
+
+### Working with Mongoose Collection Level Discriminators
+Variable Namings
+* `...DTC` - Suffix for a `DiscriminatorTypeComposer` instance, which is also an instance of `TypeComposer`. All fields and Relations manipulations on this instance affects all registered discriminators and the Discriminator Interface.
+
+```js
+  import mongoose from 'mongoose';
+  import { schemaComposer } from 'graphql-compose';
+  import { composeWithMongooseDiscriminators } from 'graphql-compose-mongoose';
+
+  // pick a discriminatorKey
+  const DKey = 'type';
+
+  const enumCharacterType = {
+    PERSON: 'Person',
+    DROID: 'Droid',
+  };
+
+  // DEFINE BASE SCHEMA
+  const CharacterSchema = new mongoose.Schema({
+    // _id: field...
+    type: {
+      type: String,
+      require: true,
+      enum: (Object.keys(enumCharacterType): Array<string>),
+      description: 'Character type Droid or Person',
+    },
+
+    name: String,
+    height: Number,
+    mass: Number,
+    films: [String],
+  });
+
+  // DEFINE DISCRIMINATOR SCHEMAS
+  const DroidSchema = new mongoose.Schema({
+    makeDate: String,
+    primaryFunction: [String],
+  });
+
+  const PersonSchema = new mongoose.Schema({
+    gender: String,
+    hairColor: String,
+    starships: [String],
+  });
+
+  // set discriminator Key
+  CharacterSchema.set('discriminatorKey', DKey);
+
+  // create base Model
+  const CharacterModel = mongoose.model('Character', CharacterSchema);
+
+  // create mongoose discriminator models
+  const DroidModel = CharacterModel.discriminator(enumCharacterType.DROID, DroidSchema);
+  const PersonModel = CharacterModel.discriminator(enumCharacterType.PERSON, PersonSchema);
+
+  // create DiscriminatorTypeComposer
+  const baseOptions = { // regular TypeConverterOptions, passed to composeWithMongoose
+    fields: {
+      remove: ['friends'],
+    }
+  }
+  const CharacterDTC = composeWithMongooseDiscriminators(CharacterModel, baseOptions);
+
+  // create Discriminator Types
+  const droidTypeConverterOptions = {  // this options will be merged with baseOptions -> customisationsOptions
+    fields: {
+      remove: ['makeDate'],
+    }
+  };
+  const DroidTC = CharacterDTC.discriminator(DroidModel, droidTypeConverterOptions);
+  const PersonTC = CharacterDTC.discriminator(PersonModel);  // baseOptions -> customisationsOptions applied
+
+  // You may now use CharacterDTC to add fields to all Discriminators
+  // Use DroidTC, `PersonTC as any other TypeComposer.
+  schemaComposer.Mutation.addFields({
+    droidCreate: DroidTC.getResolver('createOne'),
+    personCreate: PersonTC.getResolver('createOne'),
+  });
+
+  const schema = schemaComposer.buildSchema();
+
+  describe('createOne', () => {
+    it('should create child document without specifying DKey', async () => {
+      const res = await graphql.graphql(
+        schema,
+        `mutation CreateCharacters {
+          droidCreate(record: {name: "Queue XL", modelNumber: 360 }) {
+            record {
+              __typename
+              type
+              name
+              modelNumber
+            }
+          }
+
+          personCreate(record: {name: "mernxl", dob: 57275272}) {
+            record {
+              __typename
+              type
+              name
+              dob
+            }
+          }
+        }`
+      );
+
+      expect(res).toEqual({
+        data: {
+          droidCreate: {
+            record: { __typename: 'Droid', type: 'Droid', name: 'Queue XL', modelNumber: 360 },
+          },
+          personCreate: {
+            record: { __typename: 'Person', type: 'Person', name: 'mernxl', dob: 57275272 },
+          },
+        },
+      });
+    });
+  });
+```
 
 ## FAQ
 
@@ -249,17 +370,18 @@ fragment fullImageData on EmbeddedImage {
 ```
 
 ### Access and modify mongoose doc before save
-This library provides some amount of ready resolvers for fetch and update data which was mentioned above. And you can [create your own resolver](https://github.com/graphql-compose/graphql-compose) of course. However you can find that add some actions or light modifications of mongoose document directly before save at existing resolvers appears more simple than create new resolver. Some of resolvers accepts *before save hook* wich can be provided in *resolver params* as param named `beforeRecordMutate`. This hook allows to have access and modify mongoose document before save. The resolvers which supports this hook are:
+This library provides some amount of ready resolvers for fetch and update data which was mentioned above. And you can [create your own resolver](https://github.com/graphql-compose/graphql-compose) of course. However you can find that add some actions or light modifications of mongoose document directly before save at existing resolvers appears more simple than create new resolver. Some of resolvers accepts *before save hook* which can be provided in *resolver params* as param named `beforeRecordMutate`. This hook allows to have access and modify mongoose document before save. The resolvers which supports this hook are:
 
 * createOne
+* createMany
 * removeById
 * removeOne
 * updateById
 * updateOne
 
-The protype of before save hook:
+The prototype of before save hook:
 ```js
-(record: mixed, rp: ExtendedResolveParams) => Promise<*>,
+(doc: mixed, rp: ExtendedResolveParams) => Promise<*>,
 ```
 
 The typical implementation may be like this:
@@ -268,7 +390,7 @@ The typical implementation may be like this:
 // extend resolve params with hook
 rp.beforeRecordMutate = async function(doc, rp) {
   doc.userTouchedAt = new Date();
-  
+
   const canMakeUpdate  = await performAsyncTask( ...provide data from doc... )
   if (!canMakeUpdate) {
     throw new Error('Forbidden!');
@@ -299,7 +421,7 @@ function adminAccess(resolvers) {
 
       // extend resolve params with hook
       rp.beforeRecordMutate = async function(doc, rp) { ... }
-      
+
       return next(rp)
     })
   })
@@ -309,6 +431,7 @@ function adminAccess(resolvers) {
 // and wrap the resolvers
 schemaComposer.Mutation.addFields({
   createResource: ResourceTC.getResolver('createOne'),
+  createResources: ResourceTC.getResolver('createMany'),
   ...adminAccess({
     updateResource: ResourceTC.getResolver('updateById'),
     removeResource: ResourceTC.getResolver('removeById'),
@@ -396,6 +519,9 @@ export type typeConverterResolversOpts = {
   },
   createOne?: false | {
     record?: recordHelperArgsOpts | false,
+  },
+  createMany?: false | {
+    records?: recordHelperArgsOpts | false,
   },
   count?: false | {
     filter?: filterHelperArgsOpts | false,
