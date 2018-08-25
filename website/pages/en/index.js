@@ -5,36 +5,40 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
+const React = require("react");
 
-const CompLibrary = require('../../core/CompLibrary.js');
+const CompLibrary = require("../../core/CompLibrary.js");
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
-const siteConfig = require(process.cwd() + '/siteConfig.js');
+const siteConfig = require(process.cwd() + "/siteConfig.js");
 
 function imgUrl(img) {
-  return siteConfig.baseUrl + 'img/' + img;
+  return siteConfig.baseUrl + "img/" + img;
 }
 
 function svgUrl(img) {
-  return siteConfig.baseUrl + 'svg/' + img;
+  return siteConfig.baseUrl + "svg/" + img;
 }
 
 function docUrl(doc, language) {
-  return siteConfig.baseUrl + 'docs/' + (language ? language + '/' : '') + doc;
+  return siteConfig.baseUrl + "docs/" + (language ? language + "/" : "") + doc;
 }
 
 function pageUrl(page, language) {
-  return siteConfig.baseUrl + (language ? language + '/' : '') + page;
+  return siteConfig.baseUrl + (language ? language + "/" : "") + page;
 }
 
 class Button extends React.Component {
   render() {
     return (
       <div className="pluginWrapper buttonWrapper">
-        <a className="button buttonDark" href={this.props.href} target={this.props.target}>
+        <a
+          className="button buttonDark"
+          href={this.props.href}
+          target={this.props.target}
+        >
           {this.props.children}
         </a>
       </div>
@@ -43,7 +47,7 @@ class Button extends React.Component {
 }
 
 Button.defaultProps = {
-  target: '_self',
+  target: "_self"
 };
 
 const SplashContainer = props => (
@@ -77,16 +81,28 @@ const PromoSection = props => (
 
 class HomeSplash extends React.Component {
   render() {
-    let language = this.props.language || '';
+    let language = this.props.language || "";
     return (
       <SplashContainer>
         {/* <Logo img_src={imgUrl('logo.png')} /> */}
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href={docUrl('intro-quick-start.html', language)}>Get Started</Button>
-            <Button href={docUrl('api-TypeComposer.html', language)}>API</Button>
-            <Button href={docUrl('plugin--list.html', language)}>Plugins</Button>
+            <Button href={docUrl("intro-quick-start.html", language)}>
+              Get Started
+            </Button>
+            <Button href={docUrl("api-TypeComposer.html", language)}>
+              API
+            </Button>
+            <Button href={docUrl("plugin--list.html", language)}>
+              Plugins
+            </Button>
+            <Button
+              href="https://graphql-compose.herokuapp.com/"
+              target="_blank"
+            >
+              Live Demo
+            </Button>
             {/* <Button href="#try">Try It Out</Button> */}
             {/* <Button href={docUrl('requirements.html', language)}>Example Link</Button> */}
           </PromoSection>
@@ -108,7 +124,7 @@ class HomeSplash extends React.Component {
 }
 
 const Block = props => (
-  <Container padding={['bottom']} id={props.id} background={props.background}>
+  <Container padding={["bottom"]} id={props.id} background={props.background}>
     <GridBlock align="center" contents={props.children} layout={props.layout} />
   </Container>
 );
@@ -118,55 +134,55 @@ const Features = props => (
     <Block layout="threeColumn">
       {[
         {
-          title: 'Create Types',
-          content: 'Fast and convenient with SDL or Type instances',
-          image: svgUrl('sdl.svg'),
-          imageAlign: 'top',
+          title: "Create Types",
+          content: "Fast and convenient with SDL or Type instances",
+          image: svgUrl("sdl.svg"),
+          imageAlign: "top"
         },
         {
-          title: 'Edit Types',
-          content: 'Generate Types and modify them for better form',
-          image: svgUrl('modification.svg'),
-          imageAlign: 'top',
+          title: "Edit Types",
+          content: "Generate Types and modify them for better form",
+          image: svgUrl("modification.svg"),
+          imageAlign: "top"
         },
         {
-          title: 'Construct Models',
-          content: 'All logic in one place with TypeComposer & Resolvers',
-          image: svgUrl('models.svg'),
-          imageAlign: 'top',
-        },
+          title: "Construct Models",
+          content: "All logic in one place with TypeComposer & Resolvers",
+          image: svgUrl("models.svg"),
+          imageAlign: "top"
+        }
       ]}
     </Block>
     <Block layout="threeColumn">
       {[
         {
-          title: 'Static Analysis',
-          content: 'Includes Flowtype & TypeScript definitions',
-          image: svgUrl('static_analysis.svg'),
-          imageAlign: 'top',
+          title: "Static Analysis",
+          content: "Includes Flowtype & TypeScript definitions",
+          image: svgUrl("static_analysis.svg"),
+          imageAlign: "top"
         },
         {
-          title: 'Amazing Plugins',
+          title: "Amazing Plugins",
           content: `Plugin may generate and modify your types
           `,
-          image: svgUrl('plugins.svg'),
-          imageAlign: 'top',
+          image: svgUrl("plugins.svg"),
+          imageAlign: "top"
         },
         {
-          title: 'Additional Types',
-          content: 'Commonly used basic types `Date`, `JSON`',
-          image: svgUrl('additional-types.svg'),
-          imageAlign: 'top',
-        },
+          title: "Additional Types",
+          content: "Commonly used basic types `Date`, `JSON`",
+          image: svgUrl("additional-types.svg"),
+          imageAlign: "top"
+        }
       ]}
     </Block>
   </div>
 );
 
 const Plugins = props => {
-  const language = props.language || '';
+  const language = props.language || "";
   return (
-    <Container padding={['bottom', 'top']} background="light">
+    <Container padding={["bottom", "top"]} background="light">
       <div className="pluginsHeader">Amazing plugins</div>
       <div className="pluginsSubHeader">
         Thousands lines of code may be replaced just by several lines
@@ -179,10 +195,10 @@ const Plugins = props => {
               Also derives bunch of internal GraphQL Types.
               Provide convenient CRUD resolvers, including relay connection and pagination.
             `,
-            imageAlign: 'left',
-            image: imgUrl('logos/mongoDB.png'),
-            title: `graphql-compose-mongoose`,
-          },
+            imageAlign: "left",
+            image: imgUrl("logos/mongoDB.png"),
+            title: `graphql-compose-mongoose`
+          }
         ]}
         layout="twoColumn"
       />
@@ -193,10 +209,10 @@ const Plugins = props => {
             content: `Derives GraphQLType from your [elastic mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html).
             Generates tons of types, provides all available methods in QueryDSL, Aggregations, Sorting
             with field autocompletion according to types in your mapping (like Dev Tools Console in Kibana).`,
-            imageAlign: 'left',
-            image: imgUrl('logos/elasticsearch.png'),
-            title: 'graphql-compose-elasticsearch',
-          },
+            imageAlign: "left",
+            image: imgUrl("logos/elasticsearch.png"),
+            title: "graphql-compose-elasticsearch"
+          }
         ]}
         layout="twoColumn"
       />
@@ -208,10 +224,10 @@ const Plugins = props => {
             Internally it generates Types and FieldConfigs from AWS SDK configs.
             You may put this generated types to any GraphQL Schema.
           `,
-            imageAlign: 'left',
-            image: imgUrl('logos/aws.png'),
-            title: 'graphql-compose-aws',
-          },
+            imageAlign: "left",
+            image: imgUrl("logos/aws.png"),
+            title: "graphql-compose-aws"
+          }
         ]}
         layout="twoColumn"
       />
@@ -241,7 +257,7 @@ const Showcase = props => {
       <p>This project is used by all these people</p>
       <div className="logos">{showcase}</div>
       <div className="more-users">
-        <a className="button" href={pageUrl('users.html', props.language)}>
+        <a className="button" href={pageUrl("users.html", props.language)}>
           More {siteConfig.title} Users
         </a>
       </div>
@@ -251,7 +267,7 @@ const Showcase = props => {
 
 class Index extends React.Component {
   render() {
-    let language = this.props.language || '';
+    let language = this.props.language || "";
 
     return (
       <div>
