@@ -296,33 +296,21 @@ AuthorTC.addFields({
 ```
 
 ## Interfaces
-Graphql-compose does not provide any helper for `Interfaces`. You should use standard `GraphQLInterfaceType`.
+Graphql-compose provides helper for `Interfaces` - `InterfaceTypeComposer.
 ```js
-import { GraphQLInterfaceType } from 'graphql';
-import { schemaComposer, GraphQLDate, GraphQLJSON } from 'graphql-compose';
+import { schemaComposer, GraphQLJSON, InterfaceTypeComposer } from 'graphql-compose';
 
-const TimestampInterface = new GraphQLInterfaceType({
+const TimestampInterface = InterfaceTypeComposer.create({
   name: 'Timestampable',
   description: 'An object with createdAt and updatedAt fields',
-  resolveType: (value: any, info?: GraphQLResolveInfo) => {
-    const typeName = ... somehow obtained from `value` or `info`
-    // use schemaComposer for searching Type by its name
-    if (schemaComposer.has(typeName)) {
-      return schemaComposer.getTC(typeName).getType();
-    }
-    // as fallback return JSON type (type of any shape)
-    return GraphQLJSON;
+  fields: {
+    createdAt: 'Date',
+    updatedAt: 'Date',
   },
-  // wrapped by arrow function for solving hoisting problems
-  fields: () => ({
-    // be aware fieldConfigs must be in standard GraphQL format
-    // no shortened format available here
-    createdAt: {
-      type: GraphQLDate,
-    },
-    updatedAt: {
-      type: GraphQLDate,
-    },
-  }),
 });
+
+// When you create Interface, you need to provide instructions how to determine exact ObjectType from `value`.
+// So if `value` is instance of UserDoc, then use `UserTC` as exact type.
+TimestampInterface.addTypeResolver(UserTC, value => (value instanceof UserDoc));
+TimestampInterface.addTypeResolver(ArticleTC, value => (value instanceof UserDoc));
 ```
