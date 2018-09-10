@@ -262,34 +262,22 @@ AuthorTC.addFields({
 });
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="interfaces"></a><a href="#interfaces" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interfaces</h2>
-<p>Graphql-compose does not provide any helper for <code>Interfaces</code>. You should use standard <code>GraphQLInterfaceType</code>.</p>
-<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { GraphQLInterfaceType } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql'</span>;
-<span class="hljs-keyword">import</span> { schemaComposer, GraphQLDate, GraphQLJSON } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+<p>Graphql-compose provides helper for <code>Interfaces</code> - `InterfaceTypeComposer.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { schemaComposer, GraphQLJSON, InterfaceTypeComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
 
-<span class="hljs-keyword">const</span> TimestampInterface = <span class="hljs-keyword">new</span> GraphQLInterfaceType({
+<span class="hljs-keyword">const</span> TimestampInterface = InterfaceTypeComposer.create({
   <span class="hljs-attr">name</span>: <span class="hljs-string">'Timestampable'</span>,
   <span class="hljs-attr">description</span>: <span class="hljs-string">'An object with createdAt and updatedAt fields'</span>,
-  <span class="hljs-attr">resolveType</span>: <span class="hljs-function">(<span class="hljs-params">value: any, info?: GraphQLResolveInfo</span>) =&gt;</span> {
-    <span class="hljs-keyword">const</span> typeName = ... somehow obtained <span class="hljs-keyword">from</span> <span class="hljs-string">`value`</span> or <span class="hljs-string">`info`</span>
-    <span class="hljs-comment">// use schemaComposer for searching Type by its name</span>
-    <span class="hljs-keyword">if</span> (schemaComposer.has(typeName)) {
-      <span class="hljs-keyword">return</span> schemaComposer.getTC(typeName).getType();
-    }
-    <span class="hljs-comment">// as fallback return JSON type (type of any shape)</span>
-    <span class="hljs-keyword">return</span> GraphQLJSON;
+  <span class="hljs-attr">fields</span>: {
+    <span class="hljs-attr">createdAt</span>: <span class="hljs-string">'Date'</span>,
+    <span class="hljs-attr">updatedAt</span>: <span class="hljs-string">'Date'</span>,
   },
-  <span class="hljs-comment">// wrapped by arrow function for solving hoisting problems</span>
-  fields: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
-    <span class="hljs-comment">// be aware fieldConfigs must be in standard GraphQL format</span>
-    <span class="hljs-comment">// no shortened format available here</span>
-    createdAt: {
-      <span class="hljs-attr">type</span>: GraphQLDate,
-    },
-    <span class="hljs-attr">updatedAt</span>: {
-      <span class="hljs-attr">type</span>: GraphQLDate,
-    },
-  }),
 });
+
+<span class="hljs-comment">// When you create Interface, you need to provide instructions how to determine exact ObjectType from `value`.</span>
+<span class="hljs-comment">// So if `value` is instance of UserDoc, then use `UserTC` as exact type.</span>
+TimestampInterface.addTypeResolver(UserTC, value =&gt; (value <span class="hljs-keyword">instanceof</span> UserDoc));
+TimestampInterface.addTypeResolver(ArticleTC, value =&gt; (value <span class="hljs-keyword">instanceof</span> UserDoc));
 </code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="intro-demos.html">← Live Demos</a><a class="docs-next button" href="basics-type-modification.html">Type modification →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#scalar-types">Scalar types</a></li><li><a href="#object-types-via-typecomposer">Object types via TypeComposer</a><ul class="toc-headings"><li><a href="#via-config">via config</a></li><li><a href="#via-sdl">via SDL</a></li><li><a href="#via-graphqlobjecttype">via GraphQLObjectType</a></li><li><a href="#without-fields">without fields</a></li></ul></li><li><a href="#input-types-via-inputtypecomposer">Input types via InputTypeComposer</a><ul class="toc-headings"><li><a href="#via-config">via config</a></li><li><a href="#via-existed-typecomposer">via existed TypeComposer</a></li><li><a href="#via-sdl">via SDL</a></li><li><a href="#via-graphqlinputobjecttype">via GraphQLInputObjectType</a></li><li><a href="#without-fields">without fields</a></li></ul></li><li><a href="#enum-types-via-enumtypecomposer">Enum types via EnumTypeComposer</a><ul class="toc-headings"><li><a href="#via-config">via config</a></li><li><a href="#via-sdl">via SDL</a></li><li><a href="#via-graphqlenumtype">via GraphQLEnumType</a></li><li><a href="#without-fields">without fields</a></li></ul></li><li><a href="#lists">Lists</a></li><li><a href="#non-null">Non-Null</a></li><li><a href="#union-types">Union types</a></li><li><a href="#interfaces">Interfaces</a></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
         areas: [
