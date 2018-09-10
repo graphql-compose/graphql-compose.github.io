@@ -14,7 +14,7 @@ Graphql-compose has following built-in scalar types:
 - `JSON`
 
 ## Object types via TypeComposer
-If you need to create some complex type with several properties, you will need to use `TypeComposer`. It's a builder for `GraphQLObjectType` object.
+If you need to create some complex type with several properties, you will need to use [TypeComposer](api-TypeComposer.md). It's a builder for `GraphQLObjectType` object.
 
 `TypeComposer` has very convenient ways of type creation via `create` method.
 
@@ -118,7 +118,7 @@ GraphQL allows to pass arguments for fields. You may freely use `Scalar`s, `Enum
 - input object type does not have `args`
 - input object type does not have `resolve` method
 
-If you need to create some complex type with several properties, you will need to use `InputTypeComposer`. It's a builder for `GraphQLInputObjectType` object.
+If you need to create some complex type with several properties, you will need to use [InputTypeComposer](api-InputTypeComposer.md). It's a builder for `GraphQLInputObjectType` object.
 
 `InputTypeComposer` has very convenient ways of type creation via `create` method.
 
@@ -183,7 +183,7 @@ AuthorITC.addFields({ ... });
 ```
 
 ## Enum types via EnumTypeComposer
-If you need to create enum type, you will need to use `EnumTypeComposer`. It's a builder for `GraphQLEnumType` object.
+If you need to create enum type, you will need to use [EnumTypeComposer](api-EnumTypeComposer.md). It's a builder for `GraphQLEnumType` object.
 
 `EnumTypeComposer` has very convenient ways of type creation via `create` method.
 
@@ -296,7 +296,7 @@ AuthorTC.addFields({
 ```
 
 ## Interfaces
-Graphql-compose provides helper for `Interfaces` - `InterfaceTypeComposer.
+Graphql-compose provides helper for `Interfaces` - [InterfaceTypeComposer](api-InterfaceTypeComposer.md).
 ```js
 import { schemaComposer, GraphQLJSON, InterfaceTypeComposer } from 'graphql-compose';
 
