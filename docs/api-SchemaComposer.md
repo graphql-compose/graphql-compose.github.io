@@ -75,6 +75,72 @@ type ExtraSchemaConfig = {
 buildSchema(extraConfig?: ExtraSchemaConfig): GraphQLSchema
 ```
 
+### addTypeDefs()
+Add types to Schema via SDL string.
+```js
+addTypeDefs(typeDefs: string): void;
+```
+
+```js
+const schemaComposer = new SchemaComposer();
+schemaComposer.addTypeDefs(`
+  type Post {
+    id: Int!
+    title: String
+    votes: Int
+  }
+
+  enum Sort {
+    ASC 
+    DESC
+  }
+`);
+```
+
+After that your added types will be avaliable for referencing via string, eg.
+```js
+TypeComposer.create({
+  name: 'Author',
+  fields: {
+    posts: {
+      type: '[Post!]',
+      args: {
+        sort: 'Sort',
+      },
+      resolve: () => { ... },
+    }
+  }
+});
+```
+
+### addResolveMethods()
+Define `resolve` methods for Types in `graphql-tools` manner.
+```js
+addResolveMethods({
+  [typeName: string]: {
+    [fieldName: string]: (
+      source: any,
+      args: Object,
+      context: TContext,
+      info: GraphQLResolveInfo
+    ) => any,
+  },
+}): void
+```
+
+```js
+schemaComposer.addResolveMethods({
+  Query: {
+    posts: () => Post.find(),
+  },
+  Post: {
+    votes: (post) => Vote.getFor(post.id),
+  },
+});
+```
+
+More details can be found in [issue #142](https://github.com/graphql-compose/graphql-compose/issues/142).
+
 ### addSchemaMustHaveType()
 When using Interfaces you may have such Types which are hidden under Interface.resolveType method. In such cases you should add these types explicitly. Cause `buildSchema()` will take only real used types and types which added via `addSchemaMustHaveType()` method.
 ```js
