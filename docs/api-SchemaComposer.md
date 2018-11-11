@@ -76,9 +76,9 @@ buildSchema(extraConfig?: ExtraSchemaConfig): GraphQLSchema
 ```
 
 ### addTypeDefs()
-Add types to Schema via SDL string.
+Add types to Schema via SDL string. Returns a Map of parsed types.
 ```js
-addTypeDefs(typeDefs: string): void;
+addTypeDefs(typeDefs: string): TypeStorage<GraphQLNamedType>;
 ```
 
 ```js
