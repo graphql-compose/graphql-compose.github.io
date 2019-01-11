@@ -13,6 +13,7 @@ resolvers) for further building of complex relations in your `Schema`. With grap
 * [graphql-compose-mongoose](plugin-mongoose.md) - generates GraphQL types from mongoose (MongoDB models) with Resolvers.
 * [graphql-compose-elasticsearch](plugin-elasticsearch.md) - generates GraphQL types from elastic mappings; ElasticSearch REST API proxy via GraphQL.
 * [graphql-compose-aws](plugin-aws.md) - expose AWS Cloud API via GraphQL
+* [graphql-compose-mysql](https://github.com/thejibz/graphql-compose-mysql) - generates GraphQL types and resolvers from a MySQL database.
 
 ## Utility plugins
 * [graphql-compose-relay](plugin-relay.md) - reassemble GraphQL types with `Relay` specific things, like `Node` type and interface, `globalId`, `clientMutationId`.
