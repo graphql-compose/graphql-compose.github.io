@@ -7,7 +7,7 @@ title: Generating Schema
 
 ## Create Schema
 
-`SchemaComposer` provides basic root types `Query`, `Muttion`, `Subscription`. You must add fields at least to one of these types, otherwise Schema will not have sense and cannot be build.
+`SchemaComposer` provides basic root types `Query`, `Mutation`, `Subscription`. You must add fields at least to one of these types, otherwise Schema will not have sense and cannot be build.
 
 ```js
 import { schemaComposer } from 'graphql-compose';
