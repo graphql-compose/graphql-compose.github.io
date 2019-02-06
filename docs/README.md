@@ -4,49 +4,51 @@ Welcome to the GraphQL Compose documentation.
 
 ## Introduction
 
-- [Prerequisites](intro-prerequisites)
-- [Installation](intro-installation)
-- [Quick Start Guide](intro-quick-start)
-- [Live Demos](intro-demos)
+- [Prerequisites](intro/prerequisites.md)
+- [Installation](intro/installation.md)
+- [Quick Start Guide](intro/quick-start.md)
+- [Live Demos](intro/live-demos.md)
 
 ## Basics
 
-- [Type creation](basics-types)
-- [Type modification](basics-type-modification)
-- [Resolvers](basics-Resolver)
-- [Relations between Types](basics-relations)
-- [Generating Schema](basics-generating-schema)
+- [Type creation](basics/understanding-types.md)
+- [Type modification](basics/type-modification.md)
+- [Resolvers](basics/what-is-resolver.md)
+- [Relations between Types](basics/understanding-relations.md)
+- [Generating Schema](basics/generating-schema.md)
 
 ## Guide
 
-- [Generate types from Mongoose Models](guide-mongoose)
-- [Wrapping REST API](guide-wrapping-rest-api)
-- [Use ElasticSearch with Mongoose](guide-elasticsearch-with-mongoose)
-- [Relay Schema](guide-relay)
+- [Generate types from Mongoose Models](guide/mongoose.md)
+- [Wrapping REST API](guide/wrapping-rest-api.md)
+- [Use ElasticSearch with Mongoose](guide/elasticsearch-with-mongoose.md)
+- [Relay Schema](guide/relay.md)
 
 ## Recipes
 
-- [Authorization](recipe-authorization)
-- [Writing tests](recipe-writing-tests)
+- [Authorization](recipes/authorization.md)
+- [Writing tests](recipes/writing-tests.md)
 
 ## API Reference
 
-- [TypeComposer](api-TypeComposer)
-- [InputTypeComposer](api-InputTypeComposer)
-- [EnumTypeComposer](api-EnumTypeComposer)
-- [Resolver](api-Resolver)
-- [TypeMapper](api-TypeMapper)
-- [SchemaComposer](api-SchemaComposer)
-- [API misc](api-misc)
+- [TypeComposer](api/TypeComposer.md)
+- [InputTypeComposer](api/InputTypeComposer.md)
+- [EnumTypeComposer](api/EnumTypeComposer.md)
+- [InterfaceTypeComposer](api/InterfaceTypeComposer.md)
+- [UnionTypeComposer](api/UnionTypeComposer.md)
+- [Resolver](api/Resolver.md)
+- [TypeMapper](api/TypeMapper.md)
+- [SchemaComposer](api/SchemaComposer.md)
+- [API misc](api/misc-api-methods.md)
 
 ## Plugins
 
-- [Plugins list](plugin--list)
-- [Mongoose plugin](plugin-mongoose)
-- [ElasticSearch plugin](plugin-elasticsearch)
-- [Json plugin](plugin-json)
-- [Relay plugin](plugin-relay)
-- [Connection plugin](plugin-connection)
-- [Pagination plugin](plugin-pagination)
-- [AWS plugin](plugin-aws)
-- [How to write a custom plugin](plugin-writing-custom-plugin)
+- [Plugins list](plugins/list-of-plugins.md)
+- [Mongoose plugin](plugins/plugin-mongoose.md)
+- [ElasticSearch plugin](plugins/plugin-elasticsearch.md)
+- [Json plugin](plugins/plugin-json.md)
+- [Relay plugin](plugins/plugin-relay.md)
+- [Connection plugin](plugins/plugin-connection.md)
+- [Pagination plugin](plugins/plugin-pagination.md)
+- [AWS plugin](plugins/plugin-aws.md)
+- [How to write a custom plugin](plugins/plugin-writing-custom-plugin.md)

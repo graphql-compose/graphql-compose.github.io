@@ -4,57 +4,133 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "Toolkit for generating complex GraphQL schemas in Node.js",
-    "intro-quick-start": "Quick Start Guide",
-    "plugin--reference": "Plugin Reference",
-    "__type-modification": "__type-modification",
-    "api-EnumTypeComposer": "EnumTypeComposer",
-    "api-InputTypeComposer": "InputTypeComposer",
-    "api-InterfaceTypeComposer": "InterfaceTypeComposer",
-    "api-misc": "API misc",
-    "api-Resolver": "Resolver",
-    "api-SchemaComposer": "SchemaComposer",
-    "api-TypeComposer": "TypeComposer",
-    "api-TypeMapper": "TypeMapper",
-    "basics-generating-schema": "Generating Schema",
-    "basics-relations": "Relations between Types",
-    "basics-resolvers": "Resolvers",
-    "basics-type-modification": "Type modification",
-    "basics-types": "Type creation",
-    "guide-elasticsearch-with-mongoose": "[WIP] Use ElasticSearch with Mongoose",
-    "guide-file-uploads": "File uploads",
-    "guide-mongoose": "[WIP] Generate types from Mongoose Models",
-    "guide-relay": "[WIP] Relay Schema",
-    "guide-wrapping-rest-api": "Wrapping REST API",
-    "intro-demos": "Live Demos",
-    "intro-installation": "Installation",
-    "intro-prerequisites": "Prerequisites",
-    "plugin--list": "Plugins list",
-    "plugin-aws": "graphql-compose-aws",
-    "AWS plugin": "AWS plugin",
-    "plugin-connection": "graphql-compose-connection",
-    "Connection plugin": "Connection plugin",
-    "plugin-elasticsearch": "graphql-compose-elasticsearch",
-    "ElasticSearch plugin": "ElasticSearch plugin",
-    "plugin-json": "graphql-compose-json",
-    "Json plugin": "Json plugin",
-    "plugin-mongoose": "graphql-compose-mongoose",
-    "Mongoose plugin": "Mongoose plugin",
-    "plugin-pagination": "graphql-compose-pagination",
-    "Pagination plugin": "Pagination plugin",
-    "plugin-relay": "graphql-compose-relay",
-    "Relay plugin": "Relay plugin",
-    "plugin-writing-custom-plugin": "[WIP] How to write a custom plugin",
-    "README": "README",
-    "recipe-authorization": "[WIP] Authorization",
-    "recipe-writing-tests": "[WIP] Writing tests",
-    "Docs": "Docs",
-    "API": "API",
-    "Plugins": "Plugins",
-    "GitHub": "GitHub",
-    "Introduction": "Introduction",
-    "Basics": "Basics",
-    "API Reference": "API Reference",
-    "Guide": "Guide"
+    "docs": {
+      "api/EnumTypeComposer": {
+        "title": "EnumTypeComposer"
+      },
+      "api/InputTypeComposer": {
+        "title": "InputTypeComposer"
+      },
+      "api/InterfaceTypeComposer": {
+        "title": "InterfaceTypeComposer"
+      },
+      "api/misc-api-methods": {
+        "title": "API misc"
+      },
+      "api/Resolver": {
+        "title": "Resolver"
+      },
+      "api/SchemaComposer": {
+        "title": "SchemaComposer"
+      },
+      "api/TypeComposer": {
+        "title": "TypeComposer"
+      },
+      "api/TypeMapper": {
+        "title": "TypeMapper"
+      },
+      "api/UnionTypeComposer": {
+        "title": "UnionTypeComposer"
+      },
+      "basics/generating-schema": {
+        "title": "Generating Schema"
+      },
+      "basics/type-modification": {
+        "title": "Type modification"
+      },
+      "basics/understanding-relations": {
+        "title": "Relations between Types"
+      },
+      "basics/understanding-types": {
+        "title": "Type creation"
+      },
+      "basics/what-is-resolver": {
+        "title": "Resolvers"
+      },
+      "guide/elasticsearch-with-mongoose": {
+        "title": "[WIP] Use ElasticSearch with Mongoose"
+      },
+      "guide/file-uploads": {
+        "title": "File uploads"
+      },
+      "guide/mongoose": {
+        "title": "[WIP] Generate types from Mongoose Models"
+      },
+      "guide/relay": {
+        "title": "[WIP] Relay Schema"
+      },
+      "guide/wrapping-rest-api": {
+        "title": "Wrapping REST API"
+      },
+      "intro/installation": {
+        "title": "Installation"
+      },
+      "intro/live-demos": {
+        "title": "Live Demos"
+      },
+      "intro/prerequisites": {
+        "title": "Prerequisites"
+      },
+      "intro/quick-start": {
+        "title": "Quick Start Guide"
+      },
+      "plugins/list-of-plugins": {
+        "title": "Plugins list"
+      },
+      "plugins/plugin-aws": {
+        "title": "graphql-compose-aws",
+        "sidebar_label": "AWS plugin"
+      },
+      "plugins/plugin-connection": {
+        "title": "graphql-compose-connection",
+        "sidebar_label": "Connection plugin"
+      },
+      "plugins/plugin-elasticsearch": {
+        "title": "graphql-compose-elasticsearch",
+        "sidebar_label": "ElasticSearch plugin"
+      },
+      "plugins/plugin-json": {
+        "title": "graphql-compose-json",
+        "sidebar_label": "Json plugin"
+      },
+      "plugins/plugin-mongoose": {
+        "title": "graphql-compose-mongoose",
+        "sidebar_label": "Mongoose plugin"
+      },
+      "plugins/plugin-pagination": {
+        "title": "graphql-compose-pagination",
+        "sidebar_label": "Pagination plugin"
+      },
+      "plugins/plugin-relay": {
+        "title": "graphql-compose-relay",
+        "sidebar_label": "Relay plugin"
+      },
+      "plugins/plugin-writing-custom-plugin": {
+        "title": "[WIP] How to write a custom plugin"
+      },
+      "README": {
+        "title": "README"
+      },
+      "recipes/authorization": {
+        "title": "[WIP] Authorization"
+      },
+      "recipes/writing-tests": {
+        "title": "[WIP] Writing tests"
+      }
+    },
+    "links": {
+      "Docs": "Docs",
+      "API": "API",
+      "Plugins": "Plugins",
+      "GitHub": "GitHub"
+    },
+    "categories": {
+      "Introduction": "Introduction",
+      "Basics": "Basics",
+      "API Reference": "API Reference",
+      "Plugins": "Plugins",
+      "Guide": "Guide"
+    }
   },
   "pages-strings": {
     "Learn more using the [documentation on this site.](/test-site/docs/en/doc1.html)|no description given": "Learn more using the [documentation on this site.](/test-site/docs/en/doc1.html)",

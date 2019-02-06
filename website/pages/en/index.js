@@ -91,7 +91,7 @@ class HomeSplash extends React.Component {
             <Button href={docUrl("intro-quick-start.html", language)}>
               Get Started
             </Button>
-            <Button href={docUrl("api-TypeComposer.html", language)}>
+            <Button href={docUrl("api/TypeComposer.html", language)}>
               API
             </Button>
             <Button href={docUrl("plugin--list.html", language)}>

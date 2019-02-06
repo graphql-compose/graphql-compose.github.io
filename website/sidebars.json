@@ -1,45 +1,46 @@
 {
   "docs": {
     "Introduction": [
-      "intro-prerequisites",
-      "intro-installation",
-      "intro-quick-start",
-      "intro-demos"
+      "intro/prerequisites",
+      "intro/installation",
+      "intro/quick-start",
+      "intro/live-demos"
     ],
     "Basics": [
-      "basics-types",
-      "basics-type-modification",
-      "basics-resolvers",
-      "basics-relations",
-      "basics-generating-schema"
+      "basics/understanding-types",
+      "basics/type-modification",
+      "basics/what-is-resolver",
+      "basics/understanding-relations",
+      "basics/generating-schema"
     ],
     "API Reference": [
-      "api-TypeComposer",
-      "api-Resolver",
-      "api-InputTypeComposer",
-      "api-EnumTypeComposer",
-      "api-InterfaceTypeComposer",
-      "api-SchemaComposer",
-      "api-TypeMapper",
-      "api-misc"
+      "api/TypeComposer",
+      "api/Resolver",
+      "api/InputTypeComposer",
+      "api/EnumTypeComposer",
+      "api/InterfaceTypeComposer",
+      "api/UnionTypeComposer",
+      "api/SchemaComposer",
+      "api/TypeMapper",
+      "api/misc-api-methods"
     ],
     "Plugins": [
-      "plugin--list",
-      "plugin-mongoose",
-      "plugin-elasticsearch",
-      "plugin-json",
-      "plugin-relay",
-      "plugin-connection",
-      "plugin-pagination",
-      "plugin-aws",
-      "plugin-writing-custom-plugin"
+      "plugins/list-of-plugins",
+      "plugins/plugin-mongoose",
+      "plugins/plugin-elasticsearch",
+      "plugins/plugin-json",
+      "plugins/plugin-relay",
+      "plugins/plugin-connection",
+      "plugins/plugin-pagination",
+      "plugins/plugin-aws",
+      "plugins/plugin-writing-custom-plugin"
     ],
     "Guide": [
-      "guide-wrapping-rest-api",
-      "guide-file-uploads",
-      "guide-mongoose",
-      "guide-elasticsearch-with-mongoose",
-      "guide-relay"
+      "guide/wrapping-rest-api",
+      "guide/file-uploads",
+      "guide/mongoose",
+      "guide/elasticsearch-with-mongoose",
+      "guide/relay"
     ]
   }
 }
