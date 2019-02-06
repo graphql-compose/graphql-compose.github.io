@@ -559,6 +559,15 @@ get(
 
 Flowtype definitions which are used in this class.
 
+### TypeComposerDefinition<TContext>
+
+```js
+TypeComposerDefinition<TContext> =
+  | TypeAsString
+  | ComposeObjectTypeConfig<any, TContext>
+  | GraphQLObjectType
+```
+
 ### ComposeObjectTypeConfig<TSource, TContext>
 
 ```js

@@ -202,3 +202,16 @@ clone(
   newTypeName: string
 ): EnumTypeComposer;
 ```
+
+## Internal type definitions
+
+Flowtype definitions which are used in this class.
+
+### EnumTypeComposerDefinition
+
+```js
+type EnumTypeComposerDefinition =
+  | TypeAsString
+  | GraphQLEnumTypeConfig
+  | GraphQLEnumType;
+```

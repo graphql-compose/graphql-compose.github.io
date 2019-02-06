@@ -291,6 +291,15 @@ get(
 
 Flowtype definitions which are used in this class.
 
+### InputTypeComposerDefinition
+
+```js
+type InputTypeComposerDefinition =
+  | TypeAsString
+  | ComposeInputObjectTypeConfig
+  | GraphQLInputObjectType
+```
+
 ### ComposeInputFieldConfigMap
 
 ```js

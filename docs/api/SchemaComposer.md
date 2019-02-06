@@ -61,6 +61,12 @@ const SortETC = schemaComposer.EnumTypeComposer.create(`enum Sort { ASC, DESC }`
 const HumanIFTC = schemaComposer.InterfaceTypeComposer.create(`interface Human { name: String! }`);
 ```
 
+### UnionTypeComposer
+
+```js
+const PayloadUTC = schemaComposer.UnionTypeComposer.create(`union Payload = Data | Error`);
+```
+
 ### Resolver
 
 ```js
@@ -168,6 +174,51 @@ When using Interfaces you may have such Types which are hidden under Interface.r
 addSchemaMustHaveType(type: MustHaveTypes<TContext>): this;
 ```
 
+### createObjectTC()
+
+```js
+createObjectTC(
+  typeDef: TypeComposerDefinition<TContext>
+): TypeComposer<TContext>
+
+// alias for createObjectTC
+createTC(
+  typeDef: TypeComposerDefinition<TContext>
+): TypeComposer<TContext>
+```
+
+### createInputTC()
+
+```js
+createInputTC(
+  typeDef: InputTypeComposerDefinition
+): InputTypeComposer
+```
+
+### createEnumTC()
+
+```js
+createEnumTC(
+  typeDef: EnumTypeComposerDefinition
+): EnumTypeComposer
+```
+
+### createInterfaceTC()
+
+```js
+createInterfaceTC(
+  typeDef: InterfaceTypeComposerDefinition<TContext>
+): InterfaceTypeComposer<TContext>
+```
+
+### createUnionTC()
+
+```js
+createUnionTC(
+  typeDef: UnionTypeComposerDefinition<TContext>
+): UnionTypeComposer<TContext>
+```
+
 ### getOrCreateTC()
 
 ```js
@@ -198,10 +249,19 @@ getOrCreateETC(
 ### getOrCreateIFTC()
 
 ```js
-getOrCreateETC(
+getOrCreateIFTC(
   typeName: string,
   onCreate?: (iftc: InterfaceTypeComposer<TContext>) => any
 ): InterfaceTypeComposer<TContext>
+```
+
+### getOrCreateUTC()
+
+```js
+getOrCreateUTC(
+  typeName: string,
+  onCreate?: (iftc: UnionTypeComposer<TContext>) => any
+): UnionTypeComposer<TContext>
 ```
 
 ## Storage methods
@@ -262,6 +322,14 @@ getETC(
 getIFTC(
   typeName: string
 ): InterfaceTypeComposer<TContext>
+```
+
+### getUTC()
+
+```js
+getUTC(
+  typeName: string
+): UnionTypeComposer<TContext>
 ```
 
 ## Map methods
@@ -382,9 +450,10 @@ type ExtraSchemaConfig = {
 
 ```js
 type MustHaveTypes<TContext> =
-  | _TypeComposer<TContext>
-  | _InputTypeComposer
-  | _EnumTypeComposer
-  | _InterfaceTypeComposer<TContext>
+  | TypeComposer<TContext>
+  | InputTypeComposer
+  | EnumTypeComposer
+  | InterfaceTypeComposer<TContext>
+  | UnionTypeComposer<TContext>
   | GraphQLNamedType;
 ```

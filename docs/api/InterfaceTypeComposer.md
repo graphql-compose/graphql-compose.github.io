@@ -389,6 +389,15 @@ get(
 
 Flowtype definitions which are used in this class.
 
+### InterfaceTypeComposerDefinition<TContext>
+
+```js
+type InterfaceTypeComposerDefinition<TContext> =
+  | TypeAsString
+  | ComposeInterfaceTypeConfig<any, TContext>
+```
+
+
 ### InterfaceTypeResolversMap<TSource, TContext>
 
 ```js

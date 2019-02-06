@@ -230,6 +230,14 @@ removeTypeResolver(
 
 Flowtype definitions which are used in this class.
 
+### UnionTypeComposerDefinition<TContext>
+
+```js
+type UnionTypeComposerDefinition<TContext> =
+  | TypeAsString
+  | ComposeUnionTypeConfig<any, TContext>;
+```
+
 ### GraphQLUnionTypeExtended<TSource, TContext>
 
 ```js
@@ -279,12 +287,4 @@ type ComposeUnionTypeConfig<TSource, TContext> = {
   resolveType?: GraphQLTypeResolver<TSource, TContext> | null;
   description?: string | null;
 };
-```
-
-### UnionTypeComposerDefinition<TContext>
-
-```js
-type UnionTypeComposerDefinition<TContext> =
-  | TypeAsString
-  | ComposeUnionTypeConfig<any, TContext>;
 ```
