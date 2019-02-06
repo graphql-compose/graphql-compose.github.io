@@ -1,0 +1,481 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Resolver · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;The most interesting class in &lt;code&gt;graphql-compose&lt;/code&gt;. The main goal of &lt;code&gt;Resolver&lt;/code&gt; is to keep available resolve methods for Type and use them for building relation with other types.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Resolver · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="&lt;p&gt;The most interesting class in &lt;code&gt;graphql-compose&lt;/code&gt;. The main goal of &lt;code&gt;Resolver&lt;/code&gt; is to keep available resolve methods for Type and use them for building relation with other types.&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-83022112-3', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitleWithLogo">graphql-compose</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/intro/quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/en/api/TypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/en/plugins/list-of-plugins.html" target="_self">Plugins</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ja/api/Resolver.html">日本語</a></li><li><a href="/docs/es-ES/api/Resolver.html">Español</a></li><li><a href="/docs/fr/api/Resolver.html">Français</a></li><li><a href="/docs/ko/api/Resolver.html">한국어</a></li><li><a href="/docs/pt-BR/api/Resolver.html">Português (Brasil)</a></li><li><a href="/docs/ru/api/Resolver.html">Русский</a></li><li><a href="/docs/zh-CN/api/Resolver.html">中文</a></li><li><a href="/docs/th/api/Resolver.html">ภาษาไทย</a></li><li><a href="https://crowdin.com/project/graphql-compose" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/graphql-compose/graphql-compose" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>API Reference</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/intro/prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/en/intro/installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/en/intro/quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/en/intro/live-demos.html">Live Demos</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/basics/understanding-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/en/basics/type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/en/basics/what-is-resolver.html">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/basics/understanding-relations.html">Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/en/basics/generating-schema.html">Generating Schema</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/api/TypeComposer.html">TypeComposer</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/api/Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api/InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api/EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api/InterfaceTypeComposer.html">InterfaceTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api/UnionTypeComposer.html">UnionTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api/SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api/TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api/misc-api-methods.html">API misc</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Plugins</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/plugins/list-of-plugins.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guide</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/guide/wrapping-rest-api.html">Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/guide/file-uploads.html">File uploads</a></li><li class="navListItem"><a class="navItem" href="/docs/en/guide/mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem"><a class="navItem" href="/docs/en/guide/elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/en/guide/relay.html">[WIP] Relay Schema</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/api/Resolver.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Resolver</h1></header><article><div><span><p>The most interesting class in <code>graphql-compose</code>. The main goal of <code>Resolver</code> is to keep available resolve methods for Type and use them for building relation with other types.</p>
+<h2><a class="anchor" aria-hidden="true" id="properties"></a><a href="#properties" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Properties</h2>
+<h3><a class="anchor" aria-hidden="true" id="schemacomposer"></a><a href="#schemacomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>schemaComposer</h3>
+<p>Current <code>SchemaComposer</code> instance which is used for storing types created by <code>Resolver</code>.</p>
+<pre><code class="hljs css language-js">Resolver.schemaComposer: SchemaComposer;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="output-type-methods"></a><a href="#output-type-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Output type methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="gettype"></a><a href="#gettype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getType()</h3>
+<pre><code class="hljs css language-js">getType(): GraphQLOutputType;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypecomposer"></a><a href="#gettypecomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeComposer()</h3>
+<pre><code class="hljs css language-js">getTypeComposer(): TypeComposer&lt;TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="settype"></a><a href="#settype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setType()</h3>
+<pre><code class="hljs css language-js">setType(
+  gqType: ComposeOutputType&lt;TContext&gt;
+): Resolver;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="args-methods"></a><a href="#args-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Args methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="hasarg"></a><a href="#hasarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasArg()</h3>
+<pre><code class="hljs css language-js">hasArg(
+  argName: string
+): boolean;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getarg"></a><a href="#getarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getArg()</h3>
+<pre><code class="hljs css language-js">getArg(
+  argName: string
+): ComposeArgumentConfig;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getargconfig"></a><a href="#getargconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getArgConfig()</h3>
+<pre><code class="hljs css language-js">getArgConfig(
+  argName: string
+): GraphQLArgumentConfig;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getargtype"></a><a href="#getargtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getArgType()</h3>
+<pre><code class="hljs css language-js">getArgType(
+  argName: string
+): GraphQLInputType;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getargtc"></a><a href="#getargtc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getArgTC()</h3>
+<pre><code class="hljs css language-js">getArgTC(
+  argName: string
+): InputTypeComposer;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getargs"></a><a href="#getargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getArgs()</h3>
+<pre><code class="hljs css language-js">getArgs(): ComposeFieldConfigArgumentMap;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getargnames"></a><a href="#getargnames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getArgNames()</h3>
+<pre><code class="hljs css language-js">getArgNames(): <span class="hljs-built_in">Array</span>&lt;string&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setargs"></a><a href="#setargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setArgs()</h3>
+<pre><code class="hljs css language-js">setArgs(
+  args: ComposeFieldConfigArgumentMap
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setarg"></a><a href="#setarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setArg()</h3>
+<pre><code class="hljs css language-js">setArg(
+  argName: string,
+  <span class="hljs-attr">argConfig</span>: ComposeArgumentConfig
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="extendarg"></a><a href="#extendarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>extendArg()</h3>
+<pre><code class="hljs css language-js">extendArg(
+  argName: string,
+  <span class="hljs-attr">partialArgConfig</span>: any
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addargs"></a><a href="#addargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addArgs()</h3>
+<pre><code class="hljs css language-js">addArgs(
+  newArgs: ComposeFieldConfigArgumentMap
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removearg"></a><a href="#removearg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeArg()</h3>
+<pre><code class="hljs css language-js">removeArg(
+  argNameOrArray: string | <span class="hljs-built_in">Array</span>&lt;string&gt;
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removeotherargs"></a><a href="#removeotherargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeOtherArgs()</h3>
+<pre><code class="hljs css language-js">removeOtherArgs(
+  argNameOrArray: string | <span class="hljs-built_in">Array</span>&lt;string&gt;
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="reorderargs"></a><a href="#reorderargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>reorderArgs()</h3>
+<pre><code class="hljs css language-js">reorderArgs(
+  names: <span class="hljs-built_in">Array</span>&lt;string&gt;
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="clonearg"></a><a href="#clonearg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>cloneArg()</h3>
+<pre><code class="hljs css language-js">cloneArg(
+  argName: string,
+  <span class="hljs-attr">newTypeName</span>: string
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="isrequired"></a><a href="#isrequired" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isRequired()</h3>
+<pre><code class="hljs css language-js">isRequired(
+  argName: string
+): boolean;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makerequired"></a><a href="#makerequired" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeRequired()</h3>
+<pre><code class="hljs css language-js">makeRequired(
+  argNameOrArray: string | <span class="hljs-built_in">Array</span>&lt;string&gt;
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makeoptional"></a><a href="#makeoptional" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeOptional()</h3>
+<pre><code class="hljs css language-js">makeOptional(
+  argNameOrArray: string | <span class="hljs-built_in">Array</span>&lt;string&gt;
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addfilterarg"></a><a href="#addfilterarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addFilterArg()</h3>
+<pre><code class="hljs css language-js">addFilterArg(
+  opts: ResolverFilterArgConfig&lt;TSource, TContext&gt;
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addsortarg"></a><a href="#addsortarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addSortArg()</h3>
+<pre><code class="hljs css language-js">addSortArg(
+  opts: ResolverSortArgConfig&lt;TSource, TContext&gt;
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="resolve-methods"></a><a href="#resolve-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resolve methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getresolve"></a><a href="#getresolve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getResolve()</h3>
+<pre><code class="hljs css language-js">getResolve(): ResolverRpCb&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setresolve"></a><a href="#setresolve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setResolve()</h3>
+<pre><code class="hljs css language-js">setResolve(
+  resolve: ResolverRpCb&lt;TSource, TContext&gt;
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="wrap-methods"></a><a href="#wrap-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wrap methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="withmiddlewares"></a><a href="#withmiddlewares" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>withMiddlewares()</h3>
+<pre><code class="hljs css language-js">withMiddlewares(
+  middlewares: <span class="hljs-built_in">Array</span>&lt;ResolverMiddleware,
+): Resolver;
+</code></pre>
+<p>You may construct a new resolver with wrapped logic:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> log = [];
+
+<span class="hljs-keyword">const</span> mw1 = <span class="hljs-keyword">async</span> (resolve, source, args, context, info) =&gt; {
+  log.push(<span class="hljs-string">'m1.before'</span>);
+  <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> resolve(source, args, context, info);
+  log.push(<span class="hljs-string">'m1.after'</span>);
+  <span class="hljs-keyword">return</span> res;
+};
+
+<span class="hljs-keyword">const</span> mw2 = <span class="hljs-keyword">async</span> (resolve, source, args, context, info) =&gt; {
+  log.push(<span class="hljs-string">'m2.before'</span>);
+  <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> resolve(source, args, context, info);
+  log.push(<span class="hljs-string">'m2.after'</span>);
+  <span class="hljs-keyword">return</span> res;
+};
+
+<span class="hljs-keyword">const</span> newResolver = Resolver.withMiddlewares([mw1, mw2]);
+<span class="hljs-keyword">await</span> newResolver.resolve({});
+
+expect(log).toEqual([
+  <span class="hljs-string">'m1.before'</span>,
+  <span class="hljs-string">'m2.before'</span>,
+  <span class="hljs-string">'call resolve'</span>,
+  <span class="hljs-string">'m2.after'</span>,
+  <span class="hljs-string">'m1.after'</span>
+]);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wrap"></a><a href="#wrap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrap()</h3>
+<pre><code class="hljs css language-js">wrap(
+  cb: ResolverWrapCb&lt;TSource, TContext&gt; | <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">newResolverOpts</span>: ResolverOpts&lt;TSource, TContext&gt; | <span class="hljs-literal">null</span>
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wrapresolve"></a><a href="#wrapresolve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapResolve()</h3>
+<pre><code class="hljs css language-js">wrapResolve(
+  cb: ResolverNextRpCb&lt;TSource, TContext&gt;,
+  wrapperName?: string
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wrapargs"></a><a href="#wrapargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapArgs()</h3>
+<pre><code class="hljs css language-js">wrapArgs(
+  cb: ResolverWrapArgsCb,
+  wrapperName?: string
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wrapclonearg"></a><a href="#wrapclonearg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapCloneArg()</h3>
+<pre><code class="hljs css language-js">wrapCloneArg(
+  argName: string,
+  <span class="hljs-attr">newTypeName</span>: string
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wraptype"></a><a href="#wraptype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapType()</h3>
+<pre><code class="hljs css language-js">wrapType(
+  cb: ResolverWrapTypeCb,
+  wrapperName?: string
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="misc-methods"></a><a href="#misc-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Misc methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getfieldconfig"></a><a href="#getfieldconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldConfig()</h3>
+<pre><code class="hljs css language-js">getFieldConfig(
+  opts?: { projection?: ProjectionType }
+): GraphQLFieldConfig&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getkind"></a><a href="#getkind" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getKind()</h3>
+<pre><code class="hljs css language-js">getKind(): ResolverKinds | <span class="hljs-literal">null</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setkind"></a><a href="#setkind" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setKind()</h3>
+<pre><code class="hljs css language-js">setKind(
+  kind: string
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getdescription"></a><a href="#getdescription" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDescription()</h3>
+<pre><code class="hljs css language-js">getDescription(): string | <span class="hljs-literal">null</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setdescription"></a><a href="#setdescription" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setDescription()</h3>
+<pre><code class="hljs css language-js">setDescription(
+  description: string
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="get"></a><a href="#get" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>get()</h3>
+<pre><code class="hljs css language-js">get(
+  path: string | <span class="hljs-built_in">Array</span>&lt;string&gt;
+): any;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="clone"></a><a href="#clone" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clone()</h3>
+<pre><code class="hljs css language-js">clone(
+  opts?: ResolverOpts&lt;TSource, TContext&gt;
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="debug-methods"></a><a href="#debug-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debug methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getnestedname"></a><a href="#getnestedname" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getNestedName()</h3>
+<pre><code class="hljs css language-js">getNestedName(): string;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="tostring"></a><a href="#tostring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>toString()</h3>
+<pre><code class="hljs css language-js">toString(
+  colors?: boolean
+): string;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setdisplayname"></a><a href="#setdisplayname" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setDisplayName()</h3>
+<pre><code class="hljs css language-js">setDisplayName(
+  name: string
+): Resolver;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="todebugstructure"></a><a href="#todebugstructure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>toDebugStructure()</h3>
+<pre><code class="hljs css language-js">toDebugStructure(
+  colors?: boolean
+): <span class="hljs-built_in">Object</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="debugexectime"></a><a href="#debugexectime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>debugExecTime()</h3>
+<pre><code class="hljs css language-js">debugExecTime(): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="debugparams"></a><a href="#debugparams" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>debugParams()</h3>
+<pre><code class="hljs css language-js">debugParams(
+  filterPaths: (string | <span class="hljs-built_in">Array</span>&lt;string&gt;) | <span class="hljs-literal">null</span>,
+  opts?: ResolveDebugOpts
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="debugpayload"></a><a href="#debugpayload" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>debugPayload()</h3>
+<pre><code class="hljs css language-js">debugPayload(
+  filterPaths: (string | <span class="hljs-built_in">Array</span>&lt;string&gt;) | <span class="hljs-literal">null</span>,
+  opts?: ResolveDebugOpts
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="debug"></a><a href="#debug" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>debug()</h3>
+<pre><code class="hljs css language-js">debug(
+  filterDotPaths?: {
+    params?: (string | <span class="hljs-built_in">Array</span>&lt;string&gt;),
+    payload?: (string | <span class="hljs-built_in">Array</span>&lt;string&gt;)
+  },
+  opts?: ResolveDebugOpts
+): Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="internal-type-definitions"></a><a href="#internal-type-definitions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Internal type definitions</h2>
+<p>Flowtype definitions which are used in this class.</p>
+<h3><a class="anchor" aria-hidden="true" id="resolveparams-tsource-tcontext"></a><a href="#resolveparams-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolveParams&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolveParams&lt;TSource, TContext&gt; = {
+  <span class="hljs-attr">source</span>: TSource,
+  <span class="hljs-attr">args</span>: { [argName: string]: any },
+  <span class="hljs-attr">context</span>: TContext,
+  <span class="hljs-attr">info</span>: GraphQLResolveInfo,
+  <span class="hljs-attr">projection</span>: $Shape&lt;ProjectionType&gt;,
+  [opt: string]: any,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverkinds"></a><a href="#resolverkinds" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverKinds</h3>
+<pre><code class="hljs css language-js">type ResolverKinds = <span class="hljs-string">'query'</span> | <span class="hljs-string">'mutation'</span> | <span class="hljs-string">'subscription'</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverfilterargfn-tsource-tcontext"></a><a href="#resolverfilterargfn-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverFilterArgFn&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolverFilterArgFn&lt;TSource, TContext&gt; = (
+  query: any,
+  <span class="hljs-attr">value</span>: any,
+  <span class="hljs-attr">resolveParams</span>: ResolveParams&lt;TSource, TContext&gt;
+) =&gt; any;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverfilterargconfig-tsource-tcontext"></a><a href="#resolverfilterargconfig-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverFilterArgConfig&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolverFilterArgConfig&lt;TSource, TContext&gt; = {
+  +name: string,
+  +type: ComposeArgumentType,
+  +description?: ?string,
+  +query?: ResolverFilterArgFn&lt;TSource, TContext&gt;,
+  +filterTypeNameFallback?: string,
+  +defaultValue?: any,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolversortargfn-tsource-tcontext"></a><a href="#resolversortargfn-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverSortArgFn&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolverSortArgFn&lt;TSource, TContext&gt; = (
+  resolveParams: ResolveParams&lt;TSource, TContext&gt;
+) =&gt; mixed;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolversortargconfig-tsource-tcontext"></a><a href="#resolversortargconfig-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverSortArgConfig&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolverSortArgConfig&lt;TSource, TContext&gt; = {
+  <span class="hljs-attr">name</span>: string,
+  sortTypeNameFallback?: string,
+  <span class="hljs-comment">// value also can be an `Object`, but flow does not understande union with object and function</span>
+  <span class="hljs-comment">// see https://github.com/facebook/flow/issues/1948</span>
+  value:
+    | { [key: string]: any }
+    | ResolverSortArgFn&lt;TSource, TContext&gt;
+    | string
+    | number
+    | boolean
+    | <span class="hljs-built_in">Array</span>&lt;any&gt;,
+  deprecationReason?: ?string,
+  description?: ?string,
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolveropts-tsource-tcontext"></a><a href="#resolveropts-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverOpts&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolverOpts&lt;TSource, TContext&gt; = {|
+  type?: ComposeOutputType&lt;TContext&gt;,
+  resolve?: ResolverRpCb&lt;TSource, TContext&gt;,
+  args?: ComposeFieldConfigArgumentMap,
+  name?: string,
+  displayName?: string,
+  kind?: ResolverKinds,
+  description?: string,
+  parent?: Resolver&lt;TSource, TContext&gt;,
+|};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverwrapcb-tsource-tcontext"></a><a href="#resolverwrapcb-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverWrapCb&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolverWrapCb&lt;TSource, TContext&gt; = (
+  newResolver: Resolver&lt;TSource, TContext&gt;,
+  <span class="hljs-attr">prevResolver</span>: Resolver&lt;TSource, TContext&gt;
+) =&gt; Resolver&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverrpcb-tsource-tcontext"></a><a href="#resolverrpcb-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverRpCb&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolverRpCb&lt;TSource, TContext&gt; = (
+  resolveParams: $Shape&lt;ResolveParams&lt;TSource, TContext&gt;&gt;
+) =&gt; <span class="hljs-built_in">Promise</span>&lt;any&gt; | any;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolvernextrpcb-tsource-tcontext"></a><a href="#resolvernextrpcb-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverNextRpCb&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ResolverNextRpCb&lt;TSource, TContext&gt; = (
+  next: ResolverRpCb&lt;TSource, TContext&gt;
+) =&gt; ResolverRpCb&lt;TSource, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverwrapargscb"></a><a href="#resolverwrapargscb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverWrapArgsCb</h3>
+<pre><code class="hljs css language-js">type ResolverWrapArgsCb = (
+  prevArgs: GraphQLFieldConfigArgumentMap
+) =&gt; ComposeFieldConfigArgumentMap;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolverwraptypecb"></a><a href="#resolverwraptypecb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverWrapTypeCb</h3>
+<pre><code class="hljs css language-js">type ResolverWrapTypeCb&lt;TContext&gt; = (
+  prevType: GraphQLOutputType
+) =&gt; ComposeOutputType&lt;TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="resolvedebugopts"></a><a href="#resolvedebugopts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolveDebugOpts</h3>
+<pre><code class="hljs css language-js">type ResolveDebugOpts = {
+  showHidden?: boolean,
+  depth?: number,
+  colors?: boolean,
+};
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/api/TypeComposer.html"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeComposer</span></a><a class="docs-next button" href="/docs/en/api/InputTypeComposer.html"><span class="function-name-prevnext">InputTypeComposer</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#output-type-methods">Output type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypecomposer">getTypeComposer()</a></li><li><a href="#settype">setType()</a></li></ul></li><li><a href="#args-methods">Args methods</a><ul class="toc-headings"><li><a href="#hasarg">hasArg()</a></li><li><a href="#getarg">getArg()</a></li><li><a href="#getargconfig">getArgConfig()</a></li><li><a href="#getargtype">getArgType()</a></li><li><a href="#getargtc">getArgTC()</a></li><li><a href="#getargs">getArgs()</a></li><li><a href="#getargnames">getArgNames()</a></li><li><a href="#setargs">setArgs()</a></li><li><a href="#setarg">setArg()</a></li><li><a href="#extendarg">extendArg()</a></li><li><a href="#addargs">addArgs()</a></li><li><a href="#removearg">removeArg()</a></li><li><a href="#removeotherargs">removeOtherArgs()</a></li><li><a href="#reorderargs">reorderArgs()</a></li><li><a href="#clonearg">cloneArg()</a></li><li><a href="#isrequired">isRequired()</a></li><li><a href="#makerequired">makeRequired()</a></li><li><a href="#makeoptional">makeOptional()</a></li><li><a href="#addfilterarg">addFilterArg()</a></li><li><a href="#addsortarg">addSortArg()</a></li></ul></li><li><a href="#resolve-methods">Resolve methods</a><ul class="toc-headings"><li><a href="#getresolve">getResolve()</a></li><li><a href="#setresolve">setResolve()</a></li></ul></li><li><a href="#wrap-methods">Wrap methods</a><ul class="toc-headings"><li><a href="#withmiddlewares">withMiddlewares()</a></li><li><a href="#wrap">wrap()</a></li><li><a href="#wrapresolve">wrapResolve()</a></li><li><a href="#wrapargs">wrapArgs()</a></li><li><a href="#wrapclonearg">wrapCloneArg()</a></li><li><a href="#wraptype">wrapType()</a></li></ul></li><li><a href="#misc-methods">Misc methods</a><ul class="toc-headings"><li><a href="#getfieldconfig">getFieldConfig()</a></li><li><a href="#getkind">getKind()</a></li><li><a href="#setkind">setKind()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#get">get()</a></li><li><a href="#clone">clone()</a></li></ul></li><li><a href="#debug-methods">Debug methods</a><ul class="toc-headings"><li><a href="#getnestedname">getNestedName()</a></li><li><a href="#tostring">toString()</a></li><li><a href="#setdisplayname">setDisplayName()</a></li><li><a href="#todebugstructure">toDebugStructure()</a></li><li><a href="#debugexectime">debugExecTime()</a></li><li><a href="#debugparams">debugParams()</a></li><li><a href="#debugpayload">debugPayload()</a></li><li><a href="#debug">debug()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#resolveparams-tsource-tcontext">ResolveParams</a></li><li><a href="#resolverkinds">ResolverKinds</a></li><li><a href="#resolverfilterargfn-tsource-tcontext">ResolverFilterArgFn</a></li><li><a href="#resolverfilterargconfig-tsource-tcontext">ResolverFilterArgConfig</a></li><li><a href="#resolversortargfn-tsource-tcontext">ResolverSortArgFn</a></li><li><a href="#resolversortargconfig-tsource-tcontext">ResolverSortArgConfig</a></li><li><a href="#resolveropts-tsource-tcontext">ResolverOpts</a></li><li><a href="#resolverwrapcb-tsource-tcontext">ResolverWrapCb</a></li><li><a href="#resolverrpcb-tsource-tcontext">ResolverRpCb</a></li><li><a href="#resolvernextrpcb-tsource-tcontext">ResolverNextRpCb</a></li><li><a href="#resolverwrapargscb">ResolverWrapArgsCb</a></li><li><a href="#resolverwraptypecb">ResolverWrapTypeCb</a></li><li><a href="#resolvedebugopts">ResolveDebugOpts</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+
+      if (document && document.addEventListener) {
+        document.addEventListener('pjax:ready', function (e) {
+          if (ga) ga('send', 'pageview', location.pathname);
+        });
+      }
+
+      var languagesMenuItemCopy = document.getElementById("languages-menu");
+      languagesMenuItemCopy.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+      });</script></span></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '34b5c77954100fe8e57575f8dfd60185',
+                indexName: 'graphql-compose',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"hitsPerPage":10}
+              });
+            </script></body></html>
