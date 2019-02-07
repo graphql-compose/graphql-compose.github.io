@@ -47,7 +47,7 @@ SomeUTC.schemaComposer: SchemaComposer
 
 ```js
 hasType(
-  name: string
+  name: string | GraphQLObjectType | TypeComposer<TContext>
 ): boolean
 ```
 

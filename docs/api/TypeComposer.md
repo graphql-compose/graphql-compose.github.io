@@ -475,8 +475,8 @@ setInterfaces(
 ### hasInterface()
 
 ```js
-hasInterface(
-  interfaceObj: InterfaceTypeComposer | GraphQLInterfaceType
+public hasInterface(
+  iface: string | InterfaceTypeComposer<any, TContext> | GraphQLInterfaceType,
 ): boolean;
 ```
 
