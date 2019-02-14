@@ -25,8 +25,7 @@ function toInputObjectType(
   opts?: {
     prefix?: string;
     postfix?: string;
-  },
-  cache?: Map<GraphQLObjectType, InputTypeComposer>
+  }
 ): InputTypeComposer;
 ```
 
