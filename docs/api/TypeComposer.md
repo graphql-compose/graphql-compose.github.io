@@ -331,6 +331,14 @@ getInputType(): GraphQLInputObjectType;
 hasInputTypeComposer(): boolean;
 ```
 
+### setInputTypeComposer()
+
+```js
+setInputTypeComposer(
+  itc: InputTypeComposer
+): this;
+```
+
 ### getInputTypeComposer()
 
 ```js
