@@ -107,6 +107,10 @@ curl localhost:4000/graphql \
   -F 0=@package.json
 ```
 
+**Request via Altair**
+
+[Altair GraphQL Client](https://altair.sirmuel.design/) supports [file upload using the graphql-multipart-request-spec](https://sirmuel.design/working-with-file-uploads-using-altair-graphql-d2f86dc8261f) so you can also use it to make a request.
+
 **Response from GraphQL server**
 
 ```bash
