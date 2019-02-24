@@ -154,6 +154,8 @@ schemaComposer.set(<span class="hljs-string">'Upload'</span>, GraphQLUpload);
   -F map=<span class="hljs-string">'{ "0": ["variables.poster"] }'</span> \
   -F 0=@package.json
 </code></pre>
+<p><strong>Request via Altair</strong></p>
+<p><a href="https://altair.sirmuel.design/">Altair GraphQL Client</a> supports <a href="https://sirmuel.design/working-with-file-uploads-using-altair-graphql-d2f86dc8261f">file upload using the graphql-multipart-request-spec</a> so you can also use it to make a request.</p>
 <p><strong>Response from GraphQL server</strong></p>
 <pre><code class="hljs css language-bash">{<span class="hljs-string">"data"</span>:{<span class="hljs-string">"createPost"</span>:{<span class="hljs-string">"id"</span>:5}}}
 </code></pre>
