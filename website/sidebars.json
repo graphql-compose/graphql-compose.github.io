@@ -17,6 +17,7 @@
       "api/TypeComposer",
       "api/Resolver",
       "api/InputTypeComposer",
+      "api/ScalarTypeComposer",
       "api/EnumTypeComposer",
       "api/InterfaceTypeComposer",
       "api/UnionTypeComposer",

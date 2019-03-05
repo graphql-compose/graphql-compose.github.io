@@ -430,6 +430,14 @@ getITC(
 ): InputTypeComposer
 ```
 
+### getSTC()
+
+```flow
+getSTC(
+  typeName: string
+): ScalarTypeComposer
+```
+
 ### getETC()
 
 ```flow

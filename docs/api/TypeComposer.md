@@ -636,10 +636,18 @@ type ComposeFieldConfigAsObject<TSource, TContext> = {
 type ComposeOutputType<TContext> =
     | GraphQLOutputType
     | TypeComposer<TContext>
+    | ScalarTypeComposer
     | EnumTypeComposer
     | TypeAsString
     | Resolver<any, TContext>
-    | Array<GraphQLOutputType | TypeComposer<TContext> | EnumTypeComposer | TypeAsString | Resolver<any, TContext>>;
+    | Array<
+      | GraphQLOutputType
+      | TypeComposer<TContext>
+      | ScalarTypeComposer
+      | EnumTypeComposer
+      | TypeAsString
+      | Resolver<any, TContext>
+    >;
 ```
 
 ### ComposeArgumentType
@@ -649,8 +657,15 @@ type ComposeArgumentType =
     | GraphQLInputType
     | TypeAsString
     | InputTypeComposer
+    | ScalarTypeComposer
     | EnumTypeComposer
-    | Array<GraphQLInputType | TypeAsString | InputTypeComposer | EnumTypeComposer>;
+    | Array<
+      | GraphQLInputType
+      | TypeAsString
+      | InputTypeComposer
+      | ScalarTypeComposer
+      | EnumTypeComposer
+    >;
 ```
 
 ### ComposeArgumentConfigAsObject

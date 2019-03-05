@@ -15,6 +15,33 @@ Graphql-compose has following built-in scalar types:
 - `Date`
 - `JSON`
 
+### via config
+
+You may create scalar types via config, like with GraphQLScalarType:
+
+```js
+const ScalarTC = ScalarTypeComposer.create({
+  name: 'UInt',
+  description: 'Unsigned integer',
+  serialize: () => {},
+  parseValue: () => {},
+  parseLiteral: () => {},
+});
+```
+
+### via SDL
+
+```js
+const ScalarTC = ScalarTypeComposer.create('scalar UInt');
+
+// or
+const ScalarTC = ScalarTypeComposer.create('UInt');
+ScalarTC.setDescription('Unsigned integer');
+ScalarTC.setSerialize(() => {});
+ScalarTC.setParseValue(() => {});
+ScalarTC.setParseLiteral(() => {});
+```
+
 ## Object types via TypeComposer
 
 If you need to create some complex type with several properties, you will need to use [TypeComposer](api/TypeComposer.md). It's a builder for `GraphQLObjectType` object.

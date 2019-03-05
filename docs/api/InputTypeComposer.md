@@ -332,6 +332,7 @@ type ComposeInputFieldConfigAsObject = {
 ```js
 type ComposeInputType =
   | InputTypeComposer
+  | ScalarTypeComposer
   | EnumTypeComposer
   | GraphQLInputType
   | TypeAsString

@@ -49,6 +49,12 @@ const MeTC = schemaComposer.TypeComposer.create(`type Me { name: String! }`);
 const MeITC = schemaComposer.InputTypeComposer.create(`input MeInput { name: String! }`);
 ```
 
+### ScalarTypeComposer
+
+```js
+const UIntSTC = schemaComposer.ScalarTypeComposer.create(`scalar UInt`);
+```
+
 ### EnumTypeComposer
 
 ```js
@@ -195,6 +201,14 @@ createInputTC(
 ): InputTypeComposer
 ```
 
+### createScalarTC()
+
+```js
+createScalarTC(
+  typeDef: ScalarTypeComposerDefinition
+): ScalarTypeComposer
+```
+
 ### createEnumTC()
 
 ```js
@@ -237,6 +251,15 @@ getOrCreateITC(
 ): InputTypeComposer
 ```
 
+### getOrCreateSTC()
+
+```js
+getOrCreateSTC(
+  typeName: string,
+  onCreate?: (ScalarTypeComposer) => any
+): ScalarTypeComposer
+```
+
 ### getOrCreateETC()
 
 ```js
@@ -264,15 +287,37 @@ getOrCreateUTC(
 ): UnionTypeComposer<TContext>
 ```
 
-## Storage methods
+### getAnyTC()
+
+```js
+getAnyTC(
+  typeName: any,
+):
+  | TypeComposer
+  | InputTypeComposer
+  | EnumTypeComposer
+  | InterfaceTypeComposer
+  | UnionTypeComposer
+  | ScalarTypeComposer;
+```
 
 ### add()
 
 ```js
 add(
-  value: ComposeType
-): ?string
+  typeOrSDL: any
+): string | null;
 ```
+
+### addAsComposer()
+
+```js
+addAsComposer(
+  typeOrSDL: any
+): string;
+```
+
+## Storage methods
 
 ### hasInstance()
 
@@ -306,6 +351,14 @@ getTC(
 getITC(
   typeName: string
 ): InputTypeComposer
+```
+
+### getSTC()
+
+```js
+getSTC(
+  typeName: string
+): ScalarTypeComposer
 ```
 
 ### getETC()
@@ -452,6 +505,7 @@ type ExtraSchemaConfig = {
 type MustHaveTypes<TContext> =
   | TypeComposer<TContext>
   | InputTypeComposer
+  | ScalarTypeComposer
   | EnumTypeComposer
   | InterfaceTypeComposer<TContext>
   | UnionTypeComposer<TContext>
