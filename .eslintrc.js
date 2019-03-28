@@ -1,0 +1,57 @@
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'prettier'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
+  ],
+  parserOptions: {
+    sourceType: 'module',
+    useJSXTextNode: true,
+    project: './tsconfig.json',
+  },
+  rules: {
+    'no-underscore-dangle': 0,
+    'arrow-body-style': 0,
+    'no-unused-expressions': 0,
+    'no-plusplus': 0,
+    'no-console': 0,
+    'func-names': 0,
+    'comma-dangle': [
+      'error',
+      {
+        arrays: 'always-multiline',
+        objects: 'always-multiline',
+        imports: 'always-multiline',
+        exports: 'always-multiline',
+        functions: 'ignore',
+      },
+    ],
+    'no-prototype-builtins': 0,
+    'prefer-destructuring': 0,
+    'no-else-return': 0,
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+    '@typescript-eslint/explicit-member-accessibility': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/no-empty-interface': 0,
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: false,
+        argsIgnorePattern: '^(_|doc$|req$|res$|next$)',
+      },
+    ],
+  },
+  env: {
+    jasmine: true,
+    jest: true,
+  },
+  globals: {
+    Class: true,
+    Iterator: true,
+  },
+};

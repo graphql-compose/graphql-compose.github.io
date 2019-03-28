@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "noEmit": false,
+    "lib": ["es2017", "esnext.asynciterable"],
+    "types": ["node"],
+    "outDir": "./dist",
+    "rootDir": "api-gen"
+  },
+  "exclude": ["node_modules", "**/__tests__", "**/__mocks__"],
+  "include": ["src/**/*"]
+}

@@ -7,8 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
+    "test": "jest",
     "start": "cd website && yarn start",
-    "build": "cd website && yarn build"
+    "build": "cd website && yarn build",
+    "version": "cd website && yarn docusaurus-version"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,18 @@
   "bugs": {
     "url": "https://github.com/graphql-compose/graphql-compose.github.io/issues"
   },
-  "homepage": "https://github.com/graphql-compose/graphql-compose.github.io#readme"
+  "homepage": "https://github.com/graphql-compose/graphql-compose.github.io#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.12.0",
+    "@typescript-eslint/eslint-plugin": "^1.5.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.5.0",
+    "prettier": "^1.16.4",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.4000"
+  }
 }
