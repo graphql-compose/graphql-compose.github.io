@@ -15,18 +15,18 @@ describe('TSClassParser', () => {
       }
     `);
 
-    expect(data.name).toBe('Me');
-    expect(data.staticMethods).toEqual([
+    expect(data.class.name).toBe('Me');
+    expect(data.class.staticMethods).toEqual([
       {
         documentation: '',
-        flags: { private: false, protected: false, readonly: false },
+        flags: { private: false, protected: false, readonly: false, static: true },
         name: 'pub',
         parameters: [{ documentation: '', name: 'a', type: 'Me' }],
         type: 'string',
       },
       {
         documentation: 'Method description',
-        flags: { private: false, protected: true, readonly: false },
+        flags: { private: false, protected: true, readonly: false, static: true },
         name: 'prot',
         parameters: [
           { documentation: '', name: 'b', type: 'string' },
@@ -36,7 +36,7 @@ describe('TSClassParser', () => {
       },
       {
         documentation: '',
-        flags: { private: true, protected: false, readonly: false },
+        flags: { private: true, protected: false, readonly: false, static: true },
         name: 'priv',
         parameters: [],
         type: '{}',
@@ -53,23 +53,23 @@ describe('TSClassParser', () => {
       }
     `);
 
-    expect(data.name).toBe('Me');
-    expect(data.staticProperties).toEqual([
+    expect(data.class.name).toBe('Me');
+    expect(data.class.staticProperties).toEqual([
       {
         documentation: '',
-        flags: { private: false, protected: false, readonly: false },
+        flags: { private: false, protected: false, readonly: false, static: true },
         name: 'pub',
         type: 'string',
       },
       {
         documentation: '',
-        flags: { private: false, protected: true, readonly: false },
+        flags: { private: false, protected: true, readonly: false, static: true },
         name: 'prot',
         type: 'Me',
       },
       {
         documentation: '',
-        flags: { private: true, protected: false, readonly: false },
+        flags: { private: true, protected: false, readonly: false, static: true },
         name: 'priv',
         type: 'any',
       },
@@ -90,18 +90,18 @@ describe('TSClassParser', () => {
       }
     `);
 
-    expect(data.name).toBe('Me');
-    expect(data.methods).toEqual([
+    expect(data.class.name).toBe('Me');
+    expect(data.class.methods).toEqual([
       {
         documentation: '',
-        flags: { private: false, protected: false, readonly: false },
+        flags: { private: false, protected: false, readonly: false, static: false },
         name: 'pub',
         parameters: [{ documentation: '', name: 'a', type: 'Me' }],
         type: 'string',
       },
       {
         documentation: 'Method description',
-        flags: { private: false, protected: true, readonly: false },
+        flags: { private: false, protected: true, readonly: false, static: false },
         name: 'prot',
         parameters: [
           { documentation: '', name: 'b', type: 'string' },
@@ -111,7 +111,7 @@ describe('TSClassParser', () => {
       },
       {
         documentation: '',
-        flags: { private: true, protected: false, readonly: false },
+        flags: { private: true, protected: false, readonly: false, static: false },
         name: 'priv',
         parameters: [],
         type: '{}',
@@ -128,23 +128,23 @@ describe('TSClassParser', () => {
       }
     `);
 
-    expect(data.name).toBe('Me');
-    expect(data.properties).toEqual([
+    expect(data.class.name).toBe('Me');
+    expect(data.class.properties).toEqual([
       {
         documentation: '',
-        flags: { private: false, protected: false, readonly: false },
+        flags: { private: false, protected: false, readonly: false, static: false },
         name: 'pub',
         type: 'string',
       },
       {
         documentation: '',
-        flags: { private: false, protected: true, readonly: false },
+        flags: { private: false, protected: true, readonly: false, static: false },
         name: 'prot',
         type: 'number',
       },
       {
         documentation: '',
-        flags: { private: true, protected: false, readonly: false },
+        flags: { private: true, protected: false, readonly: false, static: false },
         name: 'priv',
         type: '{}',
       },
@@ -166,8 +166,8 @@ describe('TSClassParser', () => {
       }
     `);
 
-    expect(data.name).toBe('Me');
-    expect(data.constructors).toEqual([
+    expect(data.class.name).toBe('Me');
+    expect(data.class.constructors).toEqual([
       {
         documentation: 'Class constructor with debug',
         parameters: [{ documentation: '', name: 'debug', type: 'boolean' }],
@@ -182,5 +182,50 @@ describe('TSClassParser', () => {
         type: 'Me',
       },
     ]);
+  });
+
+  it('should parse interfaces', () => {
+    const data = TSClassParser.parseSource(`
+      export interface ComposeEnumTypeConfig extends GraphQLEnumTypeConfig {
+        extensions?: Extensions;
+      };
+      
+      export type EnumTypeComposeDefinition = TypeAsString | ComposeEnumTypeConfig | GraphQLEnumType;
+      
+      export type GraphQLEnumTypeExtended<T> = GraphQLEnumType & {
+        _gqcExtensions?: Extensions<T>;
+      };
+
+      class Me {
+        constructor(debug: boolean)
+      }
+    `);
+
+    expect(data.class.name).toBe('Me');
+    expect(data.interfaces).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "code": "
+      export interface ComposeEnumTypeConfig extends GraphQLEnumTypeConfig {
+        extensions?: Extensions;
+      }",
+    "name": " ComposeEnumTypeConfig",
+  },
+  Object {
+    "code": "
+      
+      export type EnumTypeComposeDefinition = TypeAsString | ComposeEnumTypeConfig | GraphQLEnumType;",
+    "name": " EnumTypeComposeDefinition",
+  },
+  Object {
+    "code": "
+      
+      export type GraphQLEnumTypeExtended<T> = GraphQLEnumType & {
+        _gqcExtensions?: Extensions<T>;
+      };",
+    "name": " GraphQLEnumTypeExtended",
+  },
+]
+`);
   });
 });

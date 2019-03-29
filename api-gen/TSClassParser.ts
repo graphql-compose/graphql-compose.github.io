@@ -16,19 +16,25 @@ interface ModifierFlags {
   protected: boolean;
   private: boolean;
   readonly: boolean;
+  static: boolean;
 }
 
 interface ClassConstructorData extends CallData {}
 
-interface ClassMethodData extends SymbolData, CallData {
+export interface ClassMethodData extends SymbolData, CallData {
   flags?: ModifierFlags;
 }
 
-interface ClassPropertyData extends SymbolData {
+export interface ClassPropertyData extends SymbolData {
   flags?: ModifierFlags;
 }
 
-interface ClassData extends SymbolData {
+export interface InterfaceData {
+  name: string;
+  code: string;
+}
+
+export interface ClassData extends SymbolData {
   constructors: ClassConstructorData[];
   methods: ClassMethodData[];
   properties: ClassPropertyData[];
@@ -41,12 +47,30 @@ export default class TSClassParser {
   checker: ts.TypeChecker;
   rootNames: string[];
 
-  static parseFile(filePath: string): ClassData {
-    return TSClassParser.createFromFiles(filePath).run()[0];
+  static parseFile(
+    filePath: string
+  ): {
+    class: ClassData;
+    interfaces: InterfaceData[];
+  } {
+    const result = TSClassParser.createFromFiles(filePath).run();
+    return {
+      class: result.classes[0],
+      interfaces: result.interfaces,
+    };
   }
 
-  static parseSource(code: string): ClassData {
-    return TSClassParser.createFromSource(code).run()[0];
+  static parseSource(
+    code: string
+  ): {
+    class: ClassData;
+    interfaces: InterfaceData[];
+  } {
+    const result = TSClassParser.createFromSource(code).run();
+    return {
+      class: result.classes[0],
+      interfaces: result.interfaces,
+    };
   }
 
   static createFromFiles(filePaths: ReadonlyArray<string> | string): TSClassParser {
@@ -87,14 +111,43 @@ export default class TSClassParser {
     return new TSClassParser(program, rootNames);
   }
 
+  static getSyntaxKindName(node: ts.Node): string {
+    return ts.SyntaxKind[node.kind];
+  }
+
   constructor(program: ts.Program, rootNames: string[]) {
     this.program = program;
     this.rootNames = rootNames;
     this.checker = program.getTypeChecker();
   }
 
-  static getSyntaxKindName(node: ts.Node): string {
-    return ts.SyntaxKind[node.kind];
+  run(): { classes: ClassData[]; interfaces: InterfaceData[] } {
+    const result = {
+      classes: [] as ClassData[],
+      interfaces: [] as InterfaceData[],
+    };
+    const THIS = this;
+
+    function visit(node: ts.Node) {
+      if (ts.isClassDeclaration(node)) {
+        const data = THIS.parseClassDeclaration(node);
+        if (data) result.classes.push(data);
+      } else if (ts.isInterfaceDeclaration(node) || ts.isTypeAliasDeclaration(node)) {
+        const data = THIS.parseInterfaceDeclaration(node);
+        if (data) result.interfaces.push(data);
+      } else if (ts.isModuleDeclaration(node)) {
+        ts.forEachChild(node, visit);
+      }
+    }
+
+    for (const sourceFile of this.program.getSourceFiles()) {
+      if (this.rootNames.includes(sourceFile.fileName)) {
+        // Walk the tree to search for classes
+        ts.forEachChild(sourceFile, visit);
+      }
+    }
+
+    return result;
   }
 
   /** Serialize a symbol into a json object */
@@ -143,30 +196,8 @@ export default class TSClassParser {
       protected: !!(flags & ts.ModifierFlags.Protected),
       private: !!(flags & ts.ModifierFlags.Private),
       readonly: !!(flags & ts.ModifierFlags.Readonly),
+      static: !!(flags & ts.ModifierFlags.Static),
     };
-  }
-
-  run(): ClassData[] {
-    const result: ClassData[] = [];
-    const THIS = this;
-
-    function visit(node: ts.Node) {
-      if (ts.isClassDeclaration(node)) {
-        const data = THIS.parseClassDeclaration(node);
-        if (data) result.push(data);
-      } else if (ts.isModuleDeclaration(node)) {
-        ts.forEachChild(node, visit);
-      }
-    }
-
-    for (const sourceFile of this.program.getSourceFiles()) {
-      if (this.rootNames.includes(sourceFile.fileName)) {
-        // Walk the tree to search for classes
-        ts.forEachChild(sourceFile, visit);
-      }
-    }
-
-    return result;
   }
 
   parseClassDeclaration(node: ts.ClassDeclaration): ClassData | void {
@@ -234,6 +265,16 @@ export default class TSClassParser {
   parsePropertyDeclaration(node: ts.PropertyDeclaration): ClassPropertyData {
     const data: ClassPropertyData = this.serializeSymbol(node);
     data.flags = this.parseModifierFlags(node);
+    return data;
+  }
+
+  parseInterfaceDeclaration(
+    node: ts.InterfaceDeclaration | ts.TypeAliasDeclaration
+  ): InterfaceData {
+    const data = {
+      name: node.name.getFullText(),
+      code: node.getFullText(),
+    };
     return data;
   }
 }

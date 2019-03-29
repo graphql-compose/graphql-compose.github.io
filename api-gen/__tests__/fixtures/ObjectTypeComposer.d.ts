@@ -213,9 +213,11 @@ export class ObjectTypeComposer<TSource = any, TContext = any> {
     schemaComposer?: SchemaComposer<TCtx>
   ): ObjectTypeComposer<TSrc, TCtx>;
 
-  // -----------------------------------------------
-  // Field methods
-  // -----------------------------------------------
+  /**
+   * -----------------------------------------------
+   * Field methods
+   * -----------------------------------------------
+   **/
 
   public getFields(): ComposeFieldConfigMap<TSource, TContext>;
 
@@ -275,9 +277,11 @@ export class ObjectTypeComposer<TSource = any, TContext = any> {
 
   public getFieldArgType(fieldName: string, argName: string): GraphQLInputType;
 
-  // -----------------------------------------------
-  // Type methods
-  // -----------------------------------------------
+  /**
+   * -----------------------------------------------
+   * Type methods
+   * -----------------------------------------------
+   **/
 
   public getType(): GraphQLObjectType;
 
@@ -301,9 +305,11 @@ export class ObjectTypeComposer<TSource = any, TContext = any> {
 
   public setIsTypeOf(fn: GraphQLIsTypeOfFn<any, any> | null | void): this;
 
-  // -----------------------------------------------
-  // InputType methods
-  // -----------------------------------------------
+  /**
+   * -----------------------------------------------
+   * InputType methods
+   * -----------------------------------------------
+   **/
 
   public getInputType(): GraphQLInputObjectType;
 
@@ -317,9 +323,11 @@ export class ObjectTypeComposer<TSource = any, TContext = any> {
 
   public removeInputTypeComposer(): this;
 
-  // -----------------------------------------------
-  // Resolver methods
-  // -----------------------------------------------
+  /**
+   * -----------------------------------------------
+   * Resolver methods
+   * -----------------------------------------------
+   **/
 
   public getResolvers(): Map<string, Resolver<any, TContext, any>>;
 
@@ -359,9 +367,11 @@ export class ObjectTypeComposer<TSource = any, TContext = any> {
     cbNextRp: ResolverNextRpCb<TResolverSource, TContext, TArgs>
   ): this;
 
-  // -----------------------------------------------
-  // Interface methods
-  // -----------------------------------------------
+  /**
+   * -----------------------------------------------
+   * Interface methods
+   * -----------------------------------------------
+   **/
 
   public getInterfaces(): Array<InterfaceTypeComposer<any, TContext> | GraphQLInterfaceType>;
 
@@ -381,9 +391,11 @@ export class ObjectTypeComposer<TSource = any, TContext = any> {
     interfaceObj: InterfaceTypeComposer<any, TContext> | GraphQLInterfaceType
   ): this;
 
-  // -----------------------------------------------
-  // Extensions methods
-  // -----------------------------------------------
+  /**
+   * -----------------------------------------------
+   * Extensions methods
+   * -----------------------------------------------
+   **/
 
   public getExtensions(): Extensions;
 
@@ -417,9 +429,11 @@ export class ObjectTypeComposer<TSource = any, TContext = any> {
 
   public removeFieldExtension(fieldName: string, extensionName: string): this;
 
-  // -----------------------------------------------
-  // Misc methods
-  // -----------------------------------------------
+  /**
+   * -----------------------------------------------
+   * Misc methods
+   * -----------------------------------------------
+   **/
 
   public addRelation<TRelationSource = any, TArgs = ArgsMap>(
     fieldName: string,
