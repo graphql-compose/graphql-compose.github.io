@@ -85,7 +85,7 @@ class HomeSplash extends React.Component {
           <ProjectTitle />
           <PromoSection>
             <Button href={docUrl('intro/quick-start.html', language)}>Get Started</Button>
-            <Button href={docUrl('api/TypeComposer.html', language)}>API</Button>
+            <Button href={docUrl('api/ObjectTypeComposer.html', language)}>API</Button>
             <Button href={docUrl('plugins/list-of-plugins.html', language)}>Plugins</Button>
             <Button href="https://graphql-compose.herokuapp.com/" target="_blank">
               Live Demo
