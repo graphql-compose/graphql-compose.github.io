@@ -411,7 +411,7 @@ const OpenCollective = (props) => {
         <Button href="https://opencollective.com/graphql-compose">Donate</Button>
 
         {filteredSponsors.length > 0 && (
-          <>
+          <React.Fragment>
             <h3>
               <span>Sponsors</span>
             </h3>
@@ -420,14 +420,14 @@ const OpenCollective = (props) => {
             </p>
             <div>
               {filteredSponsors.map((b) => (
-                <OpenCollectiveBacker {...b} classPrefix="sponsor" />
+                <OpenCollectiveBacker key={i} {...b} classPrefix="sponsor" />
               ))}
             </div>
-          </>
+          </React.Fragment>
         )}
 
         {filteredBackers.length > 0 && (
-          <>
+          <React.Fragment>
             <h3>
               <span>Backers</span>
             </h3>
@@ -435,11 +435,11 @@ const OpenCollective = (props) => {
               <span>Backers are those who contribute $2 or more per month</span>
             </p>
             <div>
-              {filteredBackers.map((b) => (
-                <OpenCollectiveBacker {...b} classPrefix="backer" />
+              {filteredBackers.map((b, i) => (
+                <OpenCollectiveBacker key={i} {...b} classPrefix="backer" />
               ))}
             </div>
-          </>
+          </React.Fragment>
         )}
       </div>
     </div>
