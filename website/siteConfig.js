@@ -19,7 +19,7 @@ const siteConfig = {
   projectName: 'graphql-compose.github.io',
   headerLinks: [
     { doc: 'intro/quick-start', label: 'Docs' },
-    { doc: 'api/ObjectTypeComposer', label: 'API' },
+    { doc: 'api/SchemaComposer', label: 'API' },
     { doc: 'plugins/list-of-plugins', label: 'Plugins' },
     { languages: false },
     { search: true },
