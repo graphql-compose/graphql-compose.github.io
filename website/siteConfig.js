@@ -6,14 +6,7 @@
  */
 
 /* List of projects/orgs using your project for the users page */
-const users = [
-  {
-    caption: 'GatsbyJS',
-    image: '/img/logos/gatsby.svg',
-    infoLink: 'https://www.gatsbyjs.org/',
-    pinned: true,
-  },
-];
+const users = require('./users');
 
 const siteConfig = {
   title: 'graphql-compose' /* title for your website */,

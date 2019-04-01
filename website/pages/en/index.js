@@ -357,10 +357,19 @@ const Showcase = (props) => {
     <div className="productShowcaseSection paddingTop paddingBottom" style={{ paddingTop: 60 }}>
       <div className="pluginsHeader">Who's using graphql-compose?</div>
       <div className="logos">{showcase}</div>
-      {siteConfig.users.length > 5 && (
+      {siteConfig.users.length > 5 ? (
         <div className="more-users">
           <a className="button" href={pageUrl('users.html', props.language)}>
             More {siteConfig.title} Users
+          </a>
+        </div>
+      ) : (
+        <div className="more-users">
+          <a
+            className="button"
+            href="https://github.com/graphql-compose/graphql-compose.github.io/edit/source/website/users.js"
+          >
+            Add your logo
           </a>
         </div>
       )}
