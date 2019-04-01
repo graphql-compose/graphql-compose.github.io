@@ -19,9 +19,13 @@ class Footer extends React.Component {
   }
 
   pjax() {
-    return (<span>
-      <script src={this.props.config.baseUrl + 'js/pjax-api.js'}></script>
-      <script dangerouslySetInnerHTML={{__html: `window.foo = new Pjax({
+    return (
+      <span>
+        <script src={this.props.config.baseUrl + 'js/pjax-api.js'} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      window.foo = new Pjax({
         areas: [
           // try to use the first query.
           '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
@@ -41,21 +45,23 @@ class Footer extends React.Component {
       }
 
       var languagesMenuItemCopy = document.getElementById("languages-menu");
-      languagesMenuItemCopy.addEventListener("click", function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-      });`}}></script>
-    </span>);
+      if (languagesMenuItemCopy) {
+        languagesMenuItemCopy.addEventListener("click", function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+        });
+      }
+      `,
+          }}
+        />
+      </span>
+    );
   }
 
   render() {
     const currentYear = new Date().getFullYear();
-    return (
-      <div>
-        {this.pjax()}
-      </div>
-    );
+    return <div>{this.pjax()}</div>;
   }
 }
 
