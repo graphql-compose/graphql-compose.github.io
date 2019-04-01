@@ -35,7 +35,7 @@ function Versions(props) {
               <tr>
                 <th>next</th>
                 <td>
-                  <a href={`${siteConfig.baseUrl}docs/en/next/intro/quick-start.html`}>
+                  <a href={`${siteConfig.baseUrl}docs/next/intro/quick-start.html`}>
                     Documentation
                   </a>
                 </td>
@@ -49,7 +49,7 @@ function Versions(props) {
               <tr>
                 <th>{latestVersion}</th>
                 <td>
-                  <a href={`${siteConfig.baseUrl}docs/en/intro/quick-start.html`}>Documentation</a>
+                  <a href={`${siteConfig.baseUrl}docs/intro/quick-start.html`}>Documentation</a>
                 </td>
                 <td>
                   <a
@@ -71,7 +71,7 @@ function Versions(props) {
                     <tr>
                       <th>{version}</th>
                       <td>
-                        <a href={`${siteConfig.baseUrl}docs/en/${version}/intro/quick-start.html`}>
+                        <a href={`${siteConfig.baseUrl}docs/${version}/intro/quick-start.html`}>
                           Documentation
                         </a>
                       </td>
