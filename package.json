@@ -8,10 +8,11 @@
   },
   "scripts": {
     "test": "jest",
+    "ts-node": "ts-node",
     "start": "cd website && yarn start",
     "build": "cd website && yarn build",
-    "version": "yarn api-gen && cd website && yarn docusaurus-version",
-    "api-gen": "ts-node ./api-gen/index.ts"
+    "version": "cd website && yarn docusaurus-version",
+    "gen-api": "ts-node ./gen-api/index.ts && ts-node ./gen-api/update-version-files.ts"
   },
   "repository": {
     "type": "git",

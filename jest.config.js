@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   moduleNameMapper: {
-    '^app(.*)$': '<rootDir>/api-gen$1',
+    '^app(.*)$': '<rootDir>/gen-api$1',
   },
   moduleFileExtensions: ['js', 'ts', 'tsx', 'd.ts'],
   transform: {

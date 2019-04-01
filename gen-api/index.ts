@@ -3,7 +3,7 @@ import fs from 'fs';
 import TSClassParser from './TSClassParser';
 import MarkdownGenerator from './MarkdownGenerator';
 
-const classes = [
+const classes: string[] = [
   'EnumTypeComposer',
   'InputTypeComposer',
   'InterfaceTypeComposer',

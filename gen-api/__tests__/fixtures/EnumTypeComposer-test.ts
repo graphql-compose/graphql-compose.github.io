@@ -1,7 +1,7 @@
 import TSClassParser from '../../TSClassParser';
 import MarkdownGenerator from '../../MarkdownGenerator';
 
-const file = 'api-gen/__tests__/fixtures/EnumTypeComposer.d.ts';
+const file = 'gen-api/__tests__/fixtures/EnumTypeComposer.d.ts';
 
 it('markdown TypeStorage.d.ts', () => {
   const data = TSClassParser.parseFile(file);
@@ -9,6 +9,7 @@ it('markdown TypeStorage.d.ts', () => {
 "---
 id: EnumTypeComposer
 title: EnumTypeComposer
+custom_edit_url: https://github.com/graphql-compose/graphql-compose/blob/master/src/EnumTypeComposer.d.ts
 ---
 
 <!-- 

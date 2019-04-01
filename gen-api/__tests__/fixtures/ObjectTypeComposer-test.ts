@@ -1,7 +1,7 @@
 import TSClassParser from '../../TSClassParser';
 import MarkdownGenerator from '../../MarkdownGenerator';
 
-const file = 'api-gen/__tests__/fixtures/ObjectTypeComposer.d.ts';
+const file = 'gen-api/__tests__/fixtures/ObjectTypeComposer.d.ts';
 
 it('markdown ObjectTypeComposer.d.ts', () => {
   const data = TSClassParser.parseFile(file);
@@ -9,6 +9,7 @@ it('markdown ObjectTypeComposer.d.ts', () => {
 "---
 id: ObjectTypeComposer
 title: ObjectTypeComposer
+custom_edit_url: https://github.com/graphql-compose/graphql-compose/blob/master/src/ObjectTypeComposer.d.ts
 ---
 
 <!-- 
