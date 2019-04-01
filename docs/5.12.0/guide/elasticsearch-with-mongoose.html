@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>[WIP] Use ElasticSearch with Mongoose · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;&lt;strong&gt;Working DRAFT&lt;/strong&gt;&lt;/p&gt;
+"/><meta name="docsearch:version" content="5.12.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="[WIP] Use ElasticSearch with Mongoose · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="&lt;p&gt;&lt;strong&gt;Working DRAFT&lt;/strong&gt;&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-83022112-3', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitleWithLogo">graphql-compose</h2></a><a href="/versions.html"><h3>5.12.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/5.12.0/intro/quick-start.html" target="_self">Docs</a></li><li class=""><a href="/docs/5.12.0/api/ObjectTypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/5.12.0/plugins/list-of-plugins.html" target="_self">Plugins</a></li><li class=""><a target="_self"></a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/graphql-compose/graphql-compose" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guide</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/intro/prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/intro/installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/intro/quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/intro/live-demos.html">Live Demos</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/understanding-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/what-is-resolver.html">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/understanding-relations.html">Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/generating-schema.html">Generating Schema</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/TypeComposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/ScalarTypeComposer.html">ScalarTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/InterfaceTypeComposer.html">InterfaceTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/UnionTypeComposer.html">UnionTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/misc-api-methods.html">API misc</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Plugins</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/list-of-plugins.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guide</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/wrapping-rest-api.html">Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/file-uploads.html">File uploads</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/5.12.0/guide/elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/relay.html">[WIP] Relay Schema</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/guide/elasticsearch-with-mongoose.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">[WIP] Use ElasticSearch with Mongoose</h1></header><article><div><span><p><strong>Working DRAFT</strong></p>
+<p>Connect MongoDB with ElasticSearch and GraphQL quite complex and long task and consist of a bunch of steps. Every step can be tuned for your needs.</p>
+<h2><a class="anchor" aria-hidden="true" id="1-extending-mongoose-orm-with-elasticsearch-data"></a><a href="#1-extending-mongoose-orm-with-elasticsearch-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Extending Mongoose ORM with elasticsearch data</h2>
+<p>For working with MongoDB collections and documents is good practice to use some ORM. For nodejs better solution is <code>mongoose</code>. Also exists cool <a href="https://github.com/jbdemonte/mongoose-elasticsearch-xp">mongoose-elasticsearch-xp</a> (by @jbdemonte) package (plugin for mongoose) which provides useful methods and hooks which ridiculously simplify data syncing with MongoDB and ElasticSearch.</p>
+<h3><a class="anchor" aria-hidden="true" id="11-defining-mongoose-schema-with-settings-for-elasticsearch-xp-schema-definition"></a><a href="#11-defining-mongoose-schema-with-settings-for-elasticsearch-xp-schema-definition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.1. Defining Mongoose schema with settings for elasticsearch-xp [SCHEMA DEFINITION]</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> mongoose, { Schema } <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+<span class="hljs-keyword">import</span> mongooseElasticsearch <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose-elasticsearch-xp'</span>;
+
+<span class="hljs-comment">// Embedded schema</span>
+<span class="hljs-keyword">const</span> SalaryRangeSchema = <span class="hljs-keyword">new</span> Schema(
+  {
+    <span class="hljs-attr">from</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>,
+      <span class="hljs-attr">es_indexed</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// mongoose-elasticsearch-xp</span>
+    },
+    <span class="hljs-attr">to</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>,
+      <span class="hljs-attr">es_indexed</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// mongoose-elasticsearch-xp</span>
+    },
+    <span class="hljs-attr">currency</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+      <span class="hljs-attr">es_indexed</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// mongoose-elasticsearch-xp</span>
+      es_type: <span class="hljs-string">'keyword'</span>,  <span class="hljs-comment">// mongoose-elasticsearch-xp</span>
+    },
+  },
+  {
+    <span class="hljs-attr">_id</span>: <span class="hljs-literal">false</span>,
+  }
+);
+
+<span class="hljs-comment">// Main collection mongoose schema</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> JobSchema = <span class="hljs-keyword">new</span> Schema(
+  {
+    <span class="hljs-attr">position</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'Person main position in resume, eg. "Sales manager"'</span>,
+      <span class="hljs-attr">es_indexed</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// &lt;------ see `graphql-elasticsearch-xp` for details</span>
+      es_boost: <span class="hljs-number">3</span>, <span class="hljs-comment">// &lt;------ see `graphql-elasticsearch-xp` for details</span>
+    },
+
+    <span class="hljs-attr">salary</span>: {
+      <span class="hljs-attr">type</span>: SalaryRangeSchema,
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'Salary with currency symbol'</span>,
+      <span class="hljs-attr">es_indexed</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// &lt;------ see `graphql-elasticsearch-xp` for details</span>
+    },
+
+    <span class="hljs-attr">employment</span>: {
+      <span class="hljs-attr">type</span>: [
+        {
+          <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+          <span class="hljs-attr">enum</span>: <span class="hljs-built_in">Object</span>.keys(employmentTypeMap),
+        },
+      ],
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'List of desired employment types'</span>,
+      <span class="hljs-attr">index</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">es_indexed</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// &lt;------ see `graphql-elasticsearch-xp` for details</span>
+      es_type: <span class="hljs-string">'keyword'</span>, <span class="hljs-comment">// &lt;------ see `graphql-elasticsearch-xp` for details</span>
+    },
+
+    <span class="hljs-attr">visibility</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+      <span class="hljs-attr">enum</span>: [<span class="hljs-string">'published'</span>, <span class="hljs-string">'hidden'</span>, <span class="hljs-string">'archived'</span>],
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'job visibility options'</span>,
+      <span class="hljs-attr">default</span>: <span class="hljs-string">'published'</span>,
+    },
+
+    <span class="hljs-attr">onlyMongooseData</span>: <span class="hljs-built_in">String</span>,
+  },
+  {
+    <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">es_extend</span>: { <span class="hljs-comment">// &lt;------ see `graphql-elasticsearch-xp` for details</span>
+      createdAt: { <span class="hljs-comment">// pass timestamps to elasticsearch mapping</span>
+        es_type: <span class="hljs-string">'date'</span>,
+        <span class="hljs-attr">es_value</span>: <span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.createdAt, <span class="hljs-comment">// custom value generation</span>
+      },
+      <span class="hljs-attr">updatedAt</span>: {
+        <span class="hljs-attr">es_type</span>: <span class="hljs-string">'date'</span>,
+        <span class="hljs-attr">es_value</span>: <span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.updatedAt,
+      },
+      <span class="hljs-attr">id_keyword</span>: { <span class="hljs-comment">// pass id as ES keyword</span>
+        es_type: <span class="hljs-string">'keyword'</span>,
+        <span class="hljs-attr">es_value</span>: <span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> (doc._id ? doc._id.toString() : <span class="hljs-string">''</span>), <span class="hljs-comment">// custom value generation</span>
+      },
+    },
+  }
+);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="12-plug-mongoose-elasticsearch-xp-to-your-mongoose-schema-with-data-filtering-sync-mongo-es-data"></a><a href="#12-plug-mongoose-elasticsearch-xp-to-your-mongoose-schema-with-data-filtering-sync-mongo-es-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.2 Plug <code>mongoose-elasticsearch-xp</code> to your Mongoose Schema with data filtering [SYNC MONGO &amp; ES DATA]</h3>
+<pre><code class="hljs css language-js"><span class="hljs-comment">/* elastic */</span>
+JobSchema.plugin(mongooseElasticsearch, {
+  <span class="hljs-attr">client</span>: elasticClient, <span class="hljs-comment">// &lt;------ see `graphql-elasticsearch-xp` for details</span>
+  filter: <span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (doc.visibility !== <span class="hljs-string">'published'</span>) {
+      <span class="hljs-comment">// add to index new record with visibility='published'</span>
+      <span class="hljs-comment">// or remove existed record from index if `visibility` changed and not 'published' anymore</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  },
+});
+</code></pre>
+<p>By default  <code>mongoose-elasticsearch-xp</code> will track add/remove operations and update your data in elasticsearch. In this case I provide <code>filter</code> option, now it will track more clever model's inserts/updates and send proper changes to your elasticsearch server.</p>
+<p>Already existed data can be synced via <a href="https://github.com/jbdemonte/mongoose-elasticsearch-xp#indexing-an-existing-collection">esSynchronize</a> method.</p>
+<h3><a class="anchor" aria-hidden="true" id="13-connection-with-elasticsearch-server-elasticclient-es-client"></a><a href="#13-connection-with-elasticsearch-server-elasticclient-es-client" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.3 Connection with elasticsearch server <code>elasticClient</code>  [ES CLIENT]</h3>
+<p>You should provide <code>elasticClient</code> in step 1.2 (for mongoose plugin [UPDATING DATA]) and 1.4 (for graphql resolvers [SEARCH]). It holds connection of your nodejs server with elasticsearch server.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> elasticsearch <span class="hljs-keyword">from</span> <span class="hljs-string">'elasticsearch'</span>;
+
+<span class="hljs-keyword">const</span> elasticClient = <span class="hljs-keyword">new</span> elasticsearch.Client({
+  <span class="hljs-attr">host</span>: ELASTIC_HOST,
+  <span class="hljs-attr">connectionClass</span>: awsElasticConnection, <span class="hljs-comment">// &lt;---- see elasticsearch js client docs</span>
+  amazonES: {
+    <span class="hljs-attr">region</span>: <span class="hljs-regexp">/([^.]+).es.amazonaws.com/</span>.exec(ELASTIC_HOST)[<span class="hljs-number">1</span>],
+    <span class="hljs-attr">accessKey</span>: AWS_ACCESS_KEY,
+    <span class="hljs-attr">secretKey</span>: AWS_SECRET_KEY,
+  },
+  <span class="hljs-attr">apiVersion</span>: <span class="hljs-string">'5.0'</span>,
+  <span class="hljs-comment">// log: (typeof __DEV__ === 'boolean' &amp;&amp; __DEV__) ? 'trace' : 'error',</span>
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> elasticClient;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="14-generate-typecomposer-from-elastic-mapping-elasticsearch-graphql-types-resolvers"></a><a href="#14-generate-typecomposer-from-elastic-mapping-elasticsearch-graphql-types-resolvers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.4 Generate TypeComposer from elastic mapping [ELASTICSEARCH GRAPHQL TYPES + RESOLVERS]</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { composeWithElastic } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-elasticsearch'</span>;
+<span class="hljs-keyword">import</span> { generate } <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose-elasticsearch-xp/lib/mapping'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> JobEsTC = composeWithElastic({
+  <span class="hljs-attr">graphqlTypeName</span>: <span class="hljs-string">'JobES'</span>,
+  <span class="hljs-attr">elasticIndex</span>: <span class="hljs-string">'job'</span>,
+  <span class="hljs-attr">elasticType</span>: <span class="hljs-string">'job'</span>,
+  <span class="hljs-attr">elasticMapping</span>: {
+    <span class="hljs-attr">properties</span>: generate(JobSchema),
+  },
+  elasticClient,
+  <span class="hljs-comment">// elastic mapping does not contain information about is fields are arrays or not</span>
+  <span class="hljs-comment">// so provide this information explicitly for obtaining correct types in GraphQL</span>
+  pluralFields: [<span class="hljs-string">'employment'</span>],
+});
+</code></pre>
+<p>See <a href="https://github.com/nodkz/graphql-compose-elasticsearch#typecomposer-from-elastic-mapping">https://github.com/nodkz/graphql-compose-elasticsearch#typecomposer-from-elastic-mapping</a></p>
+<h3><a class="anchor" aria-hidden="true" id="15-generate-typecomposer-from-mongoose-model-mongoose-graphql-types-resolvers"></a><a href="#15-generate-typecomposer-from-mongoose-model-mongoose-graphql-types-resolvers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.5 Generate TypeComposer from mongoose model [MONGOOSE GRAPHQL TYPES + RESOLVERS]</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> composeWithMongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Job = mongoose.model(<span class="hljs-string">'Job'</span>, JobSchema);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> JobTC = composeWithMongoose(Job);
+</code></pre>
+<p>See <a href="https://github.com/nodkz/graphql-compose-mongoose">graphql-compose-mongoose</a></p>
+<h3><a class="anchor" aria-hidden="true" id="16-relating-mongoose-and-elasticsearch-via-graphql"></a><a href="#16-relating-mongoose-and-elasticsearch-via-graphql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.6 Relating Mongoose and ElasticSearch via GraphQL</h3>
+<p>Let connect put to <code>search.hits</code> a <code>fromMongo</code> field which will retrieve data from mongodb for founded elasticsearch record.</p>
+<pre><code class="hljs css language-js">JobEsTC.getResolver(<span class="hljs-string">'search'</span>).getTypeComposer().getFieldTC(<span class="hljs-string">'hits'</span>).addRelation(<span class="hljs-string">'fromMongo'</span>, {
+  <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> JobTC.getResolver(<span class="hljs-string">'findById'</span>),
+  <span class="hljs-attr">prepareArgs</span>: {
+    <span class="hljs-attr">_id</span>: <span class="hljs-function"><span class="hljs-params">source</span> =&gt;</span> source._id,
+  },
+  <span class="hljs-attr">projection</span>: { <span class="hljs-attr">_id</span>: <span class="hljs-literal">true</span> },
+});
+</code></pre>
+<p>Now you may do such queries:</p>
+<pre><code class="hljs css language-graphql">fragment on Query {
+  jobEsConnection(first: $first, query: $query, <span class="hljs-built_in">sort</span>: $<span class="hljs-built_in">sort</span>, aggs: $aggs) {
+    <span class="hljs-built_in">count</span>
+    aggregations
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+        <span class="hljs-variable">_score</span> <span class="hljs-meta"># meta-data from ES</span>
+        <span class="hljs-variable">_id</span>       <span class="hljs-meta"># meta-data from ES</span>
+
+        <span class="hljs-variable">_source</span> {
+          employment <span class="hljs-meta"># record data from ES</span>
+          <span class="hljs-built_in">position</span>        <span class="hljs-meta"># record data from ES</span>
+        }
+
+        fromMongo { <span class="hljs-meta"># data from Mongo</span>
+          <span class="hljs-variable">_id</span>
+          onlyMongooseData
+          visibility
+          salary { <span class="hljs-keyword">from</span> <span class="hljs-keyword">to</span> currency}
+          <span class="hljs-built_in">position</span>
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>See <a href="https://github.com/nodkz/graphql-compose">https://github.com/nodkz/graphql-compose</a>
+Sorry bad docs in <code>graphql-compose</code>. Really do not have time to write it. So try to see issues they contain a lot of info.</p>
+<h3><a class="anchor" aria-hidden="true" id="17-add-needed-resolvers-to-schema-build-graphql-schema"></a><a href="#17-add-needed-resolvers-to-schema-build-graphql-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.7 Add needed resolvers to schema [BUILD GRAPHQL SCHEMA]</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { GQC } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+GQC.rootQuery().addFields({
+  <span class="hljs-attr">jobEsConnection</span>: JobEsTC.getResolver(<span class="hljs-string">'search'</span>),
+  <span class="hljs-attr">jobMongoConnection</span>: JobTC.getResolver(<span class="hljs-string">'connection'</span>),
+  <span class="hljs-attr">jobMany</span>: JobTC.getResolver(<span class="hljs-string">'findMany'</span>),
+  <span class="hljs-attr">job</span>: JobTC.getResolver(<span class="hljs-string">'findOnly'</span>),
+  <span class="hljs-attr">jobById</span>: JobTC.getResolver(<span class="hljs-string">'findById'</span>),
+});
+
+<span class="hljs-keyword">const</span> schema = GQC.buildSchema();
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> schema;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="2-some-utility-things"></a><a href="#2-some-utility-things" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Some utility things</h2>
+<p>Reindexing you may also add to graphql.</p>
+<h3><a class="anchor" aria-hidden="true" id="21-expose-elastic-api-to-graphql-schema"></a><a href="#21-expose-elastic-api-to-graphql-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.1 Expose Elastic API to graphql schema</h3>
+<pre><code class="hljs css language-js">import { GQC } from 'graphql-compose';
+import { elasticApiFieldConfig } from 'graphql-compose-elasticsearch';
+import elasticClient from 'schema/elasticClient';
+
+export const ElasticTC = GQC.get('ELASTIC');
+
+ElasticTC.addResolver({
+  name: 'onlyForAdmins',
+  type: ElasticTC,
+  resolve: ({ context }) =&gt; {
+    if (!isAdmin({ context })) { // &lt;--- somehow check that you are admin
+      throw new Error('You should be admin, to have access to this area.');
+    }
+    return {};
+  },
+});
+
+# expose all elastic api via graphql
+ElasticTC.addFields({
+  api: elasticApiFieldConfig(elasticClient),
+});
+
+// DONT FORGET TO add elastic to your schema (eg. to ROOT query)
+GQC.rootQuery().addFields({
+  elastic: ElasticTC.getResolver('onlyForAdmins'),
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="22-add-reindex-helper-method-to-graphql-schema"></a><a href="#22-add-reindex-helper-method-to-graphql-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.2 Add reindex helper method to graphql schema</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { generate } <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose-elasticsearch-xp/lib/mapping'</span>;
+<span class="hljs-keyword">import</span> { JobSchema, Job } <span class="hljs-keyword">from</span> <span class="hljs-string">'schema/job'</span>;
+
+ElasticTC.addFields({
+  <span class="hljs-attr">reindexJob</span>: {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">'JSON'</span>,
+    <span class="hljs-attr">resolve</span>: <span class="hljs-keyword">async</span> () =&gt; {
+      <span class="hljs-keyword">const</span> result = {};
+
+      result.indexExist = <span class="hljs-keyword">await</span> elasticClient.indices.exists({ <span class="hljs-attr">index</span>: <span class="hljs-string">'job'</span> });
+      <span class="hljs-keyword">if</span> (result.indexExist) {
+        result.indexDelete = <span class="hljs-keyword">await</span> elasticClient.indices.delete({ <span class="hljs-attr">index</span>: <span class="hljs-string">'job'</span> });
+      }
+
+      result.indexSettings = {
+        <span class="hljs-attr">settings</span>: {
+          <span class="hljs-attr">analysis</span>: {
+            <span class="hljs-attr">filter</span>: {
+              <span class="hljs-attr">english_stop</span>: {
+                <span class="hljs-attr">type</span>: <span class="hljs-string">'stop'</span>,
+                <span class="hljs-attr">stopwords</span>: <span class="hljs-string">'_english_'</span>,
+              },
+              <span class="hljs-attr">english_stemmer</span>: {
+                <span class="hljs-attr">type</span>: <span class="hljs-string">'stemmer'</span>,
+                <span class="hljs-attr">language</span>: <span class="hljs-string">'english'</span>,
+              },
+              <span class="hljs-attr">english_possessive_stemmer</span>: {
+                <span class="hljs-attr">type</span>: <span class="hljs-string">'stemmer'</span>,
+                <span class="hljs-attr">language</span>: <span class="hljs-string">'possessive_english'</span>,
+              },
+              <span class="hljs-attr">spanish_stop</span>: {
+                <span class="hljs-attr">type</span>: <span class="hljs-string">'stop'</span>,
+                <span class="hljs-attr">stopwords</span>: <span class="hljs-string">'_spanish_'</span>,
+              },
+              <span class="hljs-attr">spanish_stemmer</span>: {
+                <span class="hljs-attr">type</span>: <span class="hljs-string">'stemmer'</span>,
+                <span class="hljs-attr">language</span>: <span class="hljs-string">'spanish'</span>,
+              },
+            },
+            <span class="hljs-attr">analyzer</span>: {
+              <span class="hljs-attr">default</span>: {
+                <span class="hljs-attr">tokenizer</span>: <span class="hljs-string">'standard'</span>,
+                <span class="hljs-attr">filter</span>: [
+                  <span class="hljs-string">'lowercase'</span>,
+                  <span class="hljs-string">'spanish_stop'</span>,
+                  <span class="hljs-string">'spanish_stemmer'</span>,
+                  <span class="hljs-string">'english_possessive_stemmer'</span>,
+                  <span class="hljs-string">'english_stop'</span>,
+                  <span class="hljs-string">'english_stemmer'</span>,
+                ],
+              },
+            },
+          },
+        },
+        <span class="hljs-attr">mappings</span>: {
+          <span class="hljs-attr">job</span>: {
+            <span class="hljs-attr">properties</span>: generate(JobSchema),
+          },
+        },
+      };
+
+      result.indexCreate = <span class="hljs-keyword">await</span> elasticClient.indices.create({
+        <span class="hljs-attr">index</span>: <span class="hljs-string">'job'</span>,
+        <span class="hljs-attr">body</span>: result.indexSettings,
+      });
+
+      Job.on(<span class="hljs-string">'es-bulk-error'</span>, err =&gt; {
+        <span class="hljs-keyword">if</span> (!result.esSynchronizeErrors) result.esSynchronizeErrors = [];
+        result.esSynchronizeErrors.push(err);
+      });
+      result.esSynchronize = <span class="hljs-keyword">await</span> Job.esSynchronize({
+        <span class="hljs-attr">visibility</span>: { <span class="hljs-attr">$nin</span>: [<span class="hljs-string">'hidden'</span>, <span class="hljs-string">'archived'</span>] },
+      });
+      <span class="hljs-keyword">if</span> (result.esSynchronizeErrors) {
+        result.esSynchronizeErrorsCount = result.esSynchronizeErrors.length;
+      }
+
+      result.count = <span class="hljs-keyword">await</span> elasticClient.count({ <span class="hljs-attr">index</span>: <span class="hljs-string">'job'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'job'</span> });
+
+      <span class="hljs-keyword">return</span> result;
+    },
+  },
+});
+</code></pre>
+<p>Now you may call reindexing all your data in elasticsearch via following graphql query:</p>
+<pre><code class="hljs css language-graphql"><span class="hljs-section">query</span> {
+  <span class="hljs-section">elastic</span> {
+    <span class="hljs-attribute">reindexJob</span>
+  }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/5.12.0/guide/mongoose.html"><span class="arrow-prev">← </span><span>[WIP] Generate types from Mongoose Models</span></a><a class="docs-next button" href="/docs/5.12.0/guide/relay.html"><span>[WIP] Relay Schema</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-extending-mongoose-orm-with-elasticsearch-data">1. Extending Mongoose ORM with elasticsearch data</a><ul class="toc-headings"><li><a href="#11-defining-mongoose-schema-with-settings-for-elasticsearch-xp-schema-definition">1.1. Defining Mongoose schema with settings for elasticsearch-xp [SCHEMA DEFINITION]</a></li><li><a href="#12-plug-mongoose-elasticsearch-xp-to-your-mongoose-schema-with-data-filtering-sync-mongo-es-data">1.2 Plug <code>mongoose-elasticsearch-xp</code> to your Mongoose Schema with data filtering [SYNC MONGO &amp; ES DATA]</a></li><li><a href="#13-connection-with-elasticsearch-server-elasticclient-es-client">1.3 Connection with elasticsearch server <code>elasticClient</code> [ES CLIENT]</a></li><li><a href="#14-generate-typecomposer-from-elastic-mapping-elasticsearch-graphql-types-resolvers">1.4 Generate TypeComposer from elastic mapping [ELASTICSEARCH GRAPHQL TYPES + RESOLVERS]</a></li><li><a href="#15-generate-typecomposer-from-mongoose-model-mongoose-graphql-types-resolvers">1.5 Generate TypeComposer from mongoose model [MONGOOSE GRAPHQL TYPES + RESOLVERS]</a></li><li><a href="#16-relating-mongoose-and-elasticsearch-via-graphql">1.6 Relating Mongoose and ElasticSearch via GraphQL</a></li><li><a href="#17-add-needed-resolvers-to-schema-build-graphql-schema">1.7 Add needed resolvers to schema [BUILD GRAPHQL SCHEMA]</a></li></ul></li><li><a href="#2-some-utility-things">2. Some utility things</a><ul class="toc-headings"><li><a href="#21-expose-elastic-api-to-graphql-schema">2.1 Expose Elastic API to graphql schema</a></li><li><a href="#22-add-reindex-helper-method-to-graphql-schema">2.2 Add reindex helper method to graphql schema</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+
+      if (document && document.addEventListener) {
+        document.addEventListener('pjax:ready', function (e) {
+          if (ga) ga('send', 'pageview', location.pathname);
+        });
+      }
+
+      var languagesMenuItemCopy = document.getElementById("languages-menu");
+      languagesMenuItemCopy.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+      });</script></span></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '34b5c77954100fe8e57575f8dfd60185',
+                indexName: 'graphql-compose',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"hitsPerPage":10,"facetFilters":["language:en","version:5.12.0"]}
+              });
+            </script></body></html>

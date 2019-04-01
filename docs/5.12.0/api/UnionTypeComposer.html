@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>UnionTypeComposer · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Class that helps to create &lt;code&gt;UnionTypeComposer&lt;/code&gt;s and provide ability to modify them.&lt;/p&gt;
+"/><meta name="docsearch:version" content="5.12.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="UnionTypeComposer · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="&lt;p&gt;Class that helps to create &lt;code&gt;UnionTypeComposer&lt;/code&gt;s and provide ability to modify them.&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-83022112-3', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitleWithLogo">graphql-compose</h2></a><a href="/versions.html"><h3>5.12.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/5.12.0/intro/quick-start.html" target="_self">Docs</a></li><li class=""><a href="/docs/5.12.0/api/ObjectTypeComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/5.12.0/plugins/list-of-plugins.html" target="_self">Plugins</a></li><li class=""><a target="_self"></a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/graphql-compose/graphql-compose" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>API Reference</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/intro/prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/intro/installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/intro/quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/intro/live-demos.html">Live Demos</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/understanding-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/what-is-resolver.html">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/understanding-relations.html">Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/basics/generating-schema.html">Generating Schema</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/TypeComposer.html">TypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/ScalarTypeComposer.html">ScalarTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/InterfaceTypeComposer.html">InterfaceTypeComposer</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/5.12.0/api/UnionTypeComposer.html">UnionTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/SchemaComposer.html">SchemaComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/api/misc-api-methods.html">API misc</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Plugins</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/list-of-plugins.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-aws.html">AWS plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/plugins/plugin-writing-custom-plugin.html">[WIP] How to write a custom plugin</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guide</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/wrapping-rest-api.html">Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/file-uploads.html">File uploads</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/mongoose.html">[WIP] Generate types from Mongoose Models</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/elasticsearch-with-mongoose.html">[WIP] Use ElasticSearch with Mongoose</a></li><li class="navListItem"><a class="navItem" href="/docs/5.12.0/guide/relay.html">[WIP] Relay Schema</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/api/UnionTypeComposer.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">UnionTypeComposer</h1></header><article><div><span><p>Class that helps to create <code>UnionTypeComposer</code>s and provide ability to modify them.</p>
+<h2><a class="anchor" aria-hidden="true" id="static-methods"></a><a href="#static-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Static methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="static-create"></a><a href="#static-create" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static create()</h3>
+<p>Create <code>UnionTypeComposer</code> with adding it by name to the <code>SchemaComposer</code>.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">static</span> create&lt;TSrc = any, TCtx = any&gt;(
+  typeDef:
+    | TypeAsString
+    | ComposeUnionTypeConfig&lt;any, TContext&gt;,
+): UnionTypeComposer&lt;TSrc, TCtx&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="static-createtemp"></a><a href="#static-createtemp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static createTemp()</h3>
+<p>Create <code>UnionTypeComposer</code> without adding it to the <code>SchemaComposer</code>. This method may be usefull in plugins, when you need to create type temporary.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">static</span> createTemp&lt;TCtx&gt;(
+  opts:
+    | TypeAsString
+    | ComposeUnionTypeConfig&lt;any, TContext&gt;,
+): UnionTypeComposer&lt;TSrc, TCtx&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="properties"></a><a href="#properties" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Properties</h2>
+<h3><a class="anchor" aria-hidden="true" id="schemacomposer"></a><a href="#schemacomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>schemaComposer</h3>
+<p>Current <code>SchemaComposer</code> instance which is used for storing types created by <code>UnionTypeComposer</code>.</p>
+<pre><code class="hljs css language-js">SomeUTC.schemaComposer: SchemaComposer
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="union-types-methods"></a><a href="#union-types-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Union Types methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="hastype"></a><a href="#hastype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasType()</h3>
+<pre><code class="hljs css language-js">hasType(
+  name: string | GraphQLObjectType | TypeComposer&lt;TContext&gt;
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypes"></a><a href="#gettypes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypes()</h3>
+<pre><code class="hljs css language-js">getTypes(): ComposeTypesArray
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypenames"></a><a href="#gettypenames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeNames()</h3>
+<pre><code class="hljs css language-js">getTypeNames(): string[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="settypes"></a><a href="#settypes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setTypes()</h3>
+<pre><code class="hljs css language-js">setTypes(
+  types: ComposeTypesArray
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addtype"></a><a href="#addtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addType()</h3>
+<pre><code class="hljs css language-js">addType(
+  type: ComposeObjectType
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removetype"></a><a href="#removetype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeType()</h3>
+<pre><code class="hljs css language-js">removeType(
+  nameOrArray: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removeothertypes"></a><a href="#removeothertypes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeOtherTypes()</h3>
+<pre><code class="hljs css language-js">removeOtherTypes(
+  nameOrArray: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="type-methods"></a><a href="#type-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="gettype"></a><a href="#gettype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getType()</h3>
+<pre><code class="hljs css language-js">getType(): GraphQLUnionType
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypeplural"></a><a href="#gettypeplural" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypePlural()</h3>
+<pre><code class="hljs css language-js">getTypePlural(): GraphQLList&lt;GraphQLUnionType&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypenonnull"></a><a href="#gettypenonnull" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeNonNull()</h3>
+<pre><code class="hljs css language-js">getTypeNonNull(): GraphQLNonNull&lt;GraphQLUnionType&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypename"></a><a href="#gettypename" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeName()</h3>
+<pre><code class="hljs css language-js">getTypeName(): string
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="settypename"></a><a href="#settypename" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setTypeName()</h3>
+<pre><code class="hljs css language-js">setTypeName(
+  name: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getdescription"></a><a href="#getdescription" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDescription()</h3>
+<pre><code class="hljs css language-js">getDescription(): string
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setdescription"></a><a href="#setdescription" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setDescription()</h3>
+<pre><code class="hljs css language-js">setDescription(
+  description: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="clone"></a><a href="#clone" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clone()</h3>
+<pre><code class="hljs css language-js">clone(
+  newTypeName: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="resolvetype-methods"></a><a href="#resolvetype-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolveType methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getresolvetype"></a><a href="#getresolvetype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getResolveType()</h3>
+<pre><code class="hljs css language-js">getResolveType(): GraphQLTypeResolver&lt;any, TContext&gt; | <span class="hljs-literal">null</span> | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setresolvetype"></a><a href="#setresolvetype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setResolveType()</h3>
+<pre><code class="hljs css language-js">setResolveType(
+  fn: GraphQLTypeResolver&lt;any, TContext&gt; | <span class="hljs-literal">null</span> | <span class="hljs-keyword">void</span>,
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hastyperesolver"></a><a href="#hastyperesolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasTypeResolver()</h3>
+<pre><code class="hljs css language-js">hasTypeResolver(
+  type: TypeComposer&lt;any, TContext&gt; | GraphQLObjectType,
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettyperesolvers"></a><a href="#gettyperesolvers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeResolvers()</h3>
+<pre><code class="hljs css language-js">getTypeResolvers(): UnionTypeResolversMap&lt;TSource, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettyperesolvercheckfn"></a><a href="#gettyperesolvercheckfn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeResolverCheckFn()</h3>
+<pre><code class="hljs css language-js">getTypeResolverCheckFn(
+  type: TypeComposer&lt;any, TContext&gt; | GraphQLObjectType,
+): UnionTypeResolverCheckFn&lt;any, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettyperesolvernames"></a><a href="#gettyperesolvernames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeResolverNames()</h3>
+<pre><code class="hljs css language-js">getTypeResolverNames(): string[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettyperesolvertypes"></a><a href="#gettyperesolvertypes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeResolverTypes()</h3>
+<pre><code class="hljs css language-js">getTypeResolverTypes(): GraphQLObjectType[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="settyperesolvers"></a><a href="#settyperesolvers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setTypeResolvers()</h3>
+<pre><code class="hljs css language-js">setTypeResolvers(
+  typeResolversMap: UnionTypeResolversMap&lt;any, TContext&gt;,
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addtyperesolver"></a><a href="#addtyperesolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addTypeResolver()</h3>
+<pre><code class="hljs css language-js">addTypeResolver(
+  type: TypeComposer&lt;any, TContext&gt; | GraphQLObjectType,
+  <span class="hljs-attr">checkFn</span>: UnionTypeResolverCheckFn&lt;any, TContext&gt;,
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removetyperesolver"></a><a href="#removetyperesolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeTypeResolver()</h3>
+<pre><code class="hljs css language-js">removeTypeResolver(
+  type: TypeComposer&lt;any, TContext&gt; | GraphQLObjectType,
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="internal-type-definitions"></a><a href="#internal-type-definitions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Internal type definitions</h2>
+<p>Flowtype definitions which are used in this class.</p>
+<h3><a class="anchor" aria-hidden="true" id="uniontypecomposerdefinition-tcontext"></a><a href="#uniontypecomposerdefinition-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>UnionTypeComposerDefinition<TContext></h3>
+<pre><code class="hljs css language-js">type UnionTypeComposerDefinition&lt;TContext&gt; =
+  | TypeAsString
+  | ComposeUnionTypeConfig&lt;any, TContext&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="graphqluniontypeextended-tsource-tcontext"></a><a href="#graphqluniontypeextended-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GraphQLUnionTypeExtended&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type GraphQLUnionTypeExtended&lt;TSource, TContext&gt; = GraphQLUnionType &amp; {
+  <span class="hljs-attr">_gqcTypeMap</span>: <span class="hljs-built_in">Map</span>&lt;string, ComposeObjectType&gt;;
+  _gqcTypeResolvers?: UnionTypeResolversMap&lt;TSource, TContext&gt;;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composetypesarray"></a><a href="#composetypesarray" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeTypesArray</h3>
+<pre><code class="hljs css language-js">type ComposeTypesArray = ComposeObjectType[];
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="uniontyperesolversmap-tsource-tcontext"></a><a href="#uniontyperesolversmap-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>UnionTypeResolversMap&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type UnionTypeResolversMap&lt;TSource, TContext&gt; = <span class="hljs-built_in">Map</span>&lt;
+  ComposeObjectType,
+  UnionTypeResolverCheckFn&lt;TSource, TContext&gt;
+&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="maybepromise-t"></a><a href="#maybepromise-t" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MaybePromise<T></h3>
+<pre><code class="hljs css language-js">type MaybePromise&lt;T&gt; = <span class="hljs-built_in">Promise</span>&lt;T&gt; | T;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="uniontyperesolvercheckfn-tsource-tcontext"></a><a href="#uniontyperesolvercheckfn-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>UnionTypeResolverCheckFn&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type UnionTypeResolverCheckFn&lt;TSource, TContext&gt; = (
+  value: TSource,
+  <span class="hljs-attr">context</span>: TContext,
+  <span class="hljs-attr">info</span>: GraphQLResolveInfo,
+) =&gt; MaybePromise&lt;boolean | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composeuniontypeconfig-tsource-tcontext"></a><a href="#composeuniontypeconfig-tsource-tcontext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComposeUnionTypeConfig&lt;TSource, TContext&gt;</h3>
+<pre><code class="hljs css language-js">type ComposeUnionTypeConfig&lt;TSource, TContext&gt; = {
+  <span class="hljs-attr">name</span>: string;
+  types?: Thunk&lt;ComposeTypesArray&gt;;
+  resolveType?: GraphQLTypeResolver&lt;TSource, TContext&gt; | <span class="hljs-literal">null</span>;
+  description?: string | <span class="hljs-literal">null</span>;
+};
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/5.12.0/api/InterfaceTypeComposer.html"><span class="arrow-prev">← </span><span class="function-name-prevnext">InterfaceTypeComposer</span></a><a class="docs-next button" href="/docs/5.12.0/api/SchemaComposer.html"><span class="function-name-prevnext">SchemaComposer</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#static-methods">Static methods</a><ul class="toc-headings"><li><a href="#static-create">static create()</a></li><li><a href="#static-createtemp">static createTemp()</a></li></ul></li><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#union-types-methods">Union Types methods</a><ul class="toc-headings"><li><a href="#hastype">hasType()</a></li><li><a href="#gettypes">getTypes()</a></li><li><a href="#gettypenames">getTypeNames()</a></li><li><a href="#settypes">setTypes()</a></li><li><a href="#addtype">addType()</a></li><li><a href="#removetype">removeType()</a></li><li><a href="#removeothertypes">removeOtherTypes()</a></li></ul></li><li><a href="#type-methods">Type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypeplural">getTypePlural()</a></li><li><a href="#gettypenonnull">getTypeNonNull()</a></li><li><a href="#gettypename">getTypeName()</a></li><li><a href="#settypename">setTypeName()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#clone">clone()</a></li></ul></li><li><a href="#resolvetype-methods">ResolveType methods</a><ul class="toc-headings"><li><a href="#getresolvetype">getResolveType()</a></li><li><a href="#setresolvetype">setResolveType()</a></li><li><a href="#hastyperesolver">hasTypeResolver()</a></li><li><a href="#gettyperesolvers">getTypeResolvers()</a></li><li><a href="#gettyperesolvercheckfn">getTypeResolverCheckFn()</a></li><li><a href="#gettyperesolvernames">getTypeResolverNames()</a></li><li><a href="#gettyperesolvertypes">getTypeResolverTypes()</a></li><li><a href="#settyperesolvers">setTypeResolvers()</a></li><li><a href="#addtyperesolver">addTypeResolver()</a></li><li><a href="#removetyperesolver">removeTypeResolver()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#uniontypecomposerdefinition-tcontext">UnionTypeComposerDefinition</a></li><li><a href="#graphqluniontypeextended-tsource-tcontext">GraphQLUnionTypeExtended</a></li><li><a href="#composetypesarray">ComposeTypesArray</a></li><li><a href="#uniontyperesolversmap-tsource-tcontext">UnionTypeResolversMap</a></li><li><a href="#maybepromise-t">MaybePromise</a></li><li><a href="#uniontyperesolvercheckfn-tsource-tcontext">UnionTypeResolverCheckFn</a></li><li><a href="#composeuniontypeconfig-tsource-tcontext">ComposeUnionTypeConfig</a></li></ul></li></ul></nav></div><div><span><script src="/js/pjax-api.js"></script><script>window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+
+      if (document && document.addEventListener) {
+        document.addEventListener('pjax:ready', function (e) {
+          if (ga) ga('send', 'pageview', location.pathname);
+        });
+      }
+
+      var languagesMenuItemCopy = document.getElementById("languages-menu");
+      languagesMenuItemCopy.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+      });</script></span></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '34b5c77954100fe8e57575f8dfd60185',
+                indexName: 'graphql-compose',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"hitsPerPage":10,"facetFilters":["language:en","version:5.12.0"]}
+              });
+            </script></body></html>
