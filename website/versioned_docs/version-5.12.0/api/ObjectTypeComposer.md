@@ -4,4 +4,4 @@ title: ObjectTypeComposer
 original_id: ObjectTypeComposer
 ---
 
-For version 5.x.x and below please see [TypeComposer](TypeComposer) class.
+For version 5.x.x and below please see [TypeComposer](./TypeComposer) class.
