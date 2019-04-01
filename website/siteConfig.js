@@ -20,7 +20,7 @@ const siteConfig = {
   tagline: 'Toolkit for generating complex GraphQL schemas in Node.js',
   url: 'https://graphql-compose.github.io' /* your website url */,
   editUrl: 'https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/',
-  translationRecruitingLink: 'https://crowdin.com/project/graphql-compose',
+  // translationRecruitingLink: 'https://crowdin.com/project/graphql-compose',
   baseUrl: '/' /* base url for your project */,
   organizationName: 'graphql-compose',
   projectName: 'graphql-compose.github.io',
@@ -28,7 +28,7 @@ const siteConfig = {
     { doc: 'intro/quick-start', label: 'Docs' },
     { doc: 'api/ObjectTypeComposer', label: 'API' },
     { doc: 'plugins/list-of-plugins', label: 'Plugins' },
-    { languages: true },
+    { languages: false },
     { search: true },
     {
       href: 'https://github.com/graphql-compose/graphql-compose',

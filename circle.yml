@@ -17,13 +17,13 @@ jobs:
           command: |
             cd website
             yarn --no-progress
-      - run:
-          name: Install crowdin
-          command: |
-            sudo apt-get update
-            sudo apt-get install default-jre
-            wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
-            sudo dpkg -i crowdin.deb
+      # - run:
+      #     name: Install crowdin
+      #     command: |
+      #       sudo apt-get update
+      #       sudo apt-get install default-jre
+      #       wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
+      #       sudo dpkg -i crowdin.deb
       - run:
           name: Install apt packages
           command: |
@@ -40,7 +40,7 @@ jobs:
             echo "machine github.com login nodkz password $GITHUB_TOKEN" > ~/.netrc
             cd website
             yarn install
-            yarn write-translations && yarn crowdin-upload && yarn crowdin-download
+            # yarn write-translations && yarn crowdin-upload && yarn crowdin-download
             GIT_USER=nodkz yarn publish-gh-pages
 
 workflows:
