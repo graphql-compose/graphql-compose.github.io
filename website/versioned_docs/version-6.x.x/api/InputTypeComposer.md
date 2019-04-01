@@ -186,6 +186,8 @@ getFieldType(
 getFieldTC(
   fieldName: string
 ): InputTypeComposer<TContext>
+    | EnumTypeComposer<TContext>
+    | ScalarTypeComposer<TContext>
 ```
 
 ### makeFieldNonNull()

@@ -225,6 +225,19 @@ createResolver<TSource = any, TArgs = ArgsMap>(
 ): Resolver<TSource, TContext, TArgs>
 ```
 
+### createTempTC()
+
+```js
+createTempTC(
+  typeOrSDL: any
+): ObjectTypeComposer<any, TContext>
+    | InputTypeComposer<TContext>
+    | EnumTypeComposer<TContext>
+    | InterfaceTypeComposer<any, TContext>
+    | UnionTypeComposer<any, TContext>
+    | ScalarTypeComposer<TContext>
+```
+
 ### getOrCreateOTC()
 
 ```js
