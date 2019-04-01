@@ -175,7 +175,7 @@ h2 small {
   color: #400d7d;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 350px) {
   .productShowcaseSection .logos img {
     max-height: 210px;
     padding: 20px;

@@ -135,7 +135,7 @@ const Features = (props) => (
         {
           title: 'Type Storage',
           content: 'All created types avaliable in SchemaComposer storage',
-          image: svgUrl('models.svg'),
+          image: svgUrl('type-storage.svg'),
           imageAlign: 'top',
         },
       ]}
