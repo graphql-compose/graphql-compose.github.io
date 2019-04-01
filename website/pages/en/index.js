@@ -7,6 +7,7 @@
 
 const React = require('react');
 
+const backers = require(process.cwd() + '/backers.json');
 const CompLibrary = require('../../core/CompLibrary.js');
 const MarkdownBlock = CompLibrary.MarkdownBlock;
 const Container = CompLibrary.Container;
@@ -365,14 +366,82 @@ const Showcase = (props) => {
         </div>
       ) : (
         <div className="more-users">
-          <a
-            className="button"
-            href="https://github.com/graphql-compose/graphql-compose.github.io/edit/source/website/users.js"
-          >
+          <a href="https://github.com/graphql-compose/graphql-compose.github.io/edit/source/website/users.js">
             Add your logo
           </a>
         </div>
       )}
+    </div>
+  );
+};
+
+const OpenCollectiveBacker = (b) => {
+  return (
+    <a
+      key={b.id}
+      className={`${b.classPrefix}-item`}
+      title={`$${b.totalDonations / 100} by ${b.name || b.slug}`}
+      target="_blank"
+      href={b.website || `https://opencollective.com/${b.slug}`}
+    >
+      {b.avatar ? (
+        <img
+          className={`${b.classPrefix}-avatar`}
+          src={b.avatar + '&width=96'}
+          alt={b.name || b.slug ? `${b.name || b.slug}'s avatar` : 'avatar'}
+        />
+      ) : (
+        <span className={'fallbackAvatarName'}>{b.name || b.slug}</span>
+      )}
+    </a>
+  );
+};
+
+const OpenCollective = (props) => {
+  const sortedBackers = backers.sort((a, b) => a.totalDonations < b.totalDonations);
+  const filteredBackers = sortedBackers.filter(
+    (b) => b.tier === 'backer' && !b.slug.includes('adult')
+  );
+  const filteredSponsors = sortedBackers.filter((b) => b.tier === 'sponsor');
+
+  return (
+    <div className="opencollective lightBackground">
+      <div className="pluginsHeader">Backers & Sponsors</div>
+      <div>
+        <Button href="https://opencollective.com/graphql-compose">Donate</Button>
+
+        {filteredSponsors.length > 0 && (
+          <>
+            <h3>
+              <span>Sponsors</span>
+            </h3>
+            <p>
+              <span>Sponsors are those who contribute $100 or more per month</span>
+            </p>
+            <div>
+              {filteredSponsors.map((b) => (
+                <OpenCollectiveBacker {...b} classPrefix="sponsor" />
+              ))}
+            </div>
+          </>
+        )}
+
+        {filteredBackers.length > 0 && (
+          <>
+            <h3>
+              <span>Backers</span>
+            </h3>
+            <p>
+              <span>Backers are those who contribute $2 or more per month</span>
+            </p>
+            <div>
+              {filteredBackers.map((b) => (
+                <OpenCollectiveBacker {...b} classPrefix="backer" />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
@@ -391,6 +460,7 @@ class Index extends React.Component {
           <Plugins />
           {/* <Description /> */}
           <Showcase language={language} />
+          <OpenCollective />
         </div>
       </div>
     );

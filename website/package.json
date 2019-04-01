@@ -1,6 +1,7 @@
 {
   "name": "graphql-compose-site",
   "scripts": {
+    "postinstall": "node ./fetchBackers.js",
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
     "build": "docusaurus-build",

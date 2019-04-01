@@ -238,3 +238,33 @@ h2 small {
 .editor-menubar .maximize {
   background-color: green;
 }
+
+.opencollective {
+  text-align: center;
+  padding: 40px 10px;
+}
+
+.opencollective .button {
+  font-size: 20px;
+}
+
+.opencollective .backer-item, .opencollective .sponsor-item {
+  border: 1px solid red;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  overflow: hidden;
+  -o-object-fit: contain;
+  object-fit: contain;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+}
+
+.opencollective .fallbackAvatarName {
+  color: black;
+  vertical-align: middle;
+  line-height: 85px;
+}

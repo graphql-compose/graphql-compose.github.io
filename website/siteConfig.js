@@ -23,6 +23,7 @@ const siteConfig = {
     { doc: 'plugins/list-of-plugins', label: 'Plugins' },
     { languages: false },
     { search: true },
+    { href: 'https://opencollective.com/graphql-compose', label: 'Donate' },
     {
       href: 'https://github.com/graphql-compose/graphql-compose',
       label: 'GitHub',
