@@ -184,9 +184,10 @@ getFieldType(
 ```js
 getFieldTC(
   fieldName: string
-): InputTypeComposer<TContext>
-    | EnumTypeComposer<TContext>
-    | ScalarTypeComposer<TContext>
+):
+  | InputTypeComposer<TContext>
+  | EnumTypeComposer<TContext>
+  | ScalarTypeComposer<TContext>
 ```
 
 ### makeFieldNonNull()

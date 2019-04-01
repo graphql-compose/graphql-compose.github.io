@@ -40,8 +40,8 @@ args: ComposeFieldConfigArgumentMap<any>;
 
 ```js
 resolve: (
-    resolveParams: Partial<ResolveParams<TSource, TContext, TArgs>>,
-  ) => Promise<any> | any;
+  resolveParams: Partial<ResolveParams<TSource, TContext, TArgs>>
+) => Promise<any> | any;
 ```
 
 ### name

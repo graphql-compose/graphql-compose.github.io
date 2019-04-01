@@ -167,12 +167,13 @@ getFieldType(
 ```js
 getFieldTC(
   fieldName: string
-): ObjectTypeComposer<TSource, TContext>
-    | InputTypeComposer<TContext>
-    | EnumTypeComposer<TContext>
-    | InterfaceTypeComposer<TSource, TContext>
-    | UnionTypeComposer<TSource, TContext>
-    | ScalarTypeComposer<TContext>
+):
+  | ObjectTypeComposer<TSource, TContext>
+  | InputTypeComposer<TContext>
+  | EnumTypeComposer<TContext>
+  | InterfaceTypeComposer<TSource, TContext>
+  | UnionTypeComposer<TSource, TContext>
+  | ScalarTypeComposer<TContext>
 ```
 
 ### makeFieldNonNull()

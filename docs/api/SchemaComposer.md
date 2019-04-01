@@ -229,12 +229,13 @@ createResolver<TSource = any, TArgs = ArgsMap>(
 ```js
 createTempTC(
   typeOrSDL: any
-): ObjectTypeComposer<any, TContext>
-    | InputTypeComposer<TContext>
-    | EnumTypeComposer<TContext>
-    | InterfaceTypeComposer<any, TContext>
-    | UnionTypeComposer<any, TContext>
-    | ScalarTypeComposer<TContext>
+):
+  | ObjectTypeComposer<any, TContext>
+  | InputTypeComposer<TContext>
+  | EnumTypeComposer<TContext>
+  | InterfaceTypeComposer<any, TContext>
+  | UnionTypeComposer<any, TContext>
+  | ScalarTypeComposer<TContext>
 ```
 
 ### getOrCreateOTC()
@@ -344,12 +345,13 @@ getSTC(
 ```js
 getAnyTC(
   typeName: any
-): ObjectTypeComposer<any, TContext>
-    | InputTypeComposer<TContext>
-    | EnumTypeComposer<TContext>
-    | InterfaceTypeComposer<any, TContext>
-    | UnionTypeComposer<any, TContext>
-    | ScalarTypeComposer<TContext>
+):
+  | ObjectTypeComposer<any, TContext>
+  | InputTypeComposer<TContext>
+  | EnumTypeComposer<TContext>
+  | InterfaceTypeComposer<any, TContext>
+  | UnionTypeComposer<any, TContext>
+  | ScalarTypeComposer<TContext>
 ```
 
 ### addAsComposer()

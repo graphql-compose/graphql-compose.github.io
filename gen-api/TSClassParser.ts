@@ -1,6 +1,5 @@
 import ts from 'typescript';
-import prettier from 'prettier';
-import { trim, fixJSDocCode } from './utils';
+import { trim, fixJSDocCode, prettify } from './utils';
 
 interface SymbolData {
   name: string;
@@ -219,15 +218,7 @@ export default class TSClassParser {
           if (documentation) documentation += `\n\n`;
           documentation += '```js\n';
           try {
-            documentation +=
-              trim(
-                prettier.format(fixJSDocCode(docTag.text), {
-                  parser: 'typescript',
-                  semi: true,
-                  singleQuote: true,
-                  arrowParens: 'always',
-                })
-              ) + '\n';
+            documentation += trim(prettify(fixJSDocCode(docTag.text))) + '\n';
           } catch (e) {
             console.log(
               `\n-----------------------------------------\n\nExample parse error in '${name}':\n`,

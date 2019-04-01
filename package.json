@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest",
     "ts-node": "ts-node",
-    "start": "cd website && yarn start",
+    "start": "yarn gen-api && cd website && yarn start",
     "build": "cd website && yarn build",
     "version": "cd website && yarn docusaurus-version",
     "gen-api": "ts-node ./gen-api/index.ts && ts-node ./gen-api/update-version-files.ts"

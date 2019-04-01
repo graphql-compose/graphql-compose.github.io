@@ -1,5 +1,5 @@
 import { ClassData, ClassMethodData, ClassPropertyData, InterfaceData } from './TSClassParser';
-import { trim } from './utils';
+import { trim, prettifyReturnType } from './utils';
 
 export default class MarkdownGenerator {
   static generate(data: ClassData, interfaces?: InterfaceData[]) {
@@ -183,7 +183,7 @@ https://github.com/graphql-compose/graphql-compose/blob/master/src/${data.name}.
     }
 
     // close
-    m += `): ${method.type}\n`;
+    m += `):${prettifyReturnType(method.type)}\n`;
     m += '```\n';
 
     return m;
@@ -200,7 +200,7 @@ https://github.com/graphql-compose/graphql-compose/blob/master/src/${data.name}.
       if (property.flags.protected) m += 'protected ';
       if (property.flags.readonly) m += 'readonly ';
     }
-    m += `${property.name}: ${property.type};\n`;
+    m += `${property.name}:${prettifyReturnType(property.type)};\n`;
     m += '```\n';
 
     return m;
