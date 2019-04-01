@@ -4,7 +4,7 @@ title: graphql-compose-connection
 sidebar_label: Connection plugin
 ---
 
-This is a plugin for [graphql-compose](https://github.com/graphql-compose/graphql-compose) family, which adds to the TypeComposer `connection` resolver.
+This is a plugin for [graphql-compose](https://github.com/graphql-compose/graphql-compose) family, which adds to the ObjectTypeComposer `connection` resolver.
 
 Live demo: [https://graphql-compose.herokuapp.com/](https://graphql-compose.herokuapp.com/)
 

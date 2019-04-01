@@ -30,12 +30,12 @@ For simplicity, this example works with arrays, but in future, it will not be a 
 
 ## Creating Types
 
-Building a GraphQL Schema starts with complex Types declaration. In order to create a Type, you have to give it a unique name and specify it’s fields list. So let's create Types which will describe our data. For this purpose need to take `TypeComposer` helper from `graphql-compose` package.
+Building a GraphQL Schema starts with complex Types declaration. In order to create a Type, you have to give it a unique name and specify it’s fields list. So let's create Types which will describe our data. For this purpose need to take `ObjectTypeComposer` helper from `graphql-compose` package.
 
 ```js
-import { TypeComposer } from 'graphql-compose';
+import { schemaComposer } from 'graphql-compose';
 
-const AuthorTC = TypeComposer.create({
+const AuthorTC = schemaComposer.createObjectTC({
   name: 'Author',
   fields: {
     id: 'Int!',
@@ -44,7 +44,7 @@ const AuthorTC = TypeComposer.create({
   },
 });
 
-const PostTC = TypeComposer.create({
+const PostTC = schemaComposer.createObjectTC({
   name: 'Post',
   fields: {
     id: 'Int!',
@@ -179,12 +179,12 @@ That's all for this small demo. Source code of this example can be found in [gra
 
 ## Bonus Track
 
-Graphql-compose has following built-in scalar types: `String`, `Float`, `Int`, `Boolean`, `ID`, `Date`, `JSON`. If you need to create some complex type, you will need to use `TypeComposer`.
+Graphql-compose has following built-in scalar types: `String`, `Float`, `Int`, `Boolean`, `ID`, `Date`, `JSON`. If you need to create some complex type, you will need to use `schemaComposer.createObjectTC()`.
 
-Let demonstrate another way of type creation in SDL format via `TypeComposer.create()` method:
+Let demonstrate another way of type creation via SDL:
 
 ```js
-const AddressTC = TypeComposer.create(`
+const AddressTC = schemaComposer.createObjectTC(`
   type Address {
     city: String
     country: String

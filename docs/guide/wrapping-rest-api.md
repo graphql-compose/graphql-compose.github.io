@@ -121,7 +121,7 @@ FilmTC.addResolver({
 });
 ```
 
-Defining Resolvers within `TypeComposer`s they belong to helps to keep your code DRY, as further on you'll be able to reuse them with just one line of code:
+Defining Resolvers within `ObjectTypeComposer`s they belong to helps to keep your code DRY, as further on you'll be able to reuse them with just one line of code:
 
 ```js
 Planet.getResolver('findMany');

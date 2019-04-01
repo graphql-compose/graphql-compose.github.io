@@ -37,6 +37,14 @@
     flex: 0 0 200px;
   }
 
+  .container.paddingTop {
+    padding-top: 60px;
+  }
+
+  .container.paddingBottom {
+      padding-bottom: 40px;
+  }
+
   .onPageNav {
     top: 70px;
     max-height: calc(100vh - 70px);
@@ -124,6 +132,13 @@ h2 small {
   text-align: center;
 }
 
+.pluginsSubFooter {
+  font-size: 130%;
+  line-height: 130%;
+  padding-top: 30px;
+  text-align: center;
+}
+
 .pluginsBlock {
   margin-top: 30px;
 }
@@ -159,3 +174,66 @@ h2 small {
   background: #fff;
   color: #400d7d;
 }
+
+@media only screen and (min-width: 500px) {
+  .productShowcaseSection .logos img {
+    max-height: 210px;
+    padding: 20px;
+    width: 310px;
+  }
+}
+
+.editor-window {
+  background-color: #F0F0F0;
+  border-radius: 5px 5px 0 0;
+  text-align: left;
+}
+.editor-window .editor-menubar {
+  background-color: #E5E4E4;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px 5px 0 0;
+}
+.editor-window .hljs {
+  background-color: #F0F0F0;
+}
+.editor-window code,
+.editor-window code span {
+  font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
+  font-size: 13pt;
+}
+@media (max-width: 420px) {
+  .editor-window code,
+  .editor-window code span {
+    font-size: 13px;
+  }
+}
+.editor-window pre {
+  overflow-x: auto;
+  border-radius: 0 0 5px 5px;
+  padding-left: 20px;
+  height: 100%;
+}
+.editor-menubar > .editor-button {
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+}
+.editor-filename {
+  color: #141414;
+  font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
+  font-size: 12pt;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.editor-menubar .close {
+  background-color: red;
+  margin-left: 10px;
+}
+.editor-menubar .minimize {
+  background-color: yellow;
+}
+.editor-menubar .maximize {
+  background-color: green;

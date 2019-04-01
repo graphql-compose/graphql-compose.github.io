@@ -1,0 +1,43 @@
+{
+  "version-6.x.x-docs": {
+    "Introduction": [
+      "version-6.x.x-intro/prerequisites",
+      "version-6.x.x-intro/installation",
+      "version-6.x.x-intro/quick-start",
+      "version-6.x.x-intro/live-demos"
+    ],
+    "Basics": [
+      "version-6.x.x-basics/understanding-types",
+      "version-6.x.x-basics/type-modification",
+      "version-6.x.x-basics/what-is-resolver",
+      "version-6.x.x-basics/understanding-relations",
+      "version-6.x.x-basics/generating-schema"
+    ],
+    "API Reference": [
+      "version-6.x.x-api/SchemaComposer",
+      "version-6.x.x-api/ObjectTypeComposer",
+      "version-6.x.x-api/InputTypeComposer",
+      "version-6.x.x-api/ScalarTypeComposer",
+      "version-6.x.x-api/EnumTypeComposer",
+      "version-6.x.x-api/InterfaceTypeComposer",
+      "version-6.x.x-api/UnionTypeComposer",
+      "version-6.x.x-api/Resolver",
+      "version-6.x.x-api/TypeMapper",
+      "version-6.x.x-api/misc-api-methods"
+    ],
+    "Plugins": [
+      "version-6.x.x-plugins/list-of-plugins",
+      "version-6.x.x-plugins/plugin-mongoose",
+      "version-6.x.x-plugins/plugin-elasticsearch",
+      "version-6.x.x-plugins/plugin-json",
+      "version-6.x.x-plugins/plugin-relay",
+      "version-6.x.x-plugins/plugin-connection",
+      "version-6.x.x-plugins/plugin-pagination",
+      "version-6.x.x-plugins/plugin-aws"
+    ],
+    "Guide": [
+      "version-6.x.x-guide/wrapping-rest-api",
+      "version-6.x.x-guide/file-uploads"
+    ]
+  }
+}

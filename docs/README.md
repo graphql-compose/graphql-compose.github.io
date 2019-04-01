@@ -31,7 +31,7 @@ Welcome to the GraphQL Compose documentation.
 
 ## API Reference
 
-- [TypeComposer](api/TypeComposer.md)
+- [ObjectTypeComposer](api/ObjectTypeComposer.md)
 - [InputTypeComposer](api/InputTypeComposer.md)
 - [ScalarTypeComposer](api/ScalarTypeComposer.md)
 - [EnumTypeComposer](api/EnumTypeComposer.md)

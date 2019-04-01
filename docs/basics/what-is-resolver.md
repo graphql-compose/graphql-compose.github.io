@@ -41,7 +41,7 @@ The main aim of `Resolver` is to keep available resolve methods for `Type` and u
 
 ## Why do we need the Resolver?
 
-Graphql-compose allows creating such "functions" or "FieldConfigs" via giving it names and keep in your `TypeComposer`. You may create any number of `Resolvers` and store them in your type.
+Graphql-compose allows creating such "functions" or "FieldConfigs" via giving it names and keep in your `ObjectTypeComposer`. You may create any number of `Resolvers` and store them in your type.
 
 Assume you have an `Author` type. And you have different standard CRUD operations for fetching and modifying this type:
 
@@ -66,7 +66,7 @@ When you will construct your Schema, you may need several times the same logic f
 
 ### via `TC.addResolver()`
 
-Mostly `Resolver`s are created according to the specific `Type`. So it's better to create them and store in some `TypeComposer` instance.
+Mostly `Resolver`s are created according to the specific `Type`. So it's better to create them and store in some `ObjectTypeComposer` instance.
 
 Lets's take `AuthorTC` and describe how it can be found by `id`:
 
@@ -97,14 +97,14 @@ schemaComposer.Query.addFields({
 });
 ```
 
-### via `new Resolver()`
+### via `schemaComposer.createResolver()`
 
-You may create instance of `Resolver` without attaching it to some `TypeComposer`. It can be done in following way:
+You may create instance of `Resolver` without attaching it to some `ObjectTypeComposer`. It can be done in following way:
 
 ```js
-import { Resolver } from 'graphql-compose';
+import { schemaComposer } from 'graphql-compose';
 
-const findCityLocationByIdResolver = new Resolver({
+const findCityLocationByIdResolver = schemaComposer.createResolver({
   name: 'findCityLocationById',
   type: `type CityLocation { lon: Float, lat: Float }`,
   args: {
@@ -196,9 +196,9 @@ const findManyReduced = AuthorTC.getResolver('findMany').wrap(newResolver => {
 
 ### via `TC.wrapResolverAs()`
 
-Also you may want to modify already existed `Resolver` in some `TypeComposer`, like it did `Resolver.wrap()` method.
+Also you may want to modify already existed `Resolver` in some `ObjectTypeComposer`, like it did `Resolver.wrap()` method.
 
-For simplifying this process you may use `TypeComposer.wrapResolverAs()` method.
+For simplifying this process you may use `ObjectTypeComposer.wrapResolverAs()` method.
 Let take `AuthorTC`s `findMany` resolver and create a new one with name `findManyReduced`.
 
 ```js

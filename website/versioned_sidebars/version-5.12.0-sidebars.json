@@ -1,0 +1,47 @@
+{
+  "version-5.12.0-docs": {
+    "Introduction": [
+      "version-5.12.0-intro/prerequisites",
+      "version-5.12.0-intro/installation",
+      "version-5.12.0-intro/quick-start",
+      "version-5.12.0-intro/live-demos"
+    ],
+    "Basics": [
+      "version-5.12.0-basics/understanding-types",
+      "version-5.12.0-basics/type-modification",
+      "version-5.12.0-basics/what-is-resolver",
+      "version-5.12.0-basics/understanding-relations",
+      "version-5.12.0-basics/generating-schema"
+    ],
+    "API Reference": [
+      "version-5.12.0-api/TypeComposer",
+      "version-5.12.0-api/Resolver",
+      "version-5.12.0-api/InputTypeComposer",
+      "version-5.12.0-api/ScalarTypeComposer",
+      "version-5.12.0-api/EnumTypeComposer",
+      "version-5.12.0-api/InterfaceTypeComposer",
+      "version-5.12.0-api/UnionTypeComposer",
+      "version-5.12.0-api/SchemaComposer",
+      "version-5.12.0-api/TypeMapper",
+      "version-5.12.0-api/misc-api-methods"
+    ],
+    "Plugins": [
+      "version-5.12.0-plugins/list-of-plugins",
+      "version-5.12.0-plugins/plugin-mongoose",
+      "version-5.12.0-plugins/plugin-elasticsearch",
+      "version-5.12.0-plugins/plugin-json",
+      "version-5.12.0-plugins/plugin-relay",
+      "version-5.12.0-plugins/plugin-connection",
+      "version-5.12.0-plugins/plugin-pagination",
+      "version-5.12.0-plugins/plugin-aws",
+      "version-5.12.0-plugins/plugin-writing-custom-plugin"
+    ],
+    "Guide": [
+      "version-5.12.0-guide/wrapping-rest-api",
+      "version-5.12.0-guide/file-uploads",
+      "version-5.12.0-guide/mongoose",
+      "version-5.12.0-guide/elasticsearch-with-mongoose",
+      "version-5.12.0-guide/relay"
+    ]
+  }
+}

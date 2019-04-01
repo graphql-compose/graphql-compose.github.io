@@ -17,14 +17,17 @@
       "api/misc-api-methods": {
         "title": "API misc"
       },
+      "api/ObjectTypeComposer": {
+        "title": "ObjectTypeComposer"
+      },
       "api/Resolver": {
         "title": "Resolver"
       },
+      "api/ScalarTypeComposer": {
+        "title": "ScalarTypeComposer"
+      },
       "api/SchemaComposer": {
         "title": "SchemaComposer"
-      },
-      "api/TypeComposer": {
-        "title": "TypeComposer"
       },
       "api/TypeMapper": {
         "title": "TypeMapper"
@@ -116,6 +119,195 @@
       },
       "recipes/writing-tests": {
         "title": "[WIP] Writing tests"
+      },
+      "version-5.12.0-EnumTypeComposer": {
+        "title": "EnumTypeComposer"
+      },
+      "version-5.12.0-InputTypeComposer": {
+        "title": "InputTypeComposer"
+      },
+      "version-5.12.0-InterfaceTypeComposer": {
+        "title": "InterfaceTypeComposer"
+      },
+      "version-5.12.0-misc-api-methods": {
+        "title": "API misc"
+      },
+      "version-5.12.0-Resolver": {
+        "title": "Resolver"
+      },
+      "version-5.12.0-ScalarTypeComposer": {
+        "title": "ScalarTypeComposer"
+      },
+      "version-5.12.0-SchemaComposer": {
+        "title": "SchemaComposer"
+      },
+      "version-5.12.0-TypeComposer": {
+        "title": "TypeComposer"
+      },
+      "version-5.12.0-TypeMapper": {
+        "title": "TypeMapper"
+      },
+      "version-5.12.0-UnionTypeComposer": {
+        "title": "UnionTypeComposer"
+      },
+      "version-5.12.0-generating-schema": {
+        "title": "Generating Schema"
+      },
+      "version-5.12.0-type-modification": {
+        "title": "Type modification"
+      },
+      "version-5.12.0-understanding-relations": {
+        "title": "Relations between Types"
+      },
+      "version-5.12.0-understanding-types": {
+        "title": "Type creation"
+      },
+      "version-5.12.0-what-is-resolver": {
+        "title": "Resolvers"
+      },
+      "version-5.12.0-elasticsearch-with-mongoose": {
+        "title": "[WIP] Use ElasticSearch with Mongoose"
+      },
+      "version-5.12.0-file-uploads": {
+        "title": "File uploads"
+      },
+      "version-5.12.0-mongoose": {
+        "title": "[WIP] Generate types from Mongoose Models"
+      },
+      "version-5.12.0-relay": {
+        "title": "[WIP] Relay Schema"
+      },
+      "version-5.12.0-wrapping-rest-api": {
+        "title": "Wrapping REST API"
+      },
+      "version-5.12.0-installation": {
+        "title": "Installation"
+      },
+      "version-5.12.0-live-demos": {
+        "title": "Live Demos"
+      },
+      "version-5.12.0-prerequisites": {
+        "title": "Prerequisites"
+      },
+      "version-5.12.0-quick-start": {
+        "title": "Quick Start Guide"
+      },
+      "version-5.12.0-list-of-plugins": {
+        "title": "Plugins list"
+      },
+      "version-5.12.0-plugin-aws": {
+        "title": "graphql-compose-aws",
+        "sidebar_label": "AWS plugin"
+      },
+      "version-5.12.0-plugin-connection": {
+        "title": "graphql-compose-connection",
+        "sidebar_label": "Connection plugin"
+      },
+      "version-5.12.0-plugin-elasticsearch": {
+        "title": "graphql-compose-elasticsearch",
+        "sidebar_label": "ElasticSearch plugin"
+      },
+      "version-5.12.0-plugin-json": {
+        "title": "graphql-compose-json",
+        "sidebar_label": "Json plugin"
+      },
+      "version-5.12.0-plugin-mongoose": {
+        "title": "graphql-compose-mongoose",
+        "sidebar_label": "Mongoose plugin"
+      },
+      "version-5.12.0-plugin-pagination": {
+        "title": "graphql-compose-pagination",
+        "sidebar_label": "Pagination plugin"
+      },
+      "version-5.12.0-plugin-relay": {
+        "title": "graphql-compose-relay",
+        "sidebar_label": "Relay plugin"
+      },
+      "version-5.12.0-plugin-writing-custom-plugin": {
+        "title": "[WIP] How to write a custom plugin"
+      },
+      "version-5.12.0-authorization": {
+        "title": "[WIP] Authorization"
+      },
+      "version-5.12.0-writing-tests": {
+        "title": "[WIP] Writing tests"
+      },
+      "version-6.x.x-EnumTypeComposer": {
+        "title": "EnumTypeComposer"
+      },
+      "version-6.x.x-InputTypeComposer": {
+        "title": "InputTypeComposer"
+      },
+      "version-6.x.x-InterfaceTypeComposer": {
+        "title": "InterfaceTypeComposer"
+      },
+      "version-6.x.x-misc-api-methods": {
+        "title": "API misc"
+      },
+      "version-6.x.x-ObjectTypeComposer": {
+        "title": "ObjectTypeComposer"
+      },
+      "version-6.x.x-Resolver": {
+        "title": "Resolver"
+      },
+      "version-6.x.x-ScalarTypeComposer": {
+        "title": "ScalarTypeComposer"
+      },
+      "version-6.x.x-SchemaComposer": {
+        "title": "SchemaComposer"
+      },
+      "version-6.x.x-TypeMapper": {
+        "title": "TypeMapper"
+      },
+      "version-6.x.x-UnionTypeComposer": {
+        "title": "UnionTypeComposer"
+      },
+      "version-6.x.x-generating-schema": {
+        "title": "Generating Schema"
+      },
+      "version-6.x.x-type-modification": {
+        "title": "Type modification"
+      },
+      "version-6.x.x-understanding-relations": {
+        "title": "Relations between Types"
+      },
+      "version-6.x.x-understanding-types": {
+        "title": "Type creation"
+      },
+      "version-6.x.x-what-is-resolver": {
+        "title": "Resolvers"
+      },
+      "version-6.x.x-elasticsearch-with-mongoose": {
+        "title": "[WIP] Use ElasticSearch with Mongoose"
+      },
+      "version-6.x.x-file-uploads": {
+        "title": "File uploads"
+      },
+      "version-6.x.x-wrapping-rest-api": {
+        "title": "Wrapping REST API"
+      },
+      "version-6.x.x-quick-start": {
+        "title": "Quick Start Guide"
+      },
+      "version-6.x.x-plugin-connection": {
+        "title": "graphql-compose-connection",
+        "sidebar_label": "Connection plugin"
+      },
+      "version-6.x.x-plugin-elasticsearch": {
+        "title": "graphql-compose-elasticsearch",
+        "sidebar_label": "ElasticSearch plugin"
+      },
+      "version-6.x.x-plugin-mongoose": {
+        "title": "graphql-compose-mongoose",
+        "sidebar_label": "Mongoose plugin"
+      },
+      "version-6.x.x-plugin-pagination": {
+        "title": "graphql-compose-pagination",
+        "sidebar_label": "Pagination plugin"
+      },
+      "version-6.x.x-plugin-relay": {
+        "title": "graphql-compose-relay",
+        "sidebar_label": "Relay plugin"
       }
     },
     "links": {

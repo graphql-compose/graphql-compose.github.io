@@ -9,7 +9,7 @@ This is the most important part of `graphql-compose` and the main difference in 
 
 ## Fields modification
 
-Available methods in `TypeComposer`, `InputTypeComposer` and `EnumTypeComposer` instances:
+Available methods in `ObjectTypeComposer`, `InputTypeComposer`, `EnumTypeComposer`, `InterfaceTypeComposer` instances:
 
 - getFields()
 - setFields()
@@ -24,7 +24,7 @@ Available methods in `TypeComposer`, `InputTypeComposer` and `EnumTypeComposer` 
 - reorderFields(names)
 - deprecateFields(nameOrMap)
 
-Additional methods in `TypeComposer`, `InputTypeComposer` instances:
+Additional methods in `ObjectTypeComposer`, `InputTypeComposer`, `InterfaceTypeComposer` instances:
 
 - getFieldType(name)
 - getFieldTC(name)
@@ -62,7 +62,7 @@ AuthorTC.addNestedFields({
 
 ## Type modification
 
-Available methods in `TypeComposer`, `InputTypeComposer` and `EnumTypeComposer` instances:
+Available methods in `ObjectTypeComposer`, `InputTypeComposer`, `EnumTypeComposer`, `InterfaceTypeComposer`, `UnionTypeComposer` instances:
 
 - getType()
 - getTypePlural()
@@ -73,7 +73,7 @@ Available methods in `TypeComposer`, `InputTypeComposer` and `EnumTypeComposer` 
 - setDescription()
 - clone(newTypeName)
 
-Additional methods in `TypeComposer`
+Additional methods in `ObjectTypeComposer`
 
 - getInterfaces()
 - setInterfaces(interfaces)
@@ -90,7 +90,7 @@ With this set of methods, you may write your own type modification functions. It
 As an example, lets write a function which will add `rawData` field with full record data from database. Also check `isAdmin = true` in `context` and if so return data, otherwise return null.
 
 ```js
-function addRawData(tc: TypeComposer) {
+function addRawData(tc: ObjectTypeComposer<any, any>) {
   if (!tc.hasField('rawData')) {
     tc.addField('rawData', {
       type: 'JSON',

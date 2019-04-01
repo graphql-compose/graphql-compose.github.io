@@ -45,8 +45,8 @@ Small explanation for varaibles naming:
 
 - `UserSchema` - this is a mongoose schema
 - `User` - this is a mongoose model
-- `UserTC` - this is a `TypeComposer` instance for User. `TypeComposer` has `GraphQLObjectType` inside, avaliable via method `UserTC.getType()`.
-- Here and in all other places of code variables suffix `...TC` means that this is `TypeComposer` instance, `...ITC` - `InputTypeComposer`, `...ETC` - `EnumTypeComposer`.
+- `UserTC` - this is a `ObjectTypeComposer` instance for User. `ObjectTypeComposer` has `GraphQLObjectType` inside, avaliable via method `UserTC.getType()`.
+- Here and in all other places of code variables suffix `...TC` means that this is `ObjectTypeComposer` instance, `...ITC` - `InputTypeComposer`, `...ETC` - `EnumTypeComposer`.
 
 ```js
 import mongoose from 'mongoose';
@@ -128,7 +128,7 @@ I don't think so, because by default internally was created about 55 graphql typ
 
 Variable Namings
 
-- `...DTC` - Suffix for a `DiscriminatorTypeComposer` instance, which is also an instance of `TypeComposer`. All fields and Relations manipulations on this instance affects all registered discriminators and the Discriminator Interface.
+- `...DTC` - Suffix for a `DiscriminatorTypeComposer` instance, which is also an instance of `ObjectTypeComposer`. All fields and Relations manipulations on this instance affects all registered discriminators and the Discriminator Interface.
 
 ```js
   import mongoose from 'mongoose';
@@ -199,7 +199,7 @@ Variable Namings
   const PersonTC = CharacterDTC.discriminator(PersonModel);  // baseOptions -> customisationsOptions applied
 
   // You may now use CharacterDTC to add fields to all Discriminators
-  // Use DroidTC, `PersonTC as any other TypeComposer.
+  // Use DroidTC, `PersonTC as any other ObjectTypeComposer.
   schemaComposer.Mutation.addFields({
     droidCreate: DroidTC.getResolver('createOne'),
     personCreate: PersonTC.getResolver('createOne'),
@@ -262,7 +262,7 @@ UserTC.get('fieldWithNesting.subNesting').getType(); // get GraphQL type of deep
 
 ```js
 UserTC.addFields({
-  lonLat: TypeComposer.create('type LonLat { lon: Float, lat: Float }'),
+  lonLat: ObjectTypeComposer.create('type LonLat { lon: Float, lat: Float }'),
   notice: 'String', // shorthand definition
   noticeList: { // extended
     type: '[String]', // String, Int, Float, Boolean, ID, Json

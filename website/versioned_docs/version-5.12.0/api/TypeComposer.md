@@ -1,6 +1,7 @@
 ---
-id: TypeComposer
+id: version-5.12.0-TypeComposer
 title: TypeComposer
+original_id: TypeComposer
 ---
 
 Main class that gets `GraphQLObjectType` and provide ability to change them.

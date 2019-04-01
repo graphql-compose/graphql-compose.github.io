@@ -10,9 +10,9 @@ The most important part of GraphQL is a relations between types.
 Assume you have `Author` and `Post` types.
 
 ```js
-import { TypeComposer } from 'graphql-compose';
+import { schemaComposer } from 'graphql-compose';
 
-const AuthorTC = TypeComposer.create({
+const AuthorTC = schemaComposer.createObjectTC({
   name: 'Author',
   fields: {
     id: 'Int!',
@@ -21,7 +21,7 @@ const AuthorTC = TypeComposer.create({
   },
 });
 
-const PostTC = TypeComposer.create({
+const PostTC = schemaComposer.createObjectTC({
   name: 'Post',
   fields: {
     id: 'Int!',
@@ -118,9 +118,9 @@ Anyway if you put `posts` resolver in separate file, you will meet with another 
 For such case better to improve `args.filter` by allowing to set `authorId` and `reviewerId` via arguments:
 
 ```js
-import { Resolver } from 'graphql-compose';
+import { schemaComposer } from 'graphql-compose';
 
-const postsResolver = new Resolver({
+const postsResolver = schemaComposer.createResolver({
   type: [PostTC], // array of Posts
   args: {
     limit: {
@@ -154,7 +154,7 @@ const postsResolver = new Resolver({
 });
 ```
 
-And now you may create relations via `TypeComposer.addRelation` method in such way:
+And now you may create relations via `ObjectTypeComposer.addRelation` method in such way:
 
 ```js
 AuthorTC.addRelation('posts', {
@@ -174,12 +174,12 @@ ReviewerTC.addRelation('posts', {
 });
 ```
 
-## TypeComposer.addRelation()
+## ObjectTypeComposer.addRelation()
 
 `addRelation` method has following arguments:
 
 ```js
-TypeComposer.addRelation(
+ObjectTypeComposer.addRelation(
   fieldName: string,
   opts: {
     resolver: () => Resolver,
@@ -188,7 +188,7 @@ TypeComposer.addRelation(
     description?: string,
     deprecationReason?: string,
   })
-): TypeComposer
+): ObjectTypeComposer<any, any>
 ```
 
 ### resolver

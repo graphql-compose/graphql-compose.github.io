@@ -20,15 +20,15 @@ Modules `graphql` and `graphql-compose` are in `peerDependencies`, so should be 
 
 ## Example
 
-`TypeComposer` is a [graphql-compose](https://github.com/graphql-compose/graphql-compose) utility, that wraps GraphQL types and provide bunch of useful methods for type manipulation.
+`ObjectTypeComposer` is a [graphql-compose](https://github.com/graphql-compose/graphql-compose) utility, that wraps GraphQL types and provide bunch of useful methods for type manipulation.
 
 ```js
 import composeWithRelay from 'graphql-compose-relay';
-import { TypeComposer } from 'graphql-compose';
+import { ObjectTypeComposer } from 'graphql-compose';
 import { RootQueryType, UserType } from './my-graphq-object-types';
 
-const rootQueryTypeComposer = new TypeComposer(RootQueryType);
-const userTypeComposer = new TypeComposer(UserType);
+const rootQueryTypeComposer = new ObjectTypeComposer(RootQueryType);
+const userTypeComposer = new ObjectTypeComposer(UserType);
 
 // If passed RootQuery, then will be added only `node` field to this type.
 // Via RootQuery.node you may find objects by globally unique ID among all types.
@@ -53,7 +53,7 @@ All this annoying operations is too fatigue to do by hands. So this middleware d
 
 ## Requirements
 
-Method `composeWithRelay` accept `TypeComposer` as input argument. So `TypeComposer` should meet following requirements:
+Method `composeWithRelay` accept `ObjectTypeComposer` as input argument. So `ObjectTypeComposer` should meet following requirements:
 
 - has defined `recordIdFn` (function that from object of this type, returns you id for the globalId construction)
 - should have `findById` resolver (that will be used by `RootQuery.node`)

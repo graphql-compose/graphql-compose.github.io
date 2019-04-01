@@ -17,11 +17,11 @@ import {
 
 ### toInputObjectType()
 
-Converts `GraphQLObject` type wrapped with `TypeComposer` to `GraphQLInputObjectType` wrapped with `InputTypeComposer`.
+Converts `GraphQLObject` type wrapped with `ObjectTypeComposer` to `GraphQLInputObjectType` wrapped with `InputTypeComposer`.
 
 ```flow
 function toInputObjectType(
-  typeComposer: TypeComposer<any>,
+  tc: ObjectTypeComposer<any>,
   opts?: {
     prefix?: string;
     postfix?: string;
@@ -33,10 +33,10 @@ Can be used in following way:
 
 ```js
 import { GraphQLObjectType } from 'graphql';
-import { toInputObjectType, TypeComposer, InputTypeComposer } from 'graphql-compose';
+import { toInputObjectType, schemaComposer } from 'graphql-compose';
 
 const GraphQLUserType = new GraphQLObjectType({ ... });
-const UserTC = new TypeComposer(GraphQLUserType);
+const UserTC = schemaComposer.createObjectType(GraphQLUserType);
 const UserITC = toInputObjectType(UserTC);
 const GraphQLUserInput = UserITC.getType(); // returns GraphQLInputObjectType
 ```
@@ -375,11 +375,11 @@ import { GraphQLJSON } from 'graphql-compose';
 You may need some isolated storage for keeping types in your plugins. So `TypeStorage` is the easy way to obtain such storage.
 
 ```flow
-import { TypeStorage, TypeComposer } from 'graphql-compose';
+import { TypeStorage, ObjectTypeComposer } from 'graphql-compose';
 
 const customStorage = new TypeStorage();
 
-const TempType = TypeComposer.createTemp(`
+const TempType = ObjectTypeComposer.createTemp(`
   type TempType {
     field: String
   }
@@ -412,38 +412,6 @@ getOrSet(
   typeName: string,
   typeOrThunk: ComposeType | (() => ComposeType)
 ): V<TContext>
-```
-
-### getTC()
-
-```flow
-getTC(
-  typeName: string
-): TypeComposer<TContext>
-```
-
-### getITC()
-
-```flow
-getITC(
-  typeName: string
-): InputTypeComposer
-```
-
-### getSTC()
-
-```flow
-getSTC(
-  typeName: string
-): ScalarTypeComposer
-```
-
-### getETC()
-
-```flow
-getETC(
-  typeName: string
-): EnumTypeComposer
 ```
 
 ### clear()

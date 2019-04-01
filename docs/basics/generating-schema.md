@@ -106,7 +106,7 @@ app.listen(PORT, () => {
 In some complex scenarios you may need to have several GraphQL Schemas in one app. `Graphql-compose` by default exports following classes/instances for single schema mode:
 
 ```js
-import { schemaComposer, TypeComposer, Resolver, InputTypeComposer, EnumTypeComposer } from 'graphql-compose';
+import { schemaComposer } from 'graphql-compose';
 ```
 
 But for multi-schema mode you need to import class `SchemaComposer` (starts from upper-case letter `S`) and create instances from it:
@@ -115,16 +115,16 @@ But for multi-schema mode you need to import class `SchemaComposer` (starts from
 import { SchemaComposer } from 'graphql-compose';
 
 const schemaComposer1 = new SchemaComposer();
-const TypeComposer1 = schemaComposer1.TypeComposer;
-const Resolver1 = schemaComposer1.Resolver;
-const InputTypeComposer1 = schemaComposer1.InputTypeComposer;
-const EnumTypeComposer1 = schemaComposer1.EnumTypeComposer;
+const ObjectTypeComposer1 = schemaComposer1.createObjectTC(...);
 
 const schemaComposer2 = new SchemaComposer();
-const TypeComposer2 = schemaComposer2.TypeComposer;
-const Resolver2 = schemaComposer2.Resolver;
-const InputTypeComposer2 = schemaComposer2.InputTypeComposer;
-const EnumTypeComposer2 = schemaComposer2.EnumTypeComposer;
+const ObjectTypeComposer2 = schemaComposer2.createObjectTC(...);
+const InputTypeComposer2 = schemaComposer2.createInputTC(..);
+const EnumTypeComposer2 = schemaComposer2.createEnumTC(...);
+const UnionTypeComposer2 = schemaComposer2.createUnionTC(...);
+const InterfaceTypeComposer2 = schemaComposer2.createInterfaceTC(...);
+const ScalarTypeComposer2 = schemaComposer2.createScalarTC(...);
+const Resolver2 = schemaComposer2.createResolver(...);
 ```
 
-Types created via `TypeComposer1` and `TypeComposer2` will not be visible to each other. So may have different definitions for types with the same name.
+Types created via `ObjectTypeComposer1` and `ObjectTypeComposer2` will not be visible to each other. So may have different definitions for types with the same name.

@@ -49,7 +49,7 @@ app.use(
 You may add 3rd part GraphQL types to `graphql-compose`. And make it very easy:
 
 ```js
-import { TypeComposer, schemaComposer } from 'graphql-compose';
+import { ObjectTypeComposer, schemaComposer } from 'graphql-compose';
 import { GraphQLUpload } from 'apollo-upload-server';
 
 schemaComposer.set('Upload', GraphQLUpload);

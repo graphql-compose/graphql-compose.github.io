@@ -4,7 +4,7 @@ title: graphql-compose-pagination
 sidebar_label: Pagination plugin
 ---
 
-This is a plugin for [graphql-compose](https://github.com/graphql-compose/graphql-compose) family, which adds to the TypeComposer `pagination` resolver.
+This is a plugin for [graphql-compose](https://github.com/graphql-compose/graphql-compose) family, which adds to the ObjectTypeComposer `pagination` resolver.
 
 Live demo: [https://graphql-compose.herokuapp.com/](https://graphql-compose.herokuapp.com/)
 

@@ -7,46 +7,45 @@
 
 /* List of projects/orgs using your project for the users page */
 const users = [
-  // {
-  //   caption: 'User1',
-  //   image: '/test-site/img/docusaurus.svg',
-  //   infoLink: 'https://www.facebook.com',
-  //   pinned: true,
-  // },
+  {
+    caption: 'GatsbyJS',
+    image: '/img/logos/gatsby.svg',
+    infoLink: 'https://www.gatsbyjs.org/',
+    pinned: true,
+  },
 ];
 
 const siteConfig = {
-  title: "graphql-compose" /* title for your website */,
-  tagline: "Toolkit for generating complex GraphQL schemas in Node.js",
-  url: "https://graphql-compose.github.io" /* your website url */,
-  editUrl:
-    "https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/",
-  translationRecruitingLink: "https://crowdin.com/project/graphql-compose",
-  baseUrl: "/" /* base url for your project */,
-  organizationName: "graphql-compose",
-  projectName: "graphql-compose.github.io",
+  title: 'graphql-compose' /* title for your website */,
+  tagline: 'Toolkit for generating complex GraphQL schemas in Node.js',
+  url: 'https://graphql-compose.github.io' /* your website url */,
+  editUrl: 'https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/',
+  translationRecruitingLink: 'https://crowdin.com/project/graphql-compose',
+  baseUrl: '/' /* base url for your project */,
+  organizationName: 'graphql-compose',
+  projectName: 'graphql-compose.github.io',
   headerLinks: [
-    { doc: "intro/quick-start", label: "Docs" },
-    { doc: "api/TypeComposer", label: "API" },
-    { doc: "plugins/list-of-plugins", label: "Plugins" },
+    { doc: 'intro/quick-start', label: 'Docs' },
+    { doc: 'api/ObjectTypeComposer', label: 'API' },
+    { doc: 'plugins/list-of-plugins', label: 'Plugins' },
     { languages: true },
     { search: true },
     {
-      href: "https://github.com/graphql-compose/graphql-compose",
-      label: "GitHub"
-    }
+      href: 'https://github.com/graphql-compose/graphql-compose',
+      label: 'GitHub',
+    },
     // { page: 'help', label: 'Support' },
     // { blog: true, label: 'Blog' },
   ],
   users,
   /* path to images for header/footer */
-  headerIcon: "img/logo.png",
-  footerIcon: "img/logo.png",
-  favicon: "img/logo.png",
+  headerIcon: 'img/logo.png',
+  footerIcon: 'img/logo.png',
+  favicon: 'img/logo.png',
   /* colors for website */
   colors: {
-    primaryColor: "#400d7d",
-    secondaryColor: "#4f2284"
+    primaryColor: '#400d7d',
+    secondaryColor: '#4f2284',
   },
   /* custom fonts for website */
   /*fonts: {
@@ -60,26 +59,27 @@ const siteConfig = {
     ]
   },*/
   // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
-  copyright: "Copyright © " + new Date().getFullYear() + " graphql-compose",
+  copyright: 'Copyright © ' + new Date().getFullYear() + ' graphql-compose',
   // organizationName: 'deltice', // or set an env variable ORGANIZATION_NAME
   // projectName: 'test-site', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
-    theme: "default"
+    theme: 'atom-one-light',
   },
-  scripts: ["https://buttons.github.io/buttons.js"],
+  scripts: ['https://buttons.github.io/buttons.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
-  repoUrl: "https://github.com/graphql-compose/graphql-compose",
+  repoUrl: 'https://github.com/graphql-compose/graphql-compose',
   /* On page navigation for the current documentation page */
-  onPageNav: "separate",
-  gaTrackingId: "UA-83022112-3",
+  onPageNav: 'separate',
+  gaTrackingId: 'UA-83022112-3',
   algolia: {
-    apiKey: "34b5c77954100fe8e57575f8dfd60185",
-    indexName: "graphql-compose",
+    apiKey: '34b5c77954100fe8e57575f8dfd60185',
+    indexName: 'graphql-compose',
     algoliaOptions: {
-      hitsPerPage: 10
-    }
-  }
+      hitsPerPage: 10,
+      facetFilters: ['language:LANGUAGE', 'version:VERSION'],
+    },
+  },
 };
 
 module.exports = siteConfig;

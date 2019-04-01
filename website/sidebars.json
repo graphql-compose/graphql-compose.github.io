@@ -14,14 +14,14 @@
       "basics/generating-schema"
     ],
     "API Reference": [
-      "api/TypeComposer",
-      "api/Resolver",
+      "api/SchemaComposer",
+      "api/ObjectTypeComposer",
       "api/InputTypeComposer",
       "api/ScalarTypeComposer",
       "api/EnumTypeComposer",
       "api/InterfaceTypeComposer",
       "api/UnionTypeComposer",
-      "api/SchemaComposer",
+      "api/Resolver",
       "api/TypeMapper",
       "api/misc-api-methods"
     ],
@@ -33,15 +33,11 @@
       "plugins/plugin-relay",
       "plugins/plugin-connection",
       "plugins/plugin-pagination",
-      "plugins/plugin-aws",
-      "plugins/plugin-writing-custom-plugin"
+      "plugins/plugin-aws"
     ],
     "Guide": [
       "guide/wrapping-rest-api",
-      "guide/file-uploads",
-      "guide/mongoose",
-      "guide/elasticsearch-with-mongoose",
-      "guide/relay"
+      "guide/file-uploads"
     ]
   }
 }

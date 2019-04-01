@@ -37,7 +37,8 @@ class Users extends React.Component {
             <p>Are you using this project?</p>
             <a
               href="https://github.com/facebook/docusaurus/edit/master/website/siteConfig.js"
-              className="button">
+              className="button"
+            >
               Add your company
             </a>
           </div>

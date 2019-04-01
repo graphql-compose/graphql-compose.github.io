@@ -140,7 +140,7 @@ const elasticClient = new elasticsearch.Client({
 export default elasticClient;
 ```
 
-### 1.4 Generate TypeComposer from elastic mapping [ELASTICSEARCH GRAPHQL TYPES + RESOLVERS]
+### 1.4 Generate ObjectTypeComposer from elastic mapping [ELASTICSEARCH GRAPHQL TYPES + RESOLVERS]
 
 ```js
 import { composeWithElastic } from 'graphql-compose-elasticsearch';
@@ -160,9 +160,9 @@ export const JobEsTC = composeWithElastic({
 });
 ```
 
-See [https://github.com/nodkz/graphql-compose-elasticsearch#typecomposer-from-elastic-mapping](https://github.com/nodkz/graphql-compose-elasticsearch#typecomposer-from-elastic-mapping)
+See [https://github.com/nodkz/graphql-compose-elasticsearch#objecttypecomposer-from-elastic-mapping](https://github.com/nodkz/graphql-compose-elasticsearch#objecttypecomposer-from-elastic-mapping)
 
-### 1.5 Generate TypeComposer from mongoose model [MONGOOSE GRAPHQL TYPES + RESOLVERS]
+### 1.5 Generate ObjectTypeComposer from mongoose model [MONGOOSE GRAPHQL TYPES + RESOLVERS]
 
 ```js
 import composeWithMongoose from 'graphql-compose-mongoose';
