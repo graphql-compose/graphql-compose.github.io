@@ -20,7 +20,7 @@ static protected prot(
 
   // Some arg 
   // description
-  c: string,
+  c: string
 ): number
 \`\`\`
 "

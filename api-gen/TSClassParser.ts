@@ -1,8 +1,11 @@
 import ts from 'typescript';
+import prettier from 'prettier';
+import { trim, fixJSDocCode } from './utils';
 
 interface SymbolData {
   name: string;
   type: string;
+  typeChecker: string;
   documentation: string;
 }
 
@@ -13,16 +16,17 @@ interface CallData {
 }
 
 interface ModifierFlags {
-  protected: boolean;
-  private: boolean;
-  readonly: boolean;
-  static: boolean;
+  protected?: boolean;
+  private?: boolean;
+  readonly?: boolean;
+  static?: boolean;
 }
 
 interface ClassConstructorData extends CallData {}
 
 export interface ClassMethodData extends SymbolData, CallData {
   flags?: ModifierFlags;
+  generics?: string;
 }
 
 export interface ClassPropertyData extends SymbolData {
@@ -45,17 +49,19 @@ export interface ClassData extends SymbolData {
 export default class TSClassParser {
   program: ts.Program;
   checker: ts.TypeChecker;
+  printer: ts.Printer;
   rootNames: string[];
+  sourceFile: ts.SourceFile;
 
   static parseFile(
     filePath: string
   ): {
-    class: ClassData;
+    classData: ClassData;
     interfaces: InterfaceData[];
   } {
     const result = TSClassParser.createFromFiles(filePath).run();
     return {
-      class: result.classes[0],
+      classData: result.classes[0],
       interfaces: result.interfaces,
     };
   }
@@ -63,12 +69,12 @@ export default class TSClassParser {
   static parseSource(
     code: string
   ): {
-    class: ClassData;
+    classData: ClassData;
     interfaces: InterfaceData[];
   } {
     const result = TSClassParser.createFromSource(code).run();
     return {
-      class: result.classes[0],
+      classData: result.classes[0],
       interfaces: result.interfaces,
     };
   }
@@ -119,6 +125,10 @@ export default class TSClassParser {
     this.program = program;
     this.rootNames = rootNames;
     this.checker = program.getTypeChecker();
+    this.printer = ts.createPrinter({
+      removeComments: true,
+      newLine: ts.NewLineKind.LineFeed,
+    });
   }
 
   run(): { classes: ClassData[]; interfaces: InterfaceData[] } {
@@ -142,6 +152,7 @@ export default class TSClassParser {
 
     for (const sourceFile of this.program.getSourceFiles()) {
       if (this.rootNames.includes(sourceFile.fileName)) {
+        this.sourceFile = sourceFile;
         // Walk the tree to search for classes
         ts.forEachChild(sourceFile, visit);
       }
@@ -151,28 +162,95 @@ export default class TSClassParser {
   }
 
   /** Serialize a symbol into a json object */
-  serializeSymbol(symbolOrNode: ts.Symbol | ts.Node): SymbolData {
-    let symbol;
-    if (symbolOrNode.hasOwnProperty('kind')) {
-      if (symbolOrNode.hasOwnProperty('symbol')) {
-        symbol = (symbolOrNode as any).symbol;
-      } else {
-        symbol = this.nodeToSymbol(symbolOrNode as ts.Node);
-      }
-    } else {
-      symbol = symbolOrNode as ts.Symbol;
+  serializeSymbol(symbol: ts.Symbol): SymbolData {
+    if (!symbol || !symbol.getName) {
+      return { name: '', documentation: '', type: '', typeChecker: '' };
     }
 
-    if (!symbol || !symbol.getName) {
-      return { name: '', documentation: '', type: '' };
-    }
+    const type =
+      symbol.valueDeclaration && (symbol.valueDeclaration as any).type
+        ? this.printer.printNode(
+            ts.EmitHint.Unspecified,
+            (symbol.valueDeclaration as any).type,
+            this.sourceFile
+          )
+        : '';
+
+    const typeChecker = this.checker.typeToString(
+      this.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration),
+      undefined,
+      ts.TypeFormatFlags.NoTruncation
+    );
 
     return {
       name: symbol.getName(),
       documentation: ts.displayPartsToString(symbol.getDocumentationComment(this.checker)),
-      type: this.checker.typeToString(
-        this.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration)
-      ),
+      type,
+      typeChecker,
+    };
+  }
+
+  /** Serialize a Node into a json object */
+  serializeNode(node: ts.MethodDeclaration | ts.PropertyDeclaration): SymbolData {
+    let symbol: ts.Symbol = ts.isPropertyDeclaration(node)
+      ? (node as any).symbol
+      : this.nodeToSymbol(node);
+
+    const type = (node.type && node.type.getText()) || '';
+    const typeChecker = !symbol
+      ? type
+      : this.checker.typeToString(
+          this.checker.getTypeOfSymbolAtLocation(symbol, node),
+          undefined,
+          ts.TypeFormatFlags.NoTruncation
+        );
+
+    const name = node.name.getText();
+
+    // if (name === 'prot123') {
+    //   console.log(node);
+    // }
+
+    let documentation = '';
+    if (symbol) {
+      documentation = ts.displayPartsToString(symbol.getDocumentationComment(this.checker));
+      symbol.getJsDocTags().forEach((docTag) => {
+        if (docTag.name === 'example' && docTag.text) {
+          if (documentation) documentation += `\n\n`;
+          documentation += '```js\n';
+          try {
+            documentation +=
+              trim(
+                prettier.format(fixJSDocCode(docTag.text), {
+                  parser: 'typescript',
+                  semi: true,
+                  singleQuote: true,
+                  arrowParens: 'always',
+                })
+              ) + '\n';
+          } catch (e) {
+            console.log(
+              `\n-----------------------------------------\n\nExample parse error in '${name}':\n`,
+              e.message,
+              '\n\n',
+              docTag.text,
+              '\n'
+            );
+            documentation += trim(docTag.text) + '\n';
+          }
+          documentation += '```\n';
+        } else if (docTag.name === 'description' && docTag.text) {
+          if (documentation) documentation += `\n`;
+          documentation += docTag.text + '\n';
+        }
+      });
+    }
+
+    return {
+      name,
+      documentation,
+      type: type || typeChecker,
+      typeChecker,
     };
   }
 
@@ -192,12 +270,14 @@ export default class TSClassParser {
 
   parseModifierFlags(node: ts.Declaration): ModifierFlags {
     const flags = ts.getCombinedModifierFlags(node);
-    return {
-      protected: !!(flags & ts.ModifierFlags.Protected),
-      private: !!(flags & ts.ModifierFlags.Private),
-      readonly: !!(flags & ts.ModifierFlags.Readonly),
-      static: !!(flags & ts.ModifierFlags.Static),
-    };
+    const res: ModifierFlags = {};
+
+    if (flags & ts.ModifierFlags.Protected) res.protected = true;
+    if (flags & ts.ModifierFlags.Private) res.private = true;
+    if (flags & ts.ModifierFlags.Readonly) res.readonly = true;
+    if (flags & ts.ModifierFlags.Static) res.static = true;
+
+    return res;
   }
 
   parseClassDeclaration(node: ts.ClassDeclaration): ClassData | void {
@@ -252,18 +332,28 @@ export default class TSClassParser {
   }
 
   parseMethodDeclaration(node: ts.MethodDeclaration): ClassMethodData {
-    const data: ClassMethodData = this.serializeSymbol(node);
+    const data: ClassMethodData = this.serializeNode(node);
+
+    const genericMatch = data.typeChecker.match(/^(<.*>)\(/i);
+    if (genericMatch) {
+      data.generics = genericMatch[1];
+    }
+
     const signature = this.checker.getSignatureFromDeclaration(node);
     if (signature) {
       data.parameters = signature.parameters.map((s) => this.serializeSymbol(s));
-      data.type = this.checker.typeToString(signature.getReturnType());
+      // data.type = this.checker.typeToString(
+      //   signature.getReturnType(),
+      //   undefined,
+      //   ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.MultilineObjectLiterals
+      // );
     }
     data.flags = this.parseModifierFlags(node);
     return data;
   }
 
   parsePropertyDeclaration(node: ts.PropertyDeclaration): ClassPropertyData {
-    const data: ClassPropertyData = this.serializeSymbol(node);
+    const data: ClassPropertyData = this.serializeNode(node);
     data.flags = this.parseModifierFlags(node);
     return data;
   }
