@@ -15,6 +15,11 @@ jobs:
         command: |
           cd website
           yarn --no-progress
+    - run:
+        name: Fetch tmp/graphql-compose
+        command: |
+          cd website
+          yarn fetch-graphql-compose
     # - run:
     #     name: Install crowdin
     #     command: |
@@ -26,10 +31,16 @@ jobs:
         name: Install apt packages
         command: |
           sudo apt install rsync
+    - run:
+        name: Generate docs/api pages
+        command: |
+          cd website
+          yarn gen-api
     - save_cache:
         key: website-node-modules-{{ checksum "website/yarn.lock" }}
         paths:
         - website/node_modules
+        - website/tmp
     - deploy:
         name: Publish gh-pages
         command: |

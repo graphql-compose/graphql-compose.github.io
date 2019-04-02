@@ -12,7 +12,8 @@
     "start": "yarn gen-api && cd website && yarn start",
     "build": "cd website && yarn build",
     "version": "cd website && yarn docusaurus-version",
-    "gen-api": "ts-node ./gen-api/index.ts && ts-node ./gen-api/update-version-files.ts"
+    "fetch-graphql-compose": "git clone https://github.com/graphql-compose/graphql-compose.git ./tmp/graphql-compose || (cd ./tmp/graphql-compose && git reset --hard origin/master && cd ../../)",
+    "gen-api": "yarn fetch-graphql-compose && ts-node ./gen-api/write-docs-api-files.ts && ts-node ./gen-api/update-version-files.ts"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.5.0",
     "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.3",
     "typescript": "^3.3.4000"

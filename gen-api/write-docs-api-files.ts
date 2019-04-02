@@ -15,7 +15,7 @@ const classes: string[] = [
   'UnionTypeComposer',
 ];
 
-const srcPath = '../graphql-compose/src/';
+const srcPath = './tmp/graphql-compose/src/';
 const outDir = './docs/api/';
 
 classes.forEach((name) => {
