@@ -16,10 +16,6 @@ jobs:
           yarn --no-progress
           cd website
           yarn --no-progress
-    - run:
-        name: Fetch tmp/graphql-compose
-        command: |
-          yarn fetch-graphql-compose
     # - run:
     #     name: Install crowdin
     #     command: |
@@ -27,30 +23,25 @@ jobs:
     #       sudo apt-get install default-jre
     #       wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
     #       sudo dpkg -i crowdin.deb
-    - run:
-        name: Install apt packages
-        command: |
-          sudo apt install rsync
-    - run:
-        name: Generate docs/api pages
-        command: |
-          yarn gen-api
-    - save_cache:
-        key: website-node-modules-{{ checksum "website/yarn.lock" }}-{{ checksum "yarn.lock" }}
-        paths:
-        - node_modules
-        - website/node_modules
-        - tmp
+    # - run:
+    #     name: Install apt packages
+    #     command: |
+    #       sudo apt install rsync
     - deploy:
         name: Publish gh-pages
         command: |
           git config --global user.email "nodkz@users.noreply.github.com"
           git config --global user.name "Pavel Chertorogov"
           echo "machine github.com login nodkz password $GITHUB_TOKEN" > ~/.netrc
-          cd website
-          yarn install
+          yarn docusaurus-publish
           # yarn write-translations && yarn crowdin-upload && yarn crowdin-download
           GIT_USER=nodkz yarn publish-gh-pages
+    - save_cache:
+        key: website-node-modules-{{ checksum "website/yarn.lock" }}-{{ checksum "yarn.lock" }}
+        paths:
+        - node_modules
+        - website/node_modules
+        - tmp
 workflows:
   version: 2
   build_and_deploy:

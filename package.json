@@ -1,19 +1,19 @@
 {
   "name": "graphql-compose.github.io",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
     "test": "jest",
     "ts-node": "ts-node",
-    "start": "yarn gen-api && cd website && yarn start",
-    "build": "cd website && yarn build",
+    "start": "yarn fetch-docs && cd website && yarn fetch-contributors && yarn start",
+    "build": "yarn fetch-docs && cd website && yarn fetch-contributors && yarn build",
     "version": "cd website && yarn docusaurus-version",
-    "fetch-graphql-compose": "git clone https://github.com/graphql-compose/graphql-compose.git ./tmp/graphql-compose || (cd ./tmp/graphql-compose && git reset --hard origin/master && cd ../../)",
-    "gen-api": "yarn fetch-graphql-compose && ts-node ./gen-api/write-docs-api-files.ts && ts-node ./gen-api/update-version-files.ts"
+    "docusaurus-publish": "yarn fetch-docs && cd website && yarn fetch-contributors && yarn docusaurus-publish",
+    "fetch-docs": "yarn fetch-graphql-compose && mkdirp ./docs && cp -R ./tmp/graphql-compose/docs/ ./docs/ && yarn gen-api",
+    "fetch-graphql-compose": "(git clone https://github.com/graphql-compose/graphql-compose.git ./tmp/graphql-compose) || (cd ./tmp/graphql-compose && git reset --hard origin/master && cd ../../)",
+    "gen-api": "ts-node ./gen-api/write-docs-api-files.ts && ts-node ./gen-api/update-version-files.ts"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@types/graphql": "^14.0.7",
     "@types/jest": "^24.0.11",
+    "@types/mkdirp": "^0.5.2",
     "@types/node": "^11.12.0",
     "@types/prettier": "^1.16.1",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
@@ -35,6 +36,7 @@
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.5.0",
+    "mkdirp": "^0.5.1",
     "prettier": "^1.16.4",
     "rimraf": "^2.6.3",
     "ts-jest": "^24.0.0",

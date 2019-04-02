@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import mkdirp from 'mkdirp';
 import TSClassParser from './TSClassParser';
 import MarkdownGenerator from './MarkdownGenerator';
 
@@ -33,5 +34,6 @@ classes.forEach((name) => {
   const md = MarkdownGenerator.generate(classData, interfaces);
 
   console.log(`  Write to ${outputFile}`);
+  mkdirp.sync(path.resolve(process.cwd(), outDir));
   fs.writeFileSync(outputFile, md);
 });
