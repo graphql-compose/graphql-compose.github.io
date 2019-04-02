@@ -239,6 +239,8 @@ createTempTC(
   | ScalarTypeComposer<TContext>
 ```
 
+Creates TypeComposer from SDL without adding it to the type storage.
+
 ### getOrCreateOTC()
 
 ```js

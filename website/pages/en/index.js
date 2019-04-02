@@ -95,6 +95,10 @@ class HomeSplash extends React.Component {
             {/* <Button href="#try">Try It Out</Button> */}
             {/* <Button href={docUrl('requirements.html', language)}>Example Link</Button> */}
           </PromoSection>
+          <a href="https://www.npmjs.com/package/graphql-compose" target="_blank">
+            <img src="https://img.shields.io/npm/dw/graphql-compose.svg?style=social" />
+          </a>
+          &nbsp;&nbsp;&nbsp;
           <a
             className="github-button"
             href={siteConfig.repoUrl}
