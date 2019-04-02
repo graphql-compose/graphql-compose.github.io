@@ -8,6 +8,7 @@
 const React = require('react');
 
 const backers = require(process.cwd() + '/backers.json');
+const contributors = require(process.cwd() + '/contributors.json');
 const CompLibrary = require('../../core/CompLibrary.js');
 const MarkdownBlock = CompLibrary.MarkdownBlock;
 const Container = CompLibrary.Container;
@@ -378,7 +379,6 @@ const Showcase = (props) => {
 const OpenCollectiveBacker = (b) => {
   return (
     <a
-      key={b.id}
       className={`${b.classPrefix}-item`}
       title={`$${b.totalDonations / 100} by ${b.name || b.slug}`}
       target="_blank"
@@ -398,7 +398,7 @@ const OpenCollectiveBacker = (b) => {
 };
 
 const OpenCollective = (props) => {
-  const sortedBackers = backers.sort((a, b) => a.totalDonations < b.totalDonations);
+  const sortedBackers = backers.sort((a, b) => (a.totalDonations > b.totalDonations ? -1 : 1));
   const filteredBackers = sortedBackers.filter(
     (b) => b.tier === 'backer' && !b.slug.includes('adult')
   );
@@ -446,6 +446,48 @@ const OpenCollective = (props) => {
   );
 };
 
+const ContributorAvatar = ({ author = {}, lastContribution, total }) => {
+  return (
+    <a
+      className={`contributor-item`}
+      title={`${author.login} made ${total} commit${
+        total > 1 ? 's' : ''
+      }. Last commit was ${new Date(lastContribution * 1000).toDateString()}`}
+      target="_blank"
+      href={`https://github.com/${author.login}`}
+    >
+      <img className="contributor-avatar" src={author.avatar_url} alt={author.login} />
+    </a>
+  );
+};
+
+const Contributors = (props) => {
+  const sortedContributors = contributors
+    .map((o) => {
+      // add one day per commit
+      o.score = o.lastContribution + o.total * 86400;
+      return o;
+    })
+    .sort((a, b) => (a.score > b.score ? -1 : 1));
+
+  return (
+    <div className="contributors">
+      <div className="pluginsHeader">Contributors</div>
+      <div>
+        {sortedContributors.length > 0 && (
+          <React.Fragment>
+            <div>
+              {sortedContributors.map((data, i) => (
+                <ContributorAvatar key={i} {...data} />
+              ))}
+            </div>
+          </React.Fragment>
+        )}
+      </div>
+    </div>
+  );
+};
+
 class Index extends React.Component {
   render() {
     let language = this.props.language || '';
@@ -461,6 +503,7 @@ class Index extends React.Component {
           {/* <Description /> */}
           <Showcase language={language} />
           <OpenCollective />
+          <Contributors />
         </div>
       </div>
     );
