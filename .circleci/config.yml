@@ -8,7 +8,7 @@ jobs:
     - checkout
     - restore_cache:
         keys:
-        - website-node-modules-{{ checksum "website/yarn.lock" }}
+        - website-node-modules-{{ checksum "website/yarn.lock" }}-{{ checksum "yarn.lock" }}
         - website-node-modules-
     - run:
         name: Install node_modules
@@ -36,7 +36,7 @@ jobs:
         command: |
           yarn gen-api
     - save_cache:
-        key: website-node-modules-{{ checksum "website/yarn.lock" }}
+        key: website-node-modules-{{ checksum "website/yarn.lock" }}-{{ checksum "yarn.lock" }}
         paths:
         - node_modules
         - website/node_modules
