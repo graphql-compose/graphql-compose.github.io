@@ -419,7 +419,7 @@ const OpenCollective = (props) => {
               <span>Sponsors are those who contribute $100 or more per month</span>
             </p>
             <div>
-              {filteredSponsors.map((b) => (
+              {filteredSponsors.map((b, i) => (
                 <OpenCollectiveBacker key={i} {...b} classPrefix="sponsor" />
               ))}
             </div>
