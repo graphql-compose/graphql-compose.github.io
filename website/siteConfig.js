@@ -71,7 +71,7 @@ const siteConfig = {
     indexName: 'graphql-compose',
     algoliaOptions: {
       hitsPerPage: 10,
-      facetFilters: [/*'language:LANGUAGE',*/ 'version:VERSION'],
+      // facetFilters: ['language:LANGUAGE', 'version:VERSION'],
     },
   },
 };
