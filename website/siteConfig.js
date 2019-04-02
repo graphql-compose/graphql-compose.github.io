@@ -53,7 +53,7 @@ const siteConfig = {
     ]
   },*/
   // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
-  copyright: 'Copyright © ' + new Date().getFullYear() + ' graphql-compose',
+  // copyright: 'Copyright © ' + new Date().getFullYear() + ' Pavel Chertorogov @nodkz',
   // organizationName: 'deltice', // or set an env variable ORGANIZATION_NAME
   // projectName: 'test-site', // or set an env variable PROJECT_NAME
   highlight: {
