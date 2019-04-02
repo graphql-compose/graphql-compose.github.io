@@ -10,7 +10,9 @@ build
 translated_docs
 tmp
 
-docs # should be ignored! can be fetched by `yarn fetch-docs` command
+# DOCS should be ignored! 
+# They can be fetched by `yarn fetch-docs` command
+docs
 
 website/i18n/*
 !website/i18n/en.json
