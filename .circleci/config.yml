@@ -13,12 +13,12 @@ jobs:
     - run:
         name: Install node_modules
         command: |
+          yarn --no-progress
           cd website
           yarn --no-progress
     - run:
         name: Fetch tmp/graphql-compose
         command: |
-          cd website
           yarn fetch-graphql-compose
     # - run:
     #     name: Install crowdin
@@ -34,13 +34,13 @@ jobs:
     - run:
         name: Generate docs/api pages
         command: |
-          cd website
           yarn gen-api
     - save_cache:
         key: website-node-modules-{{ checksum "website/yarn.lock" }}
         paths:
+        - node_modules
         - website/node_modules
-        - website/tmp
+        - tmp
     - deploy:
         name: Publish gh-pages
         command: |
