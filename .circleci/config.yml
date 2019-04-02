@@ -3,34 +3,34 @@ jobs:
   deploy-website:
     working_directory: ~/graphql-compose
     docker:
-    - image: circleci/node:8
+      - image: circleci/node:8
     steps:
-    - checkout
-    - restore_cache:
+      - checkout
+      - restore_cache:
         keys:
         - website-node-modules-{{ checksum "website/yarn.lock" }}
         - website-node-modules-
-    - run:
+      - run:
         name: Install node_modules
         command: |
           cd website
           yarn --no-progress
-    # - run:
-    #     name: Install crowdin
-    #     command: |
-    #       sudo apt-get update
-    #       sudo apt-get install default-jre
-    #       wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
-    #       sudo dpkg -i crowdin.deb
-    - run:
+      # - run:
+      #     name: Install crowdin
+      #     command: |
+      #       sudo apt-get update
+      #       sudo apt-get install default-jre
+      #       wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
+      #       sudo dpkg -i crowdin.deb
+      - run:
         name: Install apt packages
         command: |
           sudo apt install rsync
-    - save_cache:
+      - save_cache:
         key: website-node-modules-{{ checksum "website/yarn.lock" }}
         paths:
         - website/node_modules
-    - deploy:
+      - deploy:
         name: Publish gh-pages
         command: |
           git config --global user.email "nodkz@users.noreply.github.com"
@@ -44,7 +44,11 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-    - deploy-website:
+      - build
+        filters:
+          branches:
+            only: source    
+      - deploy-website:
         filters:
           branches:
             only: source
