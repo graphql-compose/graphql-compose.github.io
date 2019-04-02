@@ -454,7 +454,7 @@ const ContributorAvatar = ({ author = {}, lastContribution, total }) => {
         total > 1 ? 's' : ''
       }. Last commit was ${new Date(lastContribution * 1000).toDateString()}`}
       target="_blank"
-      href={`https://github.com/${author.login}`}
+      href={`https://github.com/graphql-compose/graphql-compose/commits?author=${author.login}`}
     >
       <img className="contributor-avatar" src={author.avatar_url} alt={author.login} />
     </a>
