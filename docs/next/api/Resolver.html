@@ -375,7 +375,7 @@ expect(log).toEqual([
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ResolverFilterArgFn&lt;TSource, TContext, TArgs = ArgsMap&gt; = (
   query: any,
   <span class="hljs-attr">value</span>: any,
-  <span class="hljs-attr">resolveParams</span>: ResolveParams&lt;TSource, TContext, TArgs&gt;,
+  <span class="hljs-attr">resolveParams</span>: ResolveParams&lt;TSource, TContext, TArgs&gt;
 ) =&gt; any;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolverfilterargconfig"></a><a href="#resolverfilterargconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverFilterArgConfig</h3>
@@ -390,7 +390,7 @@ expect(log).toEqual([
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolversortargfn"></a><a href="#resolversortargfn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverSortArgFn</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ResolverSortArgFn&lt;TSource, TContext, TArgs = ArgsMap&gt; = (
-  resolveParams: ResolveParams&lt;TSource, TContext, TArgs&gt;,
+  resolveParams: ResolveParams&lt;TSource, TContext, TArgs&gt;
 ) =&gt; any;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolversortargconfig"></a><a href="#resolversortargconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverSortArgConfig</h3>
@@ -429,27 +429,27 @@ expect(log).toEqual([
   TPrevArgs = ArgsMap
 &gt; = (
   newResolver: Resolver&lt;TNewSource, TContext, TNewArgs&gt;,
-  <span class="hljs-attr">prevResolver</span>: Resolver&lt;TPrevSource, TContext, TPrevArgs&gt;,
+  <span class="hljs-attr">prevResolver</span>: Resolver&lt;TPrevSource, TContext, TPrevArgs&gt;
 ) =&gt; Resolver&lt;TNewSource, TContext, TNewArgs&gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolverrpcb"></a><a href="#resolverrpcb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverRpCb</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ResolverRpCb&lt;TSource, TContext, TArgs = ArgsMap&gt; = (
-  resolveParams: ResolveParams&lt;TSource, TContext, TArgs&gt;,
+  resolveParams: ResolveParams&lt;TSource, TContext, TArgs&gt;
 ) =&gt; <span class="hljs-built_in">Promise</span>&lt;any&gt; | any;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolvernextrpcb"></a><a href="#resolvernextrpcb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverNextRpCb</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ResolverNextRpCb&lt;TSource, TContext, TArgs = ArgsMap&gt; = (
-  next: ResolverRpCb&lt;TSource, TContext, TArgs&gt;,
+  next: ResolverRpCb&lt;TSource, TContext, TArgs&gt;
 ) =&gt; ResolverRpCb&lt;TSource, TContext, TArgs&gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolverwrapargscb"></a><a href="#resolverwrapargscb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverWrapArgsCb</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ResolverWrapArgsCb&lt;TArgs = ArgsMap&gt; = (
-  prevArgs: GraphQLFieldConfigArgumentMap,
+  prevArgs: GraphQLFieldConfigArgumentMap
 ) =&gt; ComposeFieldConfigArgumentMap&lt;TArgs&gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolverwraptypecb"></a><a href="#resolverwraptypecb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverWrapTypeCb</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ResolverWrapTypeCb&lt;TContext, TReturn = any&gt; = (
-  prevType: GraphQLOutputType,
+  prevType: GraphQLOutputType
 ) =&gt; ComposeOutputType&lt;TReturn, TContext&gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolvedebugopts"></a><a href="#resolvedebugopts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolveDebugOpts</h3>
@@ -461,16 +461,11 @@ expect(log).toEqual([
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="resolvermiddleware"></a><a href="#resolvermiddleware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ResolverMiddleware</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ResolverMiddleware&lt;TSource, TContext, TArgs = ArgsMap&gt; = (
-  resolve: (
-    source: TSource,
-    <span class="hljs-attr">args</span>: TArgs,
-    <span class="hljs-attr">context</span>: TContext,
-    <span class="hljs-attr">info</span>: GraphQLResolveInfo,
-  ) =&gt; any,
+  resolve: <span class="hljs-function">(<span class="hljs-params">source: TSource, args: TArgs, context: TContext, info: GraphQLResolveInfo</span>) =&gt;</span> any,
   <span class="hljs-attr">source</span>: TSource,
   <span class="hljs-attr">args</span>: TArgs,
   <span class="hljs-attr">context</span>: TContext,
-  <span class="hljs-attr">info</span>: GraphQLResolveInfo,
+  <span class="hljs-attr">info</span>: GraphQLResolveInfo
 ) =&gt; any;
 </code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/api/UnionTypeComposer.html"><span class="arrow-prev">← </span><span class="function-name-prevnext">UnionTypeComposer</span></a><a class="docs-next button" href="/docs/next/api/TypeMapper.html"><span class="function-name-prevnext">TypeMapper</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li><li><a href="#type">type</a></li><li><a href="#args">args</a></li><li><a href="#resolve">resolve</a></li><li><a href="#name">name</a></li><li><a href="#displayname">displayName</a></li><li><a href="#kind">kind</a></li><li><a href="#description">description</a></li><li><a href="#parent">parent</a></li></ul></li><li><a href="#output-type-methods">Output type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypecomposer">getTypeComposer()</a></li><li><a href="#settype">setType()</a></li></ul></li><li><a href="#args-methods">Args methods</a><ul class="toc-headings"><li><a href="#hasarg">hasArg()</a></li><li><a href="#getarg">getArg()</a></li><li><a href="#getargconfig">getArgConfig()</a></li><li><a href="#getargtype">getArgType()</a></li><li><a href="#getargtc">getArgTC()</a></li><li><a href="#getargs">getArgs()</a></li><li><a href="#getargnames">getArgNames()</a></li><li><a href="#setargs">setArgs()</a></li><li><a href="#setarg">setArg()</a></li><li><a href="#extendarg">extendArg()</a></li><li><a href="#addargs">addArgs()</a></li><li><a href="#removearg">removeArg()</a></li><li><a href="#removeotherargs">removeOtherArgs()</a></li><li><a href="#reorderargs">reorderArgs()</a></li><li><a href="#clonearg">cloneArg()</a></li><li><a href="#isrequired">isRequired()</a></li><li><a href="#makerequired">makeRequired()</a></li><li><a href="#makeoptional">makeOptional()</a></li><li><a href="#addfilterarg">addFilterArg()</a></li><li><a href="#addsortarg">addSortArg()</a></li></ul></li><li><a href="#resolve-methods">Resolve methods</a><ul class="toc-headings"><li><a href="#getresolve">getResolve()</a></li><li><a href="#setresolve">setResolve()</a></li></ul></li><li><a href="#wrap-methods">Wrap methods</a><ul class="toc-headings"><li><a href="#withmiddlewares">withMiddlewares()</a></li><li><a href="#wrap">wrap()</a></li><li><a href="#wrapresolve">wrapResolve()</a></li><li><a href="#wrapargs">wrapArgs()</a></li><li><a href="#wrapclonearg">wrapCloneArg()</a></li><li><a href="#wraptype">wrapType()</a></li></ul></li><li><a href="#misc-methods">Misc methods</a><ul class="toc-headings"><li><a href="#getfieldconfig">getFieldConfig()</a></li><li><a href="#getkind">getKind()</a></li><li><a href="#setkind">setKind()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#get">get()</a></li><li><a href="#clone">clone()</a></li></ul></li><li><a href="#debug-methods">Debug methods</a><ul class="toc-headings"><li><a href="#getnestedname">getNestedName()</a></li><li><a href="#tostring">toString()</a></li><li><a href="#setdisplayname">setDisplayName()</a></li><li><a href="#todebugstructure">toDebugStructure()</a></li><li><a href="#debugexectime">debugExecTime()</a></li><li><a href="#debugparams">debugParams()</a></li><li><a href="#debugpayload">debugPayload()</a></li><li><a href="#debug">debug()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#resolveparams">ResolveParams</a></li><li><a href="#resolverkinds">ResolverKinds</a></li><li><a href="#resolverfilterargfn">ResolverFilterArgFn</a></li><li><a href="#resolverfilterargconfig">ResolverFilterArgConfig</a></li><li><a href="#resolversortargfn">ResolverSortArgFn</a></li><li><a href="#resolversortargconfig">ResolverSortArgConfig</a></li><li><a href="#resolveropts">ResolverOpts</a></li><li><a href="#resolverwrapcb">ResolverWrapCb</a></li><li><a href="#resolverrpcb">ResolverRpCb</a></li><li><a href="#resolvernextrpcb">ResolverNextRpCb</a></li><li><a href="#resolverwrapargscb">ResolverWrapArgsCb</a></li><li><a href="#resolverwraptypecb">ResolverWrapTypeCb</a></li><li><a href="#resolvedebugopts">ResolveDebugOpts</a></li><li><a href="#resolvermiddleware">ResolverMiddleware</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><span><script src="/js/pjax-api.js"></script><script>
