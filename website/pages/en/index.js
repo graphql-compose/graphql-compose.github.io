@@ -139,7 +139,7 @@ const Features = (props) => (
           imageAlign: 'top',
         },
         {
-          title: 'Type Storage',
+          title: 'Type Registry',
           content: 'All created types avaliable in SchemaComposer storage',
           image: svgUrl('type-storage.svg'),
           imageAlign: 'top',
