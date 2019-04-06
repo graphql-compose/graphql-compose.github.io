@@ -137,6 +137,9 @@ add(
 
 ## Custom methods
 
+You may use custom methods
+or write your own
+
 ### hasInstance()
 
 \`\`\`js
@@ -319,6 +322,9 @@ Helps to create any type
       Object {
         "documentation": "-----------------------------------------------
 Custom methods
+
+You may use custom methods
+or write your own
 -----------------------------------------------
 Ok",
         "flags": Object {},

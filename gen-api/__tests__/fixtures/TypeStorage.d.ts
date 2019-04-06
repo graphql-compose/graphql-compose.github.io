@@ -40,6 +40,9 @@ export class TypeStorage<K, V> {
   /**
    * -----------------------------------------------
    * Custom methods
+   *
+   * You may use custom methods
+   * or write your own
    * -----------------------------------------------
    **/
 

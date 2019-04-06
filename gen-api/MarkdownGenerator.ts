@@ -109,7 +109,7 @@ https://github.com/graphql-compose/graphql-compose/blob/master/src/${data.name}.
     let prevSection = '';
 
     methods.forEach((method) => {
-      const { documentation, section } = MarkdownGenerator.parseSectionAndDocs(
+      const { documentation, section, sectionDoc } = MarkdownGenerator.parseSectionAndDocs(
         method.documentation,
         prevSection || 'Methods'
       );
@@ -117,6 +117,10 @@ https://github.com/graphql-compose/graphql-compose/blob/master/src/${data.name}.
       if (prevSection !== section) {
         prevSection = section;
         m += `## ${section}\n\n`;
+
+        if (sectionDoc) {
+          m += sectionDoc + '\n\n';
+        }
       }
 
       if (!MarkdownGenerator.isPublic(method)) return;
@@ -208,18 +212,21 @@ https://github.com/graphql-compose/graphql-compose/blob/master/src/${data.name}.
 
   static parseSectionAndDocs(str: string = '', defaultSection: string = 'Methods') {
     let section = '';
+    let sectionDoc = '';
 
     if (str) {
-      const re = /(-----[-]+\n([^\n]+)\n-----[-]+)((.|[\r\n])*)$/im;
+      const re = /(-----[-]+\n([^\n]+)([\s\S]*)\n-----[-]+)((.|[\r\n])*)$/im;
       const found = str.match(re);
       if (found) {
         section = found![2] || '';
-        str = found![3] || '';
+        sectionDoc = found![3] || '';
+        str = found![4] || '';
       }
     }
 
     return {
       section: trim(section) || defaultSection,
+      sectionDoc: trim(sectionDoc),
       documentation: trim(str),
     };
   }

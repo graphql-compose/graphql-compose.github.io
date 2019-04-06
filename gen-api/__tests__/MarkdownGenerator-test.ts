@@ -7,10 +7,16 @@ describe('MarkdownGenerator', () => {
       flags: { private: false, protected: true, readonly: false, static: true },
       name: 'prot',
       parameters: [
-        { documentation: '', name: 'b', type: 'string' },
-        { documentation: 'Some arg \ndescription', name: 'c', type: 'string' },
+        { documentation: '', name: 'b', type: 'string', typeChecker: 'string' },
+        {
+          documentation: 'Some arg \ndescription',
+          name: 'c',
+          type: 'string',
+          typeChecker: 'string',
+        },
       ],
       type: 'number',
+      typeChecker: 'number',
     };
 
     expect(MarkdownGenerator.createMethodCodeSnippet(method)).toMatchInlineSnapshot(`
@@ -33,6 +39,7 @@ static protected prot(
       flags: { private: false, protected: true, readonly: false, static: true },
       name: 'prot',
       type: 'Me',
+      typeChecker: 'Me',
     };
 
     expect(MarkdownGenerator.createPropertyCodeSnippet(property)).toMatchInlineSnapshot(`
@@ -47,6 +54,9 @@ static protected prot: Me;
     const data = MarkdownGenerator.parseSectionAndDocs(
       `-----------------------------------------------
     Custom methods   
+
+You may use custom methods
+or write your own.
 -----------------------------------------------
 
 Ok
@@ -58,6 +68,7 @@ Second line!!!
 
     expect(data.documentation).toEqual('Ok\nSecond line!!!');
     expect(data.section).toEqual('Custom methods');
+    expect(data.sectionDoc).toEqual('You may use custom methods\nor write your own.');
 
     const data2 = MarkdownGenerator.parseSectionAndDocs('  Some docs  ', 'My methods');
     expect(data2.documentation).toEqual('Some docs');

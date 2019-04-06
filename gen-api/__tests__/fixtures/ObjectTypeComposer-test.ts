@@ -435,7 +435,9 @@ wrapResolverResolve<TResolverSource = any, TArgs = ArgsMap>(
 ### getInterfaces()
 
 \`\`\`js
-getInterfaces(): Array<InterfaceTypeComposer<any, TContext> | GraphQLInterfaceType>
+getInterfaces(): Array<
+  InterfaceTypeComposer<any, TContext> | GraphQLInterfaceType
+>
 \`\`\`
 
 ### setInterfaces()
