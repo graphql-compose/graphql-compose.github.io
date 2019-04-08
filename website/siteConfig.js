@@ -12,7 +12,7 @@ const siteConfig = {
   title: 'graphql-compose' /* title for your website */,
   tagline: 'Toolkit for generating complex GraphQL schemas in Node.js',
   url: 'https://graphql-compose.github.io' /* your website url */,
-  editUrl: 'https://github.com/graphql-compose/graphql-compose.github.io/tree/source/docs/',
+  editUrl: 'https://github.com/graphql-compose/graphql-compose/edit/master/docs/',
   // translationRecruitingLink: 'https://crowdin.com/project/graphql-compose',
   baseUrl: '/' /* base url for your project */,
   organizationName: 'graphql-compose',
