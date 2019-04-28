@@ -14,6 +14,9 @@ const classes: string[] = [
   'SchemaComposer',
   'TypeMapper',
   'UnionTypeComposer',
+  'ListComposer',
+  'NonNullComposer',
+  'ThunkComposer',
 ];
 
 const srcPath = './tmp/graphql-compose/src/';
