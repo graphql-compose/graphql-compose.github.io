@@ -21,6 +21,9 @@
       "api/EnumTypeComposer",
       "api/InterfaceTypeComposer",
       "api/UnionTypeComposer",
+      "api/ListComposer",
+      "api/NonNullComposer",
+      "api/ThunkComposer",
       "api/Resolver",
       "api/TypeMapper",
       "api/misc-api-methods"

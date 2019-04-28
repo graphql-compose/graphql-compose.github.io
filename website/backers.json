@@ -10,7 +10,7 @@
     "type": "USER",
     "HostCollectiveId": null,
     "ParentCollectiveId": null,
-    "name": "",
+    "name": "Anthony Ou",
     "description": null,
     "firstName": "Anthony",
     "lastName": "Ou",
@@ -24,7 +24,7 @@
     "firstDonation": "2018-06-12T16:17:33.747Z",
     "lastDonation": "2019-04-01T05:04:17.551Z",
     "tier": "backer",
-    "avatar": null
+    "avatar": "https://images.opencollective.com/proxy/images/?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F88b34f40-607a-11e9-b486-e1bb2d3f0d94.png&height=96"
   },
   {
     "MemberCollectiveId": 19113,
@@ -37,20 +37,20 @@
     "type": "ORGANIZATION",
     "HostCollectiveId": null,
     "ParentCollectiveId": null,
-    "name": "TLDR Newsletter",
-    "description": "TLDR is a daily curated newsletter containing links and summaries of the most interesting stories in tech.",
+    "name": "Scraper API 2",
+    "description": "Scraper API handles proxies, browsers, and CAPTCHAs for you, so you can get the HTML from any web page with an API call. Instantly turn any website into an API!",
     "firstName": null,
     "lastName": null,
-    "slug": "tldrnewsletter",
-    "website": "https://www.tldrnewsletter.com",
+    "slug": "scraperapi2",
+    "website": "https://www.scraperapi.com",
     "currency": "USD",
-    "twitterHandle": "tldrnewsletter",
+    "twitterHandle": "scraperapi2",
     "directDonations": 1400,
     "donationsThroughEmittedVirtualCards": 0,
     "totalDonations": 1400,
     "firstDonation": "2018-10-13T05:27:47.502Z",
     "lastDonation": "2019-04-01T05:10:32.001Z",
     "tier": "backer",
-    "avatar": "https://images.opencollective.com/proxy/images/?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Fd7689db0-a72b-11e8-aa96-67c21c45a440.png&height=96"
+    "avatar": "https://images.opencollective.com/proxy/images/?src=https%3A%2F%2Flogo.clearbit.com%2Fscraperapi.com&height=96"
   }
 ]

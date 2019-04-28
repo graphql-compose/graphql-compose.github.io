@@ -96,30 +96,6 @@
     "lastContribution": 1490486400
   },
   {
-    "total": 3,
-    "author": {
-      "login": "freiksenet",
-      "id": 172936,
-      "node_id": "MDQ6VXNlcjE3MjkzNg==",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/172936?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/freiksenet",
-      "html_url": "https://github.com/freiksenet",
-      "followers_url": "https://api.github.com/users/freiksenet/followers",
-      "following_url": "https://api.github.com/users/freiksenet/following{/other_user}",
-      "gists_url": "https://api.github.com/users/freiksenet/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/freiksenet/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/freiksenet/subscriptions",
-      "organizations_url": "https://api.github.com/users/freiksenet/orgs",
-      "repos_url": "https://api.github.com/users/freiksenet/repos",
-      "events_url": "https://api.github.com/users/freiksenet/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/freiksenet/received_events",
-      "type": "User",
-      "site_admin": false
-    },
-    "lastContribution": 1553990400
-  },
-  {
     "total": 4,
     "author": {
       "login": "mernxl",
@@ -142,6 +118,30 @@
       "site_admin": false
     },
     "lastContribution": 1537056000
+  },
+  {
+    "total": 6,
+    "author": {
+      "login": "freiksenet",
+      "id": 172936,
+      "node_id": "MDQ6VXNlcjE3MjkzNg==",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/172936?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/freiksenet",
+      "html_url": "https://github.com/freiksenet",
+      "followers_url": "https://api.github.com/users/freiksenet/followers",
+      "following_url": "https://api.github.com/users/freiksenet/following{/other_user}",
+      "gists_url": "https://api.github.com/users/freiksenet/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/freiksenet/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/freiksenet/subscriptions",
+      "organizations_url": "https://api.github.com/users/freiksenet/orgs",
+      "repos_url": "https://api.github.com/users/freiksenet/repos",
+      "events_url": "https://api.github.com/users/freiksenet/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/freiksenet/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1553990400
   },
   {
     "total": 6,
@@ -170,30 +170,6 @@
   {
     "total": 9,
     "author": {
-      "login": "stefanprobst",
-      "id": 20753323,
-      "node_id": "MDQ6VXNlcjIwNzUzMzIz",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/20753323?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/stefanprobst",
-      "html_url": "https://github.com/stefanprobst",
-      "followers_url": "https://api.github.com/users/stefanprobst/followers",
-      "following_url": "https://api.github.com/users/stefanprobst/following{/other_user}",
-      "gists_url": "https://api.github.com/users/stefanprobst/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/stefanprobst/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/stefanprobst/subscriptions",
-      "organizations_url": "https://api.github.com/users/stefanprobst/orgs",
-      "repos_url": "https://api.github.com/users/stefanprobst/repos",
-      "events_url": "https://api.github.com/users/stefanprobst/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/stefanprobst/received_events",
-      "type": "User",
-      "site_admin": false
-    },
-    "lastContribution": 1553385600
-  },
-  {
-    "total": 9,
-    "author": {
       "login": "toverux",
       "id": 1343250,
       "node_id": "MDQ6VXNlcjEzNDMyNTA=",
@@ -214,6 +190,30 @@
       "site_admin": false
     },
     "lastContribution": 1533427200
+  },
+  {
+    "total": 10,
+    "author": {
+      "login": "stefanprobst",
+      "id": 20753323,
+      "node_id": "MDQ6VXNlcjIwNzUzMzIz",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/20753323?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stefanprobst",
+      "html_url": "https://github.com/stefanprobst",
+      "followers_url": "https://api.github.com/users/stefanprobst/followers",
+      "following_url": "https://api.github.com/users/stefanprobst/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stefanprobst/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stefanprobst/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stefanprobst/subscriptions",
+      "organizations_url": "https://api.github.com/users/stefanprobst/orgs",
+      "repos_url": "https://api.github.com/users/stefanprobst/repos",
+      "events_url": "https://api.github.com/users/stefanprobst/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stefanprobst/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1555200000
   },
   {
     "total": 10,
@@ -240,7 +240,7 @@
     "lastContribution": 1475366400
   },
   {
-    "total": 516,
+    "total": 554,
     "author": {
       "login": "nodkz",
       "id": 1946920,
@@ -261,6 +261,6 @@
       "type": "User",
       "site_admin": false
     },
-    "lastContribution": 1553990400
+    "lastContribution": 1556409600
   }
 ]

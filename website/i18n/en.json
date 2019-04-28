@@ -14,8 +14,14 @@
       "api/InterfaceTypeComposer": {
         "title": "InterfaceTypeComposer"
       },
+      "api/ListComposer": {
+        "title": "ListComposer"
+      },
       "api/misc-api-methods": {
         "title": "API misc"
+      },
+      "api/NonNullComposer": {
+        "title": "NonNullComposer"
       },
       "api/ObjectTypeComposer": {
         "title": "ObjectTypeComposer"
@@ -28,6 +34,9 @@
       },
       "api/SchemaComposer": {
         "title": "SchemaComposer"
+      },
+      "api/ThunkComposer": {
+        "title": "ThunkComposer"
       },
       "api/TypeMapper": {
         "title": "TypeMapper"
@@ -314,6 +323,49 @@
       "version-6.x.x-plugin-relay": {
         "title": "graphql-compose-relay",
         "sidebar_label": "Relay plugin"
+      },
+      "version-7.x.x-EnumTypeComposer": {
+        "title": "EnumTypeComposer"
+      },
+      "version-7.x.x-InputTypeComposer": {
+        "title": "InputTypeComposer"
+      },
+      "version-7.x.x-InterfaceTypeComposer": {
+        "title": "InterfaceTypeComposer"
+      },
+      "version-7.x.x-ListComposer": {
+        "title": "ListComposer"
+      },
+      "version-7.x.x-NonNullComposer": {
+        "title": "NonNullComposer"
+      },
+      "version-7.x.x-ObjectTypeComposer": {
+        "title": "ObjectTypeComposer"
+      },
+      "version-7.x.x-Resolver": {
+        "title": "Resolver"
+      },
+      "version-7.x.x-ScalarTypeComposer": {
+        "title": "ScalarTypeComposer"
+      },
+      "version-7.x.x-SchemaComposer": {
+        "title": "SchemaComposer"
+      },
+      "version-7.x.x-ThunkComposer": {
+        "title": "ThunkComposer"
+      },
+      "version-7.x.x-TypeMapper": {
+        "title": "TypeMapper"
+      },
+      "version-7.x.x-UnionTypeComposer": {
+        "title": "UnionTypeComposer"
+      },
+      "version-7.x.x-understanding-relations": {
+        "title": "Relations between Types"
+      },
+      "version-7.x.x-plugin-mongoose": {
+        "title": "graphql-compose-mongoose",
+        "sidebar_label": "Mongoose plugin"
       }
     },
     "links": {
