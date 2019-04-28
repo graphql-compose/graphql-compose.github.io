@@ -68,6 +68,20 @@ https://github.com/graphql-compose/graphql-compose/blob/master/src/TypeMapper.d.
 This is slightly rewritten <a href="https://github.com/graphql/graphql-js/blob/master/src/utilities/buildASTSchema.js">buildASTSchema</a>
 utility from <code>graphql-js</code> that allows to create type from a string (SDL).</p>
 <h2><a class="anchor" aria-hidden="true" id="static-methods"></a><a href="#static-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Static methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="static-isoutputtype"></a><a href="#static-isoutputtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static isOutputType()</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">static</span> isOutputType(
+  type: any
+): type is ComposeOutputType&lt;any&gt;
+</code></pre>
+<p>Check that provided TypeComposer is OutputType (Object, Scalar, Enum, Interface, Union).
+It may be wrapped in NonNull or List.</p>
+<h3><a class="anchor" aria-hidden="true" id="static-isinputtype"></a><a href="#static-isinputtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static isInputType()</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">static</span> isInputType(
+  type: any
+): type is ComposeInputType
+</code></pre>
+<p>Check that provided TypeComposer is InputType (InputObject, Scalar, Enum).
+It may be wrapped in NonNull or List.</p>
 <h3><a class="anchor" aria-hidden="true" id="static-istypenamestring"></a><a href="#static-istypenamestring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static isTypeNameString()</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">static</span> isTypeNameString(
   str: string
@@ -122,92 +136,85 @@ eg. <code>interface User { name: String }</code></p>
 <pre><code class="hljs css language-js">schemaComposer: SchemaComposer&lt;TContext&gt;;
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="methods"></a><a href="#methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h2>
-<h3><a class="anchor" aria-hidden="true" id="get"></a><a href="#get" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>get()</h3>
-<pre><code class="hljs css language-js">get(
-  name: string
-): GraphQLNamedType | <span class="hljs-keyword">void</span>
+<h3><a class="anchor" aria-hidden="true" id="convertgraphqltypetocomposer"></a><a href="#convertgraphqltypetocomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertGraphQLTypeToComposer()</h3>
+<pre><code class="hljs css language-js">convertGraphQLTypeToComposer(
+  type: GraphQLType
+): AnyTypeComposer&lt;TContext&gt;
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="set"></a><a href="#set" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>set()</h3>
-<pre><code class="hljs css language-js">set(
-  name: string,
-  <span class="hljs-attr">type</span>: AnyType&lt;any&gt;
-): <span class="hljs-keyword">void</span>
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="has"></a><a href="#has" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>has()</h3>
-<pre><code class="hljs css language-js">has(
-  name: string
-): boolean
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="getwrapped"></a><a href="#getwrapped" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getWrapped()</h3>
-<pre><code class="hljs css language-js">getWrapped(
+<h3><a class="anchor" aria-hidden="true" id="convertsdlwrappedtypename"></a><a href="#convertsdlwrappedtypename" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertSDLWrappedTypeName()</h3>
+<pre><code class="hljs css language-js">convertSDLWrappedTypeName(
   str: TypeWrappedString | TypeNameString
 ): GraphQLType | <span class="hljs-literal">null</span>
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="createtype"></a><a href="#createtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>createType()</h3>
-<pre><code class="hljs css language-js">createType(
+<h3><a class="anchor" aria-hidden="true" id="convertsdltypedefinition"></a><a href="#convertsdltypedefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertSDLTypeDefinition()</h3>
+<pre><code class="hljs css language-js">convertSDLTypeDefinition(
   str: TypeDefinitionString
-): AnyComposeType&lt;TContext&gt; | <span class="hljs-keyword">void</span>
+): NamedTypeComposer&lt;TContext&gt; | <span class="hljs-keyword">void</span>
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="creategraphqltype"></a><a href="#creategraphqltype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>createGraphQLType()</h3>
-<pre><code class="hljs css language-js">createGraphQLType(
-  str: TypeDefinitionString
-): GraphQLType | <span class="hljs-keyword">void</span>
+<h3><a class="anchor" aria-hidden="true" id="convertoutputtypedefinition"></a><a href="#convertoutputtypedefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertOutputTypeDefinition()</h3>
+<pre><code class="hljs css language-js">convertOutputTypeDefinition(
+  typeDef: Thunk&lt;ComposeOutputTypeDefinition&lt;any&gt; | ObjectTypeComposerDefinition&lt;any, any&gt; | Readonly&lt;Resolver&lt;any, any&gt;&gt;&gt;,
+  <span class="hljs-attr">fieldName</span>: string,
+  <span class="hljs-attr">typeName</span>: string
+): ComposeOutputType&lt;TContext&gt; | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertoutputfieldconfig"></a><a href="#convertoutputfieldconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertOutputFieldConfig()</h3>
+<pre><code class="hljs css language-js">convertOutputFieldConfig&lt;TSource&gt;(
+  composeFC: Thunk&lt;ObjectTypeComposerFieldConfigDefinition&lt;TSource, TContext&gt; | Readonly&lt;Resolver&lt;any, TContext&gt;&gt;&gt;,
+  <span class="hljs-attr">fieldName</span>: string,
+  <span class="hljs-attr">typeName</span>: string
+): ObjectTypeComposerFieldConfig&lt;TSource, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertoutputfieldconfigmap"></a><a href="#convertoutputfieldconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertOutputFieldConfigMap()</h3>
+<pre><code class="hljs css language-js">convertOutputFieldConfigMap&lt;TSource&gt;(
+  composeFields: ObjectTypeComposerFieldConfigMapDefinition&lt;TSource, TContext&gt;,
+  <span class="hljs-attr">typeName</span>: string
+): ObjectTypeComposerFieldConfigMap&lt;TSource, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertargconfig"></a><a href="#convertargconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertArgConfig()</h3>
+<pre><code class="hljs css language-js">convertArgConfig(
+  composeAC: Thunk&lt;ObjectTypeComposerArgumentConfigDefinition&gt;,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">fieldName</span>: string,
+  <span class="hljs-attr">typeName</span>: string
+): ObjectTypeComposerArgumentConfig
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertargconfigmap"></a><a href="#convertargconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertArgConfigMap()</h3>
+<pre><code class="hljs css language-js">convertArgConfigMap(
+  composeArgsConfigMap: ObjectTypeComposerArgumentConfigMapDefinition&lt;any&gt;,
+  <span class="hljs-attr">fieldName</span>: string,
+  <span class="hljs-attr">typeName</span>: string
+): ObjectTypeComposerArgumentConfigMap&lt;any&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertinputtypedefinition"></a><a href="#convertinputtypedefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertInputTypeDefinition()</h3>
+<pre><code class="hljs css language-js">convertInputTypeDefinition(
+  typeDef: Thunk&lt;ComposeInputTypeDefinition&gt;,
+  <span class="hljs-attr">fieldName</span>: string,
+  <span class="hljs-attr">typeName</span>: string
+): ComposeInputType | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertinputfieldconfig"></a><a href="#convertinputfieldconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertInputFieldConfig()</h3>
+<pre><code class="hljs css language-js">convertInputFieldConfig(
+  composeIFC: Thunk&lt;InputTypeComposerFieldConfigDefinition&gt;,
+  <span class="hljs-attr">fieldName</span>: string,
+  <span class="hljs-attr">typeName</span>: string
+): InputTypeComposerFieldConfig
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertinputfieldconfigmap"></a><a href="#convertinputfieldconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertInputFieldConfigMap()</h3>
+<pre><code class="hljs css language-js">convertInputFieldConfigMap(
+  composeFields: InputTypeComposerFieldConfigMapDefinition,
+  <span class="hljs-attr">typeName</span>: string
+): InputTypeComposerFieldConfigMap
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="convertinterfacetypedefinition"></a><a href="#convertinterfacetypedefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertInterfaceTypeDefinition()</h3>
+<pre><code class="hljs css language-js">convertInterfaceTypeDefinition(
+  typeDef: InterfaceTypeComposerDefinition&lt;any, TContext&gt;
+): InterfaceTypeComposerThunked&lt;any, TContext&gt;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="parsetypesfromstring"></a><a href="#parsetypesfromstring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseTypesFromString()</h3>
 <pre><code class="hljs css language-js">parseTypesFromString(
   str: string
-): TypeStorage&lt;string, AnyComposeType&lt;TContext&gt;&gt;
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="parsetypesfromast"></a><a href="#parsetypesfromast" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseTypesFromAst()</h3>
-<pre><code class="hljs css language-js">parseTypesFromAst(
-  astDocument: DocumentNode
-): TypeStorage&lt;string, GraphQLNamedType&gt;
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="convertoutputtype"></a><a href="#convertoutputtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertOutputType()</h3>
-<pre><code class="hljs css language-js">convertOutputType(
-  composeType: ComposeObjectType
-): GraphQLObjectType
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="convertoutputfieldconfig"></a><a href="#convertoutputfieldconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertOutputFieldConfig()</h3>
-<pre><code class="hljs css language-js">convertOutputFieldConfig&lt;TSource = any, TContext = any&gt;(
-  composeFC: ComposeFieldConfig&lt;TSource, TContext&gt;,
-  <span class="hljs-attr">fieldName</span>: string,
-  <span class="hljs-attr">typeName</span>: string
-): GraphQLFieldConfig&lt;TSource, TContext&gt;
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="convertoutputfieldconfigmap"></a><a href="#convertoutputfieldconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertOutputFieldConfigMap()</h3>
-<pre><code class="hljs css language-js">convertOutputFieldConfigMap&lt;TSource = any, TContext = any&gt;(
-  composeFields: ComposeFieldConfigMap&lt;TSource, TContext&gt; | GraphQLFieldConfigMap&lt;TSource, TContext&gt;,
-  <span class="hljs-attr">typeName</span>: string
-): GraphQLFieldConfigMap&lt;TSource, TContext&gt;
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="convertargconfig"></a><a href="#convertargconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertArgConfig()</h3>
-<pre><code class="hljs css language-js">convertArgConfig(
-  composeAC: ComposeArgumentConfig,
-  <span class="hljs-attr">argName</span>: string,
-  <span class="hljs-attr">fieldName</span>: string,
-  <span class="hljs-attr">typeName</span>: string
-): GraphQLArgumentConfig
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="convertargconfigmap"></a><a href="#convertargconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertArgConfigMap()</h3>
-<pre><code class="hljs css language-js">convertArgConfigMap(
-  composeArgsConfigMap: ComposeFieldConfigArgumentMap&lt;any&gt;,
-  <span class="hljs-attr">fieldName</span>: string,
-  <span class="hljs-attr">typeName</span>: string
-): GraphQLFieldConfigArgumentMap
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="convertinputfieldconfig"></a><a href="#convertinputfieldconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertInputFieldConfig()</h3>
-<pre><code class="hljs css language-js">convertInputFieldConfig(
-  composeIFC: ComposeInputFieldConfig,
-  <span class="hljs-attr">fieldName</span>: string,
-  <span class="hljs-attr">typeName</span>: string
-): GraphQLInputFieldConfig
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="convertinputfieldconfigmap"></a><a href="#convertinputfieldconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>convertInputFieldConfigMap()</h3>
-<pre><code class="hljs css language-js">convertInputFieldConfigMap(
-  composeFields: ComposeInputFieldConfigMap,
-  <span class="hljs-attr">typeName</span>: string
-): GraphQLInputFieldConfigMap
+): TypeStorage&lt;string, NamedTypeComposer&lt;TContext&gt;&gt;
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="internal-type-definitions"></a><a href="#internal-type-definitions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Internal type definitions</h2>
 <h3><a class="anchor" aria-hidden="true" id="typedefinitionstring"></a><a href="#typedefinitionstring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeDefinitionString</h3>
@@ -231,7 +238,7 @@ eg. <code>interface User { name: String }</code></p>
 <h3><a class="anchor" aria-hidden="true" id="typeasstring"></a><a href="#typeasstring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeAsString</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type TypeAsString = TypeDefinitionString | TypeWrappedString | TypeNameString;
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/api/Resolver.html"><span class="arrow-prev">← </span><span>Resolver</span></a><a class="docs-next button" href="/docs/next/api/misc-api-methods.html"><span>API misc</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#static-methods">Static methods</a><ul class="toc-headings"><li><a href="#static-istypenamestring">static isTypeNameString()</a></li><li><a href="#static-istypedefinitionstring">static isTypeDefinitionString()</a></li><li><a href="#static-isoutputtypedefinitionstring">static isOutputTypeDefinitionString()</a></li><li><a href="#static-isinputtypedefinitionstring">static isInputTypeDefinitionString()</a></li><li><a href="#static-isenumtypedefinitionstring">static isEnumTypeDefinitionString()</a></li><li><a href="#static-isscalartypedefinitionstring">static isScalarTypeDefinitionString()</a></li><li><a href="#static-isinterfacetypedefinitionstring">static isInterfaceTypeDefinitionString()</a></li></ul></li><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#methods">Methods</a><ul class="toc-headings"><li><a href="#get">get()</a></li><li><a href="#set">set()</a></li><li><a href="#has">has()</a></li><li><a href="#getwrapped">getWrapped()</a></li><li><a href="#createtype">createType()</a></li><li><a href="#creategraphqltype">createGraphQLType()</a></li><li><a href="#parsetypesfromstring">parseTypesFromString()</a></li><li><a href="#parsetypesfromast">parseTypesFromAst()</a></li><li><a href="#convertoutputtype">convertOutputType()</a></li><li><a href="#convertoutputfieldconfig">convertOutputFieldConfig()</a></li><li><a href="#convertoutputfieldconfigmap">convertOutputFieldConfigMap()</a></li><li><a href="#convertargconfig">convertArgConfig()</a></li><li><a href="#convertargconfigmap">convertArgConfigMap()</a></li><li><a href="#convertinputfieldconfig">convertInputFieldConfig()</a></li><li><a href="#convertinputfieldconfigmap">convertInputFieldConfigMap()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#typedefinitionstring">TypeDefinitionString</a></li><li><a href="#typewrappedstring">TypeWrappedString</a></li><li><a href="#typenamestring">TypeNameString</a></li><li><a href="#typeasstring">TypeAsString</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><span><script src="/js/pjax-api.js"></script><script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/api/Resolver.html"><span class="arrow-prev">← </span><span>Resolver</span></a><a class="docs-next button" href="/docs/next/api/misc-api-methods.html"><span>API misc</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#static-methods">Static methods</a><ul class="toc-headings"><li><a href="#static-isoutputtype">static isOutputType()</a></li><li><a href="#static-isinputtype">static isInputType()</a></li><li><a href="#static-istypenamestring">static isTypeNameString()</a></li><li><a href="#static-istypedefinitionstring">static isTypeDefinitionString()</a></li><li><a href="#static-isoutputtypedefinitionstring">static isOutputTypeDefinitionString()</a></li><li><a href="#static-isinputtypedefinitionstring">static isInputTypeDefinitionString()</a></li><li><a href="#static-isenumtypedefinitionstring">static isEnumTypeDefinitionString()</a></li><li><a href="#static-isscalartypedefinitionstring">static isScalarTypeDefinitionString()</a></li><li><a href="#static-isinterfacetypedefinitionstring">static isInterfaceTypeDefinitionString()</a></li></ul></li><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#methods">Methods</a><ul class="toc-headings"><li><a href="#convertgraphqltypetocomposer">convertGraphQLTypeToComposer()</a></li><li><a href="#convertsdlwrappedtypename">convertSDLWrappedTypeName()</a></li><li><a href="#convertsdltypedefinition">convertSDLTypeDefinition()</a></li><li><a href="#convertoutputtypedefinition">convertOutputTypeDefinition()</a></li><li><a href="#convertoutputfieldconfig">convertOutputFieldConfig()</a></li><li><a href="#convertoutputfieldconfigmap">convertOutputFieldConfigMap()</a></li><li><a href="#convertargconfig">convertArgConfig()</a></li><li><a href="#convertargconfigmap">convertArgConfigMap()</a></li><li><a href="#convertinputtypedefinition">convertInputTypeDefinition()</a></li><li><a href="#convertinputfieldconfig">convertInputFieldConfig()</a></li><li><a href="#convertinputfieldconfigmap">convertInputFieldConfigMap()</a></li><li><a href="#convertinterfacetypedefinition">convertInterfaceTypeDefinition()</a></li><li><a href="#parsetypesfromstring">parseTypesFromString()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#typedefinitionstring">TypeDefinitionString</a></li><li><a href="#typewrappedstring">TypeWrappedString</a></li><li><a href="#typenamestring">TypeNameString</a></li><li><a href="#typeasstring">TypeAsString</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><span><script src="/js/pjax-api.js"></script><script>
       window.foo = new Pjax({
         areas: [
           // try to use the first query.
