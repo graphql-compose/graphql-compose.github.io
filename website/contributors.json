@@ -2,6 +2,30 @@
   {
     "total": 1,
     "author": {
+      "login": "toddheslin",
+      "id": 1883112,
+      "node_id": "MDQ6VXNlcjE4ODMxMTI=",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1883112?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/toddheslin",
+      "html_url": "https://github.com/toddheslin",
+      "followers_url": "https://api.github.com/users/toddheslin/followers",
+      "following_url": "https://api.github.com/users/toddheslin/following{/other_user}",
+      "gists_url": "https://api.github.com/users/toddheslin/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/toddheslin/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/toddheslin/subscriptions",
+      "organizations_url": "https://api.github.com/users/toddheslin/orgs",
+      "repos_url": "https://api.github.com/users/toddheslin/repos",
+      "events_url": "https://api.github.com/users/toddheslin/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/toddheslin/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1571529600
+  },
+  {
+    "total": 1,
+    "author": {
       "login": "monkeywithacupcake",
       "id": 7316730,
       "node_id": "MDQ6VXNlcjczMTY3MzA=",
@@ -46,6 +70,78 @@
       "site_admin": false
     },
     "lastContribution": 1486857600
+  },
+  {
+    "total": 1,
+    "author": {
+      "login": "josewhitetower",
+      "id": 19823791,
+      "node_id": "MDQ6VXNlcjE5ODIzNzkx",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/19823791?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/josewhitetower",
+      "html_url": "https://github.com/josewhitetower",
+      "followers_url": "https://api.github.com/users/josewhitetower/followers",
+      "following_url": "https://api.github.com/users/josewhitetower/following{/other_user}",
+      "gists_url": "https://api.github.com/users/josewhitetower/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/josewhitetower/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/josewhitetower/subscriptions",
+      "organizations_url": "https://api.github.com/users/josewhitetower/orgs",
+      "repos_url": "https://api.github.com/users/josewhitetower/repos",
+      "events_url": "https://api.github.com/users/josewhitetower/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/josewhitetower/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1583625600
+  },
+  {
+    "total": 1,
+    "author": {
+      "login": "gomesalexandre",
+      "id": 17035424,
+      "node_id": "MDQ6VXNlcjE3MDM1NDI0",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/17035424?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gomesalexandre",
+      "html_url": "https://github.com/gomesalexandre",
+      "followers_url": "https://api.github.com/users/gomesalexandre/followers",
+      "following_url": "https://api.github.com/users/gomesalexandre/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gomesalexandre/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gomesalexandre/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gomesalexandre/subscriptions",
+      "organizations_url": "https://api.github.com/users/gomesalexandre/orgs",
+      "repos_url": "https://api.github.com/users/gomesalexandre/repos",
+      "events_url": "https://api.github.com/users/gomesalexandre/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gomesalexandre/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1578182400
+  },
+  {
+    "total": 1,
+    "author": {
+      "login": "cbrunnkvist",
+      "id": 34006,
+      "node_id": "MDQ6VXNlcjM0MDA2",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/34006?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/cbrunnkvist",
+      "html_url": "https://github.com/cbrunnkvist",
+      "followers_url": "https://api.github.com/users/cbrunnkvist/followers",
+      "following_url": "https://api.github.com/users/cbrunnkvist/following{/other_user}",
+      "gists_url": "https://api.github.com/users/cbrunnkvist/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/cbrunnkvist/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/cbrunnkvist/subscriptions",
+      "organizations_url": "https://api.github.com/users/cbrunnkvist/orgs",
+      "repos_url": "https://api.github.com/users/cbrunnkvist/repos",
+      "events_url": "https://api.github.com/users/cbrunnkvist/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/cbrunnkvist/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1573948800
   },
   {
     "total": 2,
@@ -96,6 +192,30 @@
     "lastContribution": 1490486400
   },
   {
+    "total": 2,
+    "author": {
+      "login": "craicoverflow",
+      "id": 11743717,
+      "node_id": "MDQ6VXNlcjExNzQzNzE3",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/11743717?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/craicoverflow",
+      "html_url": "https://github.com/craicoverflow",
+      "followers_url": "https://api.github.com/users/craicoverflow/followers",
+      "following_url": "https://api.github.com/users/craicoverflow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/craicoverflow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/craicoverflow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/craicoverflow/subscriptions",
+      "organizations_url": "https://api.github.com/users/craicoverflow/orgs",
+      "repos_url": "https://api.github.com/users/craicoverflow/repos",
+      "events_url": "https://api.github.com/users/craicoverflow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/craicoverflow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1587254400
+  },
+  {
     "total": 4,
     "author": {
       "login": "mernxl",
@@ -122,30 +242,6 @@
   {
     "total": 6,
     "author": {
-      "login": "freiksenet",
-      "id": 172936,
-      "node_id": "MDQ6VXNlcjE3MjkzNg==",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/172936?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/freiksenet",
-      "html_url": "https://github.com/freiksenet",
-      "followers_url": "https://api.github.com/users/freiksenet/followers",
-      "following_url": "https://api.github.com/users/freiksenet/following{/other_user}",
-      "gists_url": "https://api.github.com/users/freiksenet/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/freiksenet/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/freiksenet/subscriptions",
-      "organizations_url": "https://api.github.com/users/freiksenet/orgs",
-      "repos_url": "https://api.github.com/users/freiksenet/repos",
-      "events_url": "https://api.github.com/users/freiksenet/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/freiksenet/received_events",
-      "type": "User",
-      "site_admin": false
-    },
-    "lastContribution": 1553990400
-  },
-  {
-    "total": 6,
-    "author": {
       "login": "zapkub",
       "id": 4373581,
       "node_id": "MDQ6VXNlcjQzNzM1ODE=",
@@ -168,7 +264,55 @@
     "lastContribution": 1534636800
   },
   {
-    "total": 9,
+    "total": 6,
+    "author": {
+      "login": "freiksenet",
+      "id": 172936,
+      "node_id": "MDQ6VXNlcjE3MjkzNg==",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/172936?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/freiksenet",
+      "html_url": "https://github.com/freiksenet",
+      "followers_url": "https://api.github.com/users/freiksenet/followers",
+      "following_url": "https://api.github.com/users/freiksenet/following{/other_user}",
+      "gists_url": "https://api.github.com/users/freiksenet/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/freiksenet/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/freiksenet/subscriptions",
+      "organizations_url": "https://api.github.com/users/freiksenet/orgs",
+      "repos_url": "https://api.github.com/users/freiksenet/repos",
+      "events_url": "https://api.github.com/users/freiksenet/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/freiksenet/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1553990400
+  },
+  {
+    "total": 10,
+    "author": {
+      "login": "ch4ostic",
+      "id": 943968,
+      "node_id": "MDQ6VXNlcjk0Mzk2OA==",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/943968?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ch4ostic",
+      "html_url": "https://github.com/ch4ostic",
+      "followers_url": "https://api.github.com/users/ch4ostic/followers",
+      "following_url": "https://api.github.com/users/ch4ostic/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ch4ostic/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ch4ostic/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ch4ostic/subscriptions",
+      "organizations_url": "https://api.github.com/users/ch4ostic/orgs",
+      "repos_url": "https://api.github.com/users/ch4ostic/repos",
+      "events_url": "https://api.github.com/users/ch4ostic/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ch4ostic/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "lastContribution": 1475366400
+  },
+  {
+    "total": 11,
     "author": {
       "login": "toverux",
       "id": 1343250,
@@ -189,10 +333,10 @@
       "type": "User",
       "site_admin": false
     },
-    "lastContribution": 1533427200
+    "lastContribution": 1581206400
   },
   {
-    "total": 10,
+    "total": 11,
     "author": {
       "login": "stefanprobst",
       "id": 20753323,
@@ -213,34 +357,10 @@
       "type": "User",
       "site_admin": false
     },
-    "lastContribution": 1555200000
+    "lastContribution": 1558828800
   },
   {
-    "total": 10,
-    "author": {
-      "login": "stoffern",
-      "id": 943968,
-      "node_id": "MDQ6VXNlcjk0Mzk2OA==",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/943968?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/stoffern",
-      "html_url": "https://github.com/stoffern",
-      "followers_url": "https://api.github.com/users/stoffern/followers",
-      "following_url": "https://api.github.com/users/stoffern/following{/other_user}",
-      "gists_url": "https://api.github.com/users/stoffern/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/stoffern/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/stoffern/subscriptions",
-      "organizations_url": "https://api.github.com/users/stoffern/orgs",
-      "repos_url": "https://api.github.com/users/stoffern/repos",
-      "events_url": "https://api.github.com/users/stoffern/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/stoffern/received_events",
-      "type": "User",
-      "site_admin": false
-    },
-    "lastContribution": 1475366400
-  },
-  {
-    "total": 554,
+    "total": 629,
     "author": {
       "login": "nodkz",
       "id": 1946920,
@@ -261,6 +381,6 @@
       "type": "User",
       "site_admin": false
     },
-    "lastContribution": 1556409600
+    "lastContribution": 1587254400
   }
 ]

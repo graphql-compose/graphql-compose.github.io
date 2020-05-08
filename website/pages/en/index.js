@@ -384,18 +384,18 @@ const OpenCollectiveBacker = (b) => {
   return (
     <a
       className={`${b.classPrefix}-item`}
-      title={`$${b.totalDonations / 100} by ${b.name || b.slug}`}
+      title={`$${b.totalAmountDonated} by ${b.name}`}
       target="_blank"
-      href={b.website || `https://opencollective.com/${b.slug}`}
+      href={b.website || b.profile}
     >
-      {b.avatar ? (
+      {b.image ? (
         <img
           className={`${b.classPrefix}-avatar`}
-          src={b.avatar + '&width=96'}
-          alt={b.name || b.slug ? `${b.name || b.slug}'s avatar` : 'avatar'}
+          src={b.image}
+          alt={b.name ? `${b.name}` : 'avatar'}
         />
       ) : (
-        <span className={'fallbackAvatarName'}>{b.name || b.slug}</span>
+        <span className={'fallbackAvatarName'}>{b.name}</span>
       )}
     </a>
   );
@@ -403,10 +403,13 @@ const OpenCollectiveBacker = (b) => {
 
 const OpenCollective = (props) => {
   const sortedBackers = backers.sort((a, b) => (a.totalDonations > b.totalDonations ? -1 : 1));
-  const filteredBackers = sortedBackers.filter(
-    (b) => b.tier === 'backer' && !b.slug.includes('adult')
-  );
-  const filteredSponsors = sortedBackers.filter((b) => b.tier === 'sponsor');
+  const filteredBackers = sortedBackers
+    .filter((b) => b.tier === 'Backer')
+    .sort((a, b) => (a.totalAmountDonated < b.totalAmountDonated ? 1 : -1));
+
+  const filteredSponsors = sortedBackers
+    .filter((b) => b.tier === 'Sponsor')
+    .sort((a, b) => (a.totalAmountDonated < b.totalAmountDonated ? 1 : -1));
 
   return (
     <div className="opencollective lightBackground">

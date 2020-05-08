@@ -248,7 +248,7 @@ h2 small {
   font-size: 20px;
 }
 
-.opencollective .backer-item, .opencollective .sponsor-item {
+.opencollective .backer-avatar, .opencollective .sponsor-avatar {
   border: 1px solid red;
   display: inline-block;
   width: 100px;
