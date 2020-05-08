@@ -36,7 +36,11 @@ class Button extends React.Component {
   render() {
     return (
       <div className="pluginWrapper buttonWrapper">
-        <a className="button buttonDark" href={this.props.href} target={this.props.target}>
+        <a
+          className={['button', this.props.className].join(' ')}
+          href={this.props.href}
+          target={this.props.target}
+        >
           {this.props.children}
         </a>
       </div>
@@ -46,6 +50,7 @@ class Button extends React.Component {
 
 Button.defaultProps = {
   target: '_self',
+  className: 'buttonDark',
 };
 
 const SplashContainer = (props) => (
@@ -402,29 +407,20 @@ const OpenCollectiveBacker = (b) => {
 };
 
 const OpenCollective = (props) => {
-  const sortedBackers = backers.sort((a, b) => (a.totalDonations > b.totalDonations ? -1 : 1));
-  const filteredBackers = sortedBackers
-    .filter((b) => b.tier === 'Backer')
-    .sort((a, b) => (a.totalAmountDonated < b.totalAmountDonated ? 1 : -1));
-
-  const filteredSponsors = sortedBackers
-    .filter((b) => b.tier === 'Sponsor')
-    .sort((a, b) => (a.totalAmountDonated < b.totalAmountDonated ? 1 : -1));
+  const sortedBackers = backers
+    .sort((a, b) => (a.totalAmountDonated > b.totalAmountDonated ? -1 : 1))
+    .filter((b) => b.role === 'BACKER');
+  const filteredBackers = sortedBackers.filter((b) => b.tier === 'Backer');
+  const filteredSponsors = sortedBackers.filter(
+    (b) => b.tier === 'Sponsor' || b.totalAmountDonated > 500
+  );
 
   return (
     <div className="opencollective lightBackground">
-      <div className="pluginsHeader">Backers & Sponsors</div>
+      <div className="pluginsHeader">Sponsors & Backers</div>
       <div>
-        <Button href="https://opencollective.com/graphql-compose">Donate</Button>
-
         {filteredSponsors.length > 0 && (
           <React.Fragment>
-            <h3>
-              <span>Sponsors</span>
-            </h3>
-            <p>
-              <span>Sponsors are those who contribute $100 or more per month</span>
-            </p>
             <div>
               {filteredSponsors.map((b, i) => (
                 <OpenCollectiveBacker key={i} {...b} classPrefix="sponsor" />
@@ -435,12 +431,7 @@ const OpenCollective = (props) => {
 
         {filteredBackers.length > 0 && (
           <React.Fragment>
-            <h3>
-              <span>Backers</span>
-            </h3>
-            <p>
-              <span>Backers are those who contribute $2 or more per month</span>
-            </p>
+            <h3 />
             <div>
               {filteredBackers.map((b, i) => (
                 <OpenCollectiveBacker key={i} {...b} classPrefix="backer" />
@@ -448,6 +439,10 @@ const OpenCollective = (props) => {
             </div>
           </React.Fragment>
         )}
+        <h3 />
+        <Button className="buttonLight" href="https://opencollective.com/graphql-compose">
+          Donate via OpenCollective
+        </Button>
       </div>
     </div>
   );
@@ -456,7 +451,7 @@ const OpenCollective = (props) => {
 const ContributorAvatar = ({ author = {}, lastContribution, total }) => {
   return (
     <a
-      className={`contributor-item`}
+      className="contributor-item"
       title={`${author.login} made ${total} commit${
         total > 1 ? 's' : ''
       }. Last commit was ${new Date(lastContribution * 1000).toDateString()}`}

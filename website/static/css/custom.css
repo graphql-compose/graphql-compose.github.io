@@ -175,6 +175,15 @@ h2 small {
   color: #400d7d;
 }
 
+.buttonLight {
+  background: #fff;
+  color: #400d7d;
+}
+.buttonLight:hover {
+  background: #400d7d;
+  color: #fff;
+}
+
 @media only screen and (min-width: 350px) {
   .productShowcaseSection .logos img {
     max-height: 210px;
@@ -261,6 +270,11 @@ h2 small {
   padding: 5px;
   margin: 5px;
   border: 1px solid #ccc;
+}
+
+.opencollective .sponsor-avatar {
+  width: 200px;
+  height: 200px;
 }
 
 .opencollective .fallbackAvatarName {
