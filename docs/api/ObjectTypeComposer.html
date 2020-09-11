@@ -92,7 +92,7 @@ https://github.com/graphql-compose/graphql-compose/blob/master/src/ObjectTypeCom
 <pre><code class="hljs css language-js">getFieldNames(): string[]
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="getfield"></a><a href="#getfield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getField()</h3>
-<pre><code class="hljs css language-js">getField&lt;TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">getField&lt;TArgs = Record&lt;string, any&gt;&gt;(
   fieldName: string
 ): ObjectTypeComposerFieldConfig&lt;TSource, TContext, TArgs&gt;
 </code></pre>
@@ -107,7 +107,7 @@ https://github.com/graphql-compose/graphql-compose/blob/master/src/ObjectTypeCom
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="setfield"></a><a href="#setfield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setField()</h3>
-<pre><code class="hljs css language-js">setField&lt;TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">setField&lt;TArgs = Record&lt;string, any&gt;&gt;(
   fieldName: string,
   <span class="hljs-attr">fieldConfig</span>: ObjectTypeComposerFieldConfigDefinition&lt;TSource, TContext, ArgsMap&gt;
 ): <span class="hljs-keyword">this</span>
@@ -230,7 +230,7 @@ If field have other type then error will be thrown.</p>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="field-args-methods"></a><a href="#field-args-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Field Args methods</h2>
 <h3><a class="anchor" aria-hidden="true" id="getfieldargs"></a><a href="#getfieldargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgs()</h3>
-<pre><code class="hljs css language-js">getFieldArgs&lt;TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">getFieldArgs&lt;TArgs = Record&lt;string, any&gt;&gt;(
   fieldName: string
 ): ObjectTypeComposerArgumentConfigMap&lt;TArgs&gt;
 </code></pre>
@@ -442,7 +442,7 @@ Also you may provide <code>GraphQLInterfaceType</code> or <code>InterfaceTypeCom
 ): boolean
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="getresolver"></a><a href="#getresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getResolver()</h3>
-<pre><code class="hljs css language-js">getResolver&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">getResolver&lt;TResolverSource = any, TArgs = Record&lt;string, any&gt;&gt;(
   name: string,
 
   <span class="hljs-comment">// type ResolverMiddleware = (resolve, source, args, context, info) =&gt; any;</span>
@@ -464,13 +464,13 @@ schemaComposer.Query.addFields({
 });
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="setresolver"></a><a href="#setresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setResolver()</h3>
-<pre><code class="hljs css language-js">setResolver&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">setResolver&lt;TResolverSource = any, TArgs = Record&lt;string, any&gt;&gt;(
   name: string,
   <span class="hljs-attr">resolver</span>: Resolver&lt;TResolverSource, TContext, TArgs&gt;
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="addresolver"></a><a href="#addresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addResolver()</h3>
-<pre><code class="hljs css language-js">addResolver&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">addResolver&lt;TResolverSource = any, TArgs = Record&lt;string, any&gt;&gt;(
   opts: Resolver&lt;TResolverSource, TContext, TArgs&gt; | ResolverDefinition&lt;TResolverSource, TContext, TArgs&gt;
 ): <span class="hljs-keyword">this</span>
 </code></pre>
@@ -480,20 +480,20 @@ schemaComposer.Query.addFields({
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="wrapresolver"></a><a href="#wrapresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapResolver()</h3>
-<pre><code class="hljs css language-js">wrapResolver&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">wrapResolver&lt;TResolverSource = any, TArgs = Record&lt;string, any&gt;&gt;(
   resolverName: string,
   <span class="hljs-attr">cbResolver</span>: ResolverWrapCb&lt;TResolverSource, TSource, TContext, TArgs&gt;
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="wrapresolveras"></a><a href="#wrapresolveras" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapResolverAs()</h3>
-<pre><code class="hljs css language-js">wrapResolverAs&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">wrapResolverAs&lt;TResolverSource = any, TArgs = Record&lt;string, any&gt;&gt;(
   resolverName: string,
   <span class="hljs-attr">fromResolverName</span>: string,
   <span class="hljs-attr">cbResolver</span>: ResolverWrapCb&lt;TResolverSource, TSource, TContext, TArgs&gt;
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="wrapresolverresolve"></a><a href="#wrapresolverresolve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapResolverResolve()</h3>
-<pre><code class="hljs css language-js">wrapResolverResolve&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">wrapResolverResolve&lt;TResolverSource = any, TArgs = Record&lt;string, any&gt;&gt;(
   resolverName: string,
   <span class="hljs-attr">cbNextRp</span>: ResolverNextRpCb&lt;TResolverSource, TContext, TArgs&gt;
 ): <span class="hljs-keyword">this</span>
@@ -760,7 +760,7 @@ no need in <code>directives</code>. Instead directives better to use <code>exten
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="misc-methods"></a><a href="#misc-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Misc methods</h2>
 <h3><a class="anchor" aria-hidden="true" id="addrelation"></a><a href="#addrelation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addRelation()</h3>
-<pre><code class="hljs css language-js">addRelation&lt;TRelationSource = any, TArgs = ArgsMap&gt;(
+<pre><code class="hljs css language-js">addRelation&lt;TRelationSource = any, TArgs = Record&lt;string, any&gt;&gt;(
   fieldName: string,
   <span class="hljs-attr">opts</span>: ObjectTypeComposerRelationOpts&lt;TRelationSource, TSource, TContext, TArgs&gt;
 ): <span class="hljs-keyword">this</span>
@@ -875,7 +875,7 @@ no need in <code>directives</code>. Instead directives better to use <code>exten
 <h3><a class="anchor" aria-hidden="true" id="argsmap"></a><a href="#argsmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ArgsMap</h3>
 <pre><code class="hljs css language-js"><span class="hljs-comment">// Compose Args -----------------------------</span>
 
-<span class="hljs-keyword">export</span> type ArgsMap = { [argName: string]: any };
+<span class="hljs-keyword">export</span> type ArgsMap = Record&lt;string, any&gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="objecttypecomposerargumentconfigmap"></a><a href="#objecttypecomposerargumentconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerArgumentConfigMap</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerArgumentConfigMap&lt;TArgs = ArgsMap&gt; = {
