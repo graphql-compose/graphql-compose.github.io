@@ -212,7 +212,7 @@ But what if we need to restrict access or set up some arguments of Resolver from
   <span class="hljs-comment">// for new created resolver, clone its `filter` argument with a new name</span>
   newResolver.cloneArg(<span class="hljs-string">'filter'</span>, <span class="hljs-string">'AuthorFilterForUsers'</span>);
   <span class="hljs-comment">// remove some filter fields to which regular users should not have access</span>
-  newResolver.getArgTC(<span class="hljs-string">'filter'</span>).removeFields([<span class="hljs-string">'age'</span>, <span class="hljs-string">'other_sensetive_filter'</span>]);
+  newResolver.getArgITC(<span class="hljs-string">'filter'</span>).removeFields([<span class="hljs-string">'age'</span>, <span class="hljs-string">'other_sensetive_filter'</span>]);
   <span class="hljs-comment">// and return modified resolver with new set of args</span>
   <span class="hljs-keyword">return</span> newResolver;
 });
