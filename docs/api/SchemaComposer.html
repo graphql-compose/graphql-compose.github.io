@@ -457,7 +457,7 @@ This SDL can be used with graphql-tools and Apollo Federation.</p>
   description?: string | <span class="hljs-literal">null</span>;
   types?: GraphQLNamedType[] | <span class="hljs-literal">null</span>;
   directives?: GraphQLDirective[] | <span class="hljs-literal">null</span>;
-  extensions?: GraphQLSchemaExtensions | <span class="hljs-literal">null</span>;
+  extensions?: any | <span class="hljs-literal">null</span>; <span class="hljs-comment">// should be `GraphQLSchemaExtensions` but it does not exists graphql@&lt;15.0.0 (fix this when drop v14 support)</span>
   astNode?: SchemaDefinitionNode | <span class="hljs-literal">null</span>;
   extensionASTNodes?: ReadonlyArray&lt;SchemaExtensionNode&gt; | <span class="hljs-literal">null</span>;
   <span class="hljs-comment">/** You may pass all unused types from type registry to GraphQL schema if set this option to `true` */</span>
