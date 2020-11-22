@@ -59,99 +59,98 @@
               }
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/graphql-compose/graphql-compose/edit/master/docs/plugins/plugin-mongoose.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">graphql-compose-mongoose</h1></header><article><div><span><p>This is a plugin for <a href="https://github.com/graphql-compose/graphql-compose">graphql-compose</a>, which derives GraphQLType from your <a href="https://github.com/Automattic/mongoose">mongoose model</a>. Also derives bunch of internal GraphQL Types. Provide all CRUD resolvers, including <code>graphql connection</code>, also provided basic search via operators ($lt, $gt and so on).</p>
+<p><a href="https://github.com/graphql-compose/graphql-compose-mongoose/blob/alpha/docs/releases/9.0.0.md">Release Notes for v9.0.0</a> contains a lot of improvements. It's strongly recommended for reading before upgrading from v8.</p>
 <h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
 <pre><code class="hljs css language-bash">npm install graphql graphql-compose mongoose graphql-compose-mongoose --save
 </code></pre>
 <p>Modules <code>graphql</code>, <code>graphql-compose</code>, <code>mongoose</code> are in <code>peerDependencies</code>, so should be installed explicitly in your app. They have global objects and should not have ability to be installed as submodule.</p>
-<p>If you want to add additional resolvers <a href="https://github.com/graphql-compose/graphql-compose-connection"><code>connection</code></a> and/or <a href="https://github.com/graphql-compose/graphql-compose-pagination"><code>pagination</code></a> - just install following packages and <code>graphql-compose-mongoose</code> will add them automatically.</p>
-<pre><code class="hljs css language-bash">npm install graphql-compose-connection graphql-compose-pagination --save
-</code></pre>
-<p><strong>Different builds</strong></p>
-<p>This library contains different builds for any purposes:</p>
-<pre><code class="hljs css language-js"><span class="hljs-comment">// Default import for using under node v6 and above</span>
-<span class="hljs-keyword">import</span> { composeWithMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
-
-<span class="hljs-comment">// For using node 8 and above (native async/await)</span>
-<span class="hljs-keyword">import</span> { composeWithMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose/node8'</span>;
-
-<span class="hljs-comment">// Source code without Flowtype declarations</span>
-<span class="hljs-keyword">import</span> { composeWithMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose/es'</span>;
-</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="intro-video"></a><a href="#intro-video" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Intro video</h2>
+<p>Viktor Kjartansson created a quite solid intro for <code>graphql-compose-mongoose</code> in comparison with <code>graphql-tools</code>:</p>
+<p><a href="https://www.youtube.com/watch?v=RXcY-OoGnQ8" target="_blank"><img src="https://img.youtube.com/vi/RXcY-OoGnQ8/0.jpg" alt="#2 Mongoose - add GraphQL with graphql-compose" style="width: 380px" /></p>
+<p><a href="https://www.youtube.com/watch?v=RXcY-OoGnQ8">https://www.youtube.com/watch?v=RXcY-OoGnQ8</a> (23 mins)</p>
 <h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
 <p>Live demo: <a href="https://graphql-compose.herokuapp.com/">https://graphql-compose.herokuapp.com/</a></p>
 <p>Source code: <a href="https://github.com/graphql-compose/graphql-compose-examples">https://github.com/graphql-compose/graphql-compose-examples</a></p>
-<p>Small explanation for varaibles naming:</p>
+<p>Small explanation for variables naming:</p>
 <ul>
 <li><code>UserSchema</code> - this is a mongoose schema</li>
 <li><code>User</code> - this is a mongoose model</li>
-<li><code>UserTC</code> - this is a <code>ObjectTypeComposer</code> instance for User. <code>ObjectTypeComposer</code> has <code>GraphQLObjectType</code> inside, avaliable via method <code>UserTC.getType()</code>.</li>
+<li><code>UserTC</code> - this is a <code>ObjectTypeComposer</code> instance for User. <code>ObjectTypeComposer</code> has <code>GraphQLObjectType</code> inside, available via method <code>UserTC.getType()</code>.</li>
 <li>Here and in all other places of code variables suffix <code>...TC</code> means that this is <code>ObjectTypeComposer</code> instance, <code>...ITC</code> - <code>InputTypeComposer</code>, <code>...ETC</code> - <code>EnumTypeComposer</code>.</li>
 </ul>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
-<span class="hljs-keyword">import</span> { composeWithMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+<span class="hljs-keyword">import</span> { composeMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
 <span class="hljs-keyword">import</span> { schemaComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
 
 <span class="hljs-comment">// STEP 1: DEFINE MONGOOSE SCHEMA AND MODEL</span>
 <span class="hljs-keyword">const</span> LanguagesSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
-  <span class="hljs-attr">language</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">skill</span>: {
-    <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
-    <span class="hljs-attr">enum</span>: [ <span class="hljs-string">'basic'</span>, <span class="hljs-string">'fluent'</span>, <span class="hljs-string">'native'</span> ],
+  language: <span class="hljs-built_in">String</span>,
+  skill: {
+    <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-keyword">enum</span>: [ <span class="hljs-string">'basic'</span>, <span class="hljs-string">'fluent'</span>, <span class="hljs-string">'native'</span> ],
   },
 });
 
 <span class="hljs-keyword">const</span> UserSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-comment">// standard types</span>
+  name: <span class="hljs-built_in">String</span>, <span class="hljs-comment">// standard types</span>
   age: {
-    <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>,
-    <span class="hljs-attr">index</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-keyword">type</span>: <span class="hljs-built_in">Number</span>,
+    index: <span class="hljs-literal">true</span>,
   },
-  <span class="hljs-attr">languages</span>: {
-    <span class="hljs-attr">type</span>: [LanguagesSchema], <span class="hljs-comment">// you may include other schemas (here included as array of embedded documents)</span>
+  ln: {
+    <span class="hljs-keyword">type</span>: [LanguagesSchema], <span class="hljs-comment">// you may include other schemas (here included as array of embedded documents)</span>
     <span class="hljs-keyword">default</span>: [],
+    alias: <span class="hljs-string">'languages'</span>, <span class="hljs-comment">// in schema `ln` will be named as `languages`</span>
   },
-  <span class="hljs-attr">contacts</span>: { <span class="hljs-comment">// another mongoose way for providing embedded documents</span>
+  contacts: { <span class="hljs-comment">// another mongoose way for providing embedded documents</span>
     email: <span class="hljs-built_in">String</span>,
-    <span class="hljs-attr">phones</span>: [<span class="hljs-built_in">String</span>], <span class="hljs-comment">// array of strings</span>
+    phones: [<span class="hljs-built_in">String</span>], <span class="hljs-comment">// array of strings</span>
   },
-  <span class="hljs-attr">gender</span>: { <span class="hljs-comment">// enum field with values</span>
-    type: <span class="hljs-built_in">String</span>,
-    <span class="hljs-attr">enum</span>: [<span class="hljs-string">'male'</span>, <span class="hljs-string">'female'</span>, <span class="hljs-string">'ladyboy'</span>],
+  gender: { <span class="hljs-comment">// enum field with values</span>
+    <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-keyword">enum</span>: [<span class="hljs-string">'male'</span>, <span class="hljs-string">'female'</span>],
   },
-  <span class="hljs-attr">someMixed</span>: {
-    <span class="hljs-attr">type</span>: mongoose.Schema.Types.Mixed,
-    <span class="hljs-attr">description</span>: <span class="hljs-string">'Can be any mixed type, that will be treated as JSON GraphQL Scalar Type'</span>,
+  someMixed: {
+    <span class="hljs-keyword">type</span>: mongoose.Schema.Types.Mixed,
+    description: <span class="hljs-string">'Can be any mixed type, that will be treated as JSON GraphQL Scalar Type'</span>,
   },
 });
 <span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, UserSchema);
 
 
-
 <span class="hljs-comment">// STEP 2: CONVERT MONGOOSE MODEL TO GraphQL PIECES</span>
 <span class="hljs-keyword">const</span> customizationOptions = {}; <span class="hljs-comment">// left it empty for simplicity, described below</span>
-<span class="hljs-keyword">const</span> UserTC = composeWithMongoose(User, customizationOptions);
+<span class="hljs-keyword">const</span> UserTC = composeMongoose(User, customizationOptions);
 
 <span class="hljs-comment">// STEP 3: Add needed CRUD User operations to the GraphQL Schema</span>
 <span class="hljs-comment">// via graphql-compose it will be much much easier, with less typing</span>
 schemaComposer.Query.addFields({
-  <span class="hljs-attr">userById</span>: UserTC.getResolver(<span class="hljs-string">'findById'</span>),
-  <span class="hljs-attr">userByIds</span>: UserTC.getResolver(<span class="hljs-string">'findByIds'</span>),
-  <span class="hljs-attr">userOne</span>: UserTC.getResolver(<span class="hljs-string">'findOne'</span>),
-  <span class="hljs-attr">userMany</span>: UserTC.getResolver(<span class="hljs-string">'findMany'</span>),
-  <span class="hljs-attr">userCount</span>: UserTC.getResolver(<span class="hljs-string">'count'</span>),
-  <span class="hljs-attr">userConnection</span>: UserTC.getResolver(<span class="hljs-string">'connection'</span>),
-  <span class="hljs-attr">userPagination</span>: UserTC.getResolver(<span class="hljs-string">'pagination'</span>),
+  userById: UserTC.mongooseResolvers.findById(),
+  userByIds: UserTC.mongooseResolvers.findByIds(),
+  userOne: UserTC.mongooseResolvers.findOne(),
+  userMany: UserTC.mongooseResolvers.findMany(),
+  userDataLoader: UserTC.mongooseResolvers.dataLoader(),
+  userDataLoaderMany: UserTC.mongooseResolvers.dataLoaderMany(),
+  userByIdLean: UserTC.mongooseResolvers.findByIdLean(),
+  userByIdsLean: UserTC.mongooseResolvers.findByIdsLean(),
+  userOneLean: UserTC.mongooseResolvers.findOneLean(),
+  userManyLean: UserTC.mongooseResolvers.findManyLean(),
+  userDataLoaderLean: UserTC.mongooseResolvers.dataLoaderLean(),
+  userDataLoaderManyLean: UserTC.mongooseResolvers.dataLoaderManyLean(),
+  userCount: UserTC.mongooseResolvers.count(),
+  userConnection: UserTC.mongooseResolvers.connection(),
+  userPagination: UserTC.mongooseResolvers.pagination(),
 });
 
 schemaComposer.Mutation.addFields({
-  <span class="hljs-attr">userCreateOne</span>: UserTC.getResolver(<span class="hljs-string">'createOne'</span>),
-  <span class="hljs-attr">userCreateMany</span>: UserTC.getResolver(<span class="hljs-string">'createMany'</span>),
-  <span class="hljs-attr">userUpdateById</span>: UserTC.getResolver(<span class="hljs-string">'updateById'</span>),
-  <span class="hljs-attr">userUpdateOne</span>: UserTC.getResolver(<span class="hljs-string">'updateOne'</span>),
-  <span class="hljs-attr">userUpdateMany</span>: UserTC.getResolver(<span class="hljs-string">'updateMany'</span>),
-  <span class="hljs-attr">userRemoveById</span>: UserTC.getResolver(<span class="hljs-string">'removeById'</span>),
-  <span class="hljs-attr">userRemoveOne</span>: UserTC.getResolver(<span class="hljs-string">'removeOne'</span>),
-  <span class="hljs-attr">userRemoveMany</span>: UserTC.getResolver(<span class="hljs-string">'removeMany'</span>),
+  userCreateOne: UserTC.mongooseResolvers.createOne(),
+  userCreateMany: UserTC.mongooseResolvers.createMany(),
+  userUpdateById: UserTC.mongooseResolvers.updateById(),
+  userUpdateOne: UserTC.mongooseResolvers.updateOne(),
+  userUpdateMany: UserTC.mongooseResolvers.updateMany(),
+  userRemoveById: UserTC.mongooseResolvers.removeById(),
+  userRemoveOne: UserTC.mongooseResolvers.removeOne(),
+  userRemoveMany: UserTC.mongooseResolvers.removeMany(),
 });
 
 <span class="hljs-keyword">const</span> graphqlSchema = schemaComposer.buildSchema();
@@ -165,44 +164,44 @@ I don't think so, because by default internally was created about 55 graphql typ
 <ul>
 <li><code>...DTC</code> - Suffix for a <code>DiscriminatorTypeComposer</code> instance, which is also an instance of <code>ObjectTypeComposer</code>. All fields and Relations manipulations on this instance affects all registered discriminators and the Discriminator Interface.</li>
 </ul>
-<pre><code class="hljs css language-js">  <span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+<pre><code class="hljs css language-ts">  <span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
   <span class="hljs-keyword">import</span> { schemaComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
-  <span class="hljs-keyword">import</span> { composeWithMongooseDiscriminators } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
+  <span class="hljs-keyword">import</span> { composeMongooseDiscriminators } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
 
   <span class="hljs-comment">// pick a discriminatorKey</span>
   <span class="hljs-keyword">const</span> DKey = <span class="hljs-string">'type'</span>;
 
   <span class="hljs-keyword">const</span> enumCharacterType = {
-    <span class="hljs-attr">PERSON</span>: <span class="hljs-string">'Person'</span>,
-    <span class="hljs-attr">DROID</span>: <span class="hljs-string">'Droid'</span>,
+    PERSON: <span class="hljs-string">'Person'</span>,
+    DROID: <span class="hljs-string">'Droid'</span>,
   };
 
   <span class="hljs-comment">// DEFINE BASE SCHEMA</span>
   <span class="hljs-keyword">const</span> CharacterSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
     <span class="hljs-comment">// _id: field...</span>
-    type: {
-      <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
-      <span class="hljs-attr">require</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">enum</span>: (<span class="hljs-built_in">Object</span>.keys(enumCharacterType): <span class="hljs-built_in">Array</span>&lt;string&gt;),
-      <span class="hljs-attr">description</span>: <span class="hljs-string">'Character type Droid or Person'</span>,
+    <span class="hljs-keyword">type</span>: {
+      <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span>,
+      required: <span class="hljs-literal">true</span>,
+      <span class="hljs-keyword">enum</span>: (<span class="hljs-built_in">Object</span>.keys(enumCharacterType): <span class="hljs-built_in">Array</span>&lt;<span class="hljs-built_in">string</span>&gt;),
+      description: <span class="hljs-string">'Character type Droid or Person'</span>,
     },
 
-    <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
-    <span class="hljs-attr">height</span>: <span class="hljs-built_in">Number</span>,
-    <span class="hljs-attr">mass</span>: <span class="hljs-built_in">Number</span>,
-    <span class="hljs-attr">films</span>: [<span class="hljs-built_in">String</span>],
+    name: <span class="hljs-built_in">String</span>,
+    height: <span class="hljs-built_in">Number</span>,
+    mass: <span class="hljs-built_in">Number</span>,
+    films: [<span class="hljs-built_in">String</span>],
   });
 
   <span class="hljs-comment">// DEFINE DISCRIMINATOR SCHEMAS</span>
   <span class="hljs-keyword">const</span> DroidSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
-    <span class="hljs-attr">makeDate</span>: <span class="hljs-built_in">String</span>,
-    <span class="hljs-attr">primaryFunction</span>: [<span class="hljs-built_in">String</span>],
+    makeDate: <span class="hljs-built_in">String</span>,
+    primaryFunction: [<span class="hljs-built_in">String</span>],
   });
 
   <span class="hljs-keyword">const</span> PersonSchema = <span class="hljs-keyword">new</span> mongoose.Schema({
-    <span class="hljs-attr">gender</span>: <span class="hljs-built_in">String</span>,
-    <span class="hljs-attr">hairColor</span>: <span class="hljs-built_in">String</span>,
-    <span class="hljs-attr">starships</span>: [<span class="hljs-built_in">String</span>],
+    gender: <span class="hljs-built_in">String</span>,
+    hairColor: <span class="hljs-built_in">String</span>,
+    starships: [<span class="hljs-built_in">String</span>],
   });
 
   <span class="hljs-comment">// set discriminator Key</span>
@@ -216,32 +215,32 @@ I don't think so, because by default internally was created about 55 graphql typ
   <span class="hljs-keyword">const</span> PersonModel = CharacterModel.discriminator(enumCharacterType.PERSON, PersonSchema);
 
   <span class="hljs-comment">// create DiscriminatorTypeComposer</span>
-  <span class="hljs-keyword">const</span> baseOptions = { <span class="hljs-comment">// regular TypeConverterOptions, passed to composeWithMongoose</span>
+  <span class="hljs-keyword">const</span> baseOptions = { <span class="hljs-comment">// regular TypeConverterOptions, passed to composeMongoose</span>
     fields: {
-      <span class="hljs-attr">remove</span>: [<span class="hljs-string">'friends'</span>],
+      remove: [<span class="hljs-string">'friends'</span>],
     }
   }
-  <span class="hljs-keyword">const</span> CharacterDTC = composeWithMongooseDiscriminators(CharacterModel, baseOptions);
+  <span class="hljs-keyword">const</span> CharacterDTC = composeMongooseDiscriminators(CharacterModel, baseOptions);
 
   <span class="hljs-comment">// create Discriminator Types</span>
-  <span class="hljs-keyword">const</span> droidTypeConverterOptions = {  <span class="hljs-comment">// this options will be merged with baseOptions -&gt; customisationsOptions</span>
+  <span class="hljs-keyword">const</span> droidTypeConverterOptions = {  <span class="hljs-comment">// this options will be merged with baseOptions -&gt; customizationsOptions</span>
     fields: {
-      <span class="hljs-attr">remove</span>: [<span class="hljs-string">'makeDate'</span>],
+      remove: [<span class="hljs-string">'makeDate'</span>],
     }
   };
   <span class="hljs-keyword">const</span> DroidTC = CharacterDTC.discriminator(DroidModel, droidTypeConverterOptions);
-  <span class="hljs-keyword">const</span> PersonTC = CharacterDTC.discriminator(PersonModel);  <span class="hljs-comment">// baseOptions -&gt; customisationsOptions applied</span>
+  <span class="hljs-keyword">const</span> PersonTC = CharacterDTC.discriminator(PersonModel);  <span class="hljs-comment">// baseOptions -&gt; customizationsOptions applied</span>
 
   <span class="hljs-comment">// You may now use CharacterDTC to add fields to all Discriminators</span>
   <span class="hljs-comment">// Use DroidTC, `PersonTC as any other ObjectTypeComposer.</span>
   schemaComposer.Mutation.addFields({
-    <span class="hljs-attr">droidCreate</span>: DroidTC.getResolver(<span class="hljs-string">'createOne'</span>),
-    <span class="hljs-attr">personCreate</span>: PersonTC.getResolver(<span class="hljs-string">'createOne'</span>),
+    droidCreate: DroidTC.getResolver(<span class="hljs-string">'createOne'</span>),
+    personCreate: PersonTC.getResolver(<span class="hljs-string">'createOne'</span>),
   });
 
   <span class="hljs-keyword">const</span> schema = schemaComposer.buildSchema();
 
-  describe(<span class="hljs-string">'createOne'</span>, () =&gt; {
+  describe(<span class="hljs-string">'createOne'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     it(<span class="hljs-string">'should create child document without specifying DKey'</span>, <span class="hljs-keyword">async</span> () =&gt; {
       <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> graphql.graphql(
         schema,
@@ -267,69 +266,469 @@ I don't think so, because by default internally was created about 55 graphql typ
       );
 
       expect(res).toEqual({
-        <span class="hljs-attr">data</span>: {
-          <span class="hljs-attr">droidCreate</span>: {
-            <span class="hljs-attr">record</span>: { <span class="hljs-attr">__typename</span>: <span class="hljs-string">'Droid'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'Droid'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'Queue XL'</span>, <span class="hljs-attr">modelNumber</span>: <span class="hljs-number">360</span> },
+        data: {
+          droidCreate: {
+            record: { __typename: <span class="hljs-string">'Droid'</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">'Droid'</span>, name: <span class="hljs-string">'Queue XL'</span>, modelNumber: <span class="hljs-number">360</span> },
           },
-          <span class="hljs-attr">personCreate</span>: {
-            <span class="hljs-attr">record</span>: { <span class="hljs-attr">__typename</span>: <span class="hljs-string">'Person'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'Person'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'mernxl'</span>, <span class="hljs-attr">dob</span>: <span class="hljs-number">57275272</span> },
+          personCreate: {
+            record: { __typename: <span class="hljs-string">'Person'</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">'Person'</span>, name: <span class="hljs-string">'mernxl'</span>, dob: <span class="hljs-number">57275272</span> },
           },
         },
       });
     });
   });
 </code></pre>
+<h2><a class="anchor" aria-hidden="true" id="customization-options"></a><a href="#customization-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customization options</h2>
+<h3><a class="anchor" aria-hidden="true" id="composemongoose-customization-options"></a><a href="#composemongoose-customization-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>composeMongoose</code> customization options</h3>
+<p>When you converting mongoose model <code>const UserTC = composeMongoose(User, opts: ComposeMongooseOpts);</code> you may tune every piece of future derived types – setup name and description for the main type, remove fields or leave only desired fields.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">type</span> ComposeMongooseOpts = {
+  <span class="hljs-comment">/**
+   * Which type registry use for generated types.
+   * By default is used global default registry.
+   */</span>
+  schemaComposer?: SchemaComposer&lt;TContext&gt;;
+  <span class="hljs-comment">/**
+   * What should be base type name for generated type from mongoose model.
+   */</span>
+  name?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * Provide arbitrary description for generated type.
+   */</span>
+  description?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * You can leave only whitelisted fields in type via this option.
+   * Any other fields will be removed.
+   */</span>
+  onlyFields?: <span class="hljs-built_in">string</span>[];
+  <span class="hljs-comment">/**
+   * You an remove some fields from type via this option.
+   */</span>
+  removeFields?: <span class="hljs-built_in">string</span>[];
+  <span class="hljs-comment">/**
+   * You may configure generated InputType
+   */</span>
+  inputType?: TypeConverterInputTypeOpts;
+  <span class="hljs-comment">/**
+   * You can make fields as NonNull if they have default value in mongoose model.
+   */</span>
+  defaultsAsNonNull?: <span class="hljs-built_in">boolean</span>;
+};
+</code></pre>
+<p>This is <code>opts.inputType</code> options for default InputTypeObject which will be provided to all resolvers for <code>filter</code> and <code>input</code> args.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">type</span> TypeConverterInputTypeOpts = {
+  <span class="hljs-comment">/**
+   * What should be input type name.
+   * By default: baseTypeName + 'Input'
+   */</span>
+  name?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * Provide arbitrary description for generated type.
+   */</span>
+  description?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * You can leave only whitelisted fields in type via this option.
+   * Any other fields will be removed.
+   */</span>
+  onlyFields?: <span class="hljs-built_in">string</span>[];
+  <span class="hljs-comment">/**
+   * You an remove some fields from type via this option.
+   */</span>
+  removeFields?: <span class="hljs-built_in">string</span>[];
+  <span class="hljs-comment">/**
+   * This option makes provided fieldNames as required
+   */</span>
+  requiredFields?: <span class="hljs-built_in">string</span>[];
+};
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="resolvers-customization-options"></a><a href="#resolvers-customization-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resolvers' customization options</h2>
+<p>When you are creating resolvers from <code>mongooseResolvers</code> factory, you may provide customizationOptions to it:</p>
+<pre><code class="hljs css language-ts">UserTC.mongooseResolvers.findMany(opts);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="connectionopts-connectionresolveropts"></a><a href="#connectionopts-connectionresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>connection(opts?: ConnectionResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">type</span> ConnectionResolverOpts&lt;TContext = <span class="hljs-built_in">any</span>&gt; = {
+  sort: ConnectionSortMapOpts;
+  name?: <span class="hljs-built_in">string</span>;
+  defaultLimit?: <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>;
+  edgeTypeName?: <span class="hljs-built_in">string</span>;
+  edgeFields?: ObjectTypeComposerFieldConfigMap&lt;<span class="hljs-built_in">any</span>, TContext&gt;;
+  <span class="hljs-comment">/** See below **/</span>
+  countOpts?: CountResolverOpts;
+  <span class="hljs-comment">/** See below **/</span>
+  findManyOpts?: FindManyResolverOpts;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="countopts-countresolveropts"></a><a href="#countopts-countresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>count(opts?: CountResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> CountResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `filter` argument. If `false` then arg will be removed. */</span>
+  filter?: FilterHelperArgsOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="createmanyopts-createmanyresolveropts"></a><a href="#createmanyopts-createmanyresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>createMany(opts?: CreateManyResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> CreateManyResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `records` argument. */</span>
+  records?: RecordHelperArgsOpts;
+  <span class="hljs-comment">/** Customize payload.recordIds field. If false, then this field will be removed. */</span>
+  recordIds?: PayloadRecordIdsHelperOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="createoneopts-createoneresolveropts"></a><a href="#createoneopts-createoneresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>createOne(opts?: CreateOneResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> CreateOneResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `record` argument */</span>
+  record?: RecordHelperArgsOpts;
+  <span class="hljs-comment">/** Customize payload.recordId field. If false, then this field will be removed. */</span>
+  recordId?: PayloadRecordIdHelperOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="dataloaderopts-dataloaderresolveropts"></a><a href="#dataloaderopts-dataloaderresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>dataLoader(opts?: DataLoaderResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> DataLoaderResolverOpts {
+  <span class="hljs-comment">/**
+   * Enabling the lean option tells Mongoose to skip instantiating
+   * a full Mongoose document and just give you the plain JavaScript objects.
+   * Documents are much heavier than vanilla JavaScript objects,
+   * because they have a lot of internal state for change tracking.
+   * The downside of enabling lean is that lean docs don't have:
+   *   Default values
+   *   Getters and setters
+   *   Virtuals
+   * Read more about `lean`: https://mongoosejs.com/docs/tutorials/lean.html
+   */</span>
+  lean?: <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="dataloadermanyopts-dataloadermanyresolveropts"></a><a href="#dataloadermanyopts-dataloadermanyresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>dataLoaderMany(opts?: DataLoaderManyResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> DataLoaderManyResolverOpts {
+  <span class="hljs-comment">/**
+   * Enabling the lean option tells Mongoose to skip instantiating
+   * a full Mongoose document and just give you the plain JavaScript objects.
+   * Documents are much heavier than vanilla JavaScript objects,
+   * because they have a lot of internal state for change tracking.
+   * The downside of enabling lean is that lean docs don't have:
+   *   Default values
+   *   Getters and setters
+   *   Virtuals
+   * Read more about `lean`: https://mongoosejs.com/docs/tutorials/lean.html
+   */</span>
+  lean?: <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="findbyidopts-findbyidresolveropts"></a><a href="#findbyidopts-findbyidresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>findById(opts?: FindByIdResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> FindByIdResolverOpts {
+  <span class="hljs-comment">/**
+   * Enabling the lean option tells Mongoose to skip instantiating
+   * a full Mongoose document and just give you the plain JavaScript objects.
+   * Documents are much heavier than vanilla JavaScript objects,
+   * because they have a lot of internal state for change tracking.
+   * The downside of enabling lean is that lean docs don't have:
+   *   Default values
+   *   Getters and setters
+   *   Virtuals
+   * Read more about `lean`: https://mongoosejs.com/docs/tutorials/lean.html
+   */</span>
+  lean?: <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="findbyidsopts-findbyidsresolveropts"></a><a href="#findbyidsopts-findbyidsresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>findByIds(opts?: FindByIdsResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> FindByIdsResolverOpts {
+  <span class="hljs-comment">/**
+   * Enabling the lean option tells Mongoose to skip instantiating
+   * a full Mongoose document and just give you the plain JavaScript objects.
+   * Documents are much heavier than vanilla JavaScript objects,
+   * because they have a lot of internal state for change tracking.
+   * The downside of enabling lean is that lean docs don't have:
+   *   Default values
+   *   Getters and setters
+   *   Virtuals
+   * Read more about `lean`: https://mongoosejs.com/docs/tutorials/lean.html
+   */</span>
+  lean?: <span class="hljs-built_in">boolean</span>;
+  limit?: LimitHelperArgsOpts | <span class="hljs-literal">false</span>;
+  sort?: SortHelperArgsOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="findmanyopts-findmanyresolveropts"></a><a href="#findmanyopts-findmanyresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>findMany(opts?: FindManyResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> FindManyResolverOpts {
+  <span class="hljs-comment">/**
+   * Enabling the lean option tells Mongoose to skip instantiating
+   * a full Mongoose document and just give you the plain JavaScript objects.
+   * Documents are much heavier than vanilla JavaScript objects,
+   * because they have a lot of internal state for change tracking.
+   * The downside of enabling lean is that lean docs don't have:
+   *   Default values
+   *   Getters and setters
+   *   Virtuals
+   * Read more about `lean`: https://mongoosejs.com/docs/tutorials/lean.html
+   */</span>
+  lean?: <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `filter` argument. If `false` then arg will be removed. */</span>
+  filter?: FilterHelperArgsOpts | <span class="hljs-literal">false</span>;
+  sort?: SortHelperArgsOpts | <span class="hljs-literal">false</span>;
+  limit?: LimitHelperArgsOpts | <span class="hljs-literal">false</span>;
+  skip?: <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="findoneopts-findoneresolveropts"></a><a href="#findoneopts-findoneresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>findOne(opts?: FindOneResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> FindOneResolverOpts {
+  <span class="hljs-comment">/**
+   * Enabling the lean option tells Mongoose to skip instantiating
+   * a full Mongoose document and just give you the plain JavaScript objects.
+   * Documents are much heavier than vanilla JavaScript objects,
+   * because they have a lot of internal state for change tracking.
+   * The downside of enabling lean is that lean docs don't have:
+   *   Default values
+   *   Getters and setters
+   *   Virtuals
+   * Read more about `lean`: https://mongoosejs.com/docs/tutorials/lean.html
+   */</span>
+  lean?: <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `filter` argument. If `false` then arg will be removed. */</span>
+  filter?: FilterHelperArgsOpts | <span class="hljs-literal">false</span>;
+  sort?: SortHelperArgsOpts | <span class="hljs-literal">false</span>;
+  skip?: <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="paginationopts-paginationresolveropts"></a><a href="#paginationopts-paginationresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>pagination(opts?: PaginationResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> PaginationResolverOpts {
+  name?: <span class="hljs-built_in">string</span>;
+  perPage?: <span class="hljs-built_in">number</span>;
+  countOpts?: CountResolverOpts;
+  findManyOpts?: FindManyResolverOpts;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removebyidopts-removebyidresolveropts"></a><a href="#removebyidopts-removebyidresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>removeById(opts?: RemoveByIdResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> RemoveByIdResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize payload.recordId field. If false, then this field will be removed. */</span>
+  recordId?: PayloadRecordIdHelperOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removemanyopts-removemanyresolveropts"></a><a href="#removemanyopts-removemanyresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>removeMany(opts?: RemoveManyResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> RemoveManyResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `filter` argument. If `false` then arg will be removed. */</span>
+  filter?: FilterHelperArgsOpts | <span class="hljs-literal">false</span>;
+  limit?: LimitHelperArgsOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removeoneopts-removeoneresolveropts"></a><a href="#removeoneopts-removeoneresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>removeOne(opts?: RemoveOneResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> RemoveOneResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `filter` argument. If `false` then arg will be removed. */</span>
+  filter?: FilterHelperArgsOpts | <span class="hljs-literal">false</span>;
+  sort?: SortHelperArgsOpts | <span class="hljs-literal">false</span>;
+  <span class="hljs-comment">/** Customize payload.recordId field. If false, then this field will be removed. */</span>
+  recordId?: PayloadRecordIdHelperOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="updatebyidopts-updatebyidresolveropts"></a><a href="#updatebyidopts-updatebyidresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>updateById(opts?: UpdateByIdResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> UpdateByIdResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `record` argument. */</span>
+  record?: RecordHelperArgsOpts;
+  <span class="hljs-comment">/** Customize payload.recordId field. If false, then this field will be removed. */</span>
+  recordId?: PayloadRecordIdHelperOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="updatemanyopts-updatemanyresolveropts"></a><a href="#updatemanyopts-updatemanyresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>updateMany(opts?: UpdateManyResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> UpdateManyResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `record` argument. */</span>
+  record?: RecordHelperArgsOpts;
+  <span class="hljs-comment">/** Customize input-type for `filter` argument. If `false` then arg will be removed. */</span>
+  filter?: FilterHelperArgsOpts | <span class="hljs-literal">false</span>;
+  sort?: SortHelperArgsOpts | <span class="hljs-literal">false</span>;
+  limit?: LimitHelperArgsOpts | <span class="hljs-literal">false</span>;
+  skip?: <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="updateoneopts-updateoneresolveropts"></a><a href="#updateoneopts-updateoneresolveropts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>updateOne(opts?: UpdateOneResolverOpts)</code></h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> UpdateOneResolverOpts {
+  <span class="hljs-comment">/** If you want to generate different resolvers you may avoid Type name collision by adding a suffix to type names */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/** Customize input-type for `record` argument. */</span>
+  record?: RecordHelperArgsOpts;
+  <span class="hljs-comment">/** Customize input-type for `filter` argument. If `false` then arg will be removed. */</span>
+  filter?: FilterHelperArgsOpts | <span class="hljs-literal">false</span>;
+  sort?: SortHelperArgsOpts | <span class="hljs-literal">false</span>;
+  skip?: <span class="hljs-literal">false</span>;
+  <span class="hljs-comment">/** Customize payload.recordId field. If false, then this field will be removed. */</span>
+  recordId?: PayloadRecordIdHelperOpts | <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="description-of-common-resolvers-options"></a><a href="#description-of-common-resolvers-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description of common resolvers' options</h3>
+<h4><a class="anchor" aria-hidden="true" id="filterhelperargsopts"></a><a href="#filterhelperargsopts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>FilterHelperArgsOpts</code></h4>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">type</span> FilterHelperArgsOpts = {
+  <span class="hljs-comment">/**
+   * Add to filter arg only that fields which are indexed.
+   * If false then all fields will be available for filtering.
+   * By default: true
+   */</span>
+  onlyIndexed?: <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-comment">/**
+   * You an remove some fields from type via this option.
+   */</span>
+  removeFields?: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">string</span>[];
+  <span class="hljs-comment">/**
+   * This option makes provided fieldNames as required
+   */</span>
+  requiredFields?: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">string</span>[];
+  <span class="hljs-comment">/**
+   * Customize operators filtering or disable it at all.
+   * By default, for performance reason, `graphql-compose-mongoose` generates operators
+   * *only for indexed* fields.
+   *
+   * BUT you may enable operators for all fields when creating resolver in the following way:
+   *   // enables all operators for all fields
+   *   operators: true,
+   * OR provide a more granular `operators` configuration to suit your needs:
+   *   operators: {
+   *     // for `age` field add just 3 operators
+   *     age: ['in', 'gt', 'lt'],
+   *     // for non-indexed `amount` field add all operators
+   *     amount: true,
+   *     // don't add this field to operators
+   *     indexedField: false,
+   *   }
+   *
+   * Available logic operators: AND, OR
+   * Available field operators: gt, gte, lt, lte, ne, in, nin, regex, exists
+   */</span>
+  operators?: FieldsOperatorsConfig | <span class="hljs-literal">false</span>;
+  <span class="hljs-comment">/**
+   * Make arg `filter` as required if this option is true.
+   */</span>
+  isRequired?: <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-comment">/**
+   * Base type name for generated filter argument.
+   */</span>
+  baseTypeName?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * Provide custom prefix for Type name
+   */</span>
+  prefix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * Provide custom suffix for Type name
+   */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="sorthelperargsopts"></a><a href="#sorthelperargsopts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>SortHelperArgsOpts</code></h4>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">type</span> SortHelperArgsOpts = {
+  <span class="hljs-comment">/**
+   * Allow sort by several fields.
+   * This makes arg as array of sort values.
+   */</span>
+  multi?: <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-comment">/**
+   * This option set custom type name for generated sort argument.
+   */</span>
+  sortTypeName?: <span class="hljs-built_in">string</span>;
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="recordhelperargsopts"></a><a href="#recordhelperargsopts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>RecordHelperArgsOpts</code></h4>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">type</span> RecordHelperArgsOpts = {
+  <span class="hljs-comment">/**
+   * You an remove some fields from type via this option.
+   */</span>
+  removeFields?: <span class="hljs-built_in">string</span>[];
+  <span class="hljs-comment">/**
+   * This option makes provided fieldNames as required
+   */</span>
+  requiredFields?: <span class="hljs-built_in">string</span>[];
+  <span class="hljs-comment">/**
+   * This option makes all fields nullable by default.
+   * May be overridden by `requiredFields` property
+   */</span>
+  allFieldsNullable?: <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-comment">/**
+   * Provide custom prefix for Type name
+   */</span>
+  prefix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * Provide custom suffix for Type name
+   */</span>
+  suffix?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * Make arg `record` as required if this option is true.
+   */</span>
+  isRequired?: <span class="hljs-built_in">boolean</span>;
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="limithelperargsopts"></a><a href="#limithelperargsopts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>LimitHelperArgsOpts</code></h4>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">type</span> LimitHelperArgsOpts = {
+  <span class="hljs-comment">/**
+   * Set limit for default number of returned records
+   * if it does not provided in query.
+   * By default: 100
+   */</span>
+  defaultValue?: <span class="hljs-built_in">number</span>;
+};
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="faq"></a><a href="#faq" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAQ</h2>
 <h3><a class="anchor" aria-hidden="true" id="can-i-get-generated-vanilla-graphql-types"></a><a href="#can-i-get-generated-vanilla-graphql-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Can I get generated vanilla GraphQL types?</h3>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> UserTC = composeWithMongoose(User);
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> UserTC = composeMongoose(User);
 UserTC.getType(); <span class="hljs-comment">// returns GraphQLObjectType</span>
 UserTC.getInputType(); <span class="hljs-comment">// returns GraphQLInputObjectType, eg. for args</span>
 UserTC.get(<span class="hljs-string">'languages'</span>).getType(); <span class="hljs-comment">// get GraphQLObjectType for nested field</span>
 UserTC.get(<span class="hljs-string">'fieldWithNesting.subNesting'</span>).getType(); <span class="hljs-comment">// get GraphQL type of deep nested field</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="how-to-add-custom-fields"></a><a href="#how-to-add-custom-fields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to add custom fields?</h3>
-<pre><code class="hljs css language-js">UserTC.addFields({
-  <span class="hljs-attr">lonLat</span>: ObjectTypeComposer.create(<span class="hljs-string">'type LonLat { lon: Float, lat: Float }'</span>),
-  <span class="hljs-attr">notice</span>: <span class="hljs-string">'String'</span>, <span class="hljs-comment">// shorthand definition</span>
+<pre><code class="hljs css language-ts">UserTC.addFields({
+  lonLat: ObjectTypeComposer.create(<span class="hljs-string">'type LonLat { lon: Float, lat: Float }'</span>),
+  notice: <span class="hljs-string">'String'</span>, <span class="hljs-comment">// shorthand definition</span>
   noticeList: { <span class="hljs-comment">// extended</span>
-    type: <span class="hljs-string">'[String]'</span>, <span class="hljs-comment">// String, Int, Float, Boolean, ID, Json</span>
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">'[String]'</span>, <span class="hljs-comment">// String, Int, Float, Boolean, ID, Json</span>
     description: <span class="hljs-string">'Array of notices'</span>,
-    <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">source, args, context, info</span>) =&gt;</span> <span class="hljs-string">'some value'</span>,
+    resolve: <span class="hljs-function">(<span class="hljs-params">source, args, context, info</span>) =&gt;</span> <span class="hljs-string">'some value'</span>,
   },
-  <span class="hljs-attr">bio</span>: {
-    <span class="hljs-attr">type</span>: GraphQLString,
-    <span class="hljs-attr">description</span>: <span class="hljs-string">'Providing vanilla GraphQL type'</span>
+  bio: {
+    <span class="hljs-keyword">type</span>: GraphQLString,
+    description: <span class="hljs-string">'Providing vanilla GraphQL type'</span>
   }
 })
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="how-to-build-nesting-relations"></a><a href="#how-to-build-nesting-relations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to build nesting/relations?</h3>
 <p>Suppose you <code>User</code> model has <code>friendsIds</code> field with array of user ids. So let build some relations:</p>
-<pre><code class="hljs css language-js">UserTC.addRelation(
+<pre><code class="hljs css language-ts">UserTC.addRelation(
   <span class="hljs-string">'friends'</span>,
   {
-    <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> UserTC.getResolver(<span class="hljs-string">'findByIds'</span>),
-    <span class="hljs-attr">prepareArgs</span>: { <span class="hljs-comment">// resolver `findByIds` has `_ids` arg, let provide value to it</span>
+    resolver: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> UserTC.mongooseResolvers.dataLoaderMany(),
+    prepareArgs: { <span class="hljs-comment">// resolver `findByIds` has `_ids` arg, let provide value to it</span>
       _ids: <span class="hljs-function">(<span class="hljs-params">source</span>) =&gt;</span> source.friendsIds,
     },
-    <span class="hljs-attr">projection</span>: { <span class="hljs-attr">friendsIds</span>: <span class="hljs-number">1</span> }, <span class="hljs-comment">// point fields in source object, which should be fetched from DB</span>
+    projection: { friendsIds: <span class="hljs-number">1</span> }, <span class="hljs-comment">// point fields in source object, which should be fetched from DB</span>
   }
 );
 UserTC.addRelation(
   <span class="hljs-string">'adultFriendsWithSameGender'</span>,
   {
-    <span class="hljs-attr">resolver</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> UserTC.get(<span class="hljs-string">'$findMany'</span>), <span class="hljs-comment">// shorthand for `UserTC.getResolver('findMany')`</span>
+    resolver: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> UserTC.mongooseResolvers.findMany(),
     prepareArgs: { <span class="hljs-comment">// resolver `findMany` has `filter` arg, we may provide mongoose query to it</span>
       filter: <span class="hljs-function">(<span class="hljs-params">source</span>) =&gt;</span> ({
-        <span class="hljs-attr">_operators</span> : { <span class="hljs-comment">// Applying criteria on fields which have</span>
+        _operators : { <span class="hljs-comment">// Applying criteria on fields which have</span>
                        <span class="hljs-comment">// operators enabled for them (by default, indexed fields only)</span>
-          _id : { <span class="hljs-attr">in</span>: source.friendsIds },
-          <span class="hljs-attr">age</span>: { <span class="hljs-attr">gt</span>: <span class="hljs-number">21</span> }
+          _id : { <span class="hljs-keyword">in</span>: source.friendsIds },
+          age: { gt: <span class="hljs-number">21</span> }
         },
-        <span class="hljs-attr">gender</span>: source.gender,
+        gender: source.gender,
       }),
-      <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>,
+      limit: <span class="hljs-number">10</span>,
     },
-    <span class="hljs-attr">projection</span>: { <span class="hljs-attr">friendsIds</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">gender</span>: <span class="hljs-number">1</span> }, <span class="hljs-comment">// required fields from source object</span>
+    projection: { friendsIds: <span class="hljs-number">1</span>, gender: <span class="hljs-number">1</span> }, <span class="hljs-comment">// required fields from source object</span>
   }
 );
 </code></pre>
@@ -338,42 +737,42 @@ UserTC.addRelation(
 Also suppose you want the structure to have the same GraphQL type across all parent types.
 (For instance, to allow reuse of fragments for this type)
 Here are Schemas to demonstrate:</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { Schema } <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { Schema } <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
 
 <span class="hljs-keyword">const</span> ImageDataStructure = Schema({
-  <span class="hljs-attr">url</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">dimensions</span> : {
-    <span class="hljs-attr">width</span>: <span class="hljs-built_in">Number</span>,
-    <span class="hljs-attr">height</span>: <span class="hljs-built_in">Number</span>
+  url: <span class="hljs-built_in">String</span>,
+  dimensions : {
+    width: <span class="hljs-built_in">Number</span>,
+    height: <span class="hljs-built_in">Number</span>
   }
-}, { <span class="hljs-attr">_id</span>: <span class="hljs-literal">false</span> });
+}, { _id: <span class="hljs-literal">false</span> });
 
 <span class="hljs-keyword">const</span> UserProfile = Schema({
-  <span class="hljs-attr">fullName</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">personalImage</span>: ImageDataStructure
+  fullName: <span class="hljs-built_in">String</span>,
+  personalImage: ImageDataStructure
 });
 
 <span class="hljs-keyword">const</span> Article = Schema({
-  <span class="hljs-attr">title</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">heroImage</span>: ImageDataStructure
+  title: <span class="hljs-built_in">String</span>,
+  heroImage: ImageDataStructure
 });
 </code></pre>
 <p>If you want the <code>ImageDataStructure</code> to use the same GraphQL type in both <code>Article</code> and <code>UserProfile</code> you will need create it as a mongoose schema (not a standard javascript object) and to explicitly tell <code>graphql-compose-mongoose</code> the name you want it to have. Otherwise, without the name, it would generate the name according to the first parent this type was embedded in.</p>
 <p>Do the following:</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { schemaComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>; <span class="hljs-comment">// get the default schemaComposer or your created schemaComposer</span>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { schemaComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>; <span class="hljs-comment">// get the default schemaComposer or your created schemaComposer</span>
 <span class="hljs-keyword">import</span> { convertSchemaToGraphQL } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
 
 convertSchemaToGraphQL(ImageDataStructure, <span class="hljs-string">'EmbeddedImage'</span>, schemaComposer); <span class="hljs-comment">// Force this type on this mongoose schema</span>
 </code></pre>
 <p>Before continuing to convert your models to TypeComposers:</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
-<span class="hljs-keyword">import</span> { composeWithMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+<span class="hljs-keyword">import</span> { composeMongoose } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose-mongoose'</span>;
 
 <span class="hljs-keyword">const</span> UserProfile = mongoose.model(<span class="hljs-string">'UserProfile'</span>, UserProfile);
 <span class="hljs-keyword">const</span> Article = mongoose.model(<span class="hljs-string">'Article'</span>, Article);
 
-<span class="hljs-keyword">const</span> UserProfileTC = composeWithMongoose(UserProfile);
-<span class="hljs-keyword">const</span> ArticleTC = composeWithMongoose(Article);
+<span class="hljs-keyword">const</span> UserProfileTC = composeMongoose(UserProfile);
+<span class="hljs-keyword">const</span> ArticleTC = composeMongoose(Article);
 </code></pre>
 <p>Then, you can use queries like this:</p>
 <pre><code class="hljs css language-graphql"><span class="hljs-class">query </span>{
@@ -408,10 +807,10 @@ fragment fullImageData on <span class="hljs-class">EmbeddedImage </span>{
 <li>updateOne</li>
 </ul>
 <p>The prototype of before save hook:</p>
-<pre><code class="hljs css language-js">(doc: mixed, <span class="hljs-attr">rp</span>: ResolverResolveParams) =&gt; <span class="hljs-built_in">Promise</span>&lt;*&gt;,
+<pre><code class="hljs css language-ts">(doc: mixed, rp: ResolverResolveParams) =&gt; <span class="hljs-built_in">Promise</span>&lt;*&gt;,
 </code></pre>
 <p>The typical implementation may be like this:</p>
-<pre><code class="hljs css language-js"><span class="hljs-comment">// extend resolve params with hook</span>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// extend resolve params with hook</span>
 rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">doc, rp</span>) </span>{
   doc.userTouchedAt = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
 
@@ -424,7 +823,7 @@ rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hlj
 }
 </code></pre>
 <p>You can provide your implementation directly in type composer:</p>
-<pre><code class="hljs css language-js">UserTC.wrapResolverResolve(<span class="hljs-string">'updateById'</span>, next =&gt; <span class="hljs-keyword">async</span> rp =&gt; {
+<pre><code class="hljs css language-ts">UserTC.wrapResolverResolve(<span class="hljs-string">'updateById'</span>, <span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-keyword">async</span> rp =&gt; {
 
   <span class="hljs-comment">// extend resolve params with hook</span>
   rp.beforeRecordMutate = <span class="hljs-keyword">async</span> (doc, resolveParams) =&gt; { ... };
@@ -433,7 +832,7 @@ rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hlj
 });
 </code></pre>
 <p>or you can create wrappers for example to protect access:</p>
-<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">adminAccess</span>(<span class="hljs-params">resolvers</span>) </span>{
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">adminAccess</span>(<span class="hljs-params">resolvers</span>) </span>{
   <span class="hljs-built_in">Object</span>.keys(resolvers).forEach(<span class="hljs-function">(<span class="hljs-params">k</span>) =&gt;</span> {
     resolvers[k] = resolvers[k].wrapResolve(<span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-keyword">async</span> rp =&gt; {
 
@@ -448,148 +847,67 @@ rp.beforeRecordMutate = <span class="hljs-keyword">async</span> <span class="hlj
 
 <span class="hljs-comment">// and wrap the resolvers</span>
 schemaComposer.Mutation.addFields({
-  <span class="hljs-attr">createResource</span>: ResourceTC.getResolver(<span class="hljs-string">'createOne'</span>),
-  <span class="hljs-attr">createResources</span>: ResourceTC.getResolver(<span class="hljs-string">'createMany'</span>),
+  createResource: ResourceTC.mongooseResolvers.createOne(),
+  createResources: ResourceTC.mongooseResolvers.createMany(),
   ...adminAccess({
-    <span class="hljs-attr">updateResource</span>: ResourceTC.getResolver(<span class="hljs-string">'updateById'</span>),
-    <span class="hljs-attr">removeResource</span>: ResourceTC.getResolver(<span class="hljs-string">'removeById'</span>),
+    updateResource: ResourceTC.mongooseResolvers.updateById(),
+    removeResource: ResourceTC.mongooseResolvers.removeById(),
   }),
 });
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="customization-options"></a><a href="#customization-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customization options</h2>
-<p>When we convert model <code>const UserTC = composeWithMongoose(User, customizationOptions);</code> you may tune every piece of future derived types and resolvers.</p>
-<h3><a class="anchor" aria-hidden="true" id="here-is-flow-typed-definition-of-this-options"></a><a href="#here-is-flow-typed-definition-of-this-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Here is flow typed definition of this options:</h3>
-<p>The top level of customization options. Here you setup name and description for the main type, remove fields or leave only desired fields.</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type typeConverterOpts = {
-  name?: string,
-  description?: string,
-  fields?: {
-    only?: string[],
-    remove?: string[],
-  },
-  inputType?: typeConverterInputTypeOpts,
-  resolvers?: <span class="hljs-literal">false</span> | typeConverterResolversOpts,
-};
+<h3><a class="anchor" aria-hidden="true" id="how-can-i-push-pop-or-add-remove-values-to-arrays"></a><a href="#how-can-i-push-pop-or-add-remove-values-to-arrays" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How can I push/pop or add/remove values to arrays?</h3>
+<p>The default resolvers, by design, will replace (overwrite) any supplied array object when using e.g. <code>updateById</code>. If you want to push or pop a value in an array you can use a custom resolver with a native MongoDB call.</p>
+<p>For example (push):</p>
+<pre><code class="hljs css language-ts">schemaComposer.Mutation.addFields({
+  userPushToArray: {
+    <span class="hljs-keyword">type</span>: UserTC,
+    args: { userId: <span class="hljs-string">'MongoID!'</span>, valueToPush: <span class="hljs-string">'String'</span> },
+    resolve: <span class="hljs-keyword">async</span> (source, args, context, info) =&gt; {
+      <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> User.update(
+        { _id: args.userId },
+        { $push: { arrayToPushTo: args.valueToPush } }
+      );
+      <span class="hljs-keyword">if</span> (!user) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span> <span class="hljs-comment">// or gracefully return an error etc...</span>
+      <span class="hljs-keyword">return</span> User.findOne({ _id: args.userId }) <span class="hljs-comment">// return the record</span>
+    }
+  }
+})
 </code></pre>
-<p>This is <code>opts.inputType</code> level of options for default InputTypeObject which will be provided to all resolvers for <code>filter</code> and <code>input</code> args.</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type typeConverterInputTypeOpts = {
-  name?: string,
-  description?: string,
-  fields?: {
-    only?: string[],
-    remove?: string[],
-    required?: string[]
-  },
-};
+<p><code>User</code> is the corresponding Mongoose model. If you do not wish to allow duplicates in the array then replace <code>$push</code> with <code>$addToSet</code>. Read the graphql-compose docs on custom resolvers for more info: <a href="https://graphql-compose.github.io/docs/en/basics-resolvers.html">https://graphql-compose.github.io/docs/en/basics-resolvers.html</a></p>
+<p>NB if you set <code>unique: true</code> on the array then using the <code>update</code> <code>$push</code> approach will not check for duplicates, this is due to a MongoDB bug: <a href="https://jira.mongodb.org/browse/SERVER-1068">https://jira.mongodb.org/browse/SERVER-1068</a>. For more usage examples with <code>$push</code> and arrays see the MongoDB docs here <a href="https://docs.mongodb.com/manual/reference/operator/update/push/">https://docs.mongodb.com/manual/reference/operator/update/push/</a>. Also note that <code>$push</code> will preserve order in the array (append to end of array) whereas <code>$addToSet</code> will not.</p>
+<h3><a class="anchor" aria-hidden="true" id="is-it-possible-to-use-several-schemas"></a><a href="#is-it-possible-to-use-several-schemas" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Is it possible to use several schemas?</h3>
+<p>By default <code>composeMongoose</code> uses global <code>schemaComposer</code> for generated types. If you need to create different GraphQL schemas you need create own <code>schemaComposer</code>s and provide them to <code>customizationOptions</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { SchemaComposer } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-compose'</span>;
+
+<span class="hljs-keyword">const</span> schema1 = <span class="hljs-keyword">new</span> SchemaComposer();
+<span class="hljs-keyword">const</span> schema2 = <span class="hljs-keyword">new</span> SchemaComposer();
+
+<span class="hljs-keyword">const</span> UserTCForSchema1 = composeMongoose(User, { schemaComposer: schema1 });
+<span class="hljs-keyword">const</span> UserTCForSchema2 = composeMongoose(User, { schemaComposer: schema2 });
 </code></pre>
-<p>This is <code>opts.resolvers</code> level of options.
-If you set the option to <code>false</code> it will disable resolver or some of its input args.
-Every resolver's arg has it own options. They described below.</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type typeConverterResolversOpts = {
-  findById?: <span class="hljs-literal">false</span>,
-  findByIds?: <span class="hljs-literal">false</span> | {
-    limit?: limitHelperArgsOpts | <span class="hljs-literal">false</span>,
-    sort?: sortHelperArgsOpts | <span class="hljs-literal">false</span>,
-  },
-  findOne?: <span class="hljs-literal">false</span> | {
-    filter?: filterHelperArgsOpts | <span class="hljs-literal">false</span>,
-    sort?: sortHelperArgsOpts | <span class="hljs-literal">false</span>,
-    skip?: <span class="hljs-literal">false</span>,
-  },
-  findMany?: <span class="hljs-literal">false</span> | {
-    filter?: filterHelperArgsOpts | <span class="hljs-literal">false</span>,
-    sort?: sortHelperArgsOpts | <span class="hljs-literal">false</span>,
-    limit?: limitHelperArgsOpts | <span class="hljs-literal">false</span>,
-    skip?: <span class="hljs-literal">false</span>,
-  },
-  updateById?: <span class="hljs-literal">false</span> | {
-    record?: recordHelperArgsOpts | <span class="hljs-literal">false</span>,
-  },
-  updateOne?: <span class="hljs-literal">false</span> | {
-    record?: recordHelperArgsOpts | <span class="hljs-literal">false</span>,
-    filter?: filterHelperArgsOpts | <span class="hljs-literal">false</span>,
-    sort?: sortHelperArgsOpts | <span class="hljs-literal">false</span>,
-    skip?: <span class="hljs-literal">false</span>,
-  },
-  updateMany?: <span class="hljs-literal">false</span> | {
-    record?: recordHelperArgsOpts | <span class="hljs-literal">false</span>,
-    filter?: filterHelperArgsOpts | <span class="hljs-literal">false</span>,
-    sort?: sortHelperArgsOpts | <span class="hljs-literal">false</span>,
-    limit?: limitHelperArgsOpts | <span class="hljs-literal">false</span>,
-    skip?: <span class="hljs-literal">false</span>,
-  },
-  removeById?: <span class="hljs-literal">false</span>,
-  removeOne?: <span class="hljs-literal">false</span> | {
-    filter?: filterHelperArgsOpts | <span class="hljs-literal">false</span>,
-    sort?: sortHelperArgsOpts | <span class="hljs-literal">false</span>,
-  },
-  removeMany?: <span class="hljs-literal">false</span> | {
-    filter?: filterHelperArgsOpts | <span class="hljs-literal">false</span>,
-  },
-  createOne?: <span class="hljs-literal">false</span> | {
-    record?: recordHelperArgsOpts | <span class="hljs-literal">false</span>,
-  },
-  createMany?: <span class="hljs-literal">false</span> | {
-    records?: recordHelperArgsOpts | <span class="hljs-literal">false</span>,
-  },
-  count?: <span class="hljs-literal">false</span> | {
-    filter?: filterHelperArgsOpts | <span class="hljs-literal">false</span>,
-  },
-  connection?: <span class="hljs-literal">false</span> | {
-    <span class="hljs-attr">uniqueFields</span>: string[],
-    <span class="hljs-attr">sortValue</span>: mixed,
-    <span class="hljs-attr">directionFilter</span>: <span class="hljs-function">(<span class="hljs-params">&lt;T&gt;(filterArg: T, cursorData: CursorDataType, isBefore: boolean</span>) =&gt;</span> T),
-  },
-  pagination?: <span class="hljs-literal">false</span> | {
-    perPage?: number,
-  },
-};
+<h3><a class="anchor" aria-hidden="true" id="embedded-documents-has-id-field-and-you-don-t-need-it"></a><a href="#embedded-documents-has-id-field-and-you-don-t-need-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Embedded documents has <code>_id</code> field and you don't need it?</h3>
+<p>Just turn them off in mongoose:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> UsersSchema = <span class="hljs-keyword">new</span> Schema({
+  _id: { <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span> }
+  emails: [{
+    _id: <span class="hljs-literal">false</span>, <span class="hljs-comment">// &lt;-- disable id addition in mongoose</span>
+    address: { <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span> },
+    verified: <span class="hljs-built_in">Boolean</span>
+  }]
+});
 </code></pre>
-<p>This is <code>opts.resolvers.[resolverName].[filter|sort|record|limit]</code> level of options.
-You may tune every resolver's args independently as you wish.
-Here you may setup every argument and override some fields from the default input object type, described above in <code>opts.inputType</code>.</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type filterHelperArgsOpts = {
-  filterTypeName?: string, <span class="hljs-comment">// type name for `filter`</span>
-  isRequired?: boolean, <span class="hljs-comment">// set `filter` arg as required (wraps in GraphQLNonNull)</span>
-  onlyIndexed?: boolean, <span class="hljs-comment">// leave only that fields, which is indexed in mongodb</span>
-  requiredFields?: string | string[], <span class="hljs-comment">// provide fieldNames, that should be required</span>
-  operators?: filterOperatorsOpts | <span class="hljs-literal">false</span>, <span class="hljs-comment">// provide filtering fields by operators, eg. $lt, $gt</span>
-                                           <span class="hljs-comment">// if left empty - provides all operators on indexed fields</span>
-};
-
-<span class="hljs-comment">// supported operators names in filter `arg`</span>
-<span class="hljs-keyword">export</span> type filterOperatorNames =  <span class="hljs-string">'gt'</span> | <span class="hljs-string">'gte'</span> | <span class="hljs-string">'lt'</span> | <span class="hljs-string">'lte'</span> | <span class="hljs-string">'ne'</span> | <span class="hljs-string">'in[]'</span> | <span class="hljs-string">'nin[]'</span>;
-<span class="hljs-keyword">export</span> type filterOperatorsOpts = { [fieldName: string]: filterOperatorNames[] | <span class="hljs-literal">false</span> };
-
-<span class="hljs-keyword">export</span> type sortHelperArgsOpts = {
-  sortTypeName?: string, <span class="hljs-comment">// type name for `sort`</span>
-};
-
-<span class="hljs-keyword">export</span> type recordHelperArgsOpts = {
-  recordTypeName?: string, <span class="hljs-comment">// type name for `record`</span>
-  isRequired?: boolean, <span class="hljs-comment">// set `record` arg as required (wraps in GraphQLNonNull)</span>
-  removeFields?: string[], <span class="hljs-comment">// provide fieldNames, that should be removed</span>
-  requiredFields?: string[], <span class="hljs-comment">// provide fieldNames, that should be required</span>
-};
-
-<span class="hljs-keyword">export</span> type limitHelperArgsOpts = {
-  defaultValue?: number, <span class="hljs-comment">// set your default limit, if it not provided in query (default: 1000)</span>
-};
+<h3><a class="anchor" aria-hidden="true" id="can-field-name-in-schema-have-different-name-in-database"></a><a href="#can-field-name-in-schema-have-different-name-in-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Can field name in schema have different name in database?</h3>
+<p>Yes, it can. This package understands mongoose <a href="https://mongoosejs.com/docs/guide.html#aliases"><code>alias</code> option</a> for fields. Just provide <code>alias: 'country'</code> for field <code>c</code> and you get <code>country</code> field name in GraphQL schema and Mongoose model but <code>c</code> field in database:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> childSchema = <span class="hljs-keyword">new</span> Schema({
+  c: {
+    <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span>,
+    alias: <span class="hljs-string">'country'</span>
+  }
+});
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="used-plugins"></a><a href="#used-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Used plugins</h2>
-<h3><a class="anchor" aria-hidden="true" id="graphql-compose-connection-https-githubcom-graphql-compose-graphql-compose-connection"></a><a href="#graphql-compose-connection-https-githubcom-graphql-compose-graphql-compose-connection" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/graphql-compose/graphql-compose-connection">graphql-compose-connection</a></h3>
-<p>This plugin adds <code>connection</code> resolver. Build in mechanism allows sort by any unique indexes (not only by id). Also supported compound sorting (by several fields).</p>
-<p>Besides standard connection arguments <code>first</code>, <code>last</code>, <code>before</code> and <code>after</code>, also added great arguments:</p>
-<ul>
-<li><code>filter</code> arg - for filtering records</li>
-<li><code>sort</code> arg - for sorting records</li>
-</ul>
-<p>This plugin completely follows to <a href="https://facebook.github.io/relay/graphql/connections.htm">Relay Cursor Connections Specification</a>.</p>
-<h3><a class="anchor" aria-hidden="true" id="graphql-compose-pagination-https-githubcom-graphql-compose-graphql-compose-pagination"></a><a href="#graphql-compose-pagination-https-githubcom-graphql-compose-graphql-compose-pagination" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/graphql-compose/graphql-compose-pagination">graphql-compose-pagination</a></h3>
-<p>This plugin adds <code>pagination</code> resolver.</p>
 <h2><a class="anchor" aria-hidden="true" id="license"></a><a href="#license" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>License</h2>
 <p><a href="https://github.com/graphql-compose/graphql-compose-mongoose/blob/master/LICENSE.md">MIT</a></p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/plugins/list-of-plugins.html"><span class="arrow-prev">← </span><span>Plugins list</span></a><a class="docs-next button" href="/docs/next/plugins/plugin-elasticsearch.html"><span class="function-name-prevnext">ElasticSearch plugin</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#example">Example</a><ul class="toc-headings"><li><a href="#working-with-mongoose-collection-level-discriminators">Working with Mongoose Collection Level Discriminators</a></li></ul></li><li><a href="#faq">FAQ</a><ul class="toc-headings"><li><a href="#can-i-get-generated-vanilla-graphql-types">Can I get generated vanilla GraphQL types?</a></li><li><a href="#how-to-add-custom-fields">How to add custom fields?</a></li><li><a href="#how-to-build-nesting-relations">How to build nesting/relations?</a></li><li><a href="#reusing-the-same-mongoose-schema-in-embedded-object-fields">Reusing the same mongoose Schema in embedded object fields</a></li><li><a href="#access-and-modify-mongoose-doc-before-save">Access and modify mongoose doc before save</a></li></ul></li><li><a href="#customization-options">Customization options</a><ul class="toc-headings"><li><a href="#here-is-flow-typed-definition-of-this-options">Here is flow typed definition of this options:</a></li></ul></li><li><a href="#used-plugins">Used plugins</a><ul class="toc-headings"><li><a href="#graphql-compose-connection-https-githubcom-graphql-compose-graphql-compose-connection">graphql-compose-connection</a></li><li><a href="#graphql-compose-pagination-https-githubcom-graphql-compose-graphql-compose-pagination">graphql-compose-pagination</a></li></ul></li><li><a href="#license">License</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><span><script src="/js/pjax-api.js"></script><script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/plugins/list-of-plugins.html"><span class="arrow-prev">← </span><span>Plugins list</span></a><a class="docs-next button" href="/docs/next/plugins/plugin-elasticsearch.html"><span class="function-name-prevnext">ElasticSearch plugin</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#intro-video">Intro video</a></li><li><a href="#example">Example</a><ul class="toc-headings"><li><a href="#working-with-mongoose-collection-level-discriminators">Working with Mongoose Collection Level Discriminators</a></li></ul></li><li><a href="#customization-options">Customization options</a><ul class="toc-headings"><li><a href="#composemongoose-customization-options"><code>composeMongoose</code> customization options</a></li></ul></li><li><a href="#resolvers-customization-options">Resolvers' customization options</a><ul class="toc-headings"><li><a href="#connectionopts-connectionresolveropts"><code>connection(opts?: ConnectionResolverOpts)</code></a></li><li><a href="#countopts-countresolveropts"><code>count(opts?: CountResolverOpts)</code></a></li><li><a href="#createmanyopts-createmanyresolveropts"><code>createMany(opts?: CreateManyResolverOpts)</code></a></li><li><a href="#createoneopts-createoneresolveropts"><code>createOne(opts?: CreateOneResolverOpts)</code></a></li><li><a href="#dataloaderopts-dataloaderresolveropts"><code>dataLoader(opts?: DataLoaderResolverOpts)</code></a></li><li><a href="#dataloadermanyopts-dataloadermanyresolveropts"><code>dataLoaderMany(opts?: DataLoaderManyResolverOpts)</code></a></li><li><a href="#findbyidopts-findbyidresolveropts"><code>findById(opts?: FindByIdResolverOpts)</code></a></li><li><a href="#findbyidsopts-findbyidsresolveropts"><code>findByIds(opts?: FindByIdsResolverOpts)</code></a></li><li><a href="#findmanyopts-findmanyresolveropts"><code>findMany(opts?: FindManyResolverOpts)</code></a></li><li><a href="#findoneopts-findoneresolveropts"><code>findOne(opts?: FindOneResolverOpts)</code></a></li><li><a href="#paginationopts-paginationresolveropts"><code>pagination(opts?: PaginationResolverOpts)</code></a></li><li><a href="#removebyidopts-removebyidresolveropts"><code>removeById(opts?: RemoveByIdResolverOpts)</code></a></li><li><a href="#removemanyopts-removemanyresolveropts"><code>removeMany(opts?: RemoveManyResolverOpts)</code></a></li><li><a href="#removeoneopts-removeoneresolveropts"><code>removeOne(opts?: RemoveOneResolverOpts)</code></a></li><li><a href="#updatebyidopts-updatebyidresolveropts"><code>updateById(opts?: UpdateByIdResolverOpts)</code></a></li><li><a href="#updatemanyopts-updatemanyresolveropts"><code>updateMany(opts?: UpdateManyResolverOpts)</code></a></li><li><a href="#updateoneopts-updateoneresolveropts"><code>updateOne(opts?: UpdateOneResolverOpts)</code></a></li><li><a href="#description-of-common-resolvers-options">Description of common resolvers' options</a></li></ul></li><li><a href="#faq">FAQ</a><ul class="toc-headings"><li><a href="#can-i-get-generated-vanilla-graphql-types">Can I get generated vanilla GraphQL types?</a></li><li><a href="#how-to-add-custom-fields">How to add custom fields?</a></li><li><a href="#how-to-build-nesting-relations">How to build nesting/relations?</a></li><li><a href="#reusing-the-same-mongoose-schema-in-embedded-object-fields">Reusing the same mongoose Schema in embedded object fields</a></li><li><a href="#access-and-modify-mongoose-doc-before-save">Access and modify mongoose doc before save</a></li><li><a href="#how-can-i-push-pop-or-add-remove-values-to-arrays">How can I push/pop or add/remove values to arrays?</a></li><li><a href="#is-it-possible-to-use-several-schemas">Is it possible to use several schemas?</a></li><li><a href="#embedded-documents-has-id-field-and-you-don-t-need-it">Embedded documents has <code>_id</code> field and you don't need it?</a></li><li><a href="#can-field-name-in-schema-have-different-name-in-database">Can field name in schema have different name in database?</a></li></ul></li><li><a href="#license">License</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><span><script src="/js/pjax-api.js"></script><script>
       window.foo = new Pjax({
         areas: [
           // try to use the first query.
