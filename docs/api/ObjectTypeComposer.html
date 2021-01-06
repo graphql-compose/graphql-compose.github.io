@@ -822,7 +822,10 @@ no need in <code>directives</code>. Instead directives better to use <code>exten
 <h3><a class="anchor" aria-hidden="true" id="objecttypecomposerasobjectdefinition"></a><a href="#objecttypecomposerasobjectdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerAsObjectDefinition</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerAsObjectDefinition&lt;TSource, TContext&gt; = {
   <span class="hljs-attr">name</span>: string;
-  interfaces?: <span class="hljs-literal">null</span> | Thunk&lt;<span class="hljs-built_in">Array</span>&lt;InterfaceTypeComposerDefinition&lt;any, TContext&gt;&gt;&gt;;
+  interfaces?: <span class="hljs-literal">null</span> | ThunkWithSchemaComposer&lt;
+    <span class="hljs-built_in">Array</span>&lt;InterfaceTypeComposerDefinition&lt;any, TContext&gt;&gt;,
+    SchemaComposer&lt;TContext&gt;
+  &gt;;
   fields?: ObjectTypeComposerFieldConfigMapDefinition&lt;TSource, TContext&gt;;
   isTypeOf?: <span class="hljs-literal">null</span> | GraphQLIsTypeOfFn&lt;TSource, TContext&gt;;
   description?: string | <span class="hljs-literal">null</span>;
@@ -841,15 +844,23 @@ no need in <code>directives</code>. Instead directives better to use <code>exten
 &gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="objecttypecomposerfieldconfigdefinition"></a><a href="#objecttypecomposerfieldconfigdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerFieldConfigDefinition</h3>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerFieldConfigDefinition&lt;TSource, TContext, TArgs = any&gt; = Thunk&lt;
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerFieldConfigDefinition&lt;
+  TSource,
+  TContext,
+  TArgs = any
+&gt; = ThunkWithSchemaComposer&lt;
   | ObjectTypeComposerFieldConfigAsObjectDefinition&lt;TSource, TContext, TArgs&gt;
   | ComposeOutputTypeDefinition&lt;TContext&gt;
-  | Resolver&lt;any, TContext, any&gt;
+  | Resolver&lt;any, TContext, any&gt;,
+  SchemaComposer&lt;TContext&gt;
 &gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="objecttypecomposerfieldconfigasobjectdefinition"></a><a href="#objecttypecomposerfieldconfigasobjectdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerFieldConfigAsObjectDefinition</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerFieldConfigAsObjectDefinition&lt;TSource, TContext, TArgs = any&gt; = {
-  <span class="hljs-attr">type</span>: Thunk&lt;ComposeOutputTypeDefinition&lt;TContext&gt; | Resolver&lt;any, TContext, any&gt;&gt;;
+  <span class="hljs-attr">type</span>: ThunkWithSchemaComposer&lt;
+    ComposeOutputTypeDefinition&lt;TContext&gt; | Resolver&lt;any, TContext, any&gt;,
+    SchemaComposer&lt;TContext&gt;
+  &gt;;
   args?: ObjectTypeComposerArgumentConfigMapDefinition&lt;TArgs&gt;;
   resolve?: GraphQLFieldResolver&lt;TSource, TContext, TArgs&gt;;
   subscribe?: GraphQLFieldResolver&lt;TSource, TContext&gt;;
@@ -886,7 +897,7 @@ no need in <code>directives</code>. Instead directives better to use <code>exten
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="objecttypecomposerargumentconfigasobjectdefinition"></a><a href="#objecttypecomposerargumentconfigasobjectdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerArgumentConfigAsObjectDefinition</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerArgumentConfigAsObjectDefinition = {
-  <span class="hljs-attr">type</span>: Thunk&lt;ComposeInputTypeDefinition&gt;;
+  <span class="hljs-attr">type</span>: ThunkWithSchemaComposer&lt;ComposeInputTypeDefinition, SchemaComposer&lt;any&gt;&gt;;
   defaultValue?: any;
   description?: string | <span class="hljs-literal">null</span>;
   extensions?: Extensions;
@@ -906,7 +917,7 @@ no need in <code>directives</code>. Instead directives better to use <code>exten
 <h3><a class="anchor" aria-hidden="true" id="objecttypecomposerargumentconfigdefinition"></a><a href="#objecttypecomposerargumentconfigdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerArgumentConfigDefinition</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerArgumentConfigDefinition =
   | ObjectTypeComposerArgumentConfigAsObjectDefinition
-  | Thunk&lt;ComposeInputTypeDefinition&gt;;
+  | ThunkWithSchemaComposer&lt;ComposeInputTypeDefinition, SchemaComposer&lt;any&gt;&gt;;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="objecttypecomposerrelationmap"></a><a href="#objecttypecomposerrelationmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerRelationMap</h3>
 <pre><code class="hljs css language-js"><span class="hljs-comment">// RELATION -----------------------------</span>
@@ -927,7 +938,10 @@ no need in <code>directives</code>. Instead directives better to use <code>exten
   TContext,
   TArgs = any
 &gt; = {
-  <span class="hljs-attr">resolver</span>: Thunk&lt;Resolver&lt;TRelationSource, TContext, TArgs&gt;&gt;;
+  <span class="hljs-attr">resolver</span>: ThunkWithSchemaComposer&lt;
+    Resolver&lt;TRelationSource, TContext, TArgs&gt;,
+    SchemaComposer&lt;TContext&gt;
+  &gt;;
   prepareArgs?: ObjectTypeComposerRelationArgsMapper&lt;TSource, TContext, TArgs&gt;;
   projection?: ProjectionType;
   description?: string | <span class="hljs-literal">null</span>;
