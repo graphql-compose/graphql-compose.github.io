@@ -1,5 +1,8 @@
 # Graphql-compose website
 
+**If you want to make changes in documentation, please do it in the upstream repo https://github.com/graphql-compose/graphql-compose/tree/master/docs. This repo contains configuration for docusaurus and styles for layout.**
+
+
 **Use `source` branch for making PRs.** `.gihub.io` website requires that `master` branch is used only for already builded version. Changes from `source` branch are automatically picked into `master` branch by CI.
 
 This code is used to generate https://graphql-compose.github.io. It pulls in files from `docs/` and `website/` to generate html files served on the site.
