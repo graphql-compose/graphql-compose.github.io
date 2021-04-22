@@ -110,7 +110,7 @@ Hm, it has become quite long. And what if you have other Types which have relati
 
 ## Relation via Resolver
 
-If you need to use the same FieldConfigs in different Types graphql-compose provides the **[Resolver](basics/what-is-resolver.md)** class. You may create a Resolver which will define `type`, `args` and `resolve` and reuse it everywhere you need it your Schema.
+If you need to use the same FieldConfigs in different Types graphql-compose provides the **[Resolver](basics/what-is-resolver.md)** class. You may create a Resolver which will define `type`, `args` and `resolve` and reuse it everywhere you need in your Schema.
 
 However if you put `posts` resolver in a separate file, you will face another problem
 
