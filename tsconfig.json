@@ -27,7 +27,7 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "pretty": true,
-    "rootDir": "api-gen"
+    "rootDir": "gen-api"
   },
   "include": ["**/typings.d.ts", "types/*.d.ts", "**/*.ts"],
   "exclude": ["node_modules"]

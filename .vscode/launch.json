@@ -22,6 +22,14 @@
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug gen-api",
+      "program": "${workspaceFolder}/gen-api/write-docs-api-files.ts",
+      "preLaunchTask": "tsc: build - tsconfig.build.json",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
     }
   ]
 }

@@ -5,8 +5,8 @@
     "lib": ["es2017", "esnext.asynciterable"],
     "types": ["node"],
     "outDir": "./dist",
-    "rootDir": "api-gen"
+    "rootDir": "gen-api"
   },
   "exclude": ["node_modules", "**/__tests__", "**/__mocks__"],
-  "include": ["src/**/*"]
+  "include": ["gen-api/**/*"]
 }

@@ -9,6 +9,7 @@ website/node_modules
 build
 translated_docs
 tmp
+dist
 
 # DOCS should be ignored! 
 # They can be fetched by `yarn fetch-docs` command
