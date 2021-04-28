@@ -5,6 +5,7 @@ interface SymbolData {
   name: string;
   type: string;
   typeChecker: string;
+  comments?: string;
   documentation: string;
 }
 
@@ -40,6 +41,7 @@ export interface InterfaceData {
 export interface ClassData extends SymbolData {
   constructors: ClassConstructorData[];
   methods: ClassMethodData[];
+  getters: ClassPropertyData[];
   properties: ClassPropertyData[];
   staticMethods: ClassMethodData[];
   staticProperties: ClassPropertyData[];
@@ -190,10 +192,13 @@ export default class TSClassParser {
   }
 
   /** Serialize a Node into a json object */
-  serializeNode(node: ts.MethodDeclaration | ts.PropertyDeclaration): SymbolData {
-    let symbol: ts.Symbol = ts.isPropertyDeclaration(node)
-      ? (node as any).symbol
-      : this.nodeToSymbol(node);
+  serializeNode(
+    node: ts.MethodDeclaration | ts.PropertyDeclaration | ts.AccessorDeclaration
+  ): SymbolData {
+    let symbol: ts.Symbol =
+      ts.isPropertyDeclaration(node) || ts.isGetAccessorDeclaration(node)
+        ? (node as any).symbol
+        : this.nodeToSymbol(node);
 
     const type = (node.type && node.type.getText()) || '';
     const typeChecker = !symbol
@@ -206,9 +211,20 @@ export default class TSClassParser {
 
     const name = node.name.getText();
 
-    // if (name === 'prot123') {
-    //   console.log(node);
-    // }
+    // get simple comments before Node declaration
+    let comments;
+    const text = node.name.getFullText();
+    const commentRanges = ts.getLeadingCommentRanges(text, 0);
+    if (commentRanges && commentRanges.length) {
+      comments = commentRanges
+        .map((r) => {
+          let t = text.slice(r.pos, r.end);
+          if (!t.startsWith('//')) return undefined;
+          return t.slice(3);
+        })
+        .filter((s) => s !== undefined)
+        .join('\n');
+    }
 
     let documentation = '';
     if (symbol) {
@@ -239,6 +255,7 @@ export default class TSClassParser {
 
     return {
       name,
+      comments,
       documentation,
       type: type || typeChecker,
       typeChecker,
@@ -281,6 +298,7 @@ export default class TSClassParser {
 
     const methods: ClassMethodData[] = [];
     const properties: ClassPropertyData[] = [];
+    const getters: ClassPropertyData[] = [];
     const staticMethods: ClassMethodData[] = [];
     const staticProperties: ClassPropertyData[] = [];
 
@@ -315,11 +333,13 @@ export default class TSClassParser {
           methods.push(this.parseMethodDeclaration(n));
         } else if (ts.isPropertyDeclaration(n)) {
           properties.push(this.parsePropertyDeclaration(n));
+        } else if (ts.isGetAccessorDeclaration(n)) {
+          getters.push(this.parsePropertyDeclaration(n));
         }
       });
     }
 
-    return { ...data, constructors, methods, properties, staticMethods, staticProperties };
+    return { ...data, constructors, methods, properties, getters, staticMethods, staticProperties };
   }
 
   parseMethodDeclaration(node: ts.MethodDeclaration): ClassMethodData {
@@ -343,7 +363,9 @@ export default class TSClassParser {
     return data;
   }
 
-  parsePropertyDeclaration(node: ts.PropertyDeclaration): ClassPropertyData {
+  parsePropertyDeclaration(
+    node: ts.PropertyDeclaration | ts.AccessorDeclaration
+  ): ClassPropertyData {
     const data: ClassPropertyData = this.serializeNode(node);
     data.flags = this.parseModifierFlags(node);
     return data;

@@ -24,7 +24,7 @@ const outDir = './docs/api/';
 
 classes.forEach((name) => {
   console.log(`Working on ${name}...`);
-  const srcFile = path.resolve(process.cwd(), srcPath, `${name}.d.ts`);
+  const srcFile = path.resolve(process.cwd(), srcPath, `${name}.ts`);
   const outputFile = path.resolve(process.cwd(), outDir, `${name}.md`);
 
   if (!fs.existsSync(srcFile)) {
