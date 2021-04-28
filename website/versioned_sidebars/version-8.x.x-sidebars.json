@@ -1,0 +1,46 @@
+{
+  "version-8.x.x-docs": {
+    "Introduction": [
+      "version-8.x.x-intro/prerequisites",
+      "version-8.x.x-intro/installation",
+      "version-8.x.x-intro/quick-start",
+      "version-8.x.x-intro/live-demos"
+    ],
+    "Basics": [
+      "version-8.x.x-basics/understanding-types",
+      "version-8.x.x-basics/type-modification",
+      "version-8.x.x-basics/what-is-resolver",
+      "version-8.x.x-basics/understanding-relations",
+      "version-8.x.x-basics/generating-schema"
+    ],
+    "API Reference": [
+      "version-8.x.x-api/SchemaComposer",
+      "version-8.x.x-api/ObjectTypeComposer",
+      "version-8.x.x-api/InputTypeComposer",
+      "version-8.x.x-api/ScalarTypeComposer",
+      "version-8.x.x-api/EnumTypeComposer",
+      "version-8.x.x-api/InterfaceTypeComposer",
+      "version-8.x.x-api/UnionTypeComposer",
+      "version-8.x.x-api/ListComposer",
+      "version-8.x.x-api/NonNullComposer",
+      "version-8.x.x-api/ThunkComposer",
+      "version-8.x.x-api/Resolver",
+      "version-8.x.x-api/TypeMapper",
+      "version-8.x.x-api/misc-api-methods"
+    ],
+    "Plugins": [
+      "version-8.x.x-plugins/list-of-plugins",
+      "version-8.x.x-plugins/plugin-mongoose",
+      "version-8.x.x-plugins/plugin-elasticsearch",
+      "version-8.x.x-plugins/plugin-json",
+      "version-8.x.x-plugins/plugin-relay",
+      "version-8.x.x-plugins/plugin-connection",
+      "version-8.x.x-plugins/plugin-pagination",
+      "version-8.x.x-plugins/plugin-aws"
+    ],
+    "Guide": [
+      "version-8.x.x-guide/wrapping-rest-api",
+      "version-8.x.x-guide/file-uploads"
+    ]
+  }
+}
