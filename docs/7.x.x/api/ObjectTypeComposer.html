@@ -1,0 +1,949 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ObjectTypeComposer · graphql-compose</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;!-- "/><meta name="docsearch:version" content="7.x.x"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ObjectTypeComposer · graphql-compose"/><meta property="og:type" content="website"/><meta property="og:url" content="https://graphql-compose.github.io/index.html"/><meta property="og:description" content="&lt;!-- "/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-83022112-3', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="graphql-compose"/><h2 class="headerTitleWithLogo">graphql-compose</h2></a><a href="/versions.html"><h3>7.x.x</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/7.x.x/intro/quick-start.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/7.x.x/api/SchemaComposer.html" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/docs/7.x.x/plugins/list-of-plugins.html" target="_self">Plugins</a></li><li class=""><a target="_self"></a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/graphql-compose" target="_self">Donate</a></li><li class=""><a href="https://github.com/graphql-compose/graphql-compose" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>API Reference</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/7.x.x/intro/prerequisites.html">Prerequisites</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/intro/installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/intro/quick-start.html">Quick Start Guide</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/intro/live-demos.html">Live Demos</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/7.x.x/basics/understanding-types.html">Type creation</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/basics/type-modification.html">Type modification</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/basics/what-is-resolver.html">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/basics/understanding-relations.html">Relations between Types</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/basics/generating-schema.html">Generating Schema</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/SchemaComposer.html">SchemaComposer</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/7.x.x/api/ObjectTypeComposer.html">ObjectTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/InputTypeComposer.html">InputTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/ScalarTypeComposer.html">ScalarTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/EnumTypeComposer.html">EnumTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/InterfaceTypeComposer.html">InterfaceTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/UnionTypeComposer.html">UnionTypeComposer</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/Resolver.html">Resolver</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/TypeMapper.html">TypeMapper</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/api/misc-api-methods.html">API misc</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Plugins</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/7.x.x/plugins/list-of-plugins.html">Plugins list</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/plugins/plugin-mongoose.html">Mongoose plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/plugins/plugin-elasticsearch.html">ElasticSearch plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/plugins/plugin-json.html">Json plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/plugins/plugin-relay.html">Relay plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/plugins/plugin-connection.html">Connection plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/plugins/plugin-pagination.html">Pagination plugin</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/plugins/plugin-aws.html">AWS plugin</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guide</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/7.x.x/guide/wrapping-rest-api.html">Wrapping REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/7.x.x/guide/file-uploads.html">File uploads</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/graphql-compose/graphql-compose/blob/master/src/ObjectTypeComposer.d.ts" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">ObjectTypeComposer</h1></header><article><div><span><!-- 
+🛑🛑🛑
+DO NOT EDIT THIS FILE!
+IT WAS AUTOGENERATED FROM d.ts FILE
+🛑🛑🛑
+If you want to make changes in this file, please do it via
+https://github.com/graphql-compose/graphql-compose/blob/master/src/ObjectTypeComposer.d.ts
+-->
+<p>Main class that gets <code>GraphQLObjectType</code> and provide ability to change them.</p>
+<h2><a class="anchor" aria-hidden="true" id="static-methods"></a><a href="#static-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Static methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="static-create"></a><a href="#static-create" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static create()</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">static</span> create&lt;TSrc = any, TCtx = any&gt;(
+  typeDef: ObjectTypeComposerDefinition&lt;TSrc, TCtx&gt;,
+  <span class="hljs-attr">schemaComposer</span>: SchemaComposer&lt;TCtx&gt;
+): ObjectTypeComposer&lt;TSrc, TCtx&gt;
+</code></pre>
+<p>Create <code>ObjectTypeComposer</code> with adding it by name to the <code>SchemaComposer</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="static-createtemp"></a><a href="#static-createtemp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static createTemp()</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">static</span> createTemp&lt;TSrc = any, TCtx = any&gt;(
+  typeDef: ObjectTypeComposerDefinition&lt;TSrc, TCtx&gt;,
+  <span class="hljs-attr">schemaComposer</span>: SchemaComposer&lt;TCtx&gt;
+): ObjectTypeComposer&lt;TSrc, TCtx&gt;
+</code></pre>
+<p>Create <code>ObjectTypeComposer</code> without adding it to the <code>SchemaComposer</code>. This method may be usefull in plugins, when you need to create type temporary.</p>
+<h2><a class="anchor" aria-hidden="true" id="properties"></a><a href="#properties" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Properties</h2>
+<h3><a class="anchor" aria-hidden="true" id="schemacomposer"></a><a href="#schemacomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>schemaComposer</h3>
+<pre><code class="hljs css language-js">schemaComposer: SchemaComposer&lt;TContext&gt;;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="field-methods"></a><a href="#field-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Field methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getfields"></a><a href="#getfields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFields()</h3>
+<pre><code class="hljs css language-js">getFields(): ObjectTypeComposerFieldConfigMap&lt;TSource, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldnames"></a><a href="#getfieldnames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldNames()</h3>
+<pre><code class="hljs css language-js">getFieldNames(): string[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfield"></a><a href="#getfield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getField()</h3>
+<pre><code class="hljs css language-js">getField&lt;TArgs = ArgsMap&gt;(
+  fieldName: string
+): ObjectTypeComposerFieldConfig&lt;TSource, TContext, TArgs&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasfield"></a><a href="#hasfield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasField()</h3>
+<pre><code class="hljs css language-js">hasField(
+  fieldName: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setfields"></a><a href="#setfields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFields()</h3>
+<pre><code class="hljs css language-js">setFields(
+  fields: ObjectTypeComposerFieldConfigMapDefinition&lt;TSource, TContext&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setfield"></a><a href="#setfield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setField()</h3>
+<pre><code class="hljs css language-js">setField&lt;TArgs = ArgsMap&gt;(
+  fieldName: string,
+  <span class="hljs-attr">fieldConfig</span>: Thunk&lt;Readonly&lt;ComposeOutputType&lt;TContext&gt;&gt; | ObjectTypeComposerFieldConfigDefinition&lt;TSource, TContext, ArgsMap&gt;&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addfields"></a><a href="#addfields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addFields()</h3>
+<pre><code class="hljs css language-js">addFields(
+  newFields: ObjectTypeComposerFieldConfigMapDefinition&lt;TSource, TContext&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<p>Add new fields or replace existed in a GraphQL type</p>
+<h3><a class="anchor" aria-hidden="true" id="addnestedfields"></a><a href="#addnestedfields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addNestedFields()</h3>
+<pre><code class="hljs css language-js">addNestedFields(
+  newFields: ObjectTypeComposerFieldConfigMapDefinition&lt;TSource, TContext&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<p>Add new fields or replace existed (where field name may have dots)</p>
+<h3><a class="anchor" aria-hidden="true" id="removefield"></a><a href="#removefield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeField()</h3>
+<pre><code class="hljs css language-js">removeField(
+  fieldNameOrArray: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removeotherfields"></a><a href="#removeotherfields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeOtherFields()</h3>
+<pre><code class="hljs css language-js">removeOtherFields(
+  fieldNameOrArray: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="reorderfields"></a><a href="#reorderfields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>reorderFields()</h3>
+<pre><code class="hljs css language-js">reorderFields(
+  names: string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="extendfield"></a><a href="#extendfield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>extendField()</h3>
+<pre><code class="hljs css language-js">extendField(
+  fieldName: string,
+  <span class="hljs-attr">partialFieldConfig</span>: Partial&lt;ObjectTypeComposerFieldConfigAsObjectDefinition&lt;TSource, TContext, ArgsMap&gt;&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldconfig"></a><a href="#getfieldconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldConfig()</h3>
+<pre><code class="hljs css language-js">getFieldConfig(
+  fieldName: string
+): GraphQLFieldConfig&lt;TSource, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldtype"></a><a href="#getfieldtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldType()</h3>
+<pre><code class="hljs css language-js">getFieldType(
+  fieldName: string
+): GraphQLOutputType
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldtypename"></a><a href="#getfieldtypename" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldTypeName()</h3>
+<pre><code class="hljs css language-js">getFieldTypeName(
+  fieldName: string
+): string
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldtc"></a><a href="#getfieldtc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldTC()</h3>
+<pre><code class="hljs css language-js">getFieldTC(
+  fieldName: string
+): ComposeNamedOutputType&lt;TContext&gt;
+</code></pre>
+<p>Automatically unwrap from List, NonNull, ThunkComposer
+It's important! Cause greatly helps to modify fields types in a real code
+without manual unwrap writing.</p>
+<p>If you need to work with wrappers, you may use the following code:</p>
+<ul>
+<li><code>TC.getField().type</code> // returns real wrapped TypeComposer</li>
+<li><code>TC.isFieldNonNull()</code> // checks is field NonNull or not</li>
+<li><code>TC.makeFieldNonNull()</code> // for wrapping in NonNullComposer</li>
+<li><code>TC.makeFieldNullable()</code> // for unwrapping from NonNullComposer</li>
+<li><code>TC.isFieldPlural()</code> // checks is field wrapped in ListComposer or not</li>
+<li><code>TC.makeFieldPlural()</code> // for wrapping in ListComposer</li>
+<li><code>TC.makeFieldNonPlural()</code> // for unwrapping from ListComposer</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="getfieldotc"></a><a href="#getfieldotc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldOTC()</h3>
+<pre><code class="hljs css language-js">getFieldOTC(
+  fieldName: string
+): ObjectTypeComposer&lt;TSource, TContext&gt;
+</code></pre>
+<p>Alias for <code>getFieldTC()</code> but returns statically checked ObjectTypeComposer.
+If field have other type then error will be thrown.</p>
+<h3><a class="anchor" aria-hidden="true" id="isfieldnonnull"></a><a href="#isfieldnonnull" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isFieldNonNull()</h3>
+<pre><code class="hljs css language-js">isFieldNonNull(
+  fieldName: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makefieldnonnull"></a><a href="#makefieldnonnull" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeFieldNonNull()</h3>
+<pre><code class="hljs css language-js">makeFieldNonNull(
+  fieldNameOrArray: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makefieldnullable"></a><a href="#makefieldnullable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeFieldNullable()</h3>
+<pre><code class="hljs css language-js">makeFieldNullable(
+  fieldNameOrArray: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="isfieldplural"></a><a href="#isfieldplural" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isFieldPlural()</h3>
+<pre><code class="hljs css language-js">isFieldPlural(
+  fieldName: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makefieldplural"></a><a href="#makefieldplural" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeFieldPlural()</h3>
+<pre><code class="hljs css language-js">makeFieldPlural(
+  fieldNameOrArray: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makefieldnonplural"></a><a href="#makefieldnonplural" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeFieldNonPlural()</h3>
+<pre><code class="hljs css language-js">makeFieldNonPlural(
+  fieldNameOrArray: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="deprecatefields"></a><a href="#deprecatefields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>deprecateFields()</h3>
+<pre><code class="hljs css language-js">deprecateFields(
+  fields: {
+      [fieldName: string]: string;
+  } | string[] | string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargs"></a><a href="#getfieldargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgs()</h3>
+<pre><code class="hljs css language-js">getFieldArgs&lt;TArgs = ArgsMap&gt;(
+  fieldName: string
+): ObjectTypeComposerArgumentConfigMap&lt;TArgs&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasfieldarg"></a><a href="#hasfieldarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasFieldArg()</h3>
+<pre><code class="hljs css language-js">hasFieldArg(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldarg"></a><a href="#getfieldarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArg()</h3>
+<pre><code class="hljs css language-js">getFieldArg(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): ObjectTypeComposerArgumentConfig
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargtype"></a><a href="#getfieldargtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgType()</h3>
+<pre><code class="hljs css language-js">getFieldArgType(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): GraphQLInputType
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargtypename"></a><a href="#getfieldargtypename" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgTypeName()</h3>
+<pre><code class="hljs css language-js">getFieldArgTypeName(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): string
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargtc"></a><a href="#getfieldargtc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgTC()</h3>
+<pre><code class="hljs css language-js">getFieldArgTC(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): ComposeNamedInputType&lt;TContext&gt;
+</code></pre>
+<p>Automatically unwrap from List, NonNull, ThunkComposer
+It's important! Cause greatly helps to modify args types in a real code
+without manual unwrap writing.</p>
+<p>If you need to work with wrappers, you may use the following code:
+<code>isFieldArgPlural()</code> – checks is arg wrapped in ListComposer or not
+<code>makeFieldArgPlural()</code> – for arg wrapping in ListComposer
+<code>makeFieldArgNonPlural()</code> – for arg unwrapping from ListComposer
+<code>isFieldArgNonNull()</code> – checks is arg wrapped in NonNullComposer or not
+<code>makeFieldArgNonNull()</code> – for arg wrapping in NonNullComposer
+<code>makeFieldArgNullable()</code> – for arg unwrapping from NonNullComposer</p>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargitc"></a><a href="#getfieldargitc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgITC()</h3>
+<pre><code class="hljs css language-js">getFieldArgITC(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): InputTypeComposer&lt;TContext&gt;
+</code></pre>
+<p>Alias for <code>getFieldArgTC()</code> but returns statically checked InputTypeComposer.
+If field have other type then error will be thrown.</p>
+<h3><a class="anchor" aria-hidden="true" id="setfieldargs"></a><a href="#setfieldargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFieldArgs()</h3>
+<pre><code class="hljs css language-js">setFieldArgs(
+  fieldName: string,
+  <span class="hljs-attr">args</span>: ObjectTypeComposerArgumentConfigMapDefinition&lt;any&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addfieldargs"></a><a href="#addfieldargs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addFieldArgs()</h3>
+<pre><code class="hljs css language-js">addFieldArgs(
+  fieldName: string,
+  <span class="hljs-attr">newArgs</span>: ObjectTypeComposerArgumentConfigMapDefinition&lt;any&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setfieldarg"></a><a href="#setfieldarg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFieldArg()</h3>
+<pre><code class="hljs css language-js">setFieldArg(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">argConfig</span>: ObjectTypeComposerArgumentConfigDefinition
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="isfieldargplural"></a><a href="#isfieldargplural" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isFieldArgPlural()</h3>
+<pre><code class="hljs css language-js">isFieldArgPlural(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makefieldargplural"></a><a href="#makefieldargplural" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeFieldArgPlural()</h3>
+<pre><code class="hljs css language-js">makeFieldArgPlural(
+  fieldName: string,
+  <span class="hljs-attr">argNameOrArray</span>: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makefieldargnonplural"></a><a href="#makefieldargnonplural" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeFieldArgNonPlural()</h3>
+<pre><code class="hljs css language-js">makeFieldArgNonPlural(
+  fieldName: string,
+  <span class="hljs-attr">argNameOrArray</span>: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="isfieldargnonnull"></a><a href="#isfieldargnonnull" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isFieldArgNonNull()</h3>
+<pre><code class="hljs css language-js">isFieldArgNonNull(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makefieldargnonnull"></a><a href="#makefieldargnonnull" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeFieldArgNonNull()</h3>
+<pre><code class="hljs css language-js">makeFieldArgNonNull(
+  fieldName: string,
+  <span class="hljs-attr">argNameOrArray</span>: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="makefieldargnullable"></a><a href="#makefieldargnullable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>makeFieldArgNullable()</h3>
+<pre><code class="hljs css language-js">makeFieldArgNullable(
+  fieldName: string,
+  <span class="hljs-attr">argNameOrArray</span>: string | string[]
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="type-methods"></a><a href="#type-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="gettype"></a><a href="#gettype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getType()</h3>
+<pre><code class="hljs css language-js">getType(): GraphQLObjectType
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypeplural"></a><a href="#gettypeplural" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypePlural()</h3>
+<pre><code class="hljs css language-js">getTypePlural(): ListComposer&lt;<span class="hljs-keyword">this</span>&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypenonnull"></a><a href="#gettypenonnull" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeNonNull()</h3>
+<pre><code class="hljs css language-js">getTypeNonNull(): NonNullComposer&lt;<span class="hljs-keyword">this</span>&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gettypename"></a><a href="#gettypename" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getTypeName()</h3>
+<pre><code class="hljs css language-js">getTypeName(): string
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="settypename"></a><a href="#settypename" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setTypeName()</h3>
+<pre><code class="hljs css language-js">setTypeName(
+  name: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getdescription"></a><a href="#getdescription" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDescription()</h3>
+<pre><code class="hljs css language-js">getDescription(): string
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setdescription"></a><a href="#setdescription" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setDescription()</h3>
+<pre><code class="hljs css language-js">setDescription(
+  description: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="clone"></a><a href="#clone" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clone()</h3>
+<pre><code class="hljs css language-js">clone&lt;TCloneSource = TSource&gt;(
+  newTypeNameOrTC: string | ObjectTypeComposer&lt;any, any&gt;
+): ObjectTypeComposer&lt;TCloneSource, TContext&gt;
+</code></pre>
+<p>You may clone this type with a new provided name as string.
+Or you may provide a new TypeComposer which will get all clonned
+settings from this type.</p>
+<h3><a class="anchor" aria-hidden="true" id="getistypeof"></a><a href="#getistypeof" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getIsTypeOf()</h3>
+<pre><code class="hljs css language-js">getIsTypeOf(): GraphQLIsTypeOfFn&lt;TSource, TContext&gt; | <span class="hljs-literal">null</span> | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setistypeof"></a><a href="#setistypeof" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setIsTypeOf()</h3>
+<pre><code class="hljs css language-js">setIsTypeOf(
+  fn: GraphQLIsTypeOfFn&lt;any, any&gt; | <span class="hljs-literal">null</span> | <span class="hljs-keyword">void</span>
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="merge"></a><a href="#merge" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>merge()</h3>
+<pre><code class="hljs css language-js">merge(
+  type: GraphQLObjectType | GraphQLInterfaceType | ObjectTypeComposer&lt;any, any&gt; | InterfaceTypeComposer&lt;any, any&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<p>Merge fields and interfaces from provided <code>GraphQLObjectType</code>, or <code>ObjectTypeComposer</code>.
+Also you may provide <code>GraphQLInterfaceType</code> or <code>InterfaceTypeComposer</code> for adding fields.</p>
+<h2><a class="anchor" aria-hidden="true" id="inputtype-methods"></a><a href="#inputtype-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>InputType methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getinputtype"></a><a href="#getinputtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getInputType()</h3>
+<pre><code class="hljs css language-js">getInputType(): GraphQLInputObjectType
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasinputtypecomposer"></a><a href="#hasinputtypecomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasInputTypeComposer()</h3>
+<pre><code class="hljs css language-js">hasInputTypeComposer(): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setinputtypecomposer"></a><a href="#setinputtypecomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setInputTypeComposer()</h3>
+<pre><code class="hljs css language-js">setInputTypeComposer(
+  itc: InputTypeComposer&lt;TContext&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getinputtypecomposer"></a><a href="#getinputtypecomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getInputTypeComposer()</h3>
+<pre><code class="hljs css language-js">getInputTypeComposer(): InputTypeComposer&lt;TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getitc"></a><a href="#getitc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getITC()</h3>
+<pre><code class="hljs css language-js">getITC(): InputTypeComposer&lt;TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removeinputtypecomposer"></a><a href="#removeinputtypecomposer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeInputTypeComposer()</h3>
+<pre><code class="hljs css language-js">removeInputTypeComposer(): <span class="hljs-keyword">this</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="resolver-methods"></a><a href="#resolver-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resolver methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getresolvers"></a><a href="#getresolvers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getResolvers()</h3>
+<pre><code class="hljs css language-js">getResolvers(): <span class="hljs-built_in">Map</span>&lt;string, Resolver&lt;any, TContext, any&gt;&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasresolver"></a><a href="#hasresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasResolver()</h3>
+<pre><code class="hljs css language-js">hasResolver(
+  name: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getresolver"></a><a href="#getresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getResolver()</h3>
+<pre><code class="hljs css language-js">getResolver&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+  name: string,
+
+  <span class="hljs-comment">// type ResolverMiddleware = (resolve, source, args, context, info) =&gt; any;</span>
+  middlewares: <span class="hljs-built_in">Array</span>&lt;ResolverMiddleware&lt;TResolverSource, TContext, TArgs&gt;&gt;
+): Resolver&lt;TResolverSource, TContext, TArgs&gt;
+</code></pre>
+<p>Returns existed Resolver by name.</p>
+<p>Resolver may be additionally wrapped by middlewares. Eg:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authMiddleware</span>(<span class="hljs-params">resolve, source, args, context, info</span>) </span>{
+  <span class="hljs-keyword">if</span> (somehowCheckAuthInContext(context)) {
+    <span class="hljs-keyword">return</span> resolve(source, args, context, info);
+  }
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'You must be authorized'</span>);
+}
+
+schemaComposer.Query.addFields({
+  <span class="hljs-attr">userById</span>: UserTC.getResolver(<span class="hljs-string">'findById'</span>, [authMiddleware]),
+  <span class="hljs-attr">userByIds</span>: UserTC.getResolver(<span class="hljs-string">'findByIds'</span>, [authMiddleware])
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setresolver"></a><a href="#setresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setResolver()</h3>
+<pre><code class="hljs css language-js">setResolver&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+  name: string,
+  <span class="hljs-attr">resolver</span>: Resolver&lt;TResolverSource, TContext, TArgs&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addresolver"></a><a href="#addresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addResolver()</h3>
+<pre><code class="hljs css language-js">addResolver&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+  opts: Resolver&lt;TResolverSource, TContext, TArgs&gt; | ResolverDefinition&lt;TResolverSource, TContext, TArgs&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removeresolver"></a><a href="#removeresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeResolver()</h3>
+<pre><code class="hljs css language-js">removeResolver(
+  resolverName: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wrapresolver"></a><a href="#wrapresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapResolver()</h3>
+<pre><code class="hljs css language-js">wrapResolver&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+  resolverName: string,
+  <span class="hljs-attr">cbResolver</span>: ResolverWrapCb&lt;TResolverSource, TSource, TContext, TArgs&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wrapresolveras"></a><a href="#wrapresolveras" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapResolverAs()</h3>
+<pre><code class="hljs css language-js">wrapResolverAs&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+  resolverName: string,
+  <span class="hljs-attr">fromResolverName</span>: string,
+  <span class="hljs-attr">cbResolver</span>: ResolverWrapCb&lt;TResolverSource, TSource, TContext, TArgs&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wrapresolverresolve"></a><a href="#wrapresolverresolve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wrapResolverResolve()</h3>
+<pre><code class="hljs css language-js">wrapResolverResolve&lt;TResolverSource = any, TArgs = ArgsMap&gt;(
+  resolverName: string,
+  <span class="hljs-attr">cbNextRp</span>: ResolverNextRpCb&lt;TResolverSource, TContext, TArgs&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="interface-methods"></a><a href="#interface-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interface methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getinterfaces"></a><a href="#getinterfaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getInterfaces()</h3>
+<pre><code class="hljs css language-js">getInterfaces(): <span class="hljs-built_in">Array</span>&lt;InterfaceTypeComposerThunked&lt;TSource, TContext&gt;&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setinterfaces"></a><a href="#setinterfaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setInterfaces()</h3>
+<pre><code class="hljs css language-js">setInterfaces(
+  interfaces: ReadonlyArray&lt;InterfaceTypeComposerDefinition&lt;any, TContext&gt;&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasinterface"></a><a href="#hasinterface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasInterface()</h3>
+<pre><code class="hljs css language-js">hasInterface(
+  iface: InterfaceTypeComposerDefinition&lt;any, TContext&gt;
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addinterface"></a><a href="#addinterface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addInterface()</h3>
+<pre><code class="hljs css language-js">addInterface(
+  iface: InterfaceTypeComposerDefinition&lt;any, TContext&gt; | InterfaceTypeComposerThunked&lt;any, TContext&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="addinterfaces"></a><a href="#addinterfaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addInterfaces()</h3>
+<pre><code class="hljs css language-js">addInterfaces(
+  ifaces: ReadonlyArray&lt;InterfaceTypeComposerDefinition&lt;any, TContext&gt; | InterfaceTypeComposerThunked&lt;any, TContext&gt;&gt;
+): ObjectTypeComposer&lt;TSource, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removeinterface"></a><a href="#removeinterface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeInterface()</h3>
+<pre><code class="hljs css language-js">removeInterface(
+  iface: InterfaceTypeComposerDefinition&lt;any, TContext&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="extensions-methods"></a><a href="#extensions-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extensions methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="getextensions"></a><a href="#getextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getExtensions()</h3>
+<pre><code class="hljs css language-js">getExtensions(): Extensions
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setextensions"></a><a href="#setextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setExtensions()</h3>
+<pre><code class="hljs css language-js">setExtensions(
+  extensions: Extensions
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="extendextensions"></a><a href="#extendextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>extendExtensions()</h3>
+<pre><code class="hljs css language-js">extendExtensions(
+  extensions: Extensions
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="clearextensions"></a><a href="#clearextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clearExtensions()</h3>
+<pre><code class="hljs css language-js">clearExtensions(): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getextension"></a><a href="#getextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getExtension()</h3>
+<pre><code class="hljs css language-js">getExtension(
+  extensionName: string
+): any
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasextension"></a><a href="#hasextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasExtension()</h3>
+<pre><code class="hljs css language-js">hasExtension(
+  extensionName: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setextension"></a><a href="#setextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setExtension()</h3>
+<pre><code class="hljs css language-js">setExtension(
+  extensionName: string,
+  <span class="hljs-attr">value</span>: any
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removeextension"></a><a href="#removeextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeExtension()</h3>
+<pre><code class="hljs css language-js">removeExtension(
+  extensionName: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldextensions"></a><a href="#getfieldextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldExtensions()</h3>
+<pre><code class="hljs css language-js">getFieldExtensions(
+  fieldName: string
+): Extensions
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setfieldextensions"></a><a href="#setfieldextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFieldExtensions()</h3>
+<pre><code class="hljs css language-js">setFieldExtensions(
+  fieldName: string,
+  <span class="hljs-attr">extensions</span>: Extensions
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="extendfieldextensions"></a><a href="#extendfieldextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>extendFieldExtensions()</h3>
+<pre><code class="hljs css language-js">extendFieldExtensions(
+  fieldName: string,
+  <span class="hljs-attr">extensions</span>: Extensions
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="clearfieldextensions"></a><a href="#clearfieldextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clearFieldExtensions()</h3>
+<pre><code class="hljs css language-js">clearFieldExtensions(
+  fieldName: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldextension"></a><a href="#getfieldextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldExtension()</h3>
+<pre><code class="hljs css language-js">getFieldExtension(
+  fieldName: string,
+  <span class="hljs-attr">extensionName</span>: string
+): any
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasfieldextension"></a><a href="#hasfieldextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasFieldExtension()</h3>
+<pre><code class="hljs css language-js">hasFieldExtension(
+  fieldName: string,
+  <span class="hljs-attr">extensionName</span>: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setfieldextension"></a><a href="#setfieldextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFieldExtension()</h3>
+<pre><code class="hljs css language-js">setFieldExtension(
+  fieldName: string,
+  <span class="hljs-attr">extensionName</span>: string,
+  <span class="hljs-attr">value</span>: any
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removefieldextension"></a><a href="#removefieldextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeFieldExtension()</h3>
+<pre><code class="hljs css language-js">removeFieldExtension(
+  fieldName: string,
+  <span class="hljs-attr">extensionName</span>: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargextensions"></a><a href="#getfieldargextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgExtensions()</h3>
+<pre><code class="hljs css language-js">getFieldArgExtensions(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): Extensions
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setfieldargextensions"></a><a href="#setfieldargextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFieldArgExtensions()</h3>
+<pre><code class="hljs css language-js">setFieldArgExtensions(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">extensions</span>: Extensions
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="extendfieldargextensions"></a><a href="#extendfieldargextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>extendFieldArgExtensions()</h3>
+<pre><code class="hljs css language-js">extendFieldArgExtensions(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">extensions</span>: Extensions
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="clearfieldargextensions"></a><a href="#clearfieldargextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clearFieldArgExtensions()</h3>
+<pre><code class="hljs css language-js">clearFieldArgExtensions(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargextension"></a><a href="#getfieldargextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgExtension()</h3>
+<pre><code class="hljs css language-js">getFieldArgExtension(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">extensionName</span>: string
+): any
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasfieldargextension"></a><a href="#hasfieldargextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasFieldArgExtension()</h3>
+<pre><code class="hljs css language-js">hasFieldArgExtension(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">extensionName</span>: string
+): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setfieldargextension"></a><a href="#setfieldargextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFieldArgExtension()</h3>
+<pre><code class="hljs css language-js">setFieldArgExtension(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">extensionName</span>: string,
+  <span class="hljs-attr">value</span>: any
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removefieldargextension"></a><a href="#removefieldargextension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeFieldArgExtension()</h3>
+<pre><code class="hljs css language-js">removeFieldArgExtension(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">extensionName</span>: string
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="directive-methods"></a><a href="#directive-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Directive methods</h2>
+<p>Directive methods are usefull if you declare your schemas via SDL.
+Users who actively use <code>graphql-tools</code> can open new abilities for writing
+your own directive handlers.</p>
+<p>If you create your schemas via config objects, then probably you
+no need in <code>directives</code>. Instead directives better to use <code>extensions</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="getdirectives"></a><a href="#getdirectives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDirectives()</h3>
+<pre><code class="hljs css language-js">getDirectives(): ExtensionsDirective[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getdirectivenames"></a><a href="#getdirectivenames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDirectiveNames()</h3>
+<pre><code class="hljs css language-js">getDirectiveNames(): string[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getdirectivebyname"></a><a href="#getdirectivebyname" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDirectiveByName()</h3>
+<pre><code class="hljs css language-js">getDirectiveByName(
+  directiveName: string
+): DirectiveArgs | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getdirectivebyid"></a><a href="#getdirectivebyid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDirectiveById()</h3>
+<pre><code class="hljs css language-js">getDirectiveById(
+  idx: number
+): DirectiveArgs | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfielddirectives"></a><a href="#getfielddirectives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldDirectives()</h3>
+<pre><code class="hljs css language-js">getFieldDirectives(
+  fieldName: string
+): ExtensionsDirective[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfielddirectivenames"></a><a href="#getfielddirectivenames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldDirectiveNames()</h3>
+<pre><code class="hljs css language-js">getFieldDirectiveNames(
+  fieldName: string
+): string[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfielddirectivebyname"></a><a href="#getfielddirectivebyname" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldDirectiveByName()</h3>
+<pre><code class="hljs css language-js">getFieldDirectiveByName(
+  fieldName: string,
+  <span class="hljs-attr">directiveName</span>: string
+): DirectiveArgs | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfielddirectivebyid"></a><a href="#getfielddirectivebyid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldDirectiveById()</h3>
+<pre><code class="hljs css language-js">getFieldDirectiveById(
+  fieldName: string,
+  <span class="hljs-attr">idx</span>: number
+): DirectiveArgs | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargdirectives"></a><a href="#getfieldargdirectives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgDirectives()</h3>
+<pre><code class="hljs css language-js">getFieldArgDirectives(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): ExtensionsDirective[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargdirectivenames"></a><a href="#getfieldargdirectivenames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgDirectiveNames()</h3>
+<pre><code class="hljs css language-js">getFieldArgDirectiveNames(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string
+): string[]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargdirectivebyname"></a><a href="#getfieldargdirectivebyname" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgDirectiveByName()</h3>
+<pre><code class="hljs css language-js">getFieldArgDirectiveByName(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">directiveName</span>: string
+): DirectiveArgs | <span class="hljs-keyword">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getfieldargdirectivebyid"></a><a href="#getfieldargdirectivebyid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldArgDirectiveById()</h3>
+<pre><code class="hljs css language-js">getFieldArgDirectiveById(
+  fieldName: string,
+  <span class="hljs-attr">argName</span>: string,
+  <span class="hljs-attr">idx</span>: number
+): DirectiveArgs | <span class="hljs-keyword">void</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="misc-methods"></a><a href="#misc-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Misc methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="addrelation"></a><a href="#addrelation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>addRelation()</h3>
+<pre><code class="hljs css language-js">addRelation&lt;TRelationSource = any, TArgs = ArgsMap&gt;(
+  fieldName: string,
+  <span class="hljs-attr">ObjectTypeComposerRelationOpts</span>: Readonly&lt;ObjectTypeComposerRelationOpts&lt;TRelationSource, TSource, TContext, TArgs&gt;&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getrelations"></a><a href="#getrelations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getRelations()</h3>
+<pre><code class="hljs css language-js">getRelations(): ObjectTypeComposerRelationThunkMap&lt;any, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setrecordidfn"></a><a href="#setrecordidfn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setRecordIdFn()</h3>
+<pre><code class="hljs css language-js">setRecordIdFn(
+  fn: ObjectTypeComposerGetRecordIdFn&lt;TSource, TContext&gt;
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hasrecordidfn"></a><a href="#hasrecordidfn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasRecordIdFn()</h3>
+<pre><code class="hljs css language-js">hasRecordIdFn(): boolean
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getrecordidfn"></a><a href="#getrecordidfn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getRecordIdFn()</h3>
+<pre><code class="hljs css language-js">getRecordIdFn(): ObjectTypeComposerGetRecordIdFn&lt;TSource, TContext&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getrecordid"></a><a href="#getrecordid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getRecordId()</h3>
+<pre><code class="hljs css language-js">getRecordId(
+  source: TSource,
+  <span class="hljs-attr">args</span>: ArgsMap,
+  <span class="hljs-attr">context</span>: TContext
+): string | number
+</code></pre>
+<p>Get function that returns record id, from provided object.</p>
+<h3><a class="anchor" aria-hidden="true" id="get"></a><a href="#get" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>get()</h3>
+<pre><code class="hljs css language-js">get(
+  path: string | string[]
+): TypeInPath&lt;TContext&gt; | <span class="hljs-keyword">void</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="internal-type-definitions"></a><a href="#internal-type-definitions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Internal type definitions</h2>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerdefinition"></a><a href="#objecttypecomposerdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerDefinition</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerDefinition&lt;TSource, TContext&gt; =
+  | TypeAsString
+  | TypeDefinitionString
+  | ObjectTypeComposerAsObjectDefinition&lt;TSource, TContext&gt;
+  | Readonly&lt;ObjectTypeComposer&lt;TSource, TContext&gt;&gt;
+  | Readonly&lt;GraphQLObjectType&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerasobjectdefinition"></a><a href="#objecttypecomposerasobjectdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerAsObjectDefinition</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerAsObjectDefinition&lt;TSource, TContext&gt; = {
+  <span class="hljs-attr">name</span>: string;
+  interfaces?: <span class="hljs-literal">null</span> | Thunk&lt;ReadonlyArray&lt;InterfaceTypeComposerDefinition&lt;any, TContext&gt;&gt;&gt;;
+  fields?: ObjectTypeComposerFieldConfigMapDefinition&lt;TSource, TContext&gt;;
+  isTypeOf?: <span class="hljs-literal">null</span> | GraphQLIsTypeOfFn&lt;TSource, TContext&gt;;
+  description?: string | <span class="hljs-literal">null</span>;
+  isIntrospection?: boolean;
+  extensions?: Extensions;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerfieldconfigmap"></a><a href="#objecttypecomposerfieldconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerFieldConfigMap</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerFieldConfigMap&lt;TSource, TContext&gt; = ObjMap&lt;
+  ObjectTypeComposerFieldConfig&lt;TSource, TContext&gt;
+&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerfieldconfigmapdefinition"></a><a href="#objecttypecomposerfieldconfigmapdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerFieldConfigMapDefinition</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerFieldConfigMapDefinition&lt;TSource, TContext&gt; = ObjMapReadOnly&lt;
+  Thunk&lt;ObjectTypeComposerFieldConfigDefinition&lt;TSource, TContext&gt;&gt;
+&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerfieldconfigdefinition"></a><a href="#objecttypecomposerfieldconfigdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerFieldConfigDefinition</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerFieldConfigDefinition&lt;TSource, TContext, TArgs = ArgsMap&gt; =
+  | ObjectTypeComposerFieldConfigAsObjectDefinition&lt;TSource, TContext, TArgs&gt;
+  | ComposeOutputTypeDefinition&lt;TContext&gt;
+  | Readonly&lt;Resolver&lt;any, TContext, any&gt;&gt;
+  | Readonly&lt;ComposeOutputType&lt;TContext&gt;&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerfieldconfigasobjectdefinition"></a><a href="#objecttypecomposerfieldconfigasobjectdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerFieldConfigAsObjectDefinition</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerFieldConfigAsObjectDefinition&lt;TSource, TContext, TArgs = ArgsMap&gt; = {
+  <span class="hljs-attr">type</span>: Thunk&lt;ComposeOutputTypeDefinition&lt;TContext&gt; | Readonly&lt;Resolver&lt;any, TContext, any&gt;&gt;&gt;;
+  args?: ObjectTypeComposerArgumentConfigMapDefinition&lt;TArgs&gt;;
+  resolve?: GraphQLFieldResolver&lt;TSource, TContext, TArgs&gt;;
+  subscribe?: GraphQLFieldResolver&lt;TSource, TContext&gt;;
+  deprecationReason?: string | <span class="hljs-literal">null</span>;
+  description?: string | <span class="hljs-literal">null</span>;
+  extensions?: Extensions;
+  [key: string]: any;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerfieldconfig"></a><a href="#objecttypecomposerfieldconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerFieldConfig</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerFieldConfig&lt;TSource, TContext, TArgs = ArgsMap&gt; = {
+  <span class="hljs-attr">type</span>: ComposeOutputType&lt;TContext&gt;;
+  args?: ObjectTypeComposerArgumentConfigMap&lt;TArgs&gt;;
+  resolve?: GraphQLFieldResolver&lt;TSource, TContext, TArgs&gt;;
+  subscribe?: GraphQLFieldResolver&lt;TSource, TContext&gt;;
+  deprecationReason?: string | <span class="hljs-literal">null</span>;
+  description?: string | <span class="hljs-literal">null</span>;
+  astNode?: FieldDefinitionNode | <span class="hljs-literal">null</span>;
+  extensions?: Extensions;
+  [key: string]: any;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="argsmap"></a><a href="#argsmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ArgsMap</h3>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Compose Args -----------------------------</span>
+
+<span class="hljs-keyword">export</span> type ArgsMap = { [argName: string]: any };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerargumentconfigmap"></a><a href="#objecttypecomposerargumentconfigmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerArgumentConfigMap</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerArgumentConfigMap&lt;TArgs = ArgsMap&gt; = {
+  [argName <span class="hljs-keyword">in</span> keyof TArgs]: ObjectTypeComposerArgumentConfig
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerargumentconfigmapdefinition"></a><a href="#objecttypecomposerargumentconfigmapdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerArgumentConfigMapDefinition</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerArgumentConfigMapDefinition&lt;TArgs = ArgsMap&gt; = {
+  [argName <span class="hljs-keyword">in</span> keyof TArgs]: Thunk&lt;ObjectTypeComposerArgumentConfigDefinition&gt;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerargumentconfigasobjectdefinition"></a><a href="#objecttypecomposerargumentconfigasobjectdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerArgumentConfigAsObjectDefinition</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerArgumentConfigAsObjectDefinition = {
+  <span class="hljs-attr">type</span>: Thunk&lt;ComposeInputTypeDefinition&gt;;
+  defaultValue?: any;
+  description?: string | <span class="hljs-literal">null</span>;
+  extensions?: Extensions;
+  [key: string]: any;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerargumentconfig"></a><a href="#objecttypecomposerargumentconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerArgumentConfig</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerArgumentConfig = {
+  <span class="hljs-attr">type</span>: ComposeInputType;
+  defaultValue?: any;
+  description?: string | <span class="hljs-literal">null</span>;
+  astNode?: InputValueDefinitionNode | <span class="hljs-literal">null</span>;
+  extensions?: Extensions;
+  [key: string]: any;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerargumentconfigdefinition"></a><a href="#objecttypecomposerargumentconfigdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerArgumentConfigDefinition</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerArgumentConfigDefinition =
+  | ObjectTypeComposerArgumentConfigAsObjectDefinition
+  | ComposeInputTypeDefinition;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerrelationthunkmap"></a><a href="#objecttypecomposerrelationthunkmap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerRelationThunkMap</h3>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// RELATION -----------------------------</span>
+
+<span class="hljs-keyword">export</span> type ObjectTypeComposerRelationThunkMap&lt;TSource, TContext&gt; = {
+  [fieldName: string]: Thunk&lt;ObjectTypeComposerRelationOpts&lt;any, TSource, TContext, ArgsMap&gt;&gt;;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerrelationopts"></a><a href="#objecttypecomposerrelationopts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerRelationOpts</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerRelationOpts&lt;TRelationSource, TSource, TContext, TArgs = ArgsMap&gt; =
+  | ObjectTypeComposerRelationOptsWithResolver&lt;TRelationSource, TSource, TContext, TArgs&gt;
+  | ObjectTypeComposerFieldConfigAsObjectDefinition&lt;TSource, TContext, TArgs&gt;;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerrelationoptswithresolver"></a><a href="#objecttypecomposerrelationoptswithresolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerRelationOptsWithResolver</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerRelationOptsWithResolver&lt;
+  TRelationSource,
+  TSource,
+  TContext,
+  TArgs = ArgsMap
+&gt; = {
+  <span class="hljs-attr">resolver</span>: Thunk&lt;Resolver&lt;TRelationSource, TContext, TArgs&gt;&gt;;
+  prepareArgs?: ObjectTypeComposerRelationArgsMapper&lt;TSource, TContext, TArgs&gt;;
+  projection?: ProjectionType;
+  description?: string | <span class="hljs-literal">null</span>;
+  deprecationReason?: string | <span class="hljs-literal">null</span>;
+  catchErrors?: boolean;
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerrelationargsmapperfn"></a><a href="#objecttypecomposerrelationargsmapperfn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerRelationArgsMapperFn</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerRelationArgsMapperFn&lt;TSource, TContext, TArgs = ArgsMap&gt; = (
+  source: TSource,
+  <span class="hljs-attr">args</span>: TArgs,
+  <span class="hljs-attr">context</span>: TContext,
+  <span class="hljs-attr">info</span>: GraphQLResolveInfo
+) =&gt; any;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerrelationargsmapper"></a><a href="#objecttypecomposerrelationargsmapper" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerRelationArgsMapper</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerRelationArgsMapper&lt;TSource, TContext, TArgs = ArgsMap&gt; = {
+  [argName: string]:
+    | { [key: string]: any }
+    | ObjectTypeComposerRelationArgsMapperFn&lt;TSource, TContext, TArgs&gt;
+    | <span class="hljs-literal">null</span>
+    | <span class="hljs-keyword">void</span>
+    | string
+    | number
+    | any[];
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposergetrecordidfn"></a><a href="#objecttypecomposergetrecordidfn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerGetRecordIdFn</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerGetRecordIdFn&lt;TSource, TContext&gt; = (
+  source: TSource,
+  args?: ArgsMap,
+  context?: TContext
+) =&gt; string;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="objecttypecomposerthunked"></a><a href="#objecttypecomposerthunked" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ObjectTypeComposerThunked</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type ObjectTypeComposerThunked&lt;TReturn, TContext&gt; =
+  | ObjectTypeComposer&lt;TReturn, TContext&gt;
+  | ThunkComposer&lt;ObjectTypeComposer&lt;TReturn, TContext&gt;, GraphQLObjectType&gt;;
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/7.x.x/api/SchemaComposer.html"><span class="arrow-prev">← </span><span class="function-name-prevnext">SchemaComposer</span></a><a class="docs-next button" href="/docs/7.x.x/api/InputTypeComposer.html"><span class="function-name-prevnext">InputTypeComposer</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#static-methods">Static methods</a><ul class="toc-headings"><li><a href="#static-create">static create()</a></li><li><a href="#static-createtemp">static createTemp()</a></li></ul></li><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#field-methods">Field methods</a><ul class="toc-headings"><li><a href="#getfields">getFields()</a></li><li><a href="#getfieldnames">getFieldNames()</a></li><li><a href="#getfield">getField()</a></li><li><a href="#hasfield">hasField()</a></li><li><a href="#setfields">setFields()</a></li><li><a href="#setfield">setField()</a></li><li><a href="#addfields">addFields()</a></li><li><a href="#addnestedfields">addNestedFields()</a></li><li><a href="#removefield">removeField()</a></li><li><a href="#removeotherfields">removeOtherFields()</a></li><li><a href="#reorderfields">reorderFields()</a></li><li><a href="#extendfield">extendField()</a></li><li><a href="#getfieldconfig">getFieldConfig()</a></li><li><a href="#getfieldtype">getFieldType()</a></li><li><a href="#getfieldtypename">getFieldTypeName()</a></li><li><a href="#getfieldtc">getFieldTC()</a></li><li><a href="#getfieldotc">getFieldOTC()</a></li><li><a href="#isfieldnonnull">isFieldNonNull()</a></li><li><a href="#makefieldnonnull">makeFieldNonNull()</a></li><li><a href="#makefieldnullable">makeFieldNullable()</a></li><li><a href="#isfieldplural">isFieldPlural()</a></li><li><a href="#makefieldplural">makeFieldPlural()</a></li><li><a href="#makefieldnonplural">makeFieldNonPlural()</a></li><li><a href="#deprecatefields">deprecateFields()</a></li><li><a href="#getfieldargs">getFieldArgs()</a></li><li><a href="#hasfieldarg">hasFieldArg()</a></li><li><a href="#getfieldarg">getFieldArg()</a></li><li><a href="#getfieldargtype">getFieldArgType()</a></li><li><a href="#getfieldargtypename">getFieldArgTypeName()</a></li><li><a href="#getfieldargtc">getFieldArgTC()</a></li><li><a href="#getfieldargitc">getFieldArgITC()</a></li><li><a href="#setfieldargs">setFieldArgs()</a></li><li><a href="#addfieldargs">addFieldArgs()</a></li><li><a href="#setfieldarg">setFieldArg()</a></li><li><a href="#isfieldargplural">isFieldArgPlural()</a></li><li><a href="#makefieldargplural">makeFieldArgPlural()</a></li><li><a href="#makefieldargnonplural">makeFieldArgNonPlural()</a></li><li><a href="#isfieldargnonnull">isFieldArgNonNull()</a></li><li><a href="#makefieldargnonnull">makeFieldArgNonNull()</a></li><li><a href="#makefieldargnullable">makeFieldArgNullable()</a></li></ul></li><li><a href="#type-methods">Type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypeplural">getTypePlural()</a></li><li><a href="#gettypenonnull">getTypeNonNull()</a></li><li><a href="#gettypename">getTypeName()</a></li><li><a href="#settypename">setTypeName()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#clone">clone()</a></li><li><a href="#getistypeof">getIsTypeOf()</a></li><li><a href="#setistypeof">setIsTypeOf()</a></li><li><a href="#merge">merge()</a></li></ul></li><li><a href="#inputtype-methods">InputType methods</a><ul class="toc-headings"><li><a href="#getinputtype">getInputType()</a></li><li><a href="#hasinputtypecomposer">hasInputTypeComposer()</a></li><li><a href="#setinputtypecomposer">setInputTypeComposer()</a></li><li><a href="#getinputtypecomposer">getInputTypeComposer()</a></li><li><a href="#getitc">getITC()</a></li><li><a href="#removeinputtypecomposer">removeInputTypeComposer()</a></li></ul></li><li><a href="#resolver-methods">Resolver methods</a><ul class="toc-headings"><li><a href="#getresolvers">getResolvers()</a></li><li><a href="#hasresolver">hasResolver()</a></li><li><a href="#getresolver">getResolver()</a></li><li><a href="#setresolver">setResolver()</a></li><li><a href="#addresolver">addResolver()</a></li><li><a href="#removeresolver">removeResolver()</a></li><li><a href="#wrapresolver">wrapResolver()</a></li><li><a href="#wrapresolveras">wrapResolverAs()</a></li><li><a href="#wrapresolverresolve">wrapResolverResolve()</a></li></ul></li><li><a href="#interface-methods">Interface methods</a><ul class="toc-headings"><li><a href="#getinterfaces">getInterfaces()</a></li><li><a href="#setinterfaces">setInterfaces()</a></li><li><a href="#hasinterface">hasInterface()</a></li><li><a href="#addinterface">addInterface()</a></li><li><a href="#addinterfaces">addInterfaces()</a></li><li><a href="#removeinterface">removeInterface()</a></li></ul></li><li><a href="#extensions-methods">Extensions methods</a><ul class="toc-headings"><li><a href="#getextensions">getExtensions()</a></li><li><a href="#setextensions">setExtensions()</a></li><li><a href="#extendextensions">extendExtensions()</a></li><li><a href="#clearextensions">clearExtensions()</a></li><li><a href="#getextension">getExtension()</a></li><li><a href="#hasextension">hasExtension()</a></li><li><a href="#setextension">setExtension()</a></li><li><a href="#removeextension">removeExtension()</a></li><li><a href="#getfieldextensions">getFieldExtensions()</a></li><li><a href="#setfieldextensions">setFieldExtensions()</a></li><li><a href="#extendfieldextensions">extendFieldExtensions()</a></li><li><a href="#clearfieldextensions">clearFieldExtensions()</a></li><li><a href="#getfieldextension">getFieldExtension()</a></li><li><a href="#hasfieldextension">hasFieldExtension()</a></li><li><a href="#setfieldextension">setFieldExtension()</a></li><li><a href="#removefieldextension">removeFieldExtension()</a></li><li><a href="#getfieldargextensions">getFieldArgExtensions()</a></li><li><a href="#setfieldargextensions">setFieldArgExtensions()</a></li><li><a href="#extendfieldargextensions">extendFieldArgExtensions()</a></li><li><a href="#clearfieldargextensions">clearFieldArgExtensions()</a></li><li><a href="#getfieldargextension">getFieldArgExtension()</a></li><li><a href="#hasfieldargextension">hasFieldArgExtension()</a></li><li><a href="#setfieldargextension">setFieldArgExtension()</a></li><li><a href="#removefieldargextension">removeFieldArgExtension()</a></li></ul></li><li><a href="#directive-methods">Directive methods</a><ul class="toc-headings"><li><a href="#getdirectives">getDirectives()</a></li><li><a href="#getdirectivenames">getDirectiveNames()</a></li><li><a href="#getdirectivebyname">getDirectiveByName()</a></li><li><a href="#getdirectivebyid">getDirectiveById()</a></li><li><a href="#getfielddirectives">getFieldDirectives()</a></li><li><a href="#getfielddirectivenames">getFieldDirectiveNames()</a></li><li><a href="#getfielddirectivebyname">getFieldDirectiveByName()</a></li><li><a href="#getfielddirectivebyid">getFieldDirectiveById()</a></li><li><a href="#getfieldargdirectives">getFieldArgDirectives()</a></li><li><a href="#getfieldargdirectivenames">getFieldArgDirectiveNames()</a></li><li><a href="#getfieldargdirectivebyname">getFieldArgDirectiveByName()</a></li><li><a href="#getfieldargdirectivebyid">getFieldArgDirectiveById()</a></li></ul></li><li><a href="#misc-methods">Misc methods</a><ul class="toc-headings"><li><a href="#addrelation">addRelation()</a></li><li><a href="#getrelations">getRelations()</a></li><li><a href="#setrecordidfn">setRecordIdFn()</a></li><li><a href="#hasrecordidfn">hasRecordIdFn()</a></li><li><a href="#getrecordidfn">getRecordIdFn()</a></li><li><a href="#getrecordid">getRecordId()</a></li><li><a href="#get">get()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#objecttypecomposerdefinition">ObjectTypeComposerDefinition</a></li><li><a href="#objecttypecomposerasobjectdefinition">ObjectTypeComposerAsObjectDefinition</a></li><li><a href="#objecttypecomposerfieldconfigmap">ObjectTypeComposerFieldConfigMap</a></li><li><a href="#objecttypecomposerfieldconfigmapdefinition">ObjectTypeComposerFieldConfigMapDefinition</a></li><li><a href="#objecttypecomposerfieldconfigdefinition">ObjectTypeComposerFieldConfigDefinition</a></li><li><a href="#objecttypecomposerfieldconfigasobjectdefinition">ObjectTypeComposerFieldConfigAsObjectDefinition</a></li><li><a href="#objecttypecomposerfieldconfig">ObjectTypeComposerFieldConfig</a></li><li><a href="#argsmap">ArgsMap</a></li><li><a href="#objecttypecomposerargumentconfigmap">ObjectTypeComposerArgumentConfigMap</a></li><li><a href="#objecttypecomposerargumentconfigmapdefinition">ObjectTypeComposerArgumentConfigMapDefinition</a></li><li><a href="#objecttypecomposerargumentconfigasobjectdefinition">ObjectTypeComposerArgumentConfigAsObjectDefinition</a></li><li><a href="#objecttypecomposerargumentconfig">ObjectTypeComposerArgumentConfig</a></li><li><a href="#objecttypecomposerargumentconfigdefinition">ObjectTypeComposerArgumentConfigDefinition</a></li><li><a href="#objecttypecomposerrelationthunkmap">ObjectTypeComposerRelationThunkMap</a></li><li><a href="#objecttypecomposerrelationopts">ObjectTypeComposerRelationOpts</a></li><li><a href="#objecttypecomposerrelationoptswithresolver">ObjectTypeComposerRelationOptsWithResolver</a></li><li><a href="#objecttypecomposerrelationargsmapperfn">ObjectTypeComposerRelationArgsMapperFn</a></li><li><a href="#objecttypecomposerrelationargsmapper">ObjectTypeComposerRelationArgsMapper</a></li><li><a href="#objecttypecomposergetrecordidfn">ObjectTypeComposerGetRecordIdFn</a></li><li><a href="#objecttypecomposerthunked">ObjectTypeComposerThunked</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><span><script src="/js/pjax-api.js"></script><script>
+      window.foo = new Pjax({
+        areas: [
+          // try to use the first query.
+          '.mainContainer, .onPageNav, .docsNavContainer .toc .navWrapper',
+          // fallback
+          'body'
+        ],
+        link: '.docsNavContainer:not(.docsSliderActive) a',
+        update: {
+          script: false,
+        }
+      });
+
+      if (document && document.addEventListener) {
+        document.addEventListener('pjax:ready', function (e) {
+          if (ga) ga('send', 'pageview', location.pathname);
+        });
+      }
+
+      var languagesMenuItemCopy = document.getElementById("languages-menu");
+      if (languagesMenuItemCopy) {
+        languagesMenuItemCopy.addEventListener("click", function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+        });
+      }
+      </script></span></div><section class="sitemap"><span class="nav-home" style="height:1px"></span><div><h5>Docs</h5><a href="/docs/intro/quick-start.html">Get Started</a><a href="/docs/api/SchemaComposer.html">API Reference</a><a href="/docs/plugins/list-of-plugins.html">Plugins</a><a href="https://graphql-compose.herokuapp.com/" target="_blank">Live Demo</a></div><div><h5>Community</h5><a href="https://github.com/graphql-compose/graphql-compose/issues" target="_blank">Issues</a><a href="https://twitter.com/nodkz" target="_blank">Twitter</a><a href="https://opencollective.com/graphql-compose" target="_blank">Donate</a></div><div><h5>More</h5><a href="https://www.npmjs.com/package/graphql-compose" target="_blank">NPM</a><a href="https://github.com/graphql-compose/graphql-compose" target="_blank">GitHub</a><a class="github-button" href="https://github.com/graphql-compose/graphql-compose" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2021  <span style="color:black">🇰🇿</span> Pavel Chertorogov @nodkz</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '34b5c77954100fe8e57575f8dfd60185',
+                indexName: 'graphql-compose',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"hitsPerPage":10}
+              });
+            </script></body></html>
