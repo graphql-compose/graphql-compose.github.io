@@ -214,20 +214,27 @@ settings from this type.</p>
   <span class="hljs-attr">cloneMap</span>: <span class="hljs-built_in">Map</span>&lt;any, any&gt;
 ): EnumTypeComposer&lt;any&gt;
 </code></pre>
-<p>Clone this type to another SchemaComposer.
-Also will be cloned all sub-types.</p>
+<p>Clone this type to another SchemaComposer.</p>
 <h3><a class="anchor" aria-hidden="true" id="merge"></a><a href="#merge" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>merge()</h3>
 <pre><code class="hljs css language-js">merge(
   type: GraphQLEnumType | EnumTypeComposer&lt;any&gt;
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="extensions-methods"></a><a href="#extensions-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extensions methods</h2>
+<p><code>Extensions</code> is a property on type/field/arg definitions to pass private extra metadata.
+It's used only on the server-side with the Code-First approach,
+mostly for 3rd party server middlewares &amp; plugins.
+Property <code>extensions</code> may contain private server metadata of any type (even functions)
+and does not available via SDL.</p>
+<p>@see <a href="https://github.com/graphql/graphql-js/issues/1527">https://github.com/graphql/graphql-js/issues/1527</a>
+@note
+If you need to provide public metadata to clients then use <code>directives</code> instead.</p>
 <h3><a class="anchor" aria-hidden="true" id="getextensions"></a><a href="#getextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getExtensions()</h3>
 <pre><code class="hljs css language-js">getExtensions(): Extensions
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="setextensions"></a><a href="#setextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setExtensions()</h3>
 <pre><code class="hljs css language-js">setExtensions(
-  extensions: Extensions
+  extensions: Extensions | <span class="hljs-literal">undefined</span>
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="extendextensions"></a><a href="#extendextensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>extendExtensions()</h3>
@@ -307,12 +314,23 @@ Also will be cloned all sub-types.</p>
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="directive-methods"></a><a href="#directive-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Directive methods</h2>
+<p>Directives provide the ability to work with public metadata which is available via SDL.
+Directives can be used on type/field/arg definitions. The most famous directives are
+<code>@deprecated(reason: &quot;...&quot;)</code> and <code>@specifiedBy(url: &quot;...&quot;)</code> which are present in GraphQL spec.
+GraphQL spec allows to you add any own directives.</p>
+<p>@example
+type Article @directive1 {
+name @directive2
+comments(limit: Int @directive3)
+}</p>
+<p>@note
+If you need private metadata then use <code>extensions</code> instead.</p>
 <h3><a class="anchor" aria-hidden="true" id="getdirectives"></a><a href="#getdirectives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDirectives()</h3>
-<pre><code class="hljs css language-js">getDirectives(): <span class="hljs-built_in">Array</span>&lt;ExtensionsDirective&gt;
+<pre><code class="hljs css language-js">getDirectives(): <span class="hljs-built_in">Array</span>&lt;Directive&gt;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="setdirectives"></a><a href="#setdirectives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setDirectives()</h3>
 <pre><code class="hljs css language-js">setDirectives(
-  directives: <span class="hljs-built_in">Array</span>&lt;ExtensionsDirective&gt;
+  directives: <span class="hljs-built_in">Array</span>&lt;Directive&gt;
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="getdirectivenames"></a><a href="#getdirectivenames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDirectiveNames()</h3>
@@ -323,6 +341,16 @@ Also will be cloned all sub-types.</p>
   directiveName: string
 ): DirectiveArgs | <span class="hljs-literal">undefined</span>
 </code></pre>
+<p>Returns arguments of first found directive by name.
+If directive does not exists then will be returned undefined.</p>
+<h3><a class="anchor" aria-hidden="true" id="setdirectivebyname"></a><a href="#setdirectivebyname" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setDirectiveByName()</h3>
+<pre><code class="hljs css language-js">setDirectiveByName(
+  directiveName: string,
+  <span class="hljs-attr">args</span>: DirectiveArgs
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<p>Set arguments of first found directive by name.
+If directive does not exists then will be created new one.</p>
 <h3><a class="anchor" aria-hidden="true" id="getdirectivebyid"></a><a href="#getdirectivebyid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDirectiveById()</h3>
 <pre><code class="hljs css language-js">getDirectiveById(
   idx: number
@@ -331,12 +359,12 @@ Also will be cloned all sub-types.</p>
 <h3><a class="anchor" aria-hidden="true" id="getfielddirectives"></a><a href="#getfielddirectives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldDirectives()</h3>
 <pre><code class="hljs css language-js">getFieldDirectives(
   fieldName: string
-): <span class="hljs-built_in">Array</span>&lt;ExtensionsDirective&gt;
+): <span class="hljs-built_in">Array</span>&lt;Directive&gt;
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="setfielddirectives"></a><a href="#setfielddirectives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFieldDirectives()</h3>
 <pre><code class="hljs css language-js">setFieldDirectives(
   fieldName: string,
-  <span class="hljs-attr">directives</span>: <span class="hljs-built_in">Array</span>&lt;ExtensionsDirective&gt;
+  <span class="hljs-attr">directives</span>: <span class="hljs-built_in">Array</span>&lt;Directive&gt; | <span class="hljs-literal">undefined</span>
 ): <span class="hljs-keyword">this</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="getfielddirectivenames"></a><a href="#getfielddirectivenames" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldDirectiveNames()</h3>
@@ -350,6 +378,17 @@ Also will be cloned all sub-types.</p>
   <span class="hljs-attr">directiveName</span>: string
 ): DirectiveArgs | <span class="hljs-literal">undefined</span>
 </code></pre>
+<p>Returns arguments of first found directive by name.
+If directive does not exists then will be returned undefined.</p>
+<h3><a class="anchor" aria-hidden="true" id="setfielddirectivebyname"></a><a href="#setfielddirectivebyname" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setFieldDirectiveByName()</h3>
+<pre><code class="hljs css language-js">setFieldDirectiveByName(
+  fieldName: string,
+  <span class="hljs-attr">directiveName</span>: string,
+  <span class="hljs-attr">args</span>: DirectiveArgs
+): <span class="hljs-keyword">this</span>
+</code></pre>
+<p>Set arguments of first found directive by name.
+If directive does not exists then will be created new one.</p>
 <h3><a class="anchor" aria-hidden="true" id="getfielddirectivebyid"></a><a href="#getfielddirectivebyid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFieldDirectiveById()</h3>
 <pre><code class="hljs css language-js">getFieldDirectiveById(
   fieldName: string,
@@ -375,6 +414,7 @@ Also will be cloned all sub-types.</p>
   values?: EnumTypeComposerValueConfigMapDefinition;
   description?: string | <span class="hljs-literal">null</span>;
   extensions?: Extensions;
+  directives?: Directive[];
 };
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="enumtypecomposervalueconfig"></a><a href="#enumtypecomposervalueconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>EnumTypeComposerValueConfig</h3>
@@ -382,8 +422,9 @@ Also will be cloned all sub-types.</p>
   <span class="hljs-attr">value</span>: any <span class="hljs-comment">/* T */</span>;
   deprecationReason?: string | <span class="hljs-literal">null</span>;
   description?: string | <span class="hljs-literal">null</span>;
-  astNode?: EnumValueDefinitionNode | <span class="hljs-literal">null</span> | <span class="hljs-keyword">void</span>;
+  astNode?: EnumValueDefinitionNode | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>;
   extensions?: Extensions;
+  directives?: Directive[];
   [key: string]: any;
 };
 </code></pre>
@@ -393,6 +434,7 @@ Also will be cloned all sub-types.</p>
   deprecationReason?: string | <span class="hljs-literal">null</span>;
   description?: string | <span class="hljs-literal">null</span>;
   extensions?: Extensions;
+  directives?: Directive[];
   [key: string]: any;
 };
 </code></pre>
@@ -402,7 +444,7 @@ Also will be cloned all sub-types.</p>
 <h3><a class="anchor" aria-hidden="true" id="enumtypecomposervalueconfigmapdefinition"></a><a href="#enumtypecomposervalueconfigmapdefinition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>EnumTypeComposerValueConfigMapDefinition</h3>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> type EnumTypeComposerValueConfigMapDefinition = ObjMapReadOnly&lt;EnumTypeComposerValueConfigDefinition&gt;;
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/api/ScalarTypeComposer.html"><span class="arrow-prev">← </span><span class="function-name-prevnext">ScalarTypeComposer</span></a><a class="docs-next button" href="/docs/next/api/InterfaceTypeComposer.html"><span class="function-name-prevnext">InterfaceTypeComposer</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#static-methods">Static methods</a><ul class="toc-headings"><li><a href="#static-create">static create()</a></li><li><a href="#static-createtemp">static createTemp()</a></li></ul></li><li><a href="#getters">Getters</a><ul class="toc-headings"><li><a href="#list">List</a></li><li><a href="#nonnull">NonNull</a></li></ul></li><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#value-methods">Value methods</a><ul class="toc-headings"><li><a href="#hasfield">hasField()</a></li><li><a href="#getfields">getFields()</a></li><li><a href="#getfield">getField()</a></li><li><a href="#getfieldnames">getFieldNames()</a></li><li><a href="#setfields">setFields()</a></li><li><a href="#setfield">setField()</a></li><li><a href="#addfields">addFields()</a></li><li><a href="#removefield">removeField()</a></li><li><a href="#removeotherfields">removeOtherFields()</a></li><li><a href="#reorderfields">reorderFields()</a></li><li><a href="#extendfield">extendField()</a></li><li><a href="#deprecatefields">deprecateFields()</a></li></ul></li><li><a href="#type-methods">Type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypeplural">getTypePlural()</a></li><li><a href="#gettypenonnull">getTypeNonNull()</a></li><li><a href="#gettypename">getTypeName()</a></li><li><a href="#settypename">setTypeName()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#clone">clone()</a></li><li><a href="#cloneto">cloneTo()</a></li><li><a href="#merge">merge()</a></li></ul></li><li><a href="#extensions-methods">Extensions methods</a><ul class="toc-headings"><li><a href="#getextensions">getExtensions()</a></li><li><a href="#setextensions">setExtensions()</a></li><li><a href="#extendextensions">extendExtensions()</a></li><li><a href="#clearextensions">clearExtensions()</a></li><li><a href="#getextension">getExtension()</a></li><li><a href="#hasextension">hasExtension()</a></li><li><a href="#setextension">setExtension()</a></li><li><a href="#removeextension">removeExtension()</a></li><li><a href="#getfieldextensions">getFieldExtensions()</a></li><li><a href="#setfieldextensions">setFieldExtensions()</a></li><li><a href="#extendfieldextensions">extendFieldExtensions()</a></li><li><a href="#clearfieldextensions">clearFieldExtensions()</a></li><li><a href="#getfieldextension">getFieldExtension()</a></li><li><a href="#hasfieldextension">hasFieldExtension()</a></li><li><a href="#setfieldextension">setFieldExtension()</a></li><li><a href="#removefieldextension">removeFieldExtension()</a></li></ul></li><li><a href="#directive-methods">Directive methods</a><ul class="toc-headings"><li><a href="#getdirectives">getDirectives()</a></li><li><a href="#setdirectives">setDirectives()</a></li><li><a href="#getdirectivenames">getDirectiveNames()</a></li><li><a href="#getdirectivebyname">getDirectiveByName()</a></li><li><a href="#getdirectivebyid">getDirectiveById()</a></li><li><a href="#getfielddirectives">getFieldDirectives()</a></li><li><a href="#setfielddirectives">setFieldDirectives()</a></li><li><a href="#getfielddirectivenames">getFieldDirectiveNames()</a></li><li><a href="#getfielddirectivebyname">getFieldDirectiveByName()</a></li><li><a href="#getfielddirectivebyid">getFieldDirectiveById()</a></li><li><a href="#tosdl">toSDL()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#enumtypecomposerdefinition">EnumTypeComposerDefinition</a></li><li><a href="#enumtypecomposerasobjectdefinition">EnumTypeComposerAsObjectDefinition</a></li><li><a href="#enumtypecomposervalueconfig">EnumTypeComposerValueConfig</a></li><li><a href="#enumtypecomposervalueconfigdefinition">EnumTypeComposerValueConfigDefinition</a></li><li><a href="#enumtypecomposervalueconfigmap">EnumTypeComposerValueConfigMap</a></li><li><a href="#enumtypecomposervalueconfigmapdefinition">EnumTypeComposerValueConfigMapDefinition</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><span><script src="/js/pjax-api.js"></script><script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/api/ScalarTypeComposer.html"><span class="arrow-prev">← </span><span class="function-name-prevnext">ScalarTypeComposer</span></a><a class="docs-next button" href="/docs/next/api/InterfaceTypeComposer.html"><span class="function-name-prevnext">InterfaceTypeComposer</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#static-methods">Static methods</a><ul class="toc-headings"><li><a href="#static-create">static create()</a></li><li><a href="#static-createtemp">static createTemp()</a></li></ul></li><li><a href="#getters">Getters</a><ul class="toc-headings"><li><a href="#list">List</a></li><li><a href="#nonnull">NonNull</a></li></ul></li><li><a href="#properties">Properties</a><ul class="toc-headings"><li><a href="#schemacomposer">schemaComposer</a></li></ul></li><li><a href="#value-methods">Value methods</a><ul class="toc-headings"><li><a href="#hasfield">hasField()</a></li><li><a href="#getfields">getFields()</a></li><li><a href="#getfield">getField()</a></li><li><a href="#getfieldnames">getFieldNames()</a></li><li><a href="#setfields">setFields()</a></li><li><a href="#setfield">setField()</a></li><li><a href="#addfields">addFields()</a></li><li><a href="#removefield">removeField()</a></li><li><a href="#removeotherfields">removeOtherFields()</a></li><li><a href="#reorderfields">reorderFields()</a></li><li><a href="#extendfield">extendField()</a></li><li><a href="#deprecatefields">deprecateFields()</a></li></ul></li><li><a href="#type-methods">Type methods</a><ul class="toc-headings"><li><a href="#gettype">getType()</a></li><li><a href="#gettypeplural">getTypePlural()</a></li><li><a href="#gettypenonnull">getTypeNonNull()</a></li><li><a href="#gettypename">getTypeName()</a></li><li><a href="#settypename">setTypeName()</a></li><li><a href="#getdescription">getDescription()</a></li><li><a href="#setdescription">setDescription()</a></li><li><a href="#clone">clone()</a></li><li><a href="#cloneto">cloneTo()</a></li><li><a href="#merge">merge()</a></li></ul></li><li><a href="#extensions-methods">Extensions methods</a><ul class="toc-headings"><li><a href="#getextensions">getExtensions()</a></li><li><a href="#setextensions">setExtensions()</a></li><li><a href="#extendextensions">extendExtensions()</a></li><li><a href="#clearextensions">clearExtensions()</a></li><li><a href="#getextension">getExtension()</a></li><li><a href="#hasextension">hasExtension()</a></li><li><a href="#setextension">setExtension()</a></li><li><a href="#removeextension">removeExtension()</a></li><li><a href="#getfieldextensions">getFieldExtensions()</a></li><li><a href="#setfieldextensions">setFieldExtensions()</a></li><li><a href="#extendfieldextensions">extendFieldExtensions()</a></li><li><a href="#clearfieldextensions">clearFieldExtensions()</a></li><li><a href="#getfieldextension">getFieldExtension()</a></li><li><a href="#hasfieldextension">hasFieldExtension()</a></li><li><a href="#setfieldextension">setFieldExtension()</a></li><li><a href="#removefieldextension">removeFieldExtension()</a></li></ul></li><li><a href="#directive-methods">Directive methods</a><ul class="toc-headings"><li><a href="#getdirectives">getDirectives()</a></li><li><a href="#setdirectives">setDirectives()</a></li><li><a href="#getdirectivenames">getDirectiveNames()</a></li><li><a href="#getdirectivebyname">getDirectiveByName()</a></li><li><a href="#setdirectivebyname">setDirectiveByName()</a></li><li><a href="#getdirectivebyid">getDirectiveById()</a></li><li><a href="#getfielddirectives">getFieldDirectives()</a></li><li><a href="#setfielddirectives">setFieldDirectives()</a></li><li><a href="#getfielddirectivenames">getFieldDirectiveNames()</a></li><li><a href="#getfielddirectivebyname">getFieldDirectiveByName()</a></li><li><a href="#setfielddirectivebyname">setFieldDirectiveByName()</a></li><li><a href="#getfielddirectivebyid">getFieldDirectiveById()</a></li><li><a href="#tosdl">toSDL()</a></li></ul></li><li><a href="#internal-type-definitions">Internal type definitions</a><ul class="toc-headings"><li><a href="#enumtypecomposerdefinition">EnumTypeComposerDefinition</a></li><li><a href="#enumtypecomposerasobjectdefinition">EnumTypeComposerAsObjectDefinition</a></li><li><a href="#enumtypecomposervalueconfig">EnumTypeComposerValueConfig</a></li><li><a href="#enumtypecomposervalueconfigdefinition">EnumTypeComposerValueConfigDefinition</a></li><li><a href="#enumtypecomposervalueconfigmap">EnumTypeComposerValueConfigMap</a></li><li><a href="#enumtypecomposervalueconfigmapdefinition">EnumTypeComposerValueConfigMapDefinition</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><span><script src="/js/pjax-api.js"></script><script>
       window.foo = new Pjax({
         areas: [
           // try to use the first query.
