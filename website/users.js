@@ -5,4 +5,10 @@ module.exports = [
     infoLink: 'https://www.gatsbyjs.org/',
     pinned: true,
   },
+  {
+    caption: 'GraphQL Mesh',
+    image: 'https://www.graphql-mesh.com/img/mesh-logo.svg',
+    infoLink: 'https://www.graphql-mesh.com',
+    pinned: true
+  }
 ];
