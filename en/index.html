@@ -58,7 +58,7 @@
   <span class="hljs-attr">list4</span>: [<span class="hljs-string">`type Complex2Type { f1: Float, f2: Int }`</span>],
 });
 </code></pre>
-</span></div></div><div class="pluginsSubFooter"><div><span><p>More details about type creation you can find in the following <a href="./basics/understanding-types.html">article</a>.</p>
+</span></div></div><div class="pluginsSubFooter"><div><span><p>More details about type creation you can find in the following <a href="./docs/basics/understanding-types.html">article</a>.</p>
 </span></div></div></div></div></div><div class="container paddingBottom paddingTop"><div class="wrapper"><div class="pluginsHeader">Migration from graphql-tools</div><div><div class="editor-window"><div class="editor-menubar"><span class="editor-button close"></span><span class="editor-button minimize"></span><span class="editor-button maximize"></span><span class="editor-filename">schema.js</span></div><div><span><pre><code class="hljs css language-diff"><span class="hljs-deletion">- import { makeExecutableSchema } from 'graphql-tools';</span>
 <span class="hljs-addition">+ import { schemaComposer } from 'graphql-compose';</span>
 
