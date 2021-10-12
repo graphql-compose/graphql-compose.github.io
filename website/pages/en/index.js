@@ -240,7 +240,7 @@ const AuthorTC = schemaComposer.createObjectTC({
         <div className="pluginsSubFooter">
           <MarkdownBlock>
             More details about type creation you can find in the following
-            [article](./basics/understanding-types.html).
+            [article](./docs/basics/understanding-types.html).
           </MarkdownBlock>
         </div>
       </div>
